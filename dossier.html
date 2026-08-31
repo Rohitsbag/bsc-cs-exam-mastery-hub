@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Rohit Bag — Decision Hub</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *{-webkit-tap-highlight-color:transparent;box-sizing:border-box}
+  body{font-family:'Inter',sans-serif;background:#07090e;color:#e4e4e7;-webkit-font-smoothing:antialiased;margin:0}
+  
+  /* NAV TABS */
+  .tab-btn{padding:8px 14px;border-radius:10px;font-size:11px;font-weight:600;border:none;cursor:pointer;transition:all 0.2s;white-space:nowrap;color:#71717a;background:transparent}
+  .tab-btn.active{background:#18181b;color:#f4f4f5;box-shadow:0 1px 3px rgba(0,0,0,0.4)}
+  
+  /* CARDS */
+  .card{background:#111114;border:1px solid #1f1f23;border-radius:16px;padding:16px}
+  .card-sm{background:#111114;border:1px solid #1f1f23;border-radius:12px;padding:12px}
+  .card-highlight{background:#0d1a12;border:1px solid #16a34a33;border-radius:16px;padding:16px}
+  .card-blue{background:#0a0f1e;border:1px solid #1d4ed833;border-radius:16px;padding:16px}
+  .card-amber{background:#110f00;border:1px solid #d9770633;border-radius:16px;padding:16px}
+  .card-purple{background:#0f0a1e;border:1px solid #7c3aed33;border-radius:16px;padding:16px}
+  
+  /* TAGS */
+  .tag{display:inline-flex;align-items:center;padding:3px 8px;border-radius:6px;font-size:10px;font-weight:700;letter-spacing:0.03em}
+  .tag-green{background:#16a34a22;color:#4ade80;border:1px solid #16a34a33}
+  .tag-blue{background:#1d4ed822;color:#60a5fa;border:1px solid #1d4ed833}
+  .tag-amber{background:#d9770622;color:#fbbf24;border:1px solid #d9770633}
+  .tag-purple{background:#7c3aed22;color:#c084fc;border:1px solid #7c3aed33}
+  .tag-red{background:#dc262622;color:#f87171;border:1px solid #dc262633}
+  .tag-zinc{background:#27272a;color:#a1a1aa;border:1px solid #3f3f46}
+  
+  /* SECTION */
+  .section{display:none;padding:16px;padding-bottom:100px}
+  .section.active{display:block}
+  
+  /* RANGE */
+  input[type=range]{-webkit-appearance:none;background:#27272a;border-radius:999px;height:5px;width:100%}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;height:18px;width:18px;border-radius:50%;background:#3b82f6;cursor:pointer;border:2px solid #07090e}
+  
+  /* STAT ROW */
+  .stat-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #1f1f23}
+  .stat-row:last-child{border-bottom:none}
+  
+  /* STEP */
+  .step-line{display:flex;gap:12px;align-items:flex-start}
+  .step-dot{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0;margin-top:1px}
+  
+  /* PILL NAV */
+  .pill-nav{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .pill-nav::-webkit-scrollbar{display:none}
+  
+  /* BOTTOM NAV */
+  .bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#111114ee;backdrop-filter:blur(20px);border-top:1px solid #1f1f23;padding:8px 16px 20px;z-index:100}
+  .nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;flex:1;border:none;background:transparent;padding:6px 4px;border-radius:10px;transition:all 0.15s;color:#52525b}
+  .nav-item.active{color:#e4e4e7;background:#27272a}
+  .nav-item span{font-size:9px;font-weight:600;letter-spacing:0.02em}
+  
+  /* TOGGLE */
+  details summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between}
+  details summary::-webkit-details-marker{display:none}
+  details[open] .chevron{transform:rotate(180deg)}
+  .chevron{transition:transform 0.2s;width:16px;height:16px;color:#52525b;flex-shrink:0}
+  
+  /* COMPARE TABLE */
+  .compare-cell{padding:10px 8px;border-bottom:1px solid #1f1f23;font-size:12px}
+  .compare-cell:last-child{border-bottom:none}
+  
+  /* PROGRESS BAR */
+  .progress-bar{height:6px;border-radius:3px;background:#27272a;overflow:hidden}
+  .progress-fill{height:100%;border-radius:3px;transition:width 0.4s}
+</style>
+</head>
+<body>
+
+<!-- STICKY TOP BAR -->
+<div style="position:sticky;top:0;z-index:99;background:#07090eee;backdrop-filter:blur(20px);border-bottom:1px solid #1f1f23;padding:10px 16px;display:flex;align-items:center;justify-content:space-between">
+  <div style="display:flex;align-items:center;gap:10px">
+    <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#27272a,#3f3f46);border:1px solid #52525b;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:11px;color:#e4e4e7">RB</div>
+    <div>
+      <div style="font-size:13px;font-weight:700;color:#f4f4f5;display:flex;align-items:center;gap:6px">
+        Rohit Bag
+        <span style="width:6px;height:6px;border-radius:50%;background:#4ade80;display:inline-block"></span>
+      </div>
+      <div style="font-size:10px;color:#71717a">B.Sc CS · Sem 3 · Nallasopara</div>
+    </div>
+  </div>
+  <a href="index.html" style="font-size:11px;color:#a1a1aa;text-decoration:none;background:#18181b;border:1px solid #27272a;padding:5px 10px;border-radius:8px;font-weight:600">Study Lab →</a>
+</div>
+
+
+
+<!-- ══════════════════════════════════════════ -->
+<!-- TAB 1: OVERVIEW                          -->
+<!-- ══════════════════════════════════════════ -->
+<div id="tab-overview" class="section active">
+
+  <!-- Status Cards -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">
+    <div class="card-highlight" style="padding:14px">
+      <div style="font-size:10px;color:#4ade80;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px">Your Loan EMI Now</div>
+      <div style="font-size:26px;font-weight:800;color:#4ade80">₹0</div>
+      <div style="font-size:11px;color:#71717a;margin-top:2px">per month · 0% interest</div>
+    </div>
+    <div class="card" style="padding:14px">
+      <div style="font-size:10px;color:#f87171;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px">Daily Commute</div>
+      <div style="font-size:26px;font-weight:800;color:#f87171">3 hrs</div>
+      <div style="font-size:11px;color:#71717a;margin-top:2px">Nallasopara → Bandra</div>
+    </div>
+  </div>
+
+  <!-- Quick Facts -->
+  <div class="card" style="margin-bottom:14px">
+    <div style="font-size:12px;font-weight:700;color:#a1a1aa;margin-bottom:12px;text-transform:uppercase;letter-spacing:0.05em">Your Profile at a Glance</div>
+    <div class="stat-row">
+      <span style="font-size:13px;color:#a1a1aa">12th HSC Score</span>
+      <div style="display:flex;align-items:center;gap:6px"><span style="font-size:13px;font-weight:700;color:#f4f4f5">64.4%</span><span class="tag tag-green">✓ Eligible</span></div>
+    </div>
+    <div class="stat-row">
+      <span style="font-size:13px;color:#a1a1aa">Family Income / year</span>
+      <div style="display:flex;align-items:center;gap:6px"><span style="font-size:13px;font-weight:700;color:#f4f4f5">~₹3.7L</span><span class="tag tag-green">✓ 0% Interest</span></div>
+    </div>
+    <div class="stat-row">
+      <span style="font-size:13px;color:#a1a1aa">Collateral Required</span>
+      <span style="font-size:13px;font-weight:700;color:#4ade80">₹0 (None)</span>
+    </div>
+    <div class="stat-row">
+      <span style="font-size:13px;color:#a1a1aa">Loan Processing Fee</span>
+      <span style="font-size:13px;font-weight:700;color:#4ade80">₹0 (Free)</span>
+    </div>
+    <div class="stat-row">
+      <span style="font-size:13px;color:#a1a1aa">Prepayment Penalty</span>
+      <span style="font-size:13px;font-weight:700;color:#4ade80">₹0 (None)</span>
+    </div>
+    <div class="stat-row">
+      <span style="font-size:13px;color:#a1a1aa">October ATKT Exams</span>
+      <span class="tag tag-amber">⚡ Upcoming</span>
+    </div>
+  </div>
+
+  <!-- 3-Line Summary -->
+  <div class="card-blue" style="margin-bottom:14px">
+    <div style="font-size:12px;font-weight:700;color:#60a5fa;margin-bottom:10px">💡 The Simple Strategy</div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="display:flex;gap:10px;align-items:flex-start">
+        <div style="width:22px;height:22px;border-radius:50%;background:#1d4ed833;color:#60a5fa;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">1</div>
+        <div style="font-size:13px;color:#d1d5db;padding-top:2px">Pass Oct exams → Get your clean 1st Year marksheet.</div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:flex-start">
+        <div style="width:22px;height:22px;border-radius:50%;background:#1d4ed833;color:#60a5fa;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">2</div>
+        <div style="font-size:13px;color:#d1d5db;padding-top:2px">Apply for 0% SBI Loan (₹2L) on vidyalakshmi.co.in. Pay ₹0/month during college.</div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:flex-start">
+        <div style="width:22px;height:22px;border-radius:50%;background:#16a34a33;color:#4ade80;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">3</div>
+        <div style="font-size:13px;color:#d1d5db;padding-top:2px">Apply for MahaDBT 50% fee refund → reduces the loan you'll repay after college.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Exam portal note -->
+  <div class="card-amber">
+    <div style="font-size:12px;font-weight:700;color:#fbbf24;margin-bottom:6px">📋 About Your Samarth Portal (as of today)</div>
+    <div style="font-size:13px;color:#a1a1aa;line-height:1.6">
+      Your fees were paid on <strong style="color:#e4e4e7">28th Aug</strong> (Receipts #85 & #86 — before the 31st Aug deadline). You're safe. The portal only shows Regular Sem 3 & 5 because ATKT entries are pushed by the college backend — no action needed from your side.
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- TAB 2: LOAN DETAILS (FULL)               -->
+<!-- ══════════════════════════════════════════ -->
+<div id="tab-loan" class="section">
+
+  <!-- Scheme Comparison -->
+  <div class="card" style="margin-bottom:14px">
+    <div style="font-size:12px;font-weight:700;color:#a1a1aa;margin-bottom:12px;text-transform:uppercase;letter-spacing:0.05em">Which Scheme? (Side-by-side)</div>
+    
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">
+      <div class="card-sm" style="opacity:0.55">
+        <div class="tag tag-zinc" style="margin-bottom:8px">TYPE 1 · PM-Vidyalaxmi</div>
+        <div style="font-size:12px;color:#a1a1aa;line-height:1.7">
+          860 elite colleges only<br>3% subsidy<br>~6.8% interest on you<br>RD National: ❌ Not eligible
+        </div>
+      </div>
+      <div class="card-highlight">
+        <div class="tag tag-green" style="margin-bottom:8px">TYPE 2 · SBI CSIS ⭐</div>
+        <div style="font-size:12px;color:#d1d5db;line-height:1.7">
+          ALL MU colleges ✅<br><strong style="color:#4ade80">100% interest waiver</strong><br><strong style="color:#4ade80">0% interest to you</strong><br>RD National: ✅ Eligible
+        </div>
+      </div>
+    </div>
+    <div style="font-size:11px;color:#52525b;text-align:center">You qualify 100% for Type 2 (SBI CSIS)</div>
+  </div>
+
+  <!-- The 2 Disbursement Modes -->
+  <div style="font-size:12px;font-weight:700;color:#a1a1aa;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.05em">How The Money Reaches You</div>
+  
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">
+    <div class="card-sm">
+      <div style="font-size:11px;font-weight:700;color:#e4e4e7;margin-bottom:6px">Mode 1 · College Fees</div>
+      <div style="font-size:11px;color:#71717a;line-height:1.6;margin-bottom:8px">Tuition, exam & lab fees (~₹35k/year). Goes straight from bank to college. You never touch this.</div>
+      <div style="font-size:10px;color:#52525b;background:#0a0a0d;border-radius:8px;padding:8px">🔒 Bank → College NEFT. ₹0 in your hands.</div>
+    </div>
+    <div class="card-sm" style="border-color:#16a34a33">
+      <div style="font-size:11px;font-weight:700;color:#4ade80;margin-bottom:6px">Mode 2 · Your Account 💵</div>
+      <div style="font-size:11px;color:#71717a;line-height:1.6;margin-bottom:8px">Laptop (~₹45k), travel, books & living allowance. Goes directly to your personal SBI account!</div>
+      <div style="font-size:10px;color:#4ade80;background:#0d1a12;border-radius:8px;padding:8px">✅ Bank → Your SBI account directly.</div>
+    </div>
+  </div>
+
+  <!-- Full Loan Terms -->
+  <div class="card" style="margin-bottom:14px">
+    <div style="font-size:12px;font-weight:700;color:#a1a1aa;margin-bottom:12px;text-transform:uppercase;letter-spacing:0.05em">Complete Loan Terms</div>
+    <div class="stat-row">
+      <span style="font-size:13px;color:#a1a1aa">Interest during college</span>
+      <span style="font-size:13px;font-weight:700;color:#4ade80">0% (Govt pays it)</span>
+    </div>
+    <div class="stat-row">
+      <span style="font-size:13px;color:#a1a1aa">Interest after college</span>
+      <span style="font-size:13px;font-weight:700;color:#f4f4f5">10.05% p.a.</span>
+    </div>
+    <div class="stat-row">
+      <span style="font-size:13px;color:#a1a1aa">Repayment starts</span>
+      <span style="font-size:13px;font-weight:700;color:#f4f4f5">1 year after graduation</span>
+    </div>
+    <div class="stat-row">
+      <span style="font-size:13px;color:#a1a1aa">Max repayment period</span>
+      <span style="font-size:13px;font-weight:700;color:#f4f4f5">15 years (flexible)</span>
+    </div>
+    <div class="stat-row">
+      <span style="font-size:13px;color:#a1a1aa">Prepayment penalty</span>
+      <span style="font-size:13px;font-weight:700;color:#4ade80">Zero (RBI law)</span>
+    </div>
+    <div class="stat-row">
+      <span style="font-size:13px;color:#a1a1aa">Repayment period set when?</span>
+      <span style="font-size:13px;font-weight:700;color:#60a5fa">AFTER college, not now</span>
+    </div>
+    <div class="stat-row">
+      <span style="font-size:13px;color:#a1a1aa">Tax benefit on interest</span>
+      <span style="font-size:13px;font-weight:700;color:#4ade80">Sec 80E (100% deductible)</span>
+    </div>
+    <div class="stat-row">
+      <span style="font-size:13px;color:#a1a1aa">Application portal</span>
+      <span style="font-size:13px;font-weight:700;color:#60a5fa">vidyalakshmi.co.in</span>
+    </div>
+  </div>
+
+  <!-- EMI Calculator -->
+  <div class="card-blue" style="margin-bottom:14px">
+    <div style="font-size:12px;font-weight:700;color:#60a5fa;margin-bottom:14px;display:flex;align-items:center;gap:6px">
+      <i data-lucide="calculator" style="width:14px;height:14px"></i> Post-College EMI Calculator
+    </div>
+    
+    <div style="margin-bottom:16px">
+      <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:8px">
+        <span style="color:#71717a">Loan Amount</span>
+        <strong style="color:#f4f4f5" id="lbl-loan">₹1,80,000</strong>
+      </div>
+      <input type="range" id="rng-loan" min="100000" max="300000" step="10000" value="180000" oninput="updateEmi()">
+      <div style="display:flex;justify-content:space-between;font-size:10px;color:#52525b;margin-top:4px"><span>₹1.0L</span><span>₹3.0L</span></div>
+    </div>
+    
+    <div style="margin-bottom:16px">
+      <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:8px">
+        <span style="color:#71717a">Repayment Period</span>
+        <strong style="color:#60a5fa" id="lbl-tenure">5 Years</strong>
+      </div>
+      <input type="range" id="rng-tenure" min="3" max="15" step="1" value="5" oninput="updateEmi()">
+      <div style="display:flex;justify-content:space-between;font-size:10px;color:#52525b;margin-top:4px"><span>3 yrs</span><span>15 yrs</span></div>
+    </div>
+
+    <div style="background:#07090e;border:1px solid #1f1f23;border-radius:12px;padding:14px;display:flex;justify-content:space-between;align-items:center">
+      <div>
+        <div style="font-size:10px;color:#52525b;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.05em">Monthly EMI (starts 1yr after college)</div>
+        <div style="font-size:28px;font-weight:800;color:#4ade80" id="out-emi">₹3,830</div>
+      </div>
+      <div style="text-align:right">
+        <div style="font-size:11px;color:#71717a">Total Interest</div>
+        <div style="font-size:14px;font-weight:700;color:#e4e4e7" id="out-interest">₹49,794</div>
+        <div style="font-size:10px;color:#4ade80;margin-top:2px">0% prepayment penalty</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Eligibility Audit (Rohit's profile check) -->
+  <div class="card" style="margin-bottom:14px">
+    <div style="font-size:12px;font-weight:700;color:#a1a1aa;margin-bottom:12px;text-transform:uppercase;letter-spacing:0.05em">✅ 100% Eligibility Audit</div>
+    <div style="font-size:12px;color:#71717a;margin-bottom:10px">Not a lottery — checked against your exact data:</div>
+    <div class="stat-row">
+      <span style="font-size:12px;color:#a1a1aa">12th HSC ≥ 50%</span>
+      <div style="display:flex;align-items:center;gap:6px"><span style="font-size:12px;color:#e4e4e7">64.4%</span><span class="tag tag-green">PASS ✓</span></div>
+    </div>
+    <div class="stat-row">
+      <span style="font-size:12px;color:#a1a1aa">MU College</span>
+      <div style="display:flex;align-items:center;gap:6px"><span style="font-size:12px;color:#e4e4e7">RD National</span><span class="tag tag-green">PASS ✓</span></div>
+    </div>
+    <div class="stat-row">
+      <span style="font-size:12px;color:#a1a1aa">Family income ≤ ₹4.5L</span>
+      <div style="display:flex;align-items:center;gap:6px"><span style="font-size:12px;color:#e4e4e7">~₹3.7L/yr</span><span class="tag tag-green">PASS ✓</span></div>
+    </div>
+    <div class="stat-row">
+      <span style="font-size:12px;color:#a1a1aa">Co-borrower (Father)</span>
+      <div style="display:flex;align-items:center;gap:6px"><span style="font-size:12px;color:#e4e4e7">ICICI home loan ✅</span><span class="tag tag-green">PASS ✓</span></div>
+    </div>
+    <div class="stat-row">
+      <span style="font-size:12px;color:#a1a1aa">Collateral needed</span>
+      <div style="display:flex;align-items:center;gap:6px"><span style="font-size:12px;color:#e4e4e7">Loan ≤ ₹7.5L</span><span class="tag tag-green">NONE ✓</span></div>
+    </div>
+  </div>
+
+  <!-- Required Documents -->
+  <div class="card" style="margin-bottom:14px">
+    <div style="font-size:12px;font-weight:700;color:#a1a1aa;margin-bottom:12px;text-transform:uppercase;letter-spacing:0.05em">Documents Checklist</div>
+    <div style="display:flex;flex-direction:column;gap:8px;font-size:13px">
+      <div style="display:flex;gap:8px;align-items:center"><span style="color:#4ade80">✓</span><span style="color:#a1a1aa">Student Aadhaar & PAN Card</span></div>
+      <div style="display:flex;gap:8px;align-items:center"><span style="color:#4ade80">✓</span><span style="color:#a1a1aa">10th, 12th & Sem 1/2 Marksheets</span></div>
+      <div style="display:flex;gap:8px;align-items:center"><span style="color:#fbbf24">★</span><span style="color:#e4e4e7"><strong>Tehsildar Income Certificate</strong> (most important)</span></div>
+      <div style="display:flex;gap:8px;align-items:center"><span style="color:#4ade80">✓</span><span style="color:#a1a1aa">Dad's 3-month salary slips + 6-month bank statement</span></div>
+      <div style="display:flex;gap:8px;align-items:center"><span style="color:#4ade80">✓</span><span style="color:#a1a1aa">College Fee Estimate Letter from Accounts Counter</span></div>
+      <div style="display:flex;gap:8px;align-items:center"><span style="color:#4ade80">✓</span><span style="color:#a1a1aa">Active SBI Savings Account (for loan disbursement)</span></div>
+    </div>
+  </div>
+
+  <!-- 5-Step Process -->
+  <div class="card">
+    <div style="font-size:12px;font-weight:700;color:#a1a1aa;margin-bottom:14px;text-transform:uppercase;letter-spacing:0.05em">5-Step Application Process</div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="step-line">
+        <div class="step-dot" style="background:#16a34a22;color:#4ade80">1</div>
+        <div style="padding-top:4px"><div style="font-size:13px;font-weight:600;color:#e4e4e7">Get Fee Estimate Letter</div><div style="font-size:12px;color:#71717a;margin-top:2px">From the Accounts Counter at your college.</div></div>
+      </div>
+      <div class="step-line">
+        <div class="step-dot" style="background:#1d4ed822;color:#60a5fa">2</div>
+        <div style="padding-top:4px"><div style="font-size:13px;font-weight:600;color:#e4e4e7">Register on vidyalakshmi.co.in</div><div style="font-size:12px;color:#71717a;margin-top:2px">Fill the common CELAF loan form online.</div></div>
+      </div>
+      <div class="step-line">
+        <div class="step-dot" style="background:#7c3aed22;color:#c084fc">3</div>
+        <div style="padding-top:4px"><div style="font-size:13px;font-weight:600;color:#e4e4e7">Select "SBI Student Loan"</div><div style="font-size:12px;color:#71717a;margin-top:2px">Upload Tehsildar Income Certificate (for 0% CSIS waiver).</div></div>
+      </div>
+      <div class="step-line">
+        <div class="step-dot" style="background:#d9770622;color:#fbbf24">4</div>
+        <div style="padding-top:4px"><div style="font-size:13px;font-weight:600;color:#e4e4e7">Branch Verifies Documents</div><div style="font-size:12px;color:#71717a;margin-top:2px">SBI visits or calls you. Issues formal Sanction Letter.</div></div>
+      </div>
+      <div class="step-line">
+        <div class="step-dot" style="background:#16a34a22;color:#4ade80">5</div>
+        <div style="padding-top:4px"><div style="font-size:13px;font-weight:600;color:#e4e4e7">Disbursement</div><div style="font-size:12px;color:#71717a;margin-top:2px">Tuition → College directly. Laptop/travel → Your SBI account.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- TAB 3: MONEY PLAN                        -->
+<!-- ══════════════════════════════════════════ -->
+<div id="tab-money" class="section">
+
+  <!-- Net Cost Breakdown -->
+  <div style="font-size:12px;font-weight:700;color:#a1a1aa;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.05em">How Much You Actually Pay (Total 3 Years)</div>
+
+  <div class="card-highlight" style="margin-bottom:14px">
+    <div style="text-align:center;padding:8px 0 16px">
+      <div style="font-size:12px;color:#4ade80;font-weight:700;margin-bottom:6px">NET OUT-OF-POCKET WHILE STUDYING</div>
+      <div style="font-size:48px;font-weight:800;color:#4ade80">₹0</div>
+      <div style="font-size:13px;color:#71717a;margin-top:4px">per month · for 3-4 years of college</div>
+    </div>
+  </div>
+
+  <!-- Full Breakdown Table -->
+  <div class="card" style="margin-bottom:14px">
+    <div style="font-size:12px;font-weight:700;color:#a1a1aa;margin-bottom:12px;text-transform:uppercase;letter-spacing:0.05em">Where Every Rupee Goes (3 Years)</div>
+    
+    <div class="stat-row">
+      <span style="font-size:13px;color:#a1a1aa">3-Yr College Tuition Fees</span>
+      <span style="font-size:13px;font-weight:700;color:#f4f4f5">₹1,05,000</span>
+    </div>
+    <div class="stat-row">
+      <span style="font-size:13px;color:#4ade80">— MahaDBT pays 50%</span>
+      <span style="font-size:13px;font-weight:700;color:#4ade80">-₹52,500</span>
+    </div>
+    <div class="stat-row">
+      <span style="font-size:13px;color:#60a5fa">— SBI Loan pays 50%</span>
+      <span style="font-size:13px;font-weight:700;color:#60a5fa">-₹52,500</span>
+    </div>
+    <div class="stat-row" style="border-top:1px dashed #27272a;padding-top:10px">
+      <span style="font-size:13px;font-weight:700;color:#e4e4e7">Net Tuition from your pocket</span>
+      <span style="font-size:14px;font-weight:800;color:#4ade80">₹0</span>
+    </div>
+  </div>
+
+  <!-- Cash You Receive in Hand -->
+  <div class="card-blue" style="margin-bottom:14px">
+    <div style="font-size:12px;font-weight:700;color:#60a5fa;margin-bottom:12px;text-transform:uppercase;letter-spacing:0.05em">💵 Cash That Comes to YOUR Bank Account</div>
+    <div class="stat-row">
+      <span style="font-size:13px;color:#a1a1aa">Laptop (from SBI Loan)</span>
+      <span style="font-size:14px;font-weight:700;color:#60a5fa">₹45,000</span>
+    </div>
+    <div class="stat-row">
+      <span style="font-size:13px;color:#a1a1aa">Travel + Books + Living (3 yr)</span>
+      <span style="font-size:14px;font-weight:700;color:#60a5fa">₹50,000</span>
+    </div>
+    <div class="stat-row">
+      <span style="font-size:13px;color:#a1a1aa">MahaDBT 50% refund (3 yr)</span>
+      <span style="font-size:14px;font-weight:700;color:#4ade80">₹52,500</span>
+    </div>
+    <div style="border-top:1px dashed #1d4ed833;padding-top:10px;margin-top:4px;display:flex;justify-content:space-between;align-items:center">
+      <span style="font-size:13px;font-weight:700;color:#e4e4e7">Total Liquid Cash in Hand</span>
+      <span style="font-size:18px;font-weight:800;color:#4ade80">₹1,47,500</span>
+    </div>
+  </div>
+
+  <!-- What You Repay After College -->
+  <div class="card" style="margin-bottom:14px">
+    <div style="font-size:12px;font-weight:700;color:#a1a1aa;margin-bottom:12px;text-transform:uppercase;letter-spacing:0.05em">Repayment After College (From Your Salary)</div>
+    <div style="font-size:13px;color:#71717a;margin-bottom:12px">Loan repayment only starts <strong style="color:#e4e4e7">1 year after you graduate</strong>. By then you'll have a software job.</div>
+    
+    <div style="background:#0a0a0d;border:1px solid #1f1f23;border-radius:12px;padding:14px;margin-bottom:10px">
+      <div style="font-size:11px;color:#52525b;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.05em">Estimated remaining loan (after MahaDBT offsets)</div>
+      <div style="font-size:22px;font-weight:800;color:#e4e4e7">~₹1,47,500</div>
+    </div>
+    
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <div class="card-sm">
+        <div style="font-size:10px;color:#71717a;margin-bottom:4px">5-Year Plan</div>
+        <div style="font-size:16px;font-weight:700;color:#e4e4e7">~₹3,130<span style="font-size:11px;color:#71717a">/mo</span></div>
+      </div>
+      <div class="card-sm">
+        <div style="font-size:10px;color:#71717a;margin-bottom:4px">3-Year Plan (Faster)</div>
+        <div style="font-size:16px;font-weight:700;color:#e4e4e7">~₹4,760<span style="font-size:11px;color:#71717a">/mo</span></div>
+      </div>
+    </div>
+    <div style="font-size:11px;color:#52525b;margin-top:8px">Or pay it all off in one shot — 0% prepayment penalty (RBI law).</div>
+  </div>
+
+  <!-- MahaDBT FAQ -->
+  <div class="card" style="margin-bottom:14px">
+    <details>
+      <summary style="padding:4px 0">
+        <div>
+          <div style="font-size:13px;font-weight:700;color:#e4e4e7">Can I take loan first and then apply MahaDBT?</div>
+          <div style="font-size:12px;color:#71717a;margin-top:2px">What happens to the overlap money?</div>
+        </div>
+        <i data-lucide="chevron-down" class="chevron"></i>
+      </summary>
+      <div style="margin-top:12px;padding-top:12px;border-top:1px solid #1f1f23;font-size:13px;color:#a1a1aa;line-height:1.7">
+        Yes! The sequence is: Bank pays full tuition → You apply MahaDBT → Maharashtra Govt sends 50% refund to college → College returns the excess to you (credited to your bank account) OR you send that refund cheque to SBI to directly reduce your loan balance. Either way, you win.
+      </div>
+    </details>
+  </div>
+
+  <!-- When to tell parents -->
+  <div class="card-amber">
+    <div style="font-size:12px;font-weight:700;color:#fbbf24;margin-bottom:10px;display:flex;align-items:center;gap:6px">
+      <i data-lucide="users" style="width:14px;height:14px"></i> When to Tell Your Parents
+    </div>
+    <div style="font-size:13px;color:#a1a1aa;line-height:1.7;margin-bottom:12px">
+      <strong style="color:#e4e4e7">Best time: After October exams (December 2026).</strong> Walk to your parents with your clean passing marksheets and say:
+    </div>
+    <div style="background:#07090e;border-radius:10px;padding:12px;font-size:12px;color:#d1d5db;line-height:1.7;border-left:3px solid #fbbf24">
+      "I passed all my papers. I'm applying for the 0% government interest education loan. Dad pays ₹0 per month while I study. MahaDBT cuts the fees by 50%. I repay from my salary only after I get a software job."
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- TAB 4: COLLEGE TRANSFER                  -->
+<!-- ══════════════════════════════════════════ -->
+<div id="tab-transfer" class="section">
+
+  <!-- Can I transfer directly after Sem 1 & 2? -->
+  <div class="card-highlight" style="margin-bottom:14px">
+    <div style="font-size:12px;font-weight:700;color:#4ade80;margin-bottom:8px;text-transform:uppercase;letter-spacing:0.05em">Can I Transfer Right After Clearing Sem 1 & 2?</div>
+    <div style="font-size:20px;font-weight:800;color:#4ade80;margin-bottom:6px">YES, 100%.</div>
+    <div style="font-size:13px;color:#a1a1aa;line-height:1.7">You do NOT have to finish 2nd year at RD National. Once you pass Sem 1 & 2, you have a clean "FY Cleared" record and can take <strong style="color:#e4e4e7">direct 2nd Year admission</strong> at any new college in June 2027.</div>
+  </div>
+
+  <!-- 4 Acceptance Criteria -->
+  <div style="font-size:12px;font-weight:700;color:#a1a1aa;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.05em">4 Criteria Colleges Use to Accept You</div>
+
+  <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:14px">
+    <div class="card-sm" style="display:flex;gap:12px;align-items:flex-start">
+      <div style="width:28px;height:28px;border-radius:50%;background:#1d4ed822;color:#60a5fa;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0">1</div>
+      <div>
+        <div style="font-size:13px;font-weight:700;color:#e4e4e7;margin-bottom:3px">Zero Active Backlogs (All Clear)</div>
+        <div style="font-size:12px;color:#71717a;line-height:1.6">Target college only accepts transfer if you've passed all papers. Scoring 25+/30 puts you in top 10% of transfer applicants.</div>
+      </div>
+    </div>
+    <div class="card-sm" style="display:flex;gap:12px;align-items:flex-start">
+      <div style="width:28px;height:28px;border-radius:50%;background:#1d4ed822;color:#60a5fa;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0">2</div>
+      <div>
+        <div style="font-size:13px;font-weight:700;color:#e4e4e7;margin-bottom:3px">Vacant Seat Availability</div>
+        <div style="font-size:12px;color:#71717a;line-height:1.6">Colleges have ~60-120 seats. Every year 5-15 seats open up from dropouts. You apply for these vacant slots on merit.</div>
+      </div>
+    </div>
+    <div class="card-sm" style="display:flex;gap:12px;align-items:flex-start">
+      <div style="width:28px;height:28px;border-radius:50%;background:#16a34a22;color:#4ade80;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0">3</div>
+      <div>
+        <div style="font-size:13px;font-weight:700;color:#4ade80;margin-bottom:3px">"Valid Reason" Clause — Your #1 Advantage</div>
+        <div style="font-size:12px;color:#a1a1aa;line-height:1.6">Mumbai University accepts "extreme commute hardship" as the strongest valid reason. <strong>Nallasopara to Bandra = 3 hrs daily = your automatic NOC!</strong></div>
+      </div>
+    </div>
+    <div class="card-sm" style="display:flex;gap:12px;align-items:flex-start">
+      <div style="width:28px;height:28px;border-radius:50%;background:#1d4ed822;color:#60a5fa;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0">4</div>
+      <div>
+        <div style="font-size:13px;font-weight:700;color:#e4e4e7;margin-bottom:3px">NEP 2020 Credit Matching (via ABC ID)</div>
+        <div style="font-size:12px;color:#71717a;line-height:1.6">Your ABC ID <strong style="color:#e4e4e7">869731116941</strong> holds all 40 FY credits. Non-autonomous MU colleges (Viva, Vartak) accept 100% seamlessly. Thakur verifies ~85% subjects.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Transfer Costs -->
+  <div class="card" style="margin-bottom:14px">
+    <div style="font-size:12px;font-weight:700;color:#a1a1aa;margin-bottom:12px;text-transform:uppercase;letter-spacing:0.05em">Total Transfer Costs (No Hidden Fees)</div>
+    <div class="stat-row">
+      <span style="font-size:13px;color:#a1a1aa">MU Official Transfer Fee</span>
+      <span style="font-size:13px;font-weight:700;color:#e4e4e7">₹500 – ₹1,000</span>
+    </div>
+    <div class="stat-row">
+      <span style="font-size:13px;color:#a1a1aa">New College Admission Form</span>
+      <span style="font-size:13px;font-weight:700;color:#e4e4e7">₹200 – ₹500</span>
+    </div>
+    <div class="stat-row">
+      <span style="font-size:13px;color:#a1a1aa">NOC from RD National</span>
+      <span style="font-size:13px;font-weight:700;color:#e4e4e7">₹0 – ₹200</span>
+    </div>
+    <div style="border-top:1px dashed #27272a;padding-top:10px;margin-top:4px;display:flex;justify-content:space-between;align-items:center">
+      <span style="font-size:13px;font-weight:700;color:#e4e4e7">Total Extra Admin Cost</span>
+      <span style="font-size:16px;font-weight:800;color:#e4e4e7">~₹1,000 – ₹1,500</span>
+    </div>
+    <div style="font-size:11px;color:#52525b;margin-top:6px">Capitation/donation fees are illegal under Maharashtra law. Never pay these.</div>
+  </div>
+
+  <!-- Path A vs Path B comparison -->
+  <div class="card" style="margin-bottom:14px">
+    <div style="font-size:12px;font-weight:700;color:#a1a1aa;margin-bottom:12px;text-transform:uppercase;letter-spacing:0.05em">Can I Give Sem 1, 2 AND 3 Simultaneously?</div>
+    
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <div class="card-sm" style="border-color:#dc262633;background:#0f0505">
+        <div class="tag tag-red" style="margin-bottom:8px">PATH A (Risky)</div>
+        <div style="font-size:12px;color:#a1a1aa;line-height:1.7">
+          Give Sem 1+2+3 together now<br>
+          18-20 exams in 8 weeks 😫<br>
+          Missed Sem 3 internals (zero marks)<br>
+          High chance of failing again
+        </div>
+      </div>
+      <div class="card-sm" style="border-color:#16a34a33">
+        <div class="tag tag-green" style="margin-bottom:8px">PATH B (Smart) ⭐</div>
+        <div style="font-size:12px;color:#d1d5db;line-height:1.7">
+          Focus ONLY on Sem 1+2 in Oct<br>
+          7-10 papers, 100% doable ✅<br>
+          25+/30 → Clean 7.0 CGPA<br>
+          Fresh 2nd Yr at new college in June
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Documents for transfer -->
+  <div class="card" style="margin-bottom:14px">
+    <div style="font-size:12px;font-weight:700;color:#a1a1aa;margin-bottom:12px;text-transform:uppercase;letter-spacing:0.05em">Documents Needed for Transfer</div>
+    <div style="display:flex;flex-direction:column;gap:8px;font-size:13px">
+      <div style="display:flex;gap:8px"><span style="color:#60a5fa">•</span><span style="color:#a1a1aa">NOC from RD National (citing commute distance)</span></div>
+      <div style="display:flex;gap:8px"><span style="color:#60a5fa">•</span><span style="color:#a1a1aa">Transfer Certificate (TC) + Migration Form</span></div>
+      <div style="display:flex;gap:8px"><span style="color:#60a5fa">•</span><span style="color:#a1a1aa">12th + Sem 1, 2, 3, 4 Marksheets</span></div>
+      <div style="display:flex;gap:8px"><span style="color:#fbbf24">•</span><span style="color:#e4e4e7"><strong>ABC ID: 869731116941</strong> (credit verification)</span></div>
+      <div style="display:flex;gap:8px"><span style="color:#fbbf24">•</span><span style="color:#e4e4e7"><strong>MU ERN: MU0341120240121728</strong></span></div>
+      <div style="display:flex;gap:8px"><span style="color:#60a5fa">•</span><span style="color:#a1a1aa">Nallasopara Address Proof (Aadhaar / Electricity bill)</span></div>
+    </div>
+  </div>
+
+  <!-- All 7 Colleges -->
+  <div style="font-size:12px;font-weight:700;color:#a1a1aa;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.05em">All 7 College Options (from Nallasopara)</div>
+
+  <!-- Filter Buttons -->
+  <div style="display:flex;gap:6px;margin-bottom:12px">
+    <button class="tag tag-zinc" id="cf-all" onclick="filterColleges('all')" style="cursor:pointer;background:#27272a;color:#e4e4e7">All (7)</button>
+    <button class="tag" id="cf-near" onclick="filterColleges('near')" style="cursor:pointer;background:#111114;color:#71717a;border:1px solid #27272a">≤ 35 min</button>
+    <button class="tag" id="cf-auto" onclick="filterColleges('auto')" style="cursor:pointer;background:#111114;color:#71717a;border:1px solid #27272a">Autonomous</button>
+  </div>
+
+  <div id="colleges-grid" style="display:flex;flex-direction:column;gap:10px"></div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- TAB 5: FREE PERKS                        -->
+<!-- ══════════════════════════════════════════ -->
+<div id="tab-perks" class="section">
+
+  <!-- Header -->
+  <div class="card-purple" style="margin-bottom:14px">
+    <div style="font-size:12px;font-weight:700;color:#c084fc;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.05em">Total Free Value</div>
+    <div style="font-size:28px;font-weight:800;color:#c084fc">$250,000+</div>
+    <div style="font-size:12px;color:#71717a;margin-top:2px">In free tools, cloud credits & discounts</div>
+  </div>
+
+  <!-- How to Verify -->
+  <div class="card-blue" style="margin-bottom:14px">
+    <div style="font-size:12px;font-weight:700;color:#60a5fa;margin-bottom:10px;display:flex;align-items:center;gap:6px">
+      <i data-lucide="key" style="width:14px;height:14px"></i> How To Access (Even Without .edu Email)
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <div class="card-sm">
+        <div style="font-size:11px;font-weight:700;color:#e4e4e7;margin-bottom:4px">Method A: College Email</div>
+        <div style="font-size:11px;color:#71717a;line-height:1.6">If college gives @college.ac.in email → instant 1-click verify.</div>
+      </div>
+      <div class="card-sm" style="border-color:#16a34a33">
+        <div style="font-size:11px;font-weight:700;color:#4ade80;margin-bottom:4px">Method B: Photo ID ⭐</div>
+        <div style="font-size:11px;color:#71717a;line-height:1.6">Upload photo of your physical ID card / FeePayr receipt on SheerID or GitHub. Approved in 24hrs.</div>
+      </div>
+    </div>
+    <div style="font-size:11px;color:#52525b;margin-top:8px;text-align:center">Works for ANY college — RD National, Thakur, Viva, all included.</div>
+  </div>
+
+  <!-- GitHub Pack -->
+  <div class="card" style="margin-bottom:10px">
+    <details>
+      <summary style="padding:4px 0">
+        <div style="display:flex;gap:10px;align-items:center">
+          <div style="width:36px;height:36px;border-radius:10px;background:#7c3aed22;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">⚡</div>
+          <div>
+            <div style="font-size:13px;font-weight:700;color:#e4e4e7">GitHub Student Developer Pack</div>
+            <div style="font-size:11px;color:#71717a">education.github.com/pack</div>
+          </div>
+          <span class="tag tag-purple" style="margin-left:auto;margin-right:8px">$200k Value</span>
+        </div>
+        <i data-lucide="chevron-down" class="chevron"></i>
+      </summary>
+      <div style="margin-top:12px;padding-top:12px;border-top:1px solid #1f1f23;display:flex;flex-direction:column;gap:8px">
+        <div class="card-sm" style="display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div style="font-size:12px;font-weight:600;color:#e4e4e7">GitHub Copilot Pro</div>
+            <div style="font-size:11px;color:#71717a">Free AI coding assistant in VS Code</div>
+          </div>
+          <span class="tag tag-green">Free</span>
+        </div>
+        <div class="card-sm" style="display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div style="font-size:12px;font-weight:600;color:#e4e4e7">JetBrains All Products</div>
+            <div style="font-size:11px;color:#71717a">PyCharm Pro, IntelliJ, WebStorm ($700/yr value)</div>
+          </div>
+          <span class="tag tag-green">Free</span>
+        </div>
+        <div class="card-sm" style="display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div style="font-size:12px;font-weight:600;color:#e4e4e7">DigitalOcean Cloud</div>
+            <div style="font-size:11px;color:#71717a">Host your web apps & backends</div>
+          </div>
+          <span class="tag tag-blue">$100 Credit</span>
+        </div>
+        <div class="card-sm" style="display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div style="font-size:12px;font-weight:600;color:#e4e4e7">Microsoft Azure</div>
+            <div style="font-size:11px;color:#71717a">Cloud computing, no credit card needed</div>
+          </div>
+          <span class="tag tag-blue">$100 Credit</span>
+        </div>
+        <div class="card-sm" style="display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div style="font-size:12px;font-weight:600;color:#e4e4e7">Free Domains</div>
+            <div style="font-size:11px;color:#71717a">.me and .tech custom domains</div>
+          </div>
+          <span class="tag tag-green">1 Year Free</span>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <!-- Other tools -->
+  <div class="card" style="margin-bottom:10px">
+    <details>
+      <summary style="padding:4px 0">
+        <div style="display:flex;gap:10px;align-items:center">
+          <div style="width:36px;height:36px;border-radius:10px;background:#0a0f1e;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">🎨</div>
+          <div>
+            <div style="font-size:13px;font-weight:700;color:#e4e4e7">Figma Pro, Notion, Canva</div>
+            <div style="font-size:11px;color:#71717a">Design & productivity tools</div>
+          </div>
+          <span class="tag tag-green" style="margin-left:auto;margin-right:8px">100% Free</span>
+        </div>
+        <i data-lucide="chevron-down" class="chevron"></i>
+      </summary>
+      <div style="margin-top:12px;padding-top:12px;border-top:1px solid #1f1f23;font-size:13px;color:#a1a1aa;line-height:1.7">
+        <strong style="color:#e4e4e7">Figma Pro</strong> — figma.com/education — full professional UI design tool<br>
+        <strong style="color:#e4e4e7">Notion Plus + AI</strong> — notion.so/students — free unlimited workspace<br>
+        <strong style="color:#e4e4e7">Canva Pro</strong> — canva.com/education — free via SheerID student verify
+      </div>
+    </details>
+  </div>
+
+  <!-- Hardware Deals -->
+  <div class="card" style="margin-bottom:10px">
+    <details>
+      <summary style="padding:4px 0">
+        <div style="display:flex;gap:10px;align-items:center">
+          <div style="width:36px;height:36px;border-radius:10px;background:#110f00;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">💻</div>
+          <div>
+            <div style="font-size:13px;font-weight:700;color:#e4e4e7">Laptop & Hardware Discounts</div>
+            <div style="font-size:11px;color:#71717a">Apple, Samsung, Lenovo, Dell</div>
+          </div>
+          <span class="tag tag-amber" style="margin-left:auto;margin-right:8px">Up to 20% Off</span>
+        </div>
+        <i data-lucide="chevron-down" class="chevron"></i>
+      </summary>
+      <div style="margin-top:12px;padding-top:12px;border-top:1px solid #1f1f23;display:flex;flex-direction:column;gap:8px">
+        <div class="card-sm" style="display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div style="font-size:12px;font-weight:600;color:#e4e4e7">Apple Student Store (UNiDAYS)</div>
+            <div style="font-size:11px;color:#71717a">apple.com/in-edu/shop</div>
+          </div>
+          <span class="tag tag-amber">₹10k Off + Free AirPods</span>
+        </div>
+        <div class="card-sm" style="display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div style="font-size:12px;font-weight:600;color:#e4e4e7">Samsung Student</div>
+            <div style="font-size:11px;color:#71717a">Galaxy tablets & phones</div>
+          </div>
+          <span class="tag tag-amber">Up to 20% Off</span>
+        </div>
+        <div class="card-sm" style="display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div style="font-size:12px;font-weight:600;color:#e4e4e7">Lenovo & Dell</div>
+            <div style="font-size:11px;color:#71717a">lenovo.com/in/en/student</div>
+          </div>
+          <span class="tag tag-amber">10% Off + 3yr Warranty ₹999</span>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <!-- Travel & Entertainment -->
+  <div class="card" style="margin-bottom:10px">
+    <details>
+      <summary style="padding:4px 0">
+        <div style="display:flex;gap:10px;align-items:center">
+          <div style="width:36px;height:36px;border-radius:10px;background:#0d1a12;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">🚆</div>
+          <div>
+            <div style="font-size:13px;font-weight:700;color:#e4e4e7">Travel & Entertainment</div>
+            <div style="font-size:11px;color:#71717a">Railway, Spotify, Flights</div>
+          </div>
+          <span class="tag tag-green" style="margin-left:auto;margin-right:8px">80% Off</span>
+        </div>
+        <i data-lucide="chevron-down" class="chevron"></i>
+      </summary>
+      <div style="margin-top:12px;padding-top:12px;border-top:1px solid #1f1f23;display:flex;flex-direction:column;gap:8px">
+        <div class="card-sm" style="display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div style="font-size:12px;font-weight:600;color:#4ade80">Western Railway Concession Pass</div>
+            <div style="font-size:11px;color:#71717a">Nallasopara ↔ Bandra/Kandivali/Virar</div>
+          </div>
+          <span class="tag tag-green">75–80% Off</span>
+        </div>
+        <div style="font-size:11px;color:#71717a;padding:0 4px">Get the form from your college office. Quarterly First Class pass drops from ~₹2,500 to ~₹500!</div>
+        <div class="card-sm" style="display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div style="font-size:12px;font-weight:600;color:#e4e4e7">Spotify / YouTube Premium</div>
+            <div style="font-size:11px;color:#71717a">Student rate via SheerID</div>
+          </div>
+          <span class="tag tag-green">₹59/mo (50% off)</span>
+        </div>
+        <div class="card-sm" style="display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div style="font-size:12px;font-weight:600;color:#e4e4e7">IndiGo & Air India Flights</div>
+            <div style="font-size:11px;color:#71717a">Select "Student" fare on booking</div>
+          </div>
+          <span class="tag tag-amber">6% Off + 25kg Bag</span>
+        </div>
+      </div>
+    </details>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- TAB 6: TIMELINE                          -->
+<!-- ══════════════════════════════════════════ -->
+<div id="tab-timeline" class="section">
+
+  <div style="font-size:12px;font-weight:700;color:#a1a1aa;margin-bottom:14px;text-transform:uppercase;letter-spacing:0.05em">Your Step-by-Step Roadmap</div>
+
+  <!-- Timeline Steps -->
+  <div style="display:flex;flex-direction:column;gap:0">
+    
+    <!-- Now -->
+    <div style="display:flex;gap:14px">
+      <div style="display:flex;flex-direction:column;align-items:center">
+        <div style="width:32px;height:32px;border-radius:50%;background:#d9770622;border:2px solid #fbbf24;color:#fbbf24;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">⚡</div>
+        <div style="width:2px;flex:1;background:#1f1f23;margin:4px 0;min-height:40px"></div>
+      </div>
+      <div class="card" style="flex:1;margin-bottom:10px">
+        <div style="font-size:10px;color:#fbbf24;font-weight:700;text-transform:uppercase;margin-bottom:4px">NOW · August–September 2026</div>
+        <div style="font-size:13px;font-weight:700;color:#e4e4e7;margin-bottom:4px">Study Hard for October Exams</div>
+        <div style="font-size:12px;color:#71717a;line-height:1.6">Use 7-Day Blueprint on Study Lab. Focus 100% on Sem 1 & 2 only. Don't stress about portals — your fees are paid (Receipts #85 & #86).</div>
+      </div>
+    </div>
+
+    <!-- October -->
+    <div style="display:flex;gap:14px">
+      <div style="display:flex;flex-direction:column;align-items:center">
+        <div style="width:32px;height:32px;border-radius:50%;background:#1d4ed822;border:2px solid #60a5fa;color:#60a5fa;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">📝</div>
+        <div style="width:2px;flex:1;background:#1f1f23;margin:4px 0;min-height:40px"></div>
+      </div>
+      <div class="card" style="flex:1;margin-bottom:10px">
+        <div style="font-size:10px;color:#60a5fa;font-weight:700;text-transform:uppercase;margin-bottom:4px">OCTOBER 2026</div>
+        <div style="font-size:13px;font-weight:700;color:#e4e4e7;margin-bottom:4px">Write Sem 1 & Sem 2 ATKT Papers</div>
+        <div style="font-size:12px;color:#71717a;line-height:1.6">Appear for exams. Target 25+ out of 30 per subject → 7.0+ CGPA on your marksheet.</div>
+      </div>
+    </div>
+
+    <!-- November-December -->
+    <div style="display:flex;gap:14px">
+      <div style="display:flex;flex-direction:column;align-items:center">
+        <div style="width:32px;height:32px;border-radius:50%;background:#16a34a22;border:2px solid #4ade80;color:#4ade80;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">🏆</div>
+        <div style="width:2px;flex:1;background:#1f1f23;margin:4px 0;min-height:40px"></div>
+      </div>
+      <div class="card-highlight" style="flex:1;margin-bottom:10px">
+        <div style="font-size:10px;color:#4ade80;font-weight:700;text-transform:uppercase;margin-bottom:4px">NOVEMBER–DECEMBER 2026</div>
+        <div style="font-size:13px;font-weight:700;color:#e4e4e7;margin-bottom:4px">Results + Tell Parents</div>
+        <div style="font-size:12px;color:#a1a1aa;line-height:1.6">Show parents your clean marksheets. <strong style="color:#e4e4e7">Now is the right time</strong> to explain the 0% loan and MahaDBT plan — from a position of strength.</div>
+      </div>
+    </div>
+
+    <!-- Jan-Feb -->
+    <div style="display:flex;gap:14px">
+      <div style="display:flex;flex-direction:column;align-items:center">
+        <div style="width:32px;height:32px;border-radius:50%;background:#1d4ed822;border:2px solid #60a5fa;color:#60a5fa;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">🏦</div>
+        <div style="width:2px;flex:1;background:#1f1f23;margin:4px 0;min-height:40px"></div>
+      </div>
+      <div class="card" style="flex:1;margin-bottom:10px">
+        <div style="font-size:10px;color:#60a5fa;font-weight:700;text-transform:uppercase;margin-bottom:4px">JANUARY 2027</div>
+        <div style="font-size:13px;font-weight:700;color:#e4e4e7;margin-bottom:4px">Apply for SBI 0% Loan</div>
+        <div style="font-size:12px;color:#71717a;line-height:1.6">Register on vidyalakshmi.co.in with your clean marksheets + Tehsildar Income Certificate. Apply for MahaDBT at same time on mahadbt.maharashtra.gov.in.</div>
+      </div>
+    </div>
+
+    <!-- May-June -->
+    <div style="display:flex;gap:14px">
+      <div style="display:flex;flex-direction:column;align-items:center">
+        <div style="width:32px;height:32px;border-radius:50%;background:#16a34a22;border:2px solid #4ade80;color:#4ade80;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">🎓</div>
+        <div style="width:2px;flex:1;background:#1f1f23;margin:4px 0;min-height:40px"></div>
+      </div>
+      <div class="card-highlight" style="flex:1;margin-bottom:10px">
+        <div style="font-size:10px;color:#4ade80;font-weight:700;text-transform:uppercase;margin-bottom:4px">MAY–JUNE 2027</div>
+        <div style="font-size:13px;font-weight:700;color:#e4e4e7;margin-bottom:4px">Fresh 2nd Year at New College</div>
+        <div style="font-size:12px;color:#a1a1aa;line-height:1.6">Take your marksheets + NOC → apply to <strong style="color:#e4e4e7">Viva College (5 min)</strong> or <strong style="color:#e4e4e7">Thakur College (30 min)</strong>. Start 2nd Year with zero commute fatigue, full attendance, and 0% loan covering everything.</div>
+      </div>
+    </div>
+
+    <!-- After college -->
+    <div style="display:flex;gap:14px">
+      <div style="display:flex;flex-direction:column;align-items:center">
+        <div style="width:32px;height:32px;border-radius:50%;background:#7c3aed22;border:2px solid #c084fc;color:#c084fc;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">💼</div>
+      </div>
+      <div class="card-purple" style="flex:1;margin-bottom:10px">
+        <div style="font-size:10px;color:#c084fc;font-weight:700;text-transform:uppercase;margin-bottom:4px">2030 (1 Yr After Graduation)</div>
+        <div style="font-size:13px;font-weight:700;color:#e4e4e7;margin-bottom:4px">Start Small EMI from Tech Salary</div>
+        <div style="font-size:12px;color:#a1a1aa;line-height:1.6">Repay ~₹3,130/month from your software developer salary — or close the entire ~₹1.47L loan in one shot with zero penalty.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Critical FAQ section -->
+  <div style="font-size:12px;font-weight:700;color:#a1a1aa;margin-top:6px;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.05em">⚡ Important Q&A</div>
+
+  <div style="display:flex;flex-direction:column;gap:8px">
+    <div class="card">
+      <details>
+        <summary style="padding:4px 0">
+          <div style="font-size:13px;font-weight:600;color:#e4e4e7;flex:1;padding-right:8px">If I transfer colleges, does my loan get cancelled?</div>
+          <i data-lucide="chevron-down" class="chevron"></i>
+        </summary>
+        <div style="margin-top:10px;font-size:13px;color:#a1a1aa;line-height:1.7">No! You submit the new college's admission letter & fee structure to your SBI branch. The bank updates the college account details in their system — loan continues smoothly.</div>
+      </details>
+    </div>
+    <div class="card">
+      <details>
+        <summary style="padding:4px 0">
+          <div style="font-size:13px;font-weight:600;color:#e4e4e7;flex:1;padding-right:8px">Will the bank take my internship income?</div>
+          <i data-lucide="chevron-down" class="chevron"></i>
+        </summary>
+        <div style="margin-top:10px;font-size:13px;color:#a1a1aa;line-height:1.7">No. 100% of your internship stipends and freelance income belong to you during college. Repayment only starts 1 year after you graduate.</div>
+      </details>
+    </div>
+    <div class="card">
+      <details>
+        <summary style="padding:4px 0">
+          <div style="font-size:13px;font-weight:600;color:#e4e4e7;flex:1;padding-right:8px">Does this loan help my credit score later?</div>
+          <i data-lucide="chevron-down" class="chevron"></i>
+        </summary>
+        <div style="margin-top:10px;font-size:13px;color:#a1a1aa;line-height:1.7">Yes! Paying small on-time EMIs after graduation builds you a 780+ CIBIL score by age 22. This unlocks the lowest interest rates on future home loans, business loans, and credit cards.</div>
+      </details>
+    </div>
+    <div class="card">
+      <details>
+        <summary style="padding:4px 0">
+          <div style="font-size:13px;font-weight:600;color:#e4e4e7;flex:1;padding-right:8px">What if my course takes extra time (ATKT year)?</div>
+          <i data-lucide="chevron-down" class="chevron"></i>
+        </summary>
+        <div style="margin-top:10px;font-size:13px;color:#a1a1aa;line-height:1.7">Bank extends your moratorium period by 1–2 years automatically. You just submit a 1-page letter from your college stating the revised completion date.</div>
+      </details>
+    </div>
+  </div>
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+  <div style="display:flex;justify-content:space-around">
+    <button class="nav-item active" id="nav-overview" onclick="showTab('overview')">
+      <i data-lucide="layout-dashboard" style="width:18px;height:18px"></i>
+      <span>Overview</span>
+    </button>
+    <button class="nav-item" id="nav-loan" onclick="showTab('loan')">
+      <i data-lucide="landmark" style="width:18px;height:18px"></i>
+      <span>Loan</span>
+    </button>
+    <button class="nav-item" id="nav-money" onclick="showTab('money')">
+      <i data-lucide="indian-rupee" style="width:18px;height:18px"></i>
+      <span>Money</span>
+    </button>
+    <button class="nav-item" id="nav-transfer" onclick="showTab('transfer')">
+      <i data-lucide="school" style="width:18px;height:18px"></i>
+      <span>College</span>
+    </button>
+    <button class="nav-item" id="nav-perks" onclick="showTab('perks')">
+      <i data-lucide="gift" style="width:18px;height:18px"></i>
+      <span>Perks</span>
+    </button>
+    <button class="nav-item" id="nav-timeline" onclick="showTab('timeline')">
+      <i data-lucide="calendar" style="width:18px;height:18px"></i>
+      <span>Timeline</span>
+    </button>
+  </div>
+</div>
+
+<script>
+lucide.createIcons();
+
+// Tab Navigation
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(b => { b.classList.remove('active'); });
+  
+  document.getElementById('tab-' + id).classList.add('active');
+  document.getElementById('nav-' + id).classList.add('active');
+  
+  // Pill nav
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    if(btn.textContent.toLowerCase().includes(id.substring(0,3)) || 
+       (id==='overview' && btn.textContent.includes('Overview')) ||
+       (id==='loan' && btn.textContent.includes('Loan')) ||
+       (id==='money' && btn.textContent.includes('Money')) ||
+       (id==='transfer' && btn.textContent.includes('College')) ||
+       (id==='perks' && btn.textContent.includes('Perks')) ||
+       (id==='timeline' && btn.textContent.includes('Timeline'))) {
+      btn.classList.add('active');
+    }
+  });
+  
+  window.scrollTo(0, 0);
+}
+
+// EMI Calculator
+function updateEmi() {
+  const P = parseFloat(document.getElementById('rng-loan').value);
+  const tenureYrs = parseInt(document.getElementById('rng-tenure').value);
+  document.getElementById('lbl-loan').textContent = '₹' + P.toLocaleString('en-IN');
+  document.getElementById('lbl-tenure').textContent = tenureYrs + ' Years';
+  const r = 10.05 / (12 * 100);
+  const n = tenureYrs * 12;
+  const emi = (P * r * Math.pow(1+r,n)) / (Math.pow(1+r,n)-1);
+  const interest = emi * n - P;
+  document.getElementById('out-emi').textContent = '₹' + Math.round(emi).toLocaleString('en-IN');
+  document.getElementById('out-interest').textContent = '₹' + Math.round(interest).toLocaleString('en-IN');
+}
+
+// Colleges Data
+const colleges = [
+  {
+    name:'Viva College', loc:'Virar West (1 Station)', badge:'Time & Cost Winner', badgeClass:'tag-green',
+    time:'5–7 mins 🚀', fee:'~₹24k/yr', score:9.0, cat:['near'],
+    summary:'Zero commute fatigue. Saves 15+ hours every week. Lowest fees of all options.',
+    perks:['10+ computer labs with gigabit fiber', 'INFLIBNET digital library (6,000+ journals)', 'Railway concession desk 5 min from station', 'Annual Vibrance TechFest']
+  },
+  {
+    name:'Annasaheb Vartak College', loc:'Vasai Road (1 Station)', badge:'NAAC A Grade', badgeClass:'tag-blue',
+    time:'8–10 mins 🚀', fee:'~₹26k/yr', score:8.5, cat:['near'],
+    summary:'Very close, disciplined academic environment, active library.',
+    perks:['Competitive exam cell (UPSC/MPSC)', 'Quiet reading hall (50,000+ books)', 'MahaDBT scholarship assistance cell', 'Active NSS programs']
+  },
+  {
+    name:'Thakur College (TCSC)', loc:'Kandivali East', badge:'Best Overall', badgeClass:'tag-blue',
+    time:'30–35 mins ⚡', fee:'~₹42k/yr', score:9.5, cat:['near','auto'],
+    summary:'Autonomous, NAAC A+. Cuts your daily commute from 3 hrs to 35 mins. Top placements.',
+    perks:['T-Incube startup incubation center', 'AWS & Red Hat certified training lab', 'Apple Authorized computing lab', 'TCS iON exam center on campus']
+  },
+  {
+    name:"Bhavan's College", loc:'Andheri West', badge:'Green Campus', badgeClass:'tag-green',
+    time:'~45 mins', fee:'~₹35k/yr', score:8.5, cat:['auto'],
+    summary:'45-acre beautiful campus, autonomous, active extracurriculars.',
+    perks:["Bhavan's Research Center (BRC)", 'Central library (65,000+ books)', 'Huge sports complex & open grounds', 'ByteCraft CS & Robotics club']
+  },
+  {
+    name:'Mithibai College', loc:'Vile Parle West (SVKM)', badge:'Elite Brand', badgeClass:'tag-purple',
+    time:'~55 mins', fee:'~₹48k/yr', score:9.0, cat:['auto'],
+    summary:'4 stations closer than Bandra. Premium name, corporate hackathons, smart labs.',
+    perks:['Institutional @mithibai.ac.in email + MS 365', 'Bloomberg financial terminal lab', 'Tier-1 MNC hackathons (Deloitte, MS)', 'Official Apple UNiDAYS campus partner']
+  },
+  {
+    name:"St. Xavier's College", loc:'Fort / CST', badge:'NIRF Top-100', badgeClass:'tag-amber',
+    time:'~1h 45m', fee:'~₹38k/yr', score:8.5, cat:['auto'],
+    summary:'Eligible for PM-Vidyalaxmi 860 scheme. National research brand. Long commute.',
+    perks:['@xaviers.edu.in Google Workspace (unlimited drive)', 'Zephyrus TechFest + corporate sponsors', 'Harvard & international exchange programs', 'Access to Asiatic Society library']
+  },
+  {
+    name:'R. D. National College', loc:'Bandra West (Current)', badge:'Current College', badgeClass:'tag-zinc',
+    time:'1.5 hrs (3h daily) 😫', fee:'~₹36k/yr', score:6.5, cat:[],
+    summary:'Your current college. Severe commute fatigue. 100% eligible for 0% SBI loan.',
+    perks:['MasterSoft CIMS + FeePayr portal', 'Railway concession desk (Office Room 2)', 'MU inter-library loan network', 'Annual Tech-Wave CS festival']
+  }
+];
+
+function filterColleges(cat) {
+  document.querySelectorAll('[id^="cf-"]').forEach(b => {
+    b.style.background='#111114'; b.style.color='#71717a'; b.style.borderColor='#27272a';
+  });
+  const active = document.getElementById('cf-' + cat);
+  active.style.background='#27272a'; active.style.color='#e4e4e7';
+  
+  const filtered = cat === 'all' ? colleges : colleges.filter(c => c.cat.includes(cat === 'near' ? 'near' : 'auto'));
+  renderColleges(filtered);
+}
+
+function renderColleges(list) {
+  const grid = document.getElementById('colleges-grid');
+  grid.innerHTML = '';
+  list.forEach(c => {
+    const perksHtml = c.perks.map(p => `<div style="display:flex;gap:8px;font-size:12px;margin-bottom:6px"><span style="color:#60a5fa;flex-shrink:0">✦</span><span style="color:#a1a1aa">${p}</span></div>`).join('');
+    grid.innerHTML += `
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+        <div>
+          <span class="tag ${c.badgeClass}" style="margin-bottom:6px;display:inline-flex">${c.badge}</span>
+          <div style="font-size:14px;font-weight:700;color:#f4f4f5">${c.name}</div>
+          <div style="font-size:11px;color:#71717a;margin-top:2px">${c.loc}</div>
+        </div>
+        <div style="text-align:right;flex-shrink:0;margin-left:8px">
+          <div style="font-size:20px;font-weight:800;color:#e4e4e7">${c.score}</div>
+          <div style="font-size:9px;color:#52525b">/ 10</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px">
+        <div class="card-sm" style="padding:8px">
+          <div style="font-size:9px;color:#52525b;text-transform:uppercase;margin-bottom:3px">Travel from NSP</div>
+          <div style="font-size:12px;font-weight:700;color:#e4e4e7">${c.time}</div>
+        </div>
+        <div class="card-sm" style="padding:8px">
+          <div style="font-size:9px;color:#52525b;text-transform:uppercase;margin-bottom:3px">Annual Fees</div>
+          <div style="font-size:12px;font-weight:700;color:#e4e4e7">${c.fee}</div>
+        </div>
+      </div>
+      <div style="font-size:12px;color:#a1a1aa;line-height:1.6;margin-bottom:10px">${c.summary}</div>
+      <details>
+        <summary style="font-size:11px;font-weight:700;color:#60a5fa;cursor:pointer;display:flex;align-items:center;justify-content:space-between;list-style:none;-webkit-appearance:none">
+          <span>🔍 Exclusive Campus Facilities</span>
+          <i data-lucide="chevron-down" class="chevron"></i>
+        </summary>
+        <div style="margin-top:10px;padding-top:10px;border-top:1px solid #1f1f23">${perksHtml}</div>
+      </details>
+    </div>`;
+  });
+  lucide.createIcons();
+}
+
+// Init
+renderColleges(colleges);
+updateEmi();
+</script>
+</body>
+</html>
