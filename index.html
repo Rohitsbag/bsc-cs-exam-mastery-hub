@@ -161,6 +161,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#07090e;c
 .cal-day-card{background:#0a0c12;border:1px solid #1c202d;border-radius:12px;padding:10px;cursor:pointer;transition:all 0.15s;display:flex;flex-direction:column;gap:6px;position:relative}
 .cal-day-card:hover{border-color:#3b82f6;transform:translateY(-2px);background:#0e111a}
 .cal-day-card.active-day{border-color:#3b82f6;background:#111524;box-shadow:0 0 14px rgba(59,130,246,0.25)}
+.cal-day-card.is-today{border-color:#22d3ee;background:#0d1829;box-shadow:0 0 14px rgba(34,211,238,0.3)}
 
 .cal-pill{font-size:10px;font-weight:700;padding:3px 6px;border-radius:5px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
 .cal-pill-m{background:#1d4ed825;color:#93c5fd;border:1px solid #1d4ed840}
@@ -777,6 +778,41 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#07090e;c
   ═══════════════════════════════════════ -->
   <section class="tab-section" id="sec-schedule">
     
+    <!-- TODAY'S REALITY ANCHOR & LIVE PACE RADAR -->
+    <div class="card" style="background:#090d18;border:1px solid #1e263d;border-radius:16px;padding:16px 20px;margin-bottom:18px">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px">
+        <div style="display:flex;align-items:center;gap:14px">
+          <div style="width:46px;height:46px;border-radius:12px;background:#2563eb18;border:1px solid #2563eb40;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0">
+            <span style="font-size:9px;color:#93c5fd;font-weight:800;text-transform:uppercase;letter-spacing:0.04em" id="today-month-lbl">SEPT</span>
+            <span style="font-size:18px;font-weight:900;color:#fff;line-height:1;font-family:'JetBrains Mono',monospace" id="today-num-lbl">01</span>
+          </div>
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+              <span style="font-size:15px;font-weight:800;color:#f4f4f5" id="today-full-str">Tuesday, 1 September 2026</span>
+              <span class="tag tag-indigo" style="font-size:10px;padding:2px 7px" id="today-badge-lbl">TODAY · DAY 1</span>
+              <button onclick="goToToday()" style="font-size:10px;font-weight:700;color:#38bdf8;background:transparent;border:1px solid #0284c735;padding:2px 8px;border-radius:6px;cursor:pointer">Jump to Today ➔</button>
+            </div>
+            <div style="font-size:12px;color:#94a3b8;margin-top:3px" id="today-sub-str">Runway: 29 Days remaining until October 1 Exams</div>
+          </div>
+        </div>
+
+        <!-- Pace Status Radar -->
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+          <div class="card-inner" style="padding:8px 14px;display:flex;align-items:center;gap:10px;background:#07090e" id="pace-status-card">
+            <span style="font-size:16px" id="pace-status-icon">🟢</span>
+            <div>
+              <div style="font-size:12px;font-weight:800;color:#f4f4f5" id="pace-status-title">Pace: On Track</div>
+              <div style="font-size:10px;color:#717684" id="pace-status-desc">0 blocks behind · On target for Oct 1</div>
+            </div>
+          </div>
+          <div class="card-inner" style="padding:8px 14px;background:#07090e;text-align:right">
+            <div style="font-size:10px;color:#717684;text-transform:uppercase;font-weight:700">Next Milestone</div>
+            <div style="font-size:12px;font-weight:800;color:#fbbf24;font-family:'JetBrains Mono',monospace" id="milestone-status-txt">Sept 14 · Passing Lock (13d)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Deadline Countdown & Strategy Hero -->
     <div class="card" style="background:linear-gradient(135deg,#0d1527 0%,#090d18 100%);border-color:#2563eb40;margin-bottom:20px">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:14px">
@@ -1221,14 +1257,16 @@ function renderMonthGrid() {
   if (!container) return;
   container.innerHTML = '';
 
+  const todayDay = getTodayDayNum();
   calendarDays.forEach(d => {
     let dayCount = 0;
     ['m','a','e','n'].forEach(s => {
       if (appState.tasks[`${d.day}_${s}`]) dayCount++;
     });
     const isDone = dayCount === 4;
+    const isToday = d.day === todayDay;
     const card = document.createElement('div');
-    card.className = `cal-day-card ${d.day === currentCalDay ? 'active-day' : ''}`;
+    card.className = `cal-day-card ${d.day === currentCalDay ? 'active-day' : ''} ${isToday ? 'is-today' : ''}`;
     card.onclick = () => {
       currentCalDay = d.day;
       document.querySelectorAll('.cal-day-card').forEach(c => c.classList.remove('active-day'));
@@ -1238,8 +1276,8 @@ function renderMonthGrid() {
 
     card.innerHTML = `
       <div style="display:flex;justify-content:space-between;align-items:center">
-        <span style="font-size:12px;font-weight:800;color:#f4f4f5">${d.date}</span>
-        <span style="font-size:9px;color:#717684;font-family:'JetBrains Mono',monospace">${d.dow}</span>
+        <span style="font-size:12px;font-weight:800;color:${isToday ? '#38bdf8' : '#f4f4f5'}">${d.date}</span>
+        <span style="font-size:9px;color:${isToday ? '#22d3ee' : '#717684'};font-family:'JetBrains Mono',monospace;font-weight:${isToday ? '800' : '500'}">${isToday ? 'TODAY' : d.dow}</span>
       </div>
       <div style="font-size:9px;color:#fbbf24;font-weight:700;margin-bottom:2px">Day ${d.day}</div>
       <div style="display:flex;flex-direction:column;gap:3px">
@@ -1401,6 +1439,7 @@ function updateDayProgress(day) {
   }
   renderMonthGrid();
   renderHeatmapAndStreak();
+  updateDateAndPaceRadar();
 }
 
 function prevCalDay() {
@@ -2603,6 +2642,101 @@ function checkUrlSync() {
 }
 
 // ══════════════════════════════════════════
+// LIVE DATE & PACE RADAR ENGINE
+// ══════════════════════════════════════════
+function getTodayDayNum() {
+  const now = new Date();
+  // Month 8 is September in JS (0-indexed: Jan=0, Sep=8)
+  if (now.getFullYear() === 2026 && now.getMonth() === 8) {
+    return Math.min(30, Math.max(1, now.getDate()));
+  }
+  return 1; // Default to Day 1
+}
+
+function updateDateAndPaceRadar() {
+  const todayDay = getTodayDayNum();
+  const d = calendarDays.find(item => item.day === todayDay) || calendarDays[0];
+
+  // Update Date Display
+  const monthLbl = document.getElementById('today-month-lbl');
+  const numLbl = document.getElementById('today-num-lbl');
+  const fullStr = document.getElementById('today-full-str');
+  const subStr = document.getElementById('today-sub-str');
+  const badgeLbl = document.getElementById('today-badge-lbl');
+
+  if (monthLbl) monthLbl.innerText = 'SEPT';
+  if (numLbl) numLbl.innerText = todayDay < 10 ? '0' + todayDay : todayDay;
+  if (fullStr) fullStr.innerText = `${d.dow}, ${d.date} 2026`;
+  if (badgeLbl) badgeLbl.innerText = `TODAY · DAY ${todayDay} OF 30`;
+
+  const daysLeft = Math.max(0, 30 - todayDay);
+  if (subStr) {
+    subStr.innerText = `Runway: ${daysLeft} Day${daysLeft === 1 ? '' : 's'} remaining until October 1 Exams`;
+  }
+
+  // Calculate Pace:
+  let actualDone = 0;
+  calendarDays.forEach(dayItem => {
+    ['m', 'a', 'e', 'n'].forEach(s => {
+      if (appState.tasks[`${dayItem.day}_${s}`]) actualDone++;
+    });
+  });
+
+  const now = new Date();
+  const currentHour = now.getHours();
+  let todayExpected = 1;
+  if (currentHour >= 14 && currentHour < 18) todayExpected = 2;
+  else if (currentHour >= 18 && currentHour < 22) todayExpected = 3;
+  else if (currentHour >= 22) todayExpected = 4;
+
+  const expectedBlocks = ((todayDay - 1) * 4) + todayExpected;
+  const delta = actualDone - expectedBlocks;
+
+  const iconEl = document.getElementById('pace-status-icon');
+  const titleEl = document.getElementById('pace-status-title');
+  const descEl = document.getElementById('pace-status-desc');
+
+  if (delta > 0) {
+    if (iconEl) iconEl.innerText = '🚀';
+    if (titleEl) { titleEl.innerText = `Pace: Ahead (+${delta} Block${delta > 1 ? 's' : ''})`; titleEl.style.color = '#4ade80'; }
+    if (descEl) descEl.innerText = `Cushion buffer active · On track for 25+`;
+  } else if (delta === 0) {
+    if (iconEl) iconEl.innerText = '🟢';
+    if (titleEl) { titleEl.innerText = 'Pace: Perfect · On Schedule'; titleEl.style.color = '#4ade80'; }
+    if (descEl) descEl.innerText = `0 blocks behind · Pacing for Oct 1`;
+  } else if (delta === -1) {
+    if (iconEl) iconEl.innerText = '🟡';
+    if (titleEl) { titleEl.innerText = 'Pace: 1 Block Pending'; titleEl.style.color = '#fbbf24'; }
+    if (descEl) descEl.innerText = `Easy 1.5h catchup in tonight's block`;
+  } else {
+    const behind = Math.abs(delta);
+    if (iconEl) iconEl.innerText = '⚠️';
+    if (titleEl) { titleEl.innerText = `Pace: ${behind} Blocks Behind`; titleEl.style.color = '#fb7185'; }
+    if (descEl) descEl.innerText = `Schedule catch-up sprint this weekend`;
+  }
+
+  // Milestone Countdown
+  const milestoneEl = document.getElementById('milestone-status-txt');
+  if (milestoneEl) {
+    if (todayDay < 14) {
+      milestoneEl.innerText = `Sept 14 · Passing Lock (${14 - todayDay}d left)`;
+    } else if (todayDay < 28) {
+      milestoneEl.innerText = `Sept 28 · Distinction Lock (${28 - todayDay}d left)`;
+    } else {
+      milestoneEl.innerText = `Oct 1 · Exam Day Ready (${Math.max(0, 30 - todayDay)}d left)`;
+    }
+  }
+}
+
+function goToToday() {
+  const todayDay = getTodayDayNum();
+  loadDayDetail(todayDay);
+  setCalView('day');
+  const inspector = document.getElementById('cal-view-day');
+  if (inspector) inspector.scrollIntoView({ behavior: 'smooth' });
+}
+
+// ══════════════════════════════════════════
 // PWA SERVICE WORKER & INSTALL LOGIC
 // ══════════════════════════════════════════
 let deferredInstallPrompt;
@@ -2649,8 +2783,9 @@ window.addEventListener('DOMContentLoaded', () => {
   updateFlashcardView();
   renderMonthGrid();
   populateDayDropdown();
-  loadDayDetail(appState.currentDay || 1);
+  loadDayDetail(appState.currentDay || getTodayDayNum());
   renderHeatmapAndStreak();
+  updateDateAndPaceRadar();
   showSection(appState.activeTab || 'schedule');
 });
 </script>
