@@ -239,7 +239,11 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#07090e;c
   </nav>
 
   <!-- Header Right Actions -->
-  <div style="display:flex;align-items:center;gap:10px;flex-shrink:0">
+  <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
+    <button onclick="openSyncModal()" style="font-size:12px;font-weight:700;color:#c084fc;background:#7c3aed18;border:1px solid #7c3aed35;padding:7px 12px;border-radius:10px;display:flex;align-items:center;gap:6px;cursor:pointer;transition:all 0.15s">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/></svg>
+      <span>Sync Devices</span>
+    </button>
     <button id="btn-pwa-install" onclick="installPwa()" style="display:none;font-size:12px;font-weight:700;color:#38bdf8;background:#0284c718;border:1px solid #0284c735;padding:7px 12px;border-radius:10px;align-items:center;gap:6px;cursor:pointer;transition:all 0.15s">
       <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
       <span>Install App</span>
@@ -988,11 +992,121 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#07090e;c
 </nav>
 
 <!-- ═══════════════════════════════════════
+     CROSS-DEVICE SYNC MODAL (NO LOGIN / NO DB)
+═══════════════════════════════════════ -->
+<div id="sync-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);backdrop-filter:blur(12px);z-index:999;align-items:center;justify-content:center;padding:16px">
+  <div class="card" style="max-width:480px;width:100%;border-color:#7c3aed60;background:#0d0f18;box-shadow:0 10px 40px rgba(0,0,0,0.8);position:relative">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="width:36px;height:36px;border-radius:10px;background:#7c3aed20;border:1px solid #7c3aed40;display:flex;align-items:center;justify-content:center;color:#c084fc;font-size:18px">🔄</div>
+        <div>
+          <h3 style="font-size:16px;font-weight:800;color:#f4f4f5">Instant Cross-Device Sync</h3>
+          <p style="font-size:11px;color:#717684">No login · No database · 100% Private &amp; Instant</p>
+        </div>
+      </div>
+      <button onclick="closeSyncModal()" style="background:#1c202d;border:1px solid #272c3d;color:#e4e4e7;border-radius:8px;width:30px;height:30px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700">✕</button>
+    </div>
+
+    <!-- Method 1: QR Code Scanner -->
+    <div style="background:#07090e;border:1px solid #1c202d;border-radius:12px;padding:16px;text-align:center;margin-bottom:14px">
+      <div style="font-size:13px;font-weight:700;color:#f4f4f5;margin-bottom:4px">📱 Scan with Phone Camera</div>
+      <p style="font-size:11px;color:#94a3b8;margin-bottom:14px">Point your phone's camera at this QR code to instantly transfer your exact study progress:</p>
+      <div style="display:flex;justify-content:center;margin-bottom:12px">
+        <img id="sync-qr-img" src="" alt="Sync QR Code" style="width:180px;height:180px;border-radius:12px;background:#fff;padding:8px;box-shadow:0 4px 20px rgba(0,0,0,0.4)">
+      </div>
+      <div style="display:flex;gap:8px;justify-content:center">
+        <button onclick="copySyncLink()" id="btn-copy-sync" style="padding:8px 16px;border-radius:9px;background:#2563eb;border:none;color:#fff;font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span>📋 Copy 1-Click Sync Link</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Method 2: Manual Code Paste -->
+    <div style="background:#07090e;border:1px solid #1c202d;border-radius:12px;padding:14px">
+      <div style="font-size:12px;font-weight:700;color:#f4f4f5;margin-bottom:4px">🔑 Or Paste Sync Code</div>
+      <p style="font-size:11px;color:#717684;margin-bottom:10px">Send this code to yourself on WhatsApp/Telegram to restore on another device:</p>
+      <div style="display:flex;gap:6px">
+        <input type="text" id="sync-code-input" placeholder="Paste sync code..." style="flex:1;background:#0d0f17;border:1px solid #1c202d;border-radius:8px;padding:8px 10px;color:#cbd5e1;font-size:11px;font-family:'JetBrains Mono',monospace;outline:none">
+        <button onclick="importSyncCode()" style="padding:8px 14px;border-radius:8px;background:#16a34a;border:none;color:#fff;font-size:11px;font-weight:700;cursor:pointer">Import</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
      JAVASCRIPT: DATA & INTERACTION LOGIC
 ═══════════════════════════════════════ -->
-<script>
+// ══════════════════════════════════════════
+// UNIFIED STATE MANAGEMENT & PERSISTENCE
+// ══════════════════════════════════════════
+const STORAGE_KEY = 'bsc_cs_mastery_state_v2';
+
+let appState = {
+  activeTab: 'schedule',
+  currentDay: 1,
+  tasks: {}
+};
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed && typeof parsed === 'object') {
+        appState = { ...appState, ...parsed };
+      }
+    }
+    // Also load legacy keys if present
+    for (let i = 1; i <= 30; i++) {
+      ['m', 'a', 'e', 'n'].forEach(s => {
+        const k = `task_day_${i}_${s}`;
+        if (localStorage.getItem(k) === 'true') {
+          appState.tasks[`${i}_${s}`] = true;
+        }
+      });
+    }
+  } catch (e) {
+    console.error('loadState error:', e);
+  }
+}
+
+function saveState() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+    // Mirror for legacy keys
+    Object.keys(appState.tasks).forEach(k => {
+      const parts = k.split('_');
+      if (parts.length === 2) {
+        localStorage.setItem(`task_day_${parts[0]}_${parts[1]}`, 'true');
+      }
+    });
+  } catch (e) {
+    console.error('saveState error:', e);
+  }
+}
+
+function showToast(msg) {
+  let toast = document.getElementById('app-toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'app-toast';
+    toast.style.cssText = 'position:fixed;top:20px;left:50%;transform:translateX(-50%) translateY(-10px);background:#16a34a;color:#fff;padding:12px 22px;border-radius:12px;font-size:13px;font-weight:700;z-index:99999;box-shadow:0 8px 30px rgba(0,0,0,0.6);transition:all 0.3s cubic-bezier(0.4,0,0.2,1);pointer-events:none;opacity:0;display:flex;align-items:center;gap:8px;border:1px solid #22c55e';
+    document.body.appendChild(toast);
+  }
+  toast.innerHTML = msg;
+  toast.style.opacity = '1';
+  toast.style.transform = 'translateX(-50%) translateY(0)';
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateX(-50%) translateY(-10px)';
+  }, 3500);
+}
+
 // ── APP SECTION NAVIGATION (Desktop & Mobile) ──
 function showSection(id) {
+  appState.activeTab = id;
+  saveState();
   ['videos','lab','subjects','flashcards','schedule'].forEach(s => {
     const sec = document.getElementById('sec-' + s);
     const mNav = document.getElementById('nav-' + s);
@@ -1108,7 +1222,11 @@ function renderMonthGrid() {
   container.innerHTML = '';
 
   calendarDays.forEach(d => {
-    const isDone = localStorage.getItem(`cal_day_${d.day}_done`) === 'true';
+    let dayCount = 0;
+    ['m','a','e','n'].forEach(s => {
+      if (appState.tasks[`${d.day}_${s}`]) dayCount++;
+    });
+    const isDone = dayCount === 4;
     const card = document.createElement('div');
     card.className = `cal-day-card ${d.day === currentCalDay ? 'active-day' : ''}`;
     card.onclick = () => {
@@ -1131,7 +1249,7 @@ function renderMonthGrid() {
       </div>
       <div style="display:flex;justify-content:space-between;align-items:center;margin-top:4px">
         <span style="font-size:9px;color:#525866">${d.phase.split(':')[0]}</span>
-        <span style="font-size:10px">${isDone ? '✅' : '⚪'}</span>
+        <span style="font-size:10px">${isDone ? '✅' : (dayCount > 0 ? '🟡' : '⚪')}</span>
       </div>
     `;
     container.appendChild(card);
@@ -1240,9 +1358,9 @@ function loadDayDetail(dayNum) {
     </div>
   `;
 
-  // Restore Checkbox States from LocalStorage
+  // Restore Checkbox States from appState.tasks
   ['m','a','e','n'].forEach(session => {
-    const isChecked = localStorage.getItem(`task_day_${d.day}_${session}`) === 'true';
+    const isChecked = !!appState.tasks[`${d.day}_${session}`];
     const el = document.getElementById(`chk_day_${d.day}_${session}`);
     if (el) el.checked = isChecked;
   });
@@ -1254,7 +1372,12 @@ function loadDayDetail(dayNum) {
 function toggleTask(day, session) {
   const el = document.getElementById(`chk_day_${day}_${session}`);
   if (el) {
-    localStorage.setItem(`task_day_${day}_${session}`, el.checked);
+    if (el.checked) {
+      appState.tasks[`${day}_${session}`] = true;
+    } else {
+      delete appState.tasks[`${day}_${session}`];
+    }
+    saveState();
   }
   updateDayProgress(day);
 }
@@ -1263,11 +1386,13 @@ function toggleTask(day, session) {
 function updateDayProgress(day) {
   let count = 0;
   ['m','a','e','n'].forEach(s => {
-    if (localStorage.getItem(`task_day_${day}_${s}`) === 'true') count++;
+    if (appState.tasks[`${day}_${s}`]) count++;
   });
   const percent = Math.round((count / 4) * 100);
-  document.getElementById('daily-prog-percent').innerText = `${percent}%`;
-  document.getElementById('daily-prog-bar').style.width = `${percent}%`;
+  const progEl = document.getElementById('daily-prog-percent');
+  const barEl = document.getElementById('daily-prog-bar');
+  if (progEl) progEl.innerText = `${percent}%`;
+  if (barEl) barEl.style.width = `${percent}%`;
 
   if (percent === 100) {
     localStorage.setItem(`cal_day_${day}_done`, 'true');
@@ -2326,7 +2451,7 @@ function renderHeatmapAndStreak() {
   calendarDays.forEach((d) => {
     let dayBlocks = 0;
     ['m', 'a', 'e', 'n'].forEach(s => {
-      if (localStorage.getItem(`task_day_${d.day}_${s}`) === 'true') {
+      if (appState.tasks[`${d.day}_${s}`]) {
         dayBlocks++;
         totalBlocksDone++;
       }
@@ -2391,6 +2516,93 @@ function renderHeatmapAndStreak() {
 }
 
 // ══════════════════════════════════════════
+// CROSS-DEVICE SYNC ENGINE (QR & URL HASH)
+// ══════════════════════════════════════════
+function getSyncPayload() {
+  const payload = {
+    v: 1,
+    t: appState.tasks || {},
+    d: appState.currentDay || 1,
+    a: appState.activeTab || 'schedule',
+    ts: Date.now()
+  };
+  return btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
+}
+
+function openSyncModal() {
+  const modal = document.getElementById('sync-modal');
+  if (!modal) return;
+  modal.style.display = 'flex';
+
+  const encoded = getSyncPayload();
+  const url = `${window.location.origin}${window.location.pathname}?sync=${encoded}`;
+
+  const qrImg = document.getElementById('sync-qr-img');
+  if (qrImg) {
+    qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=4&data=${encodeURIComponent(url)}`;
+  }
+
+  const input = document.getElementById('sync-code-input');
+  if (input) input.value = encoded;
+}
+
+function closeSyncModal() {
+  const modal = document.getElementById('sync-modal');
+  if (modal) modal.style.display = 'none';
+}
+
+function copySyncLink() {
+  const encoded = getSyncPayload();
+  const url = `${window.location.origin}${window.location.pathname}?sync=${encoded}`;
+  navigator.clipboard.writeText(url).then(() => {
+    const btn = document.getElementById('btn-copy-sync');
+    if (btn) {
+      btn.innerHTML = '<span>✅ Copied Link to Clipboard!</span>';
+      btn.style.background = '#16a34a';
+      setTimeout(() => {
+        btn.innerHTML = '<span>📋 Copy 1-Click Sync Link</span>';
+        btn.style.background = '#2563eb';
+      }, 3000);
+    }
+  }).catch(() => {
+    prompt('Copy this sync link to paste on your phone:', url);
+  });
+}
+
+function importSyncCode(rawStr) {
+  try {
+    const code = rawStr || (document.getElementById('sync-code-input') ? document.getElementById('sync-code-input').value.trim() : '');
+    if (!code) return;
+    const decoded = JSON.parse(decodeURIComponent(escape(atob(code))));
+    if (decoded && decoded.t) {
+      appState.tasks = { ...appState.tasks, ...decoded.t };
+      if (decoded.d) appState.currentDay = decoded.d;
+      if (decoded.a) appState.activeTab = decoded.a;
+      saveState();
+
+      loadDayDetail(appState.currentDay);
+      showSection(appState.activeTab);
+      renderMonthGrid();
+      renderHeatmapAndStreak();
+
+      closeSyncModal();
+      showToast('🎉 Progress Synced Successfully Across Devices!');
+    }
+  } catch (err) {
+    alert('Invalid sync code. Please make sure the entire code was copied correctly.');
+  }
+}
+
+function checkUrlSync() {
+  const params = new URLSearchParams(window.location.search);
+  const syncData = params.get('sync');
+  if (syncData) {
+    importSyncCode(syncData);
+    window.history.replaceState({}, document.title, window.location.pathname);
+  }
+}
+
+// ══════════════════════════════════════════
 // PWA SERVICE WORKER & INSTALL LOGIC
 // ══════════════════════════════════════════
 let deferredInstallPrompt;
@@ -2426,6 +2638,8 @@ if ('serviceWorker' in navigator) {
 
 // ── INITIAL LOAD ──
 window.addEventListener('DOMContentLoaded', () => {
+  loadState();
+  checkUrlSync();
   renderSubjects('all');
   generateRandomArray();
   updateGateSim();
@@ -2435,8 +2649,9 @@ window.addEventListener('DOMContentLoaded', () => {
   updateFlashcardView();
   renderMonthGrid();
   populateDayDropdown();
-  loadDayDetail(1);
+  loadDayDetail(appState.currentDay || 1);
   renderHeatmapAndStreak();
+  showSection(appState.activeTab || 'schedule');
 });
 </script>
 </body>
