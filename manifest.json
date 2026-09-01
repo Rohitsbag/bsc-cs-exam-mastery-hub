@@ -1,0 +1,20 @@
+{
+  "name": "B.Sc CS 25+ Exam Mastery Hub",
+  "short_name": "StudyLab",
+  "description": "B.Sc Computer Science NEP 2020 25+ Marks Exam Hub, Simulations & 30-Day Master Calendar",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#07090e",
+  "theme_color": "#07090e",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "productivity"]
+}
