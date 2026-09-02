@@ -1,4 +1,4 @@
-const CACHE_NAME = 'bsc-cs-mastery-v3';
+const CACHE_NAME = 'bsc-cs-mastery-v4';
 const STATIC_ASSETS = [
   './',
   './index.html',

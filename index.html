@@ -19,6 +19,7 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script><style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+button{font-family:inherit;border:none;background:none;outline:none;color:inherit}
 html{width:100%;max-width:100%;overflow-x:clip;touch-action:pan-y;-webkit-text-size-adjust:100%}
 body{
   width:100%;
@@ -328,6 +329,38 @@ body{
 }
 .sim-panel{display:none}
 .sim-panel.active{display:block}
+
+/* ── CALENDAR SEGMENTED TOGGLE BUTTONS ── */
+.sem-btn{
+  flex:1;
+  text-align:center;
+  padding:8px 12px;
+  font-size:12px;
+  font-weight:600;
+  font-family:inherit;
+  color:#94a3b8;
+  background:transparent;
+  border:1px solid transparent;
+  border-radius:7px;
+  cursor:pointer;
+  transition:all 0.15s ease;
+  outline:none;
+  white-space:nowrap;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+.sem-btn:hover{
+  color:#f8fafc;
+  background:rgba(255,255,255,0.05);
+}
+.sem-btn.active{
+  background:#1e2538 !important;
+  color:#f8fafc !important;
+  font-weight:700 !important;
+  border:1px solid rgba(99,102,241,0.4) !important;
+  box-shadow:0 2px 8px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06) !important;
+}
 
 /* ── SIM ELEMENTS ── */
 #bars-container{
@@ -1661,9 +1694,9 @@ body{
 
       <!-- Segmented View Toggle -->
       <div style="display:flex;background:#090c14;border:1px solid rgba(255,255,255,0.06);border-radius:9px;padding:3px;gap:3px">
-        <button onclick="setCalView('month')" class="sem-btn active" id="btn-cal-month" style="flex:1;text-align:center;padding:7px 4px;font-size:11px">Month Grid</button>
-        <button onclick="setCalView('week')" class="sem-btn" id="btn-cal-week" style="flex:1;text-align:center;padding:7px 4px;font-size:11px">Phase Roadmap</button>
-        <button onclick="setCalView('day')" class="sem-btn" id="btn-cal-day" style="flex:1;text-align:center;padding:7px 4px;font-size:11px">Day Inspector</button>
+        <button onclick="setCalView('month')" class="sem-btn active" id="btn-cal-month">Month Grid</button>
+        <button onclick="setCalView('week')" class="sem-btn" id="btn-cal-week">Phase Roadmap</button>
+        <button onclick="setCalView('day')" class="sem-btn" id="btn-cal-day">Day Inspector</button>
       </div>
 
       <!-- Quick Metrics Strip -->
