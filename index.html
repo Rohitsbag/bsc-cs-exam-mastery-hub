@@ -31,8 +31,8 @@ body{
   font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
   letter-spacing:-0.011em;
   background:#09090b;
-  background-image:radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99,102,241,0.06), transparent 70%);
-  color:#cbd5e1;
+  background-image:radial-gradient(ellipse 80% 50% at 50% -20%, rgba(120,119,198,0.05), transparent 70%);
+  color:#d4d4d8;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
   min-height:100vh;
@@ -40,29 +40,42 @@ body{
   flex-direction:column;
 }
 
-/* ── SHADCN & REMO CN DESIGN SYSTEM TOKENS ── */
+/* ── SHADCN & REMO DESIGN TOKENS ── */
 :root {
-  --background: #09090b;
-  --foreground: #fafafa;
-  --card: #101013;
-  --card-border: #27272a;
-  --card-hover: #18181b;
-  --muted: #18181b;
-  --muted-foreground: #a1a1aa;
-  --border: #27272a;
-  --ring: #6366f1;
+  --bg-canvas: #09090b;
+  --bg-card: #0c0c0e;
+  --bg-card-hover: #121215;
+  --bg-recessed: #141418;
+  --bg-inner: #18181c;
+  --border-subtle: #222226;
+  --border-default: #27272a;
+  --border-hover: #3f3f46;
+  --text-primary: #fafafa;
+  --text-secondary: #d4d4d8;
+  --text-muted: #a1a1aa;
+  --text-faint: #71717a;
+  --accent-indigo: #6366f1;
+  --accent-emerald: #10b981;
+  --accent-amber: #f59e0b;
+  --accent-rose: #f43f5e;
+  --accent-cyan: #06b6d4;
 }
 
 .font-mono { font-family: 'JetBrains Mono', ui-monospace, monospace !important; }
+.text-xs { font-size: 11px !important; }
+.text-emerald-400 { color: #34d399 !important; }
+.text-indigo-400 { color: #818cf8 !important; }
+.text-cyan-400 { color: #22d3ee !important; }
+.text-amber-400 { color: #fbbf24 !important; }
+.text-rose-400 { color: #fb7185 !important; }
 
-/* ── 4-LAYER SURFACE ELEVATION (SHADCN DARK ZINC) ── */
-/* Layer 0: canvas #09090b | Layer 1: card #101013 | Layer 2: recessed #18181b | Layer 3: inner #09090b */
+/* ── SURFACES & CARDS (SHADCN DARK ZINC) ── */
 .card{
-  background:#101013;
-  border:1px solid #27272a;
+  background:#0c0c0e;
+  border:1px solid #222226;
   border-radius:12px;
-  padding:18px 16px;
-  box-shadow:0 1px 3px 0 rgba(0,0,0,0.3);
+  padding:18px 20px;
+  box-shadow:0 1px 3px 0 rgba(0,0,0,0.4);
   width:100%;
   max-width:100%;
   min-width:0;
@@ -74,40 +87,39 @@ body{
 }
 .card:hover{
   border-color:#3f3f46;
-  box-shadow:0 4px 20px -2px rgba(0,0,0,0.5);
 }
 .card-sm{
-  background:#141418;
-  border:1px solid #27272a;
+  background:#101013;
+  border:1px solid #222226;
   border-radius:10px;
   padding:12px 14px;
 }
 .card-inner{
-  background:#09090b;
+  background:#141418;
   border:1px solid #1f1f23;
   border-radius:8px;
-  padding:10px 12px;
+  padding:12px 14px;
   max-width:100%;
   box-sizing:border-box;
 }
 @media(max-width:767px){
   .card{padding:14px 12px;border-radius:12px;margin-bottom:14px}
   .card-sm{padding:10px 12px;border-radius:9px}
-  .card-inner{padding:9px 11px;border-radius:8px}
+  .card-inner{padding:10px 12px;border-radius:8px}
 }
 
-/* ── REMO CN METRIC CARDS & EXECUTIVE GRID ── */
+/* ── REMO CN 4-CARD EXECUTIVE GRID ── */
 .remo-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   gap: 12px;
   width: 100%;
 }
 .remo-card {
-  background: #101013;
-  border: 1px solid #27272a;
+  background: #0c0c0e;
+  border: 1px solid #222226;
   border-radius: 12px;
-  padding: 16px;
+  padding: 16px 18px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -117,7 +129,7 @@ body{
 }
 .remo-card:hover {
   border-color: #3f3f46;
-  background: #141418;
+  background: #101013;
 }
 .remo-header {
   display: flex;
@@ -127,47 +139,48 @@ body{
 }
 .remo-label {
   font-size: 11px;
-  font-weight: 600;
-  color: #71717a;
+  font-weight: 500;
+  color: #a1a1aa;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 .remo-value {
   font-size: 26px;
-  font-weight: 800;
+  font-weight: 700;
   color: #fafafa;
-  line-height: 1.1;
+  line-height: 1.15;
   letter-spacing: -0.02em;
-  margin-bottom: 6px;
   font-feature-settings: "tnum";
 }
 .remo-unit {
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 400;
   color: #71717a;
   letter-spacing: normal;
+  margin-left: 2px;
 }
 .remo-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 10px;
+  margin-top: 8px;
   font-size: 11px;
-  color: #a1a1aa;
+  color: #71717a;
 }
 .remo-track {
   width: 100%;
   height: 4px;
-  background: #27272a;
-  border-radius: 2px;
+  background: #1f1f23;
+  border-radius: 9999px;
   overflow: hidden;
-  margin-top: 8px;
+  margin-top: 10px;
+  margin-bottom: 2px;
 }
 .remo-fill {
   height: 100%;
   background: #6366f1;
-  border-radius: 2px;
-  transition: width 0.3s ease;
+  border-radius: 9999px;
+  transition: width 0.4s ease;
 }
 .pulse-dot {
   width: 6px;
@@ -183,11 +196,11 @@ body{
   50% { opacity: 0.4; transform: scale(0.85); }
 }
 
-/* ── MONO CHARTS SUITE STYLES ── */
+/* ── MONO CHARTS SUITE ── */
 .mono-tab-btn {
-  padding: 4px 10px;
+  padding: 5px 12px;
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 500;
   color: #a1a1aa;
   border-radius: 6px;
   cursor: pointer;
@@ -195,6 +208,7 @@ body{
   border: none;
   transition: all 0.15s ease;
   user-select: none;
+  white-space: nowrap;
 }
 .mono-tab-btn:hover {
   color: #fafafa;
@@ -202,7 +216,8 @@ body{
 .mono-tab-btn.active {
   color: #fafafa;
   background: #27272a;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  font-weight: 600;
 }
 .mono-tab-btn:active {
   transform: scale(0.98);
@@ -211,7 +226,7 @@ body{
   animation: fadeSlide 0.2s ease;
 }
 
-/* ── SHADCN BADGES & TAGS ── */
+/* ── SHADCN BADGES ── */
 .shad-badge {
   display: inline-flex;
   align-items: center;
@@ -219,14 +234,14 @@ body{
   padding: 2px 8px;
   border-radius: 6px;
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.4;
   border: 1px solid;
   letter-spacing: 0.02em;
   white-space: nowrap;
 }
 .shad-badge-outline {
-  background: #18181b88;
+  background: #18181b;
   color: #d4d4d8;
   border-color: #27272a;
 }
@@ -251,38 +266,39 @@ body{
   border-color: rgba(244, 63, 94, 0.25);
 }
 
-/* ── LEGACY TAGS COMPATIBILITY ── */
+/* ── COMPATIBILITY TAGS (ZINC-STYLED) ── */
 .tag{
   display:inline-flex;
   align-items:center;
-  gap:4px;
+  gap:5px;
   padding:3px 8px;
   border-radius:6px;
   font-size:10px;
-  font-weight:700;
+  font-weight:600;
   letter-spacing:0.04em;
-  line-height:1;
+  line-height:1.2;
   text-transform:uppercase;
   white-space:nowrap;
+  border:1px solid;
 }
-.tag-indigo{background:rgba(99,102,241,0.12);color:#a5b4fc;border:1px solid rgba(99,102,241,0.25)}
-.tag-cyan{background:rgba(6,182,212,0.12);color:#67e8f9;border:1px solid rgba(6,182,212,0.25)}
-.tag-green{background:rgba(16,185,129,0.12);color:#6ee7b7;border:1px solid rgba(16,185,129,0.25)}
-.tag-amber{background:rgba(245,158,11,0.12);color:#fcd34d;border:1px solid rgba(245,158,11,0.25)}
-.tag-purple{background:rgba(168,85,247,0.12);color:#d8b4fe;border:1px solid rgba(168,85,247,0.25)}
-.tag-rose{background:rgba(244,63,94,0.12);color:#fda4af;border:1px solid rgba(244,63,94,0.25)}
-.tag-zinc{background:#18181b;color:#a1a1aa;border:1px solid #27272a}
+.tag-indigo{background:rgba(99,102,241,0.08);color:#a5b4fc;border-color:rgba(99,102,241,0.22)}
+.tag-cyan{background:rgba(6,182,212,0.08);color:#67e8f9;border-color:rgba(6,182,212,0.22)}
+.tag-green{background:rgba(16,185,129,0.08);color:#6ee7b7;border-color:rgba(16,185,129,0.22)}
+.tag-amber{background:rgba(245,158,11,0.08);color:#fcd34d;border-color:rgba(245,158,11,0.22)}
+.tag-purple{background:rgba(168,85,247,0.08);color:#d8b4fe;border-color:rgba(168,85,247,0.22)}
+.tag-rose{background:rgba(244,63,94,0.08);color:#fda4af;border-color:rgba(244,63,94,0.22)}
+.tag-zinc{background:#18181b;color:#a1a1aa;border-color:#27272a}
 
-/* ── APP HEADER ── */
+/* ── SHADCN NAVBAR (APP HEADER) ── */
 .app-header{
   position:sticky;
   top:0;
   z-index:99;
-  background:rgba(9,11,17,0.92);
-  backdrop-filter:blur(24px) saturate(190%);
-  -webkit-backdrop-filter:blur(24px) saturate(190%);
-  border-bottom:1px solid rgba(255,255,255,0.07);
-  padding:0 16px;
+  background:rgba(9,9,11,0.88);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid #222226;
+  padding:0 18px;
   height:52px;
   display:flex;
   align-items:center;
@@ -299,23 +315,23 @@ body{
   text-decoration:none;
   color:inherit;
   min-width:0;
-  overflow:hidden;
 }
 .brand-icon{
-  width:32px;
-  height:32px;
-  border-radius:9px;
-  background:linear-gradient(135deg,#4f46e5,#6366f1);
+  width:30px;
+  height:30px;
+  border-radius:8px;
+  background:#18181b;
+  border:1px solid #27272a;
   display:flex;
   align-items:center;
   justify-content:center;
   flex-shrink:0;
-  box-shadow:0 2px 10px rgba(99,102,241,0.35);
+  color:#fafafa;
 }
 .brand-title{
   font-size:13px;
-  font-weight:800;
-  color:#f8fafc;
+  font-weight:700;
+  color:#fafafa;
   letter-spacing:-0.02em;
   line-height:1.2;
   white-space:nowrap;
@@ -324,7 +340,7 @@ body{
 }
 .brand-sub{
   font-size:10px;
-  color:#64748b;
+  color:#71717a;
   margin-top:1px;
   white-space:nowrap;
 }
@@ -335,53 +351,66 @@ body{
   flex-shrink:0;
 }
 
-/* ── DESKTOP TOP NAV ── */
-.desktop-nav{display:none;align-items:center;gap:3px}
+/* ── DESKTOP NAVIGATION PILLS (SHADCN TABS) ── */
+.desktop-nav{
+  display:none;
+  align-items:center;
+  gap:2px;
+  background:#141418;
+  border:1px solid #222226;
+  border-radius:8px;
+  padding:3px;
+}
 @media(min-width:960px){.desktop-nav{display:flex}}
 .d-nav-btn{
-  padding:6px 12px;
-  border-radius:8px;
+  padding:5px 12px;
+  border-radius:6px;
   font-size:12px;
-  font-weight:600;
-  color:#94a3b8;
-  border:1px solid transparent;
+  font-weight:500;
+  color:#a1a1aa;
+  border:none;
   background:transparent;
   cursor:pointer;
-  transition:all 0.15s;
+  transition:all 0.15s ease;
   display:flex;
   align-items:center;
   gap:6px;
   white-space:nowrap;
 }
-.d-nav-btn:hover{color:#f8fafc;background:rgba(255,255,255,0.05)}
+.d-nav-btn:hover{color:#fafafa}
 .d-nav-btn.active{
-  color:#f8fafc;
-  background:#131826;
-  border-color:rgba(255,255,255,0.09);
-  box-shadow:0 2px 8px rgba(0,0,0,0.3);
+  color:#fafafa;
+  background:#27272a;
+  font-weight:600;
+  box-shadow:0 1px 3px rgba(0,0,0,0.3);
 }
 
 /* ── HEADER ACTION BUTTONS ── */
 .hdr-btn{
   font-size:12px;
-  font-weight:700;
-  padding:6px 10px;
-  border-radius:8px;
+  font-weight:500;
+  padding:6px 12px;
+  border-radius:6px;
   display:flex;
   align-items:center;
-  gap:5px;
+  gap:6px;
   cursor:pointer;
-  transition:all 0.15s;
-  border:1px solid;
+  transition:all 0.15s ease;
+  border:1px solid #27272a;
+  background:#141418;
+  color:#d4d4d8;
   white-space:nowrap;
   flex-shrink:0;
+  text-decoration:none;
 }
-.hdr-btn-purple{color:#c084fc;background:rgba(168,85,247,0.1);border-color:rgba(168,85,247,0.22)}
-.hdr-btn-purple:hover{background:rgba(168,85,247,0.2)}
-.hdr-btn-blue{color:#38bdf8;background:rgba(56,189,248,0.1);border-color:rgba(56,189,248,0.22)}
-.hdr-btn-blue:hover{background:rgba(56,189,248,0.2)}
-.hdr-btn-green{color:#4ade80;text-decoration:none;background:rgba(74,222,128,0.1);border-color:rgba(74,222,128,0.22)}
-.hdr-btn-green:hover{background:rgba(74,222,128,0.2)}
+.hdr-btn:hover{
+  background:#27272a;
+  color:#ffffff;
+  border-color:#3f3f46;
+}
+.hdr-btn-purple{color:#c084fc;background:#18181b}
+.hdr-btn-blue{color:#38bdf8;background:#18181b}
+.hdr-btn-green{color:#34d399;background:#18181b}
 
 @media(max-width:600px){
   .app-header{padding:0 12px;height:48px}
@@ -396,47 +425,50 @@ body{
   max-width:1200px;
   width:100%;
   margin:0 auto;
-  padding:20px 16px 96px 16px;
+  padding:20px 16px 120px 16px;
   flex:1;
   overflow-x:clip;
   min-width:0;
   box-sizing:border-box;
 }
 @media(max-width:767px){
-  .main-container{padding:14px 12px 100px 12px}
+  .main-container{padding:14px 12px 120px 12px}
 }
 
 /* ── TABS FADE ── */
 .tab-section{display:none;animation:fadeSlide 0.2s ease}
 .tab-section.active{display:block}
-@keyframes fadeSlide{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
 
 /* ── SECTION HEADER ── */
 .section-hdr{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  margin-bottom:20px;
-  padding-bottom:14px;
-  border-bottom:1px solid rgba(255,255,255,0.07);
+  margin-bottom:18px;
+  padding-bottom:12px;
+  border-bottom:1px solid #222226;
   gap:12px;
   flex-wrap:wrap;
 }
-.section-title{display:flex;align-items:center;gap:12px}
+.section-title{display:flex;align-items:center;gap:10px}
 .section-icon{
-  width:36px;
-  height:36px;
-  border-radius:10px;
+  width:32px;
+  height:32px;
+  border-radius:8px;
+  background:#141418;
+  border:1px solid #222226;
   display:flex;
   align-items:center;
   justify-content:center;
   flex-shrink:0;
+  color:#fafafa;
 }
-.section-name{font-size:16px;font-weight:800;color:#f8fafc;letter-spacing:-0.02em}
-.section-sub{font-size:12px;color:#94a3b8;margin-top:2px;line-height:1.4}
+.section-name{font-size:15px;font-weight:700;color:#fafafa;letter-spacing:-0.02em}
+.section-sub{font-size:12px;color:#a1a1aa;margin-top:2px;line-height:1.4}
 
 /* ── VIDEO GRID ── */
-.video-grid{display:grid;grid-template-columns:1fr;gap:14px}
+.video-grid{display:grid;grid-template-columns:1fr;gap:12px}
 @media(min-width:680px){.video-grid{grid-template-columns:1fr 1fr}}
 @media(min-width:1080px){.video-grid{grid-template-columns:1fr 1fr 1fr}}
 
@@ -444,75 +476,76 @@ body{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:10px;
-  padding:9px 12px;
-  background:#090c14;
-  border:1px solid rgba(255,255,255,0.06);
-  border-radius:10px;
+  gap:8px;
+  padding:8px 12px;
+  background:#141418;
+  border:1px solid #222226;
+  border-radius:8px;
   color:#f87171;
-  font-size:12px;
+  font-size:11px;
   text-decoration:none;
-  transition:all 0.15s;
+  transition:all 0.15s ease;
   line-height:1.4;
 }
 .yt-link:hover{
-  background:#0e1320;
+  background:#1c1c22;
   border-color:rgba(248,113,113,0.3);
   color:#fca5a5;
-  transform:translateX(3px);
+  transform:translateX(2px);
 }
 .yt-link span{flex:1;font-weight:500}
 
-/* ── 5/5 MARKING SCHEME BANNER ── */
+/* ── 5/5 MARKING SCHEME BANNER (ZINC LOOK) ── */
 .scheme-banner{
-  background:linear-gradient(145deg, #0e121d 0%, #131826 100%);
-  border:1px solid rgba(99,102,241,0.2);
-  border-radius:16px;
-  padding:20px;
-  margin-bottom:24px;
+  background:#0c0c0e;
+  border:1px solid #222226;
+  border-radius:12px;
+  padding:18px 20px;
+  margin-bottom:20px;
 }
 .scheme-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
 @media(max-width:540px){.scheme-grid{grid-template-columns:1fr}}
-.scheme-item{background:#090c14;border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:12px}
-.scheme-num{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0}
+.scheme-item{background:#141418;border:1px solid #1f1f23;border-radius:8px;padding:12px}
+.scheme-num{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0}
 
 /* ── SIMULATION LAB TABS ── */
 .sim-tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;margin-bottom:16px;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;max-width:100%}
 .sim-tabs::-webkit-scrollbar{display:none}
 .sim-tab{
-  padding:7px 14px;
-  border-radius:8px;
+  padding:6px 12px;
+  border-radius:6px;
   font-size:12px;
-  font-weight:600;
-  border:1px solid rgba(255,255,255,0.07);
-  background:#0e121d;
-  color:#94a3b8;
+  font-weight:500;
+  border:1px solid #222226;
+  background:#141418;
+  color:#a1a1aa;
   cursor:pointer;
   white-space:nowrap;
-  transition:all 0.15s;
+  transition:all 0.15s ease;
 }
-.sim-tab:hover{color:#f8fafc;border-color:rgba(255,255,255,0.15)}
+.sim-tab:hover{color:#fafafa;border-color:#3f3f46}
 .sim-tab.active{
-  background:#4f46e5;
+  background:#27272a;
   color:#fff;
-  border-color:#6366f1;
-  box-shadow:0 2px 10px rgba(79,70,229,0.35);
+  border-color:#3f3f46;
+  font-weight:600;
+  box-shadow:0 1px 3px rgba(0,0,0,0.3);
 }
 .sim-panel{display:none}
 .sim-panel.active{display:block}
 
-/* ── CALENDAR SEGMENTED TOGGLE BUTTONS ── */
+/* ── CALENDAR VIEW TOGGLE BUTTONS ── */
 .sem-btn{
   flex:1;
   text-align:center;
-  padding:8px 12px;
-  font-size:12px;
-  font-weight:600;
+  padding:7px 12px;
+  font-size:11px;
+  font-weight:500;
   font-family:inherit;
-  color:#94a3b8;
+  color:#a1a1aa;
   background:transparent;
-  border:1px solid transparent;
-  border-radius:7px;
+  border:none;
+  border-radius:6px;
   cursor:pointer;
   transition:all 0.15s ease;
   outline:none;
@@ -522,22 +555,20 @@ body{
   justify-content:center;
 }
 .sem-btn:hover{
-  color:#f8fafc;
-  background:rgba(255,255,255,0.05);
+  color:#fafafa;
 }
 .sem-btn.active{
-  background:#1e2538 !important;
-  color:#f8fafc !important;
-  font-weight:700 !important;
-  border:1px solid rgba(99,102,241,0.4) !important;
-  box-shadow:0 2px 8px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06) !important;
+  background:#27272a !important;
+  color:#fafafa !important;
+  font-weight:600 !important;
+  box-shadow:0 1px 3px rgba(0,0,0,0.3) !important;
 }
 
 /* ── SIM ELEMENTS ── */
 #bars-container{
-  background:#090c14;
-  border:1px solid rgba(255,255,255,0.06);
-  border-radius:12px;
+  background:#09090b;
+  border:1px solid #1f1f23;
+  border-radius:10px;
   height:200px;
   display:flex;
   align-items:flex-end;
@@ -548,19 +579,17 @@ body{
   overflow:hidden;
 }
 .regs-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-bottom:14px}
-.reg-chip{background:#090c14;border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:10px 8px;text-align:center}
+.reg-chip{background:#141418;border:1px solid #1f1f23;border-radius:8px;padding:10px 8px;text-align:center}
 .truth-table{width:100%;font-size:12px;font-family:'JetBrains Mono',monospace;border-collapse:collapse}
-.truth-table th,.truth-table td{padding:9px 12px;border-bottom:1px solid rgba(255,255,255,0.06);text-align:left}
-.truth-table th{color:#64748b;font-size:10px;text-transform:uppercase;letter-spacing:0.05em;font-weight:700}
+.truth-table th,.truth-table td{padding:8px 12px;border-bottom:1px solid #1f1f23;text-align:left}
+.truth-table th{color:#71717a;font-size:10px;text-transform:uppercase;letter-spacing:0.05em;font-weight:600}
 .chmod-grid{display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:14px}
 @media(min-width:600px){.chmod-grid{grid-template-columns:repeat(3,1fr)}}
 .perm-check{accent-color:#6366f1;width:15px;height:15px;cursor:pointer}
 .stats-out{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 @media(min-width:680px){.stats-out{grid-template-columns:repeat(4,1fr)}}
 
-/* ══════════════════════════════════════════
-   COURSES & SYLLABUS — HIGH CRAFTSMANSHIP
-══════════════════════════════════════════ */
+/* ── COURSES & SYLLABUS — HIGH CRAFTSMANSHIP ── */
 .course-controls-bar{
   display:flex;
   flex-direction:column;
@@ -575,27 +604,27 @@ body{
 }
 .course-search-wrap input{
   width:100%;
-  background:#0e121d;
-  border:1px solid rgba(255,255,255,0.08);
-  border-radius:10px;
+  background:#141418;
+  border:1px solid #222226;
+  border-radius:8px;
   padding:10px 36px 10px 36px;
-  font-size:14px;
-  color:#f8fafc;
+  font-size:13px;
+  color:#fafafa;
   font-family:inherit;
   outline:none;
   transition:border-color 0.2s,box-shadow 0.2s;
 }
-.course-search-wrap input::placeholder{color:#64748b}
+.course-search-wrap input::placeholder{color:#71717a}
 .course-search-wrap input:focus{
   border-color:#6366f1;
-  box-shadow:0 0 0 3px rgba(99,102,241,0.15);
+  box-shadow:0 0 0 2px rgba(99,102,241,0.2);
 }
 .course-search-icon{
   position:absolute;
   left:12px;
   top:50%;
   transform:translateY(-50%);
-  color:#64748b;
+  color:#71717a;
   pointer-events:none;
   display:flex;
   align-items:center;
@@ -605,9 +634,9 @@ body{
   right:10px;
   top:50%;
   transform:translateY(-50%);
-  background:#1a2030;
+  background:#1f1f23;
   border:none;
-  color:#94a3b8;
+  color:#a1a1aa;
   width:22px;
   height:22px;
   border-radius:50%;
@@ -618,9 +647,8 @@ body{
   justify-content:center;
   transition:all 0.15s;
 }
-.course-search-clear:hover{background:#273047;color:#f8fafc}
+.course-search-clear:hover{background:#27272a;color:#fafafa}
 
-/* Action row: Segmented control & Expand All button */
 .course-actions-row{
   display:flex;
   justify-content:space-between;
@@ -630,83 +658,82 @@ body{
 }
 .course-sem-segmented{
   display:flex;
-  background:#0e121d;
-  border:1px solid rgba(255,255,255,0.07);
-  border-radius:9px;
+  background:#141418;
+  border:1px solid #222226;
+  border-radius:8px;
   padding:3px;
-  gap:3px;
+  gap:2px;
 }
 .sem-seg-btn{
-  padding:5px 12px;
-  border-radius:7px;
+  padding:4px 10px;
+  border-radius:6px;
   font-size:11px;
-  font-weight:700;
+  font-weight:500;
   border:none;
   background:transparent;
-  color:#94a3b8;
+  color:#a1a1aa;
   cursor:pointer;
-  transition:all 0.15s;
+  transition:all 0.15s ease;
   white-space:nowrap;
-  letter-spacing:0.02em;
 }
-.sem-seg-btn:hover{color:#f8fafc}
+.sem-seg-btn:hover{color:#fafafa}
 .sem-seg-btn.active{
-  background:#1e2538;
+  background:#27272a;
   color:#fff;
-  box-shadow:0 1px 4px rgba(0,0,0,0.3);
+  font-weight:600;
+  box-shadow:0 1px 3px rgba(0,0,0,0.3);
 }
 
 .expand-all-btn{
-  padding:6px 12px;
-  border-radius:8px;
+  padding:5px 10px;
+  border-radius:6px;
   font-size:11px;
-  font-weight:700;
-  border:1px solid rgba(99,102,241,0.25);
-  background:rgba(99,102,241,0.08);
-  color:#a5b4fc;
+  font-weight:500;
+  border:1px solid #27272a;
+  background:#141418;
+  color:#d4d4d8;
   cursor:pointer;
-  transition:all 0.15s;
+  transition:all 0.15s ease;
   display:inline-flex;
   align-items:center;
   gap:5px;
   white-space:nowrap;
 }
 .expand-all-btn:hover{
-  background:rgba(99,102,241,0.16);
-  border-color:rgba(99,102,241,0.4);
-  color:#c7d2fe;
+  background:#27272a;
+  color:#ffffff;
+  border-color:#3f3f46;
 }
 
 /* ── COURSE GRID & CARD ── */
-.subjects-grid{display:grid;grid-template-columns:1fr;gap:14px}
+.subjects-grid{display:grid;grid-template-columns:1fr;gap:12px}
 @media(min-width:960px){.subjects-grid{grid-template-columns:1fr 1fr}}
 
 .course-card{
   padding:0 !important;
   overflow:hidden;
-  border-radius:16px;
-  background:#131826;
-  border:1px solid rgba(255,255,255,0.07);
-  box-shadow:0 4px 20px -4px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.04);
+  border-radius:12px;
+  background:#0c0c0e;
+  border:1px solid #222226;
   transition:border-color 0.2s,box-shadow 0.2s;
 }
-.course-card:hover{border-color:rgba(255,255,255,0.14)}
+.course-card:hover{border-color:#3f3f46}
 .course-card.expanded{
-  border-color:rgba(99,102,241,0.3);
-  box-shadow:0 8px 30px -4px rgba(0,0,0,0.6), 0 0 0 1px rgba(99,102,241,0.15) inset;
+  border-color:#3f3f46;
+  box-shadow:0 8px 30px -4px rgba(0,0,0,0.5);
 }
 
 .course-header{
-  padding:16px 18px;
+  padding:14px 16px;
   cursor:pointer;
-  background:#131826;
+  background:#0c0c0e;
   transition:background 0.15s;
   user-select:none;
 }
-.course-header:hover{background:#171d2e}
+.course-header:hover{background:#121215}
 .course-card.expanded .course-header{
-  background:#161c2c;
-  border-bottom:1px solid rgba(255,255,255,0.06);
+  background:#101013;
+  border-bottom:1px solid #222226;
 }
 
 .course-header-top{
@@ -715,7 +742,7 @@ body{
   align-items:center;
   gap:8px;
   flex-wrap:wrap;
-  margin-bottom:8px;
+  margin-bottom:6px;
 }
 .course-tags-wrap{
   display:flex;
@@ -725,11 +752,11 @@ body{
 }
 .course-code-tag{
   font-size:10px;
-  color:#94a3b8;
+  color:#a1a1aa;
   font-family:'JetBrains Mono',monospace;
   font-weight:600;
-  background:#090c14;
-  border:1px solid rgba(255,255,255,0.06);
+  background:#141418;
+  border:1px solid #1f1f23;
   padding:2px 6px;
   border-radius:4px;
 }
@@ -742,17 +769,17 @@ body{
 }
 .unit-count-pill{
   font-size:10px;
-  font-weight:700;
+  font-weight:600;
   color:#a5b4fc;
-  background:rgba(99,102,241,0.12);
-  border:1px solid rgba(99,102,241,0.25);
-  padding:2px 7px;
-  border-radius:5px;
+  background:rgba(99,102,241,0.1);
+  border:1px solid rgba(99,102,241,0.22);
+  padding:2px 6px;
+  border-radius:4px;
   white-space:nowrap;
 }
 .course-chevron{
-  color:#94a3b8;
-  transition:transform 0.25s cubic-bezier(0.4,0,0.2,1);
+  color:#71717a;
+  transition:transform 0.2s cubic-bezier(0.4,0,0.2,1);
   flex-shrink:0;
 }
 .course-card.expanded .course-chevron{
@@ -761,9 +788,9 @@ body{
 }
 
 .course-title{
-  font-size:16px;
-  font-weight:800;
-  color:#f8fafc;
+  font-size:15px;
+  font-weight:700;
+  color:#fafafa;
   letter-spacing:-0.015em;
   line-height:1.35;
 }
@@ -774,21 +801,21 @@ body{
   gap:6px;
   margin-top:6px;
   font-size:11px;
-  color:#64748b;
+  color:#71717a;
   flex-wrap:wrap;
 }
 .course-credits{
-  color:#4ade80;
-  font-weight:700;
+  color:#34d399;
+  font-weight:600;
   font-size:10px;
-  background:rgba(74,222,128,0.08);
-  border:1px solid rgba(74,222,128,0.2);
+  background:rgba(16,185,129,0.08);
+  border:1px solid rgba(16,185,129,0.2);
   padding:1px 6px;
   border-radius:4px;
 }
-.preview-dot{color:#334155}
+.preview-dot{color:#3f3f46}
 .course-unit-preview{
-  color:#94a3b8;
+  color:#a1a1aa;
   font-size:11px;
   overflow:hidden;
   text-overflow:ellipsis;
@@ -798,18 +825,18 @@ body{
 
 .course-body{
   display:none;
-  padding:12px 16px 16px 16px;
-  background:#0b0e17;
+  padding:12px 14px 16px 14px;
+  background:#09090b;
 }
 .course-card.expanded .course-body{display:block}
 
 /* ── INDIVIDUAL UNIT ITEM ── */
 .course-unit{
-  background:#111522;
-  border:1px solid rgba(255,255,255,0.06);
-  border-radius:12px;
-  padding:14px;
-  margin-top:10px;
+  background:#0c0c0e;
+  border:1px solid #222226;
+  border-radius:10px;
+  padding:12px 14px;
+  margin-top:8px;
 }
 .course-unit:first-child{margin-top:0}
 .unit-hdr{margin-bottom:6px}
@@ -821,43 +848,43 @@ body{
 }
 .unit-idx-badge{
   font-size:10px;
-  font-weight:800;
+  font-weight:700;
   color:#a5b4fc;
-  background:rgba(99,102,241,0.12);
-  border:1px solid rgba(99,102,241,0.25);
-  padding:2px 7px;
-  border-radius:5px;
+  background:rgba(99,102,241,0.1);
+  border:1px solid rgba(99,102,241,0.22);
+  padding:2px 6px;
+  border-radius:4px;
   font-family:'JetBrains Mono',monospace;
   white-space:nowrap;
   flex-shrink:0;
 }
 .unit-name{
   font-size:13px;
-  font-weight:700;
-  color:#f8fafc;
+  font-weight:600;
+  color:#fafafa;
   line-height:1.4;
   flex:1;
   min-width:180px;
 }
 .unit-topics{
   font-size:12px;
-  color:#94a3b8;
+  color:#a1a1aa;
   line-height:1.55;
   margin-bottom:10px;
 }
 
 /* ── 5M EXAM QUESTION CALLOUT ── */
 .exam-q-box{
-  background:rgba(245,158,11,0.05);
-  border:1px solid rgba(245,158,11,0.22);
+  background:rgba(245,158,11,0.04);
+  border:1px solid rgba(245,158,11,0.2);
   border-left:3px solid #f59e0b;
-  border-radius:8px;
-  padding:10px 12px;
+  border-radius:6px;
+  padding:8px 10px;
   margin-bottom:8px;
 }
 .exam-q-label{
   font-size:9px;
-  font-weight:800;
+  font-weight:700;
   color:#fbbf24;
   display:flex;
   align-items:center;
@@ -868,35 +895,33 @@ body{
 }
 .exam-q-text{
   font-size:12px;
-  color:#f8fafc;
-  line-height:1.55;
+  color:#fafafa;
+  line-height:1.5;
   font-style:italic;
 }
 
-/* ── MECHANISM BOX ── */
 .unit-mech-wrap{
-  background:#080a11;
-  border:1px solid rgba(255,255,255,0.05);
-  border-radius:9px;
-  padding:10px 12px;
+  background:#141418;
+  border:1px solid #1f1f23;
+  border-radius:8px;
+  padding:8px 10px;
   margin-top:8px;
 }
 .mech-label{
   font-size:9px;
-  color:#64748b;
+  color:#71717a;
   text-transform:uppercase;
-  font-weight:800;
+  font-weight:700;
   letter-spacing:0.05em;
-  margin-bottom:6px;
+  margin-bottom:4px;
 }
 
-/* ── FORMULA & MATH WRAP ── */
 .math-wrap{
   overflow-x:auto;
   max-width:100%;
   display:block;
   -webkit-overflow-scrolling:touch;
-  padding:6px 0;
+  padding:4px 0;
   text-align:center;
   color:#818cf8;
   overscroll-behavior-x:contain;
@@ -906,20 +931,19 @@ body{
   overflow-y:hidden !important;
   max-width:100% !important;
   padding:4px 0 !important;
-  margin:0.4em 0 !important;
+  margin:0.3em 0 !important;
   -webkit-overflow-scrolling:touch !important;
   overscroll-behavior-x:contain;
 }
 
-/* ── CODE BLOCK ── */
 .code-block{
-  background:#030408;
-  border:1px solid rgba(255,255,255,0.06);
+  background:#050507;
+  border:1px solid #1f1f23;
   border-radius:6px;
-  padding:10px 12px;
+  padding:8px 10px;
   font-family:'JetBrains Mono',monospace;
   font-size:11px;
-  color:#4ade80;
+  color:#34d399;
   overflow-x:auto;
   white-space:pre;
   line-height:1.6;
@@ -928,13 +952,12 @@ body{
   overscroll-behavior-x:contain;
 }
 
-/* ── FLOW STEPS (HORIZONTAL RAIL WITH NO ORPHAN ARROWS) ── */
 .flow-track{
   display:flex;
   align-items:center;
   gap:6px;
   overflow-x:auto;
-  padding:3px 0 6px 0;
+  padding:2px 0 4px 0;
   -webkit-overflow-scrolling:touch;
   scrollbar-width:thin;
   overscroll-behavior-x:contain;
@@ -942,10 +965,10 @@ body{
 }
 .flow-step-pill{
   flex-shrink:0;
-  background:#131826;
-  border:1px solid rgba(99,102,241,0.25);
+  background:#141418;
+  border:1px solid rgba(99,102,241,0.22);
   border-radius:6px;
-  padding:4px 9px;
+  padding:3px 8px;
   font-size:11px;
   color:#c7d2fe;
   font-family:'JetBrains Mono',monospace;
@@ -958,7 +981,6 @@ body{
   font-size:11px;
 }
 
-/* ── BADGES LIST (RESPONSIVE STACK ON MOBILE) ── */
 .badge-col{display:flex;flex-direction:column;gap:6px}
 .badge-card{
   display:flex;
@@ -966,18 +988,18 @@ body{
   gap:8px;
   font-size:11px;
   padding:8px 10px;
-  background:#0e121d;
-  border:1px solid rgba(255,255,255,0.06);
-  border-radius:7px;
+  background:#141418;
+  border:1px solid #1f1f23;
+  border-radius:6px;
 }
 @media(max-width:640px){
   .badge-card{flex-direction:column;gap:4px}
 }
 .badge-pill{
-  background:rgba(99,102,241,0.12);
+  background:rgba(99,102,241,0.1);
   color:#a5b4fc;
-  border:1px solid rgba(99,102,241,0.25);
-  padding:2px 7px;
+  border:1px solid rgba(99,102,241,0.22);
+  padding:2px 6px;
   border-radius:4px;
   font-size:10px;
   font-weight:700;
@@ -986,35 +1008,9 @@ body{
   align-self:flex-start;
 }
 .badge-text{
-  color:#cbd5e1;
+  color:#d4d4d8;
   flex:1;
   line-height:1.5;
-}
-
-/* ── MATH WRAP ── */
-.math-wrap{
-  overflow-x:auto;
-  max-width:100%;
-  -webkit-overflow-scrolling:touch;
-  color:#a5b4fc;
-  text-align:center;
-  padding:4px 0;
-}
-
-/* ── MOBILE COURSE REFINEMENTS ── */
-@media(max-width:767px){
-  .course-card{border-radius:13px}
-  .course-header{padding:13px 12px}
-  .course-title{font-size:15px}
-  .course-body{padding:8px 10px 12px 10px}
-  .course-unit{padding:10px;border-radius:9px}
-  .unit-name{font-size:12px}
-  .unit-topics{font-size:11px;line-height:1.5}
-  .exam-q-box{padding:8px 10px}
-  .exam-q-text{font-size:11px}
-  .unit-mech-wrap{padding:8px 10px}
-  .course-unit-preview{display:none}
-  .preview-dot{display:none}
 }
 
 /* ── FLASHCARD ── */
@@ -1024,70 +1020,69 @@ body{
   min-height:260px;
   position:relative;
   transform-style:preserve-3d;
-  transition:transform 0.5s cubic-bezier(0.4,0,0.2,1);
+  transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);
   cursor:pointer;
-  border-radius:16px;
+  border-radius:12px;
 }
 .flip-card.flipped{transform:rotateY(180deg)}
 .flip-face{
   position:absolute;
   inset:0;
   backface-visibility:hidden;
-  border-radius:16px;
-  padding:22px;
+  border-radius:12px;
+  padding:20px;
   display:flex;
   flex-direction:column;
   justify-content:space-between;
 }
 .flip-front{
-  background:#131826;
-  border:1px solid rgba(99,102,241,0.25);
-  box-shadow:0 8px 30px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+  background:#0c0c0e;
+  border:1px solid #222226;
+  box-shadow:0 8px 30px rgba(0,0,0,0.4);
 }
 .flip-back{
-  background:#0a1410;
+  background:#09120e;
   border:1px solid rgba(16,185,129,0.25);
   transform:rotateY(180deg);
   overflow-y:auto;
-  box-shadow:0 8px 30px rgba(0,0,0,0.5);
+  box-shadow:0 8px 30px rgba(0,0,0,0.4);
 }
 
-/* ── CALENDAR STYLES ── */
-.cal-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:20px}
+/* ── CALENDAR STYLES (SHADCN ZINC) ── */
+.cal-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:18px}
 @media(max-width:768px){.cal-grid{grid-template-columns:repeat(3,1fr);gap:6px}}
 @media(max-width:380px){.cal-grid{grid-template-columns:repeat(2,1fr)}}
 
 .cal-day-card{
-  background:#0e121d;
-  border:1px solid rgba(255,255,255,0.06);
-  border-radius:11px;
+  background:#141418;
+  border:1px solid #1f1f23;
+  border-radius:8px;
   padding:10px;
   cursor:pointer;
-  transition:all 0.15s;
+  transition:all 0.15s ease;
   display:flex;
   flex-direction:column;
-  gap:5px;
+  gap:4px;
   position:relative;
 }
 .cal-day-card:hover{
-  border-color:#6366f1;
-  transform:translateY(-2px);
-  background:#131826;
+  border-color:#3f3f46;
+  background:#18181c;
+  transform:translateY(-1px);
 }
 .cal-day-card.active-day{
   border-color:#6366f1;
-  background:#14192b;
-  box-shadow:0 0 16px rgba(99,102,241,0.25);
+  background:#181822;
+  box-shadow:0 0 0 1px #6366f1;
 }
 .cal-day-card.is-today{
-  border-color:#22d3ee;
-  background:#0b1924;
-  box-shadow:0 0 16px rgba(34,211,238,0.3);
+  border-color:#38bdf8;
+  background:#0e1520;
 }
 .cal-pill{
   font-size:9px;
-  font-weight:700;
-  padding:3px 6px;
+  font-weight:600;
+  padding:2px 5px;
   border-radius:4px;
   line-height:1.2;
   white-space:nowrap;
@@ -1096,32 +1091,31 @@ body{
   display:block;
   letter-spacing:0.02em;
   text-transform:uppercase;
+  border:1px solid;
 }
-.cal-pill-m{background:rgba(99,102,241,0.18);color:#a5b4fc;border:1px solid rgba(99,102,241,0.3)}
-.cal-pill-a{background:rgba(6,182,212,0.18);color:#67e8f9;border:1px solid rgba(6,182,212,0.3)}
-.cal-pill-e{background:rgba(16,185,129,0.18);color:#6ee7b7;border:1px solid rgba(16,185,129,0.3)}
+.cal-pill-m{background:rgba(99,102,241,0.1);color:#a5b4fc;border-color:rgba(99,102,241,0.22)}
+.cal-pill-a{background:rgba(6,182,212,0.1);color:#67e8f9;border-color:rgba(6,182,212,0.22)}
+.cal-pill-e{background:rgba(16,185,129,0.1);color:#6ee7b7;border-color:rgba(16,185,129,0.22)}
 .day-session-card{
-  background:#090c14;
-  border:1px solid rgba(255,255,255,0.06);
-  border-radius:11px;
+  background:#141418;
+  border:1px solid #1f1f23;
+  border-radius:10px;
   padding:14px;
   margin-top:10px;
 }
 
-/* ── TIMETABLE MATRIX TABLE ── */
 .schedule-table{width:100%;border-collapse:collapse;font-size:12px}
-.schedule-table th,.schedule-table td{padding:12px 14px;border-bottom:1px solid rgba(255,255,255,0.06);text-align:left}
-.schedule-table th{background:#0e121d;color:#64748b;font-size:10px;text-transform:uppercase;letter-spacing:0.05em;font-weight:700}
-.schedule-table tr:hover td{background:rgba(255,255,255,0.02)}
+.schedule-table th,.schedule-table td{padding:10px 12px;border-bottom:1px solid #1f1f23;text-align:left}
+.schedule-table th{background:#141418;color:#71717a;font-size:10px;text-transform:uppercase;letter-spacing:0.05em;font-weight:600}
+.schedule-table tr:hover td{background:#141418}
 
-/* ── TIMELINE PHASE CARD ── */
 .phase-step{display:flex;gap:16px;position:relative;padding-bottom:24px}
 .phase-step:last-child{padding-bottom:0}
-.phase-step::before{content:'';position:absolute;left:15px;top:32px;bottom:0;width:2px;background:rgba(255,255,255,0.06)}
+.phase-step::before{content:'';position:absolute;left:15px;top:32px;bottom:0;width:2px;background:#1f1f23}
 .phase-step:last-child::before{display:none}
-.phase-icon-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;z-index:1;font-weight:800;font-size:12px}
+.phase-icon-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;z-index:1;font-weight:700;font-size:12px}
 
-/* ── BOTTOM NAVIGATION — Floating Glass Dock (All Screens) ── */
+/* ── BOTTOM NAVIGATION — FLOATING GLASS DOCK ── */
 .bottom-nav{
   position:fixed;
   bottom:0;
@@ -1134,17 +1128,17 @@ body{
 }
 .nav-glass{
   pointer-events:auto;
-  max-width:480px;
+  max-width:440px;
   margin:0 auto;
-  background:rgba(14,18,29,0.92);
-  backdrop-filter:blur(32px) saturate(200%);
-  -webkit-backdrop-filter:blur(32px) saturate(200%);
+  background:rgba(12,12,14,0.88);
+  backdrop-filter:blur(24px) saturate(180%);
+  -webkit-backdrop-filter:blur(24px) saturate(180%);
   border:1px solid rgba(255,255,255,0.08);
-  border-radius:20px;
-  padding:6px 4px;
-  box-shadow:0 -2px 30px rgba(0,0,0,0.6), 0 8px 30px rgba(0,0,0,0.5);
+  border-radius:16px;
+  padding:4px;
+  box-shadow:0 8px 32px 0 rgba(0,0,0,0.6);
 }
-.nav-inner{display:flex;justify-content:space-between;max-width:480px;margin:0 auto;gap:2px}
+.nav-inner{display:flex;justify-content:space-between;max-width:440px;margin:0 auto;gap:2px}
 .nav-btn{
   flex:1;
   display:flex;
@@ -1153,29 +1147,19 @@ body{
   gap:3px;
   border:none;
   background:transparent;
-  color:#64748b;
+  color:#71717a;
   padding:6px 2px;
-  border-radius:12px;
+  border-radius:10px;
   cursor:pointer;
-  transition:all 0.18s;
+  transition:all 0.15s ease;
   text-decoration:none;
   position:relative;
-  min-height:48px;
+  min-height:46px;
   justify-content:center;
 }
-.nav-btn.active{background:#1a2133;color:#f8fafc}
-.nav-btn.active::before{
-  content:'';
-  position:absolute;
-  top:5px;
-  width:16px;
-  height:2px;
-  border-radius:2px;
-  background:#6366f1;
-  left:50%;
-  transform:translateX(-50%);
-}
-.nav-btn span{font-size:9px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase}
+.nav-btn:hover{color:#fafafa}
+.nav-btn.active{background:#27272a;color:#fafafa;box-shadow:0 1px 3px rgba(0,0,0,0.3)}
+.nav-btn span{font-size:9px;font-weight:600;letter-spacing:0.03em;text-transform:uppercase}
 
 /* ── TOAST NOTIFICATION ── */
 #toast-notification{
@@ -1183,51 +1167,41 @@ body{
   bottom:90px;
   left:50%;
   transform:translateX(-50%) translateY(20px);
-  background:rgba(14,18,29,0.96);
-  border:1px solid rgba(255,255,255,0.1);
-  border-radius:12px;
-  padding:11px 18px;
-  font-size:13px;
-  font-weight:600;
-  color:#f8fafc;
+  background:rgba(12,12,14,0.95);
+  border:1px solid #27272a;
+  border-radius:8px;
+  padding:10px 16px;
+  font-size:12px;
+  font-weight:500;
+  color:#fafafa;
   z-index:9999;
   opacity:0;
-  transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1);
-  backdrop-filter:blur(20px);
-  -webkit-backdrop-filter:blur(20px);
-  box-shadow:0 8px 32px rgba(0,0,0,0.5);
+  transition:all 0.25s cubic-bezier(0.16,1,0.3,1);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  box-shadow:0 8px 24px rgba(0,0,0,0.5);
   white-space:nowrap;
   display:flex;
   align-items:center;
   gap:8px;
   pointer-events:none;
-  min-width:200px;
-  justify-content:center;
 }
 #toast-notification.show{opacity:1;transform:translateX(-50%) translateY(0)}
-@media(max-width:767px){#toast-notification{bottom:96px}}
 
-/* ── SYNC MODAL — Luxury Glass ── */
+/* ── SYNC MODAL ── */
 .sync-modal-card{
-  max-width:480px;
+  max-width:460px;
   width:100%;
   position:relative;
-  background:rgba(15,19,31,0.96);
-  border:1px solid rgba(168,85,247,0.3);
-  border-radius:20px;
-  padding:24px;
-  box-shadow:0 0 0 1px rgba(255,255,255,0.05) inset, 0 20px 60px rgba(0,0,0,0.85);
-  backdrop-filter:blur(40px);
-  -webkit-backdrop-filter:blur(40px);
+  background:#0c0c0e;
+  border:1px solid #27272a;
+  border-radius:16px;
+  padding:22px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.8);
+  backdrop-filter:blur(30px);
+  -webkit-backdrop-filter:blur(30px);
 }
-@keyframes borderShimmer{
-  0%{border-color:rgba(168,85,247,0.25)}
-  50%{border-color:rgba(168,85,247,0.5)}
-  100%{border-color:rgba(168,85,247,0.25)}
-}
-.sync-modal-card{animation:borderShimmer 3s ease-in-out infinite}
 
-/* ── SCROLLBAR ── */
 ::-webkit-scrollbar{width:4px;height:4px}
 ::-webkit-scrollbar-thumb{background:#27272a;border-radius:4px}
 </style>
@@ -1274,16 +1248,16 @@ body{
 
   <!-- Header Right Actions -->
   <div class="hdr-actions">
-    <button onclick="openSyncModal()" class="hdr-btn hdr-btn-purple" title="Sync Progress">
+    <button onclick="openSyncModal()" class="hdr-btn" title="Sync Progress">
       <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/></svg>
       <span class="hdr-btn-label">Sync</span>
     </button>
-    <button id="btn-pwa-install" onclick="installPwa()" class="hdr-btn hdr-btn-blue" style="display:none" title="Install App">
+    <button id="btn-pwa-install" onclick="installPwa()" class="hdr-btn" style="display:none" title="Install App">
       <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
       <span class="hdr-btn-label">Install</span>
     </button>
-    <a href="dossier.html" class="hdr-btn hdr-btn-green" title="View Dossier">
-      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
+    <a href="dossier.html" class="hdr-btn" title="View Dossier">
+      <span style="width:6px;height:6px;border-radius:50%;background:#10b981;display:inline-block"></span>
       <span class="hdr-btn-label">Dossier</span>
     </a>
   </div>
@@ -1299,7 +1273,7 @@ body{
   ═══════════════════════════════════════ -->
   <div class="cockpit-container" style="margin-bottom:20px">
     
-    <!-- REMO CN 4-CARD KPI METRIC GRID -->
+    <!-- REMO CN 4-CARD METRIC GRID -->
     <div class="remo-grid">
       
       <!-- Card 1: Exam Runway -->
@@ -1312,12 +1286,12 @@ body{
           </span>
         </div>
         <div class="remo-value font-mono">29 <span class="remo-unit">Days Left</span></div>
-        <div class="remo-footer">
-          <span>Oct 1, 2026 ATKT Floor</span>
-          <span class="font-mono text-xs">Day 1 / 30</span>
-        </div>
         <div class="remo-track">
           <div class="remo-fill" style="width: 3.3%; background: #10b981;"></div>
+        </div>
+        <div class="remo-footer font-mono">
+          <span>Oct 1, 2026 ATKT Floor</span>
+          <span class="text-xs">Day 1 / 30</span>
         </div>
       </div>
 
@@ -1328,12 +1302,12 @@ body{
           <span class="shad-badge shad-badge-indigo">4 Blocks / Day</span>
         </div>
         <div class="remo-value font-mono">7.5 <span class="remo-unit">hrs / day</span></div>
-        <div class="remo-footer">
-          <span>Target Daily Budget</span>
-          <span class="font-mono text-xs text-indigo-400">100% Focused</span>
-        </div>
         <div class="remo-track">
           <div class="remo-fill" style="width: 100%; background: #6366f1;"></div>
+        </div>
+        <div class="remo-footer font-mono">
+          <span>Target Daily Budget</span>
+          <span class="text-xs text-indigo-400">100% Focused</span>
         </div>
       </div>
 
@@ -1344,12 +1318,12 @@ body{
           <span class="shad-badge shad-badge-amber">Grade O Target</span>
         </div>
         <div class="remo-value font-mono">25+ <span class="remo-unit">/ 30 Marks</span></div>
-        <div class="remo-footer">
-          <span>Min Passing: 12/30 (40%)</span>
-          <span class="font-mono text-xs text-amber-400">83.3% Target</span>
-        </div>
         <div class="remo-track">
           <div class="remo-fill" style="width: 83.3%; background: #f59e0b;"></div>
+        </div>
+        <div class="remo-footer font-mono">
+          <span>Min Passing: 12/30 (40%)</span>
+          <span class="text-xs text-amber-400">83.3% Target</span>
         </div>
       </div>
 
@@ -1360,33 +1334,33 @@ body{
           <span class="shad-badge shad-badge-outline font-mono" id="kpi-percent-badge">0.0% Done</span>
         </div>
         <div class="remo-value font-mono"><span id="kpi-blocks-num">0</span> <span class="remo-unit">/ 120 Blocks</span></div>
-        <div class="remo-footer">
-          <span>Active Recall Verification</span>
-          <span class="font-mono text-xs text-emerald-400" id="kpi-streak-num">0d Streak</span>
-        </div>
         <div class="remo-track">
           <div class="remo-fill" id="kpi-blocks-bar" style="width: 0%; background: #3b82f6;"></div>
+        </div>
+        <div class="remo-footer font-mono">
+          <span>Active Recall Verification</span>
+          <span class="text-xs text-emerald-400" id="kpi-streak-num">0d Streak</span>
         </div>
       </div>
 
     </div>
 
     <!-- MONO CHARTS: EXECUTIVE PERFORMANCE ANALYTICS -->
-    <div class="card" style="margin-top:14px;background:#0d0d11;border-color:#27272a;padding:16px">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px">
-        <div style="display:flex;align-items:center;gap:8px">
-          <div style="width:28px;height:28px;border-radius:6px;background:#18181b;border:1px solid #27272a;display:flex;align-items:center;justify-content:center;color:#6366f1">
+    <div class="card" style="margin-top:12px;padding:18px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:10px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="width:30px;height:30px;border-radius:8px;background:#141418;border:1px solid #222226;display:flex;align-items:center;justify-content:center;color:#fafafa">
             <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
           </div>
           <div>
-            <div style="font-size:13px;font-weight:700;color:#fafafa;letter-spacing:-0.01em">MONO Analytics: Performance Velocity &amp; Yield Models</div>
-            <div style="font-size:11px;color:#71717a">Monochromatic real-time statistical curves &amp; exam grade probability</div>
+            <div style="font-size:13px;font-weight:700;color:#fafafa;letter-spacing:-0.01em">MONO Analytics · Velocity &amp; Exam Yield Models</div>
+            <div style="font-size:11px;color:#71717a">Monochromatic real-time statistical curves &amp; grade distributions</div>
           </div>
         </div>
         
         <!-- Segmented Chart View Switcher -->
-        <div style="display:flex;background:#18181b;border:1px solid #27272a;border-radius:8px;padding:2px;gap:2px">
-          <button onclick="switchMonoChart('velocity')" class="mono-tab-btn active" id="btn-mono-velocity">Velocity Curve</button>
+        <div style="display:flex;background:#141418;border:1px solid #222226;border-radius:8px;padding:2px;gap:2px">
+          <button onclick="switchMonoChart('velocity')" class="mono-tab-btn active" id="btn-mono-velocity">Velocity Runway</button>
           <button onclick="switchMonoChart('bell')" class="mono-tab-btn" id="btn-mono-bell">25+ Bell Curve</button>
           <button onclick="switchMonoChart('pillars')" class="mono-tab-btn" id="btn-mono-pillars">Subject Pillars</button>
         </div>
@@ -1394,146 +1368,190 @@ body{
 
       <!-- CHART 1: Velocity & Hours Sparkline Area Chart -->
       <div id="mono-panel-velocity" class="mono-chart-panel active">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#a1a1aa">
-          <span>SEPTEMBER RUNWAY (DAYS 1 TO 30)</span>
-          <span style="color:#818cf8">TARGET: 7.5h / DAY [████████]</span>
+        <!-- Top Stats Row (Clean HTML, never squashed) -->
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#a1a1aa;flex-wrap:wrap;gap:6px">
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="color:#fafafa;font-weight:600">SEPTEMBER RUNWAY (DAYS 1–30)</span>
+            <span class="shad-badge shad-badge-outline" style="font-size:10px">Target: 7.5h / day</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <span style="color:#71717a">Accumulated: <strong style="color:#818cf8">0.0h</strong> / 225h</span>
+            <span style="color:#34d399;font-weight:600">Pacing: 100% On Track</span>
+          </div>
         </div>
-        <div style="position:relative;width:100%;height:130px;background:#09090b;border:1px solid #1f1f23;border-radius:8px;padding:8px;overflow:hidden">
-          <svg viewBox="0 0 500 120" style="width:100%;height:100%" preserveAspectRatio="none">
+
+        <!-- Graphic Container with Crisp Non-Scaling Lines -->
+        <div style="position:relative;width:100%;height:130px;background:#09090b;border:1px solid #1f1f23;border-radius:8px;overflow:hidden">
+          <svg viewBox="0 0 1000 120" style="width:100%;height:100%;display:block" preserveAspectRatio="none">
             <defs>
               <linearGradient id="monoGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#6366f1" stop-opacity="0.3"/>
-                <stop offset="100%" stop-color="#6366f1" stop-opacity="0"/>
+                <stop offset="0%" stop-color="#6366f1" stop-opacity="0.25"/>
+                <stop offset="100%" stop-color="#6366f1" stop-opacity="0.01"/>
               </linearGradient>
             </defs>
-            <!-- Horizontal Grid lines -->
-            <line x1="0" y1="30" x2="500" y2="30" stroke="#1f1f23" stroke-dasharray="3 3" stroke-width="1"/>
-            <line x1="0" y1="60" x2="500" y2="60" stroke="#1f1f23" stroke-dasharray="3 3" stroke-width="1"/>
-            <line x1="0" y1="90" x2="500" y2="90" stroke="#1f1f23" stroke-dasharray="3 3" stroke-width="1"/>
+            <!-- Grid Lines -->
+            <line x1="0" y1="30" x2="1000" y2="30" stroke="#1f1f23" stroke-dasharray="4 4" stroke-width="1" vector-effect="non-scaling-stroke"/>
+            <line x1="0" y1="65" x2="1000" y2="65" stroke="#1f1f23" stroke-dasharray="4 4" stroke-width="1" vector-effect="non-scaling-stroke"/>
+            <line x1="0" y1="100" x2="1000" y2="100" stroke="#1f1f23" stroke-dasharray="4 4" stroke-width="1" vector-effect="non-scaling-stroke"/>
             
-            <!-- Target Baseline Line (7.5h) -->
-            <line x1="0" y1="40" x2="500" y2="40" stroke="#6366f1" stroke-dasharray="4 4" stroke-width="1.5" opacity="0.6"/>
-            <text x="495" y="36" fill="#818cf8" font-size="9" font-family="'JetBrains Mono',monospace" text-anchor="end">7.5h Target Floor</text>
+            <!-- Target Baseline (7.5h) -->
+            <line x1="0" y1="40" x2="1000" y2="40" stroke="#6366f1" stroke-dasharray="5 5" stroke-width="1.5" stroke-opacity="0.5" vector-effect="non-scaling-stroke"/>
 
-            <!-- 30-Day Curve Area -->
-            <path d="M 0 110 Q 70 80, 140 70 T 280 40 T 420 30 L 500 25 L 500 120 L 0 120 Z" fill="url(#monoGrad)"/>
-            <!-- 30-Day Curve Stroke -->
-            <path d="M 0 110 Q 70 80, 140 70 T 280 40 T 420 30 L 500 25" fill="none" stroke="#6366f1" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- Area Fill -->
+            <path d="M 0 115 C 200 115, 350 75, 466 50 C 600 35, 800 25, 1000 20 L 1000 120 L 0 120 Z" fill="url(#monoGrad)"/>
+            
+            <!-- Main Curve Stroke -->
+            <path d="M 0 115 C 200 115, 350 75, 466 50 C 600 35, 800 25, 1000 20" fill="none" stroke="#6366f1" stroke-width="2" vector-effect="non-scaling-stroke"/>
 
-            <!-- Milestones Points -->
-            <circle cx="233" cy="48" r="4" fill="#fbbf24" stroke="#09090b" stroke-width="2"/>
-            <text x="233" y="40" fill="#fbbf24" font-size="8" font-family="'JetBrains Mono',monospace" text-anchor="middle">D14 Passing</text>
-
-            <circle cx="350" cy="34" r="4" fill="#c084fc" stroke="#09090b" stroke-width="2"/>
-            <text x="350" y="26" fill="#c084fc" font-size="8" font-family="'JetBrains Mono',monospace" text-anchor="middle">D21 Distinction</text>
-
-            <circle cx="466" cy="27" r="4" fill="#10b981" stroke="#09090b" stroke-width="2"/>
-            <text x="466" y="19" fill="#10b981" font-size="8" font-family="'JetBrains Mono',monospace" text-anchor="middle">D28 Mocks</text>
+            <!-- Milestone Points -->
+            <circle cx="466" cy="50" r="4" fill="#fbbf24" stroke="#09090b" stroke-width="2"/>
+            <circle cx="700" cy="30" r="4" fill="#c084fc" stroke="#09090b" stroke-width="2"/>
+            <circle cx="933" cy="22" r="4" fill="#10b981" stroke="#09090b" stroke-width="2"/>
           </svg>
         </div>
-        <div style="display:flex;justify-content:space-between;margin-top:6px;font-family:'JetBrains Mono',monospace;font-size:10px;color:#71717a">
-          <span>Day 1 (Sept 1)</span>
-          <span>Day 10</span>
-          <span style="color:#fbbf24">Day 14 (Passing Lock)</span>
-          <span>Day 20</span>
-          <span style="color:#10b981">Day 28 (Full Mocks)</span>
-          <span>Day 30 (Oct 1)</span>
+
+        <!-- Crisp Bottom Milestone Ticks in pure HTML/CSS (No stretched SVG fonts) -->
+        <div style="display:flex;justify-content:space-between;margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:10px;color:#71717a;flex-wrap:wrap;gap:4px">
+          <span>Day 1 (Sept 1 · Kickoff)</span>
+          <span style="color:#fbbf24;display:inline-flex;align-items:center;gap:4px">
+            <span style="width:6px;height:6px;border-radius:50%;background:#fbbf24;display:inline-block"></span>
+            Day 14 (Passing Lock)
+          </span>
+          <span style="color:#c084fc;display:inline-flex;align-items:center;gap:4px">
+            <span style="width:6px;height:6px;border-radius:50%;background:#c084fc;display:inline-block"></span>
+            Day 21 (25+ Scope)
+          </span>
+          <span style="color:#34d399;display:inline-flex;align-items:center;gap:4px">
+            <span style="width:6px;height:6px;border-radius:50%;background:#10b981;display:inline-block"></span>
+            Day 28 (Full Mocks)
+          </span>
+          <span>Day 30 (Exam Ready)</span>
         </div>
       </div>
 
       <!-- CHART 2: 25+ Marks Probability Bell Curve -->
       <div id="mono-panel-bell" class="mono-chart-panel" style="display:none">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#a1a1aa">
-          <span>EXAM SCORE PROBABILITY (μ = 25.4, σ = 4.2)</span>
-          <span style="color:#10b981">P(SCORE ≥ 25) = 88.4%</span>
+        <!-- Top Stats Row in Clean HTML -->
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#a1a1aa;flex-wrap:wrap;gap:6px">
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="color:#fafafa;font-weight:600">NORMAL SCORE DISTRIBUTION</span>
+            <span class="shad-badge shad-badge-outline" style="font-size:10px">μ = 25.4 · σ = 4.2</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <span style="color:#fbbf24">Passing Floor: 12/30 (40%)</span>
+            <span style="color:#34d399;font-weight:700">P(Score ≥ 25) = 88.4%</span>
+          </div>
         </div>
-        <div style="position:relative;width:100%;height:130px;background:#09090b;border:1px solid #1f1f23;border-radius:8px;padding:8px;overflow:hidden">
-          <svg viewBox="0 0 500 120" style="width:100%;height:100%" preserveAspectRatio="none">
+
+        <!-- Graphic Container with Clean Bell Curve -->
+        <div style="position:relative;width:100%;height:130px;background:#09090b;border:1px solid #1f1f23;border-radius:8px;overflow:hidden">
+          <svg viewBox="0 0 1000 120" style="width:100%;height:100%;display:block" preserveAspectRatio="none">
             <defs>
-              <linearGradient id="bellPass" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.25"/>
-                <stop offset="100%" stop-color="#f59e0b" stop-opacity="0"/>
+              <linearGradient id="bellDistGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#10b981" stop-opacity="0.3"/>
+                <stop offset="100%" stop-color="#10b981" stop-opacity="0.02"/>
               </linearGradient>
-              <linearGradient id="bellDist" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#10b981" stop-opacity="0.35"/>
-                <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+              <linearGradient id="bellPassGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.15"/>
+                <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.01"/>
               </linearGradient>
             </defs>
-            <!-- Normal Distribution Bell Curve -->
-            <path d="M 10 115 Q 120 115, 200 90 T 360 20 T 430 80 T 490 115" fill="none" stroke="#52525b" stroke-width="2"/>
-            
-            <!-- Shaded 25+ Marks Region (Right Tail / Distinction) -->
-            <path d="M 355 23 Q 395 35, 430 80 T 490 115 L 355 115 Z" fill="url(#bellDist)"/>
-            <path d="M 200 90 Q 280 40, 355 23 L 355 115 L 200 115 Z" fill="url(#bellPass)"/>
+            <!-- Grid Lines -->
+            <line x1="0" y1="35" x2="1000" y2="35" stroke="#1f1f23" stroke-dasharray="4 4" stroke-width="1" vector-effect="non-scaling-stroke"/>
+            <line x1="0" y1="75" x2="1000" y2="75" stroke="#1f1f23" stroke-dasharray="4 4" stroke-width="1" vector-effect="non-scaling-stroke"/>
 
-            <!-- Threshold Line: 12/30 Passing Floor -->
-            <line x1="200" y1="10" x2="200" y2="115" stroke="#f59e0b" stroke-dasharray="3 3" stroke-width="1.5"/>
-            <text x="205" y="24" fill="#fbbf24" font-size="9" font-family="'JetBrains Mono',monospace">Passing: 12/30 (40%)</text>
+            <!-- Mathematical Normal Curve Fill: Passing Zone (12 to 24) -->
+            <path d="M 400 95 C 480 50, 600 20, 720 18 L 720 120 L 400 120 Z" fill="url(#bellPassGrad)"/>
 
-            <!-- Threshold Line: 25+/30 Target Distinction -->
-            <line x1="355" y1="10" x2="355" y2="115" stroke="#10b981" stroke-width="2"/>
-            <text x="360" y="24" fill="#34d399" font-size="9" font-family="'JetBrains Mono',monospace" font-weight="bold">Target: 25+/30 (83.3%)</text>
+            <!-- Mathematical Normal Curve Fill: Distinction Zone (25 to 30) -->
+            <path d="M 720 18 C 800 20, 900 55, 980 115 L 980 120 L 720 120 Z" fill="url(#bellDistGrad)"/>
+
+            <!-- Full Bell Curve Line -->
+            <path d="M 20 118 C 200 118, 320 112, 400 95 C 480 50, 600 20, 720 18 C 800 20, 900 55, 980 115" fill="none" stroke="#71717a" stroke-width="2" vector-effect="non-scaling-stroke"/>
+
+            <!-- Threshold Vertical Line 1: Passing Floor (12/30) -->
+            <line x1="400" y1="10" x2="400" y2="120" stroke="#f59e0b" stroke-dasharray="4 4" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
+
+            <!-- Threshold Vertical Line 2: Distinction Target (25/30) -->
+            <line x1="720" y1="10" x2="720" y2="120" stroke="#10b981" stroke-width="2" vector-effect="non-scaling-stroke"/>
           </svg>
         </div>
-        <div style="display:flex;justify-content:space-between;margin-top:6px;font-family:'JetBrains Mono',monospace;font-size:10px;color:#71717a">
-          <span>0 Marks</span>
-          <span style="color:#fbbf24">12 Marks (Floor)</span>
-          <span>18 Marks</span>
-          <span style="color:#10b981">25 Marks (Distinction)</span>
-          <span>30 Marks (Max)</span>
+
+        <!-- 4-Tier Metric Summary Chips in Crisp HTML -->
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:6px;margin-top:10px">
+          <div style="background:#141418;border:1px solid #1f1f23;border-radius:6px;padding:6px 10px;font-family:'JetBrains Mono',monospace">
+            <div style="font-size:10px;color:#71717a">FAIL ZONE</div>
+            <div style="font-size:12px;font-weight:700;color:#f87171">&lt; 12 Marks</div>
+            <div style="font-size:9px;color:#52525b">P &lt; 1.2% Risk</div>
+          </div>
+          <div style="background:#141418;border:1px solid #1f1f23;border-radius:6px;padding:6px 10px;font-family:'JetBrains Mono',monospace">
+            <div style="font-size:10px;color:#71717a">PASSING FLOOR</div>
+            <div style="font-size:12px;font-weight:700;color:#fbbf24">12–17 Marks</div>
+            <div style="font-size:9px;color:#a1a1aa">40%–59% Baseline</div>
+          </div>
+          <div style="background:#141418;border:1px solid #1f1f23;border-radius:6px;padding:6px 10px;font-family:'JetBrains Mono',monospace">
+            <div style="font-size:10px;color:#71717a">FIRST CLASS</div>
+            <div style="font-size:12px;font-weight:700;color:#60a5fa">18–24 Marks</div>
+            <div style="font-size:9px;color:#a1a1aa">60%–82% Buffer</div>
+          </div>
+          <div style="background:#141418;border:1px solid rgba(16,185,129,0.3);border-radius:6px;padding:6px 10px;font-family:'JetBrains Mono',monospace">
+            <div style="font-size:10px;color:#34d399">GRADE O DISTINCTION</div>
+            <div style="font-size:12px;font-weight:700;color:#34d399">25–30 Marks</div>
+            <div style="font-size:9px;color:#34d399">88.4% Probability</div>
+          </div>
         </div>
       </div>
 
       <!-- CHART 3: Core Subject Pillars Breakdown -->
       <div id="mono-panel-pillars" class="mono-chart-panel" style="display:none">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#a1a1aa">
-          <span>4 CORE PILLARS CREDIT &amp; YIELD BREAKDOWN</span>
-          <span style="color:#60a5fa">16 COURSES · NEP 2020</span>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#a1a1aa">
+          <span>4 CORE PILLARS CREDIT &amp; EXAM ALLOCATION</span>
+          <span style="color:#a1a1aa">16 COURSES · NEP 2020</span>
         </div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px">
-          <div style="background:#09090b;border:1px solid #1f1f23;border-radius:8px;padding:10px">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
-              <span style="font-size:12px;font-weight:700;color:#f4f4f5">1. DAA &amp; Algorithms</span>
-              <span class="font-mono text-xs text-indigo-400">4 Credits · High Yield</span>
+          <div style="background:#141418;border:1px solid #1f1f23;border-radius:8px;padding:12px">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+              <span style="font-size:12px;font-weight:700;color:#fafafa">1. DAA &amp; Algorithms</span>
+              <span class="shad-badge shad-badge-indigo" style="font-size:10px">4 Credits</span>
             </div>
             <div class="remo-track"><div class="remo-fill" style="width:90%;background:#6366f1"></div></div>
-            <div style="display:flex;justify-content:space-between;margin-top:4px;font-size:10px;color:#71717a;font-family:'JetBrains Mono',monospace">
+            <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:10px;color:#71717a;font-family:'JetBrains Mono',monospace">
               <span>Recurrence + Graphs + DP</span>
               <span class="text-indigo-400">25+ Floor Lock</span>
             </div>
           </div>
 
-          <div style="background:#09090b;border:1px solid #1f1f23;border-radius:8px;padding:10px">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
-              <span style="font-size:12px;font-weight:700;color:#f4f4f5">2. DBMS &amp; Normalization</span>
-              <span class="font-mono text-xs text-cyan-400">4 Credits · High Yield</span>
+          <div style="background:#141418;border:1px solid #1f1f23;border-radius:8px;padding:12px">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+              <span style="font-size:12px;font-weight:700;color:#fafafa">2. DBMS &amp; Normalization</span>
+              <span class="shad-badge shad-badge-outline text-cyan-400" style="font-size:10px">4 Credits</span>
             </div>
             <div class="remo-track"><div class="remo-fill" style="width:90%;background:#06b6d4"></div></div>
-            <div style="display:flex;justify-content:space-between;margin-top:4px;font-size:10px;color:#71717a;font-family:'JetBrains Mono',monospace">
+            <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:10px;color:#71717a;font-family:'JetBrains Mono',monospace">
               <span>3NF + ACID + 3-Tier</span>
               <span class="text-cyan-400">25+ Floor Lock</span>
             </div>
           </div>
 
-          <div style="background:#09090b;border:1px solid #1f1f23;border-radius:8px;padding:10px">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
-              <span style="font-size:12px;font-weight:700;color:#f4f4f5">3. Digital Systems &amp; CPU</span>
-              <span class="font-mono text-xs text-amber-400">4 Credits · Core Tech</span>
+          <div style="background:#141418;border:1px solid #1f1f23;border-radius:8px;padding:12px">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+              <span style="font-size:12px;font-weight:700;color:#fafafa">3. Digital Systems &amp; CPU</span>
+              <span class="shad-badge shad-badge-amber" style="font-size:10px">4 Credits</span>
             </div>
             <div class="remo-track"><div class="remo-fill" style="width:85%;background:#f59e0b"></div></div>
-            <div style="display:flex;justify-content:space-between;margin-top:4px;font-size:10px;color:#71717a;font-family:'JetBrains Mono',monospace">
+            <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:10px;color:#71717a;font-family:'JetBrains Mono',monospace">
               <span>Full Adder + K-Maps + Von Neumann</span>
               <span class="text-amber-400">25+ Floor Lock</span>
             </div>
           </div>
 
-          <div style="background:#09090b;border:1px solid #1f1f23;border-radius:8px;padding:10px">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
-              <span style="font-size:12px;font-weight:700;color:#f4f4f5">4. Descriptive Statistics</span>
-              <span class="font-mono text-xs text-emerald-400">2 Credits · Pure Math</span>
+          <div style="background:#141418;border:1px solid #1f1f23;border-radius:8px;padding:12px">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+              <span style="font-size:12px;font-weight:700;color:#fafafa">4. Descriptive Statistics</span>
+              <span class="shad-badge shad-badge-emerald" style="font-size:10px">2 Credits</span>
             </div>
             <div class="remo-track"><div class="remo-fill" style="width:95%;background:#10b981"></div></div>
-            <div style="display:flex;justify-content:space-between;margin-top:4px;font-size:10px;color:#71717a;font-family:'JetBrains Mono',monospace">
+            <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:10px;color:#71717a;font-family:'JetBrains Mono',monospace">
               <span>Karl Pearson r + Regression</span>
               <span class="text-emerald-400">25+ Floor Lock</span>
             </div>
@@ -1808,7 +1826,7 @@ body{
               <button onclick="toggleGateInput('A')" id="btn-input-a" style="width:54px;height:54px;border-radius:14px;background:#181b26;border:2px solid #272c3d;color:#e4e4e7;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:15px;cursor:pointer;transition:all 0.15s">A: 0</button>
               <button onclick="toggleGateInput('B')" id="btn-input-b" style="width:54px;height:54px;border-radius:14px;background:#181b26;border:2px solid #272c3d;color:#e4e4e7;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:15px;cursor:pointer;transition:all 0.15s">B: 0</button>
             </div>
-            <div style="padding:16px 20px;border-radius:14px;background:#141726;border:1px solid #1d4ed840;color:#818cf8;font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:800;text-align:center" id="gate-symbol-display">[ AND GATE ]</div>
+            <div style="padding:16px 20px;border-radius:14px;background:#141418;border:1px solid #27272a;color:#a5b4fc;font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:800;text-align:center" id="gate-symbol-display">[ AND GATE ]</div>
             <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
               <div id="output-lamp" style="width:54px;height:54px;border-radius:50%;background:#181b26;border:2px solid #272c3d;display:flex;align-items:center;justify-content:center;color:#525866;font-family:'JetBrains Mono',monospace;font-weight:800;font-size:18px;transition:all 0.2s">0</div>
               <span style="font-size:9px;color:#525866;text-transform:uppercase;letter-spacing:0.05em;font-family:'JetBrains Mono',monospace;font-weight:700">Output Q</span>
@@ -2081,7 +2099,7 @@ body{
   <section class="tab-section" id="sec-schedule">
     
     <!-- MASTER STUDY HUB COCKPIT (CLEAN, BREATHABLE, UN-CONGESTED) -->
-    <div class="card" style="background:linear-gradient(135deg,#0e1322 0%,#090d18 100%);border-color:rgba(99,102,241,0.22);margin-bottom:16px">
+    <div class="card" style="background:#0c0c0e;border:1px solid #222226;margin-bottom:16px">
       <!-- Top Date & Deadline Row -->
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:12px">
         <div style="display:flex;align-items:center;gap:10px">
@@ -2105,21 +2123,21 @@ body{
 
       <!-- Pace & Milestone Status Pills -->
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px">
-        <div class="card-inner" style="padding:8px 10px;display:flex;align-items:center;gap:8px;background:#090c14" id="pace-status-card">
+        <div class="card-inner" style="padding:8px 10px;display:flex;align-items:center;gap:8px;background:#141418;border:1px solid #1f1f23;border-radius:8px" id="pace-status-card">
           <span id="pace-status-icon" style="display:flex;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="#4ade80"><circle cx="12" cy="12" r="8"/></svg></span>
           <div style="min-width:0;overflow:hidden">
             <div style="font-size:11px;font-weight:800;color:#f8fafc;white-space:nowrap;overflow:hidden;text-overflow:ellipsis" id="pace-status-title">Pace: On Track</div>
             <div style="font-size:10px;color:#94a3b8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis" id="pace-status-desc">0 blocks behind · Pacing for Oct 1</div>
           </div>
         </div>
-        <div class="card-inner" style="padding:8px 10px;background:#090c14;display:flex;flex-direction:column;justify-content:center">
+        <div class="card-inner" style="padding:8px 10px;background:#141418;border:1px solid #1f1f23;border-radius:8px;display:flex;flex-direction:column;justify-content:center">
           <div style="font-size:9px;color:#64748b;text-transform:uppercase;font-weight:700;letter-spacing:0.04em">Next Milestone</div>
           <div style="font-size:11px;font-weight:800;color:#fbbf24;font-family:'JetBrains Mono',monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis" id="milestone-status-txt">Sept 14 · Passing Lock (13d)</div>
         </div>
       </div>
 
       <!-- Segmented View Toggle -->
-      <div style="display:flex;background:#090c14;border:1px solid rgba(255,255,255,0.06);border-radius:9px;padding:3px;gap:3px">
+      <div style="display:flex;background:#141418;border:1px solid #222226;border-radius:8px;padding:2px;gap:2px">
         <button onclick="setCalView('month')" class="sem-btn active" id="btn-cal-month">Month Grid</button>
         <button onclick="setCalView('week')" class="sem-btn" id="btn-cal-week">Phase Roadmap</button>
         <button onclick="setCalView('day')" class="sem-btn" id="btn-cal-day">Day Inspector</button>
@@ -2147,7 +2165,7 @@ body{
     </div>
 
     <!-- STREAK & GITHUB-STYLE ACTIVITY HEATMAP -->
-    <div class="card" style="background:#0e121d;border-color:rgba(255,255,255,0.06);margin-bottom:16px">
+    <div class="card" style="background:#0c0c0e;border:1px solid #222226;margin-bottom:16px">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:8px">
         <div style="display:flex;align-items:center;gap:8px">
           <div style="width:28px;height:28px;border-radius:7px;background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.25);display:flex;align-items:center;justify-content:center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 17c1.38 0 2.5-1.12 2.5-2.5 0-.57-.18-1.1-.48-1.54L12 11.5l-1.02 1.46c-.3.44-.48.97-.48 1.54z"/><path d="M12 2c1 3 4 4.5 4 9a6 6 0 1 1-12 0c0-3.5 2.5-6 4-8 0 3 2 4 4-1z"/></svg></div>
@@ -2162,7 +2180,7 @@ body{
       </div>
 
       <!-- Heatmap Grid Container (Strict Horizontal Scroll without Page Blowout) -->
-      <div style="background:#090c14;border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:10px;overflow-x:auto;-webkit-overflow-scrolling:touch;width:100%;max-width:100%;box-sizing:border-box">
+      <div style="background:#141418;border:1px solid #1f1f23;border-radius:10px;padding:10px;overflow-x:auto;-webkit-overflow-scrolling:touch;width:100%;max-width:100%;box-sizing:border-box">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-size:10px;color:#64748b;gap:6px">
           <span style="font-family:'JetBrains Mono',monospace;font-weight:600">SEPTEMBER 2026 DAILY SPRINT</span>
           <div style="display:flex;align-items:center;gap:4px">
@@ -3415,10 +3433,10 @@ function renderSubjects(filter = 'all', searchQuery = '') {
 
   if (filtered.length === 0) {
     container.innerHTML = `
-      <div style="grid-column:1/-1;text-align:center;padding:44px 20px;border:1px dashed rgba(255,255,255,0.1);border-radius:16px;background:#0e121d">
-        <div style="font-size:15px;font-weight:700;color:#f8fafc;margin-bottom:6px">No courses matched your query</div>
-        <div style="font-size:13px;color:#94a3b8;margin-bottom:14px">Try searching for "Dijkstra", "3NF", "K-Map", "Python", or "chmod"</div>
-        <button onclick="clearCourseSearch()" style="padding:6px 14px;border-radius:8px;background:#1e2538;border:1px solid rgba(255,255,255,0.08);color:#a5b4fc;font-size:12px;font-weight:700;cursor:pointer">Clear Search</button>
+      <div style="grid-column:1/-1;text-align:center;padding:44px 20px;border:1px dashed #27272a;border-radius:12px;background:#141418">
+        <div style="font-size:15px;font-weight:700;color:#fafafa;margin-bottom:6px">No courses matched your query</div>
+        <div style="font-size:13px;color:#a1a1aa;margin-bottom:14px">Try searching for "Dijkstra", "3NF", "K-Map", "Python", or "chmod"</div>
+        <button onclick="clearCourseSearch()" style="padding:6px 14px;border-radius:6px;background:#27272a;border:1px solid #3f3f46;color:#fafafa;font-size:12px;font-weight:600;cursor:pointer">Clear Search</button>
       </div>
     `;
     return;
