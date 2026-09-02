@@ -29,8 +29,9 @@ body{
   touch-action:pan-y;
   overscroll-behavior-x:none;
   font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
-  background:#090b11;
-  background-image:radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99,102,241,0.08), transparent 70%);
+  letter-spacing:-0.011em;
+  background:#09090b;
+  background-image:radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99,102,241,0.06), transparent 70%);
   color:#cbd5e1;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
@@ -39,14 +40,29 @@ body{
   flex-direction:column;
 }
 
-/* ── 4-LAYER SURFACE ELEVATION SYSTEM (per transcript) ── */
-/* Layer 0: canvas #090b11 | Layer 1: panel #0e121d | Layer 2: card #111522 | Layer 3: inner #090c14 */
+/* ── SHADCN & REMO CN DESIGN SYSTEM TOKENS ── */
+:root {
+  --background: #09090b;
+  --foreground: #fafafa;
+  --card: #101013;
+  --card-border: #27272a;
+  --card-hover: #18181b;
+  --muted: #18181b;
+  --muted-foreground: #a1a1aa;
+  --border: #27272a;
+  --ring: #6366f1;
+}
+
+.font-mono { font-family: 'JetBrains Mono', ui-monospace, monospace !important; }
+
+/* ── 4-LAYER SURFACE ELEVATION (SHADCN DARK ZINC) ── */
+/* Layer 0: canvas #09090b | Layer 1: card #101013 | Layer 2: recessed #18181b | Layer 3: inner #09090b */
 .card{
-  background:#111522;
-  border:1px solid rgba(255,255,255,0.07);
-  border-radius:14px;
+  background:#101013;
+  border:1px solid #27272a;
+  border-radius:12px;
   padding:18px 16px;
-  box-shadow:0 4px 20px -4px rgba(0,0,0,0.4);
+  box-shadow:0 1px 3px 0 rgba(0,0,0,0.3);
   width:100%;
   max-width:100%;
   min-width:0;
@@ -54,22 +70,22 @@ body{
   overflow-wrap:break-word;
   word-break:break-word;
   margin-bottom:16px;
-  transition:border-color 0.2s ease,box-shadow 0.2s ease;
+  transition:border-color 0.2s cubic-bezier(0.16,1,0.3,1),box-shadow 0.2s cubic-bezier(0.16,1,0.3,1);
 }
 .card:hover{
-  border-color:rgba(255,255,255,0.12);
-  box-shadow:0 6px 24px -4px rgba(0,0,0,0.5);
+  border-color:#3f3f46;
+  box-shadow:0 4px 20px -2px rgba(0,0,0,0.5);
 }
 .card-sm{
-  background:#0e121d;
-  border:1px solid rgba(255,255,255,0.06);
-  border-radius:11px;
+  background:#141418;
+  border:1px solid #27272a;
+  border-radius:10px;
   padding:12px 14px;
 }
 .card-inner{
-  background:#090c14;
-  border:1px solid rgba(255,255,255,0.05);
-  border-radius:9px;
+  background:#09090b;
+  border:1px solid #1f1f23;
+  border-radius:8px;
   padding:10px 12px;
   max-width:100%;
   box-sizing:border-box;
@@ -80,7 +96,162 @@ body{
   .card-inner{padding:9px 11px;border-radius:8px}
 }
 
-/* ── TAGS & PILLS ── */
+/* ── REMO CN METRIC CARDS & EXECUTIVE GRID ── */
+.remo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  width: 100%;
+}
+.remo-card {
+  background: #101013;
+  border: 1px solid #27272a;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.2s cubic-bezier(0.16,1,0.3,1);
+  position: relative;
+  overflow: hidden;
+}
+.remo-card:hover {
+  border-color: #3f3f46;
+  background: #141418;
+}
+.remo-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.remo-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #71717a;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.remo-value {
+  font-size: 26px;
+  font-weight: 800;
+  color: #fafafa;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+  font-feature-settings: "tnum";
+}
+.remo-unit {
+  font-size: 13px;
+  font-weight: 500;
+  color: #71717a;
+  letter-spacing: normal;
+}
+.remo-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 11px;
+  color: #a1a1aa;
+}
+.remo-track {
+  width: 100%;
+  height: 4px;
+  background: #27272a;
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+.remo-fill {
+  height: 100%;
+  background: #6366f1;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+.pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  display: inline-block;
+  box-shadow: 0 0 8px #10b981;
+  animation: pulseAnim 2s infinite;
+}
+@keyframes pulseAnim {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* ── MONO CHARTS SUITE STYLES ── */
+.mono-tab-btn {
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #a1a1aa;
+  border-radius: 6px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+.mono-tab-btn:hover {
+  color: #fafafa;
+}
+.mono-tab-btn.active {
+  color: #fafafa;
+  background: #27272a;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+}
+.mono-tab-btn:active {
+  transform: scale(0.98);
+}
+.mono-chart-panel {
+  animation: fadeSlide 0.2s ease;
+}
+
+/* ── SHADCN BADGES & TAGS ── */
+.shad-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.4;
+  border: 1px solid;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.shad-badge-outline {
+  background: #18181b88;
+  color: #d4d4d8;
+  border-color: #27272a;
+}
+.shad-badge-emerald {
+  background: rgba(16, 185, 129, 0.1);
+  color: #34d399;
+  border-color: rgba(16, 185, 129, 0.25);
+}
+.shad-badge-indigo {
+  background: rgba(99, 102, 241, 0.1);
+  color: #818cf8;
+  border-color: rgba(99, 102, 241, 0.25);
+}
+.shad-badge-amber {
+  background: rgba(245, 158, 11, 0.1);
+  color: #fbbf24;
+  border-color: rgba(245, 158, 11, 0.25);
+}
+.shad-badge-rose {
+  background: rgba(244, 63, 94, 0.1);
+  color: #fb7185;
+  border-color: rgba(244, 63, 94, 0.25);
+}
+
+/* ── LEGACY TAGS COMPATIBILITY ── */
 .tag{
   display:inline-flex;
   align-items:center;
@@ -100,7 +271,7 @@ body{
 .tag-amber{background:rgba(245,158,11,0.12);color:#fcd34d;border:1px solid rgba(245,158,11,0.25)}
 .tag-purple{background:rgba(168,85,247,0.12);color:#d8b4fe;border:1px solid rgba(168,85,247,0.25)}
 .tag-rose{background:rgba(244,63,94,0.12);color:#fda4af;border:1px solid rgba(244,63,94,0.25)}
-.tag-zinc{background:rgba(255,255,255,0.05);color:#94a3b8;border:1px solid rgba(255,255,255,0.08)}
+.tag-zinc{background:#18181b;color:#a1a1aa;border:1px solid #27272a}
 
 /* ── APP HEADER ── */
 .app-header{
@@ -1124,6 +1295,256 @@ body{
 <main class="main-container">
 
   <!-- ═══════════════════════════════════════
+       EXECUTIVE COCKPIT: REMO CN + MONO CHARTS
+  ═══════════════════════════════════════ -->
+  <div class="cockpit-container" style="margin-bottom:20px">
+    
+    <!-- REMO CN 4-CARD KPI METRIC GRID -->
+    <div class="remo-grid">
+      
+      <!-- Card 1: Exam Runway -->
+      <div class="remo-card">
+        <div class="remo-header">
+          <span class="remo-label">Exam Runway</span>
+          <span class="shad-badge shad-badge-emerald">
+            <span class="pulse-dot"></span>
+            Live Pacing
+          </span>
+        </div>
+        <div class="remo-value font-mono">29 <span class="remo-unit">Days Left</span></div>
+        <div class="remo-footer">
+          <span>Oct 1, 2026 ATKT Floor</span>
+          <span class="font-mono text-xs">Day 1 / 30</span>
+        </div>
+        <div class="remo-track">
+          <div class="remo-fill" style="width: 3.3%; background: #10b981;"></div>
+        </div>
+      </div>
+
+      <!-- Card 2: Study Velocity -->
+      <div class="remo-card">
+        <div class="remo-header">
+          <span class="remo-label">Daily Study Velocity</span>
+          <span class="shad-badge shad-badge-indigo">4 Blocks / Day</span>
+        </div>
+        <div class="remo-value font-mono">7.5 <span class="remo-unit">hrs / day</span></div>
+        <div class="remo-footer">
+          <span>Target Daily Budget</span>
+          <span class="font-mono text-xs text-indigo-400">100% Focused</span>
+        </div>
+        <div class="remo-track">
+          <div class="remo-fill" style="width: 100%; background: #6366f1;"></div>
+        </div>
+      </div>
+
+      <!-- Card 3: Evaluator Ceiling -->
+      <div class="remo-card">
+        <div class="remo-header">
+          <span class="remo-label">Target Score Floor</span>
+          <span class="shad-badge shad-badge-amber">Grade O Target</span>
+        </div>
+        <div class="remo-value font-mono">25+ <span class="remo-unit">/ 30 Marks</span></div>
+        <div class="remo-footer">
+          <span>Min Passing: 12/30 (40%)</span>
+          <span class="font-mono text-xs text-amber-400">83.3% Target</span>
+        </div>
+        <div class="remo-track">
+          <div class="remo-fill" style="width: 83.3%; background: #f59e0b;"></div>
+        </div>
+      </div>
+
+      <!-- Card 4: Curriculum Blocks -->
+      <div class="remo-card">
+        <div class="remo-header">
+          <span class="remo-label">16 Courses Mastery</span>
+          <span class="shad-badge shad-badge-outline font-mono" id="kpi-percent-badge">0.0% Done</span>
+        </div>
+        <div class="remo-value font-mono"><span id="kpi-blocks-num">0</span> <span class="remo-unit">/ 120 Blocks</span></div>
+        <div class="remo-footer">
+          <span>Active Recall Verification</span>
+          <span class="font-mono text-xs text-emerald-400" id="kpi-streak-num">0d Streak</span>
+        </div>
+        <div class="remo-track">
+          <div class="remo-fill" id="kpi-blocks-bar" style="width: 0%; background: #3b82f6;"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- MONO CHARTS: EXECUTIVE PERFORMANCE ANALYTICS -->
+    <div class="card" style="margin-top:14px;background:#0d0d11;border-color:#27272a;padding:16px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px">
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="width:28px;height:28px;border-radius:6px;background:#18181b;border:1px solid #27272a;display:flex;align-items:center;justify-content:center;color:#6366f1">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+          </div>
+          <div>
+            <div style="font-size:13px;font-weight:700;color:#fafafa;letter-spacing:-0.01em">MONO Analytics: Performance Velocity &amp; Yield Models</div>
+            <div style="font-size:11px;color:#71717a">Monochromatic real-time statistical curves &amp; exam grade probability</div>
+          </div>
+        </div>
+        
+        <!-- Segmented Chart View Switcher -->
+        <div style="display:flex;background:#18181b;border:1px solid #27272a;border-radius:8px;padding:2px;gap:2px">
+          <button onclick="switchMonoChart('velocity')" class="mono-tab-btn active" id="btn-mono-velocity">Velocity Curve</button>
+          <button onclick="switchMonoChart('bell')" class="mono-tab-btn" id="btn-mono-bell">25+ Bell Curve</button>
+          <button onclick="switchMonoChart('pillars')" class="mono-tab-btn" id="btn-mono-pillars">Subject Pillars</button>
+        </div>
+      </div>
+
+      <!-- CHART 1: Velocity & Hours Sparkline Area Chart -->
+      <div id="mono-panel-velocity" class="mono-chart-panel active">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#a1a1aa">
+          <span>SEPTEMBER RUNWAY (DAYS 1 TO 30)</span>
+          <span style="color:#818cf8">TARGET: 7.5h / DAY [████████]</span>
+        </div>
+        <div style="position:relative;width:100%;height:130px;background:#09090b;border:1px solid #1f1f23;border-radius:8px;padding:8px;overflow:hidden">
+          <svg viewBox="0 0 500 120" style="width:100%;height:100%" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="monoGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#6366f1" stop-opacity="0.3"/>
+                <stop offset="100%" stop-color="#6366f1" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <!-- Horizontal Grid lines -->
+            <line x1="0" y1="30" x2="500" y2="30" stroke="#1f1f23" stroke-dasharray="3 3" stroke-width="1"/>
+            <line x1="0" y1="60" x2="500" y2="60" stroke="#1f1f23" stroke-dasharray="3 3" stroke-width="1"/>
+            <line x1="0" y1="90" x2="500" y2="90" stroke="#1f1f23" stroke-dasharray="3 3" stroke-width="1"/>
+            
+            <!-- Target Baseline Line (7.5h) -->
+            <line x1="0" y1="40" x2="500" y2="40" stroke="#6366f1" stroke-dasharray="4 4" stroke-width="1.5" opacity="0.6"/>
+            <text x="495" y="36" fill="#818cf8" font-size="9" font-family="'JetBrains Mono',monospace" text-anchor="end">7.5h Target Floor</text>
+
+            <!-- 30-Day Curve Area -->
+            <path d="M 0 110 Q 70 80, 140 70 T 280 40 T 420 30 L 500 25 L 500 120 L 0 120 Z" fill="url(#monoGrad)"/>
+            <!-- 30-Day Curve Stroke -->
+            <path d="M 0 110 Q 70 80, 140 70 T 280 40 T 420 30 L 500 25" fill="none" stroke="#6366f1" stroke-width="2.5" stroke-linecap="round"/>
+
+            <!-- Milestones Points -->
+            <circle cx="233" cy="48" r="4" fill="#fbbf24" stroke="#09090b" stroke-width="2"/>
+            <text x="233" y="40" fill="#fbbf24" font-size="8" font-family="'JetBrains Mono',monospace" text-anchor="middle">D14 Passing</text>
+
+            <circle cx="350" cy="34" r="4" fill="#c084fc" stroke="#09090b" stroke-width="2"/>
+            <text x="350" y="26" fill="#c084fc" font-size="8" font-family="'JetBrains Mono',monospace" text-anchor="middle">D21 Distinction</text>
+
+            <circle cx="466" cy="27" r="4" fill="#10b981" stroke="#09090b" stroke-width="2"/>
+            <text x="466" y="19" fill="#10b981" font-size="8" font-family="'JetBrains Mono',monospace" text-anchor="middle">D28 Mocks</text>
+          </svg>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-top:6px;font-family:'JetBrains Mono',monospace;font-size:10px;color:#71717a">
+          <span>Day 1 (Sept 1)</span>
+          <span>Day 10</span>
+          <span style="color:#fbbf24">Day 14 (Passing Lock)</span>
+          <span>Day 20</span>
+          <span style="color:#10b981">Day 28 (Full Mocks)</span>
+          <span>Day 30 (Oct 1)</span>
+        </div>
+      </div>
+
+      <!-- CHART 2: 25+ Marks Probability Bell Curve -->
+      <div id="mono-panel-bell" class="mono-chart-panel" style="display:none">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#a1a1aa">
+          <span>EXAM SCORE PROBABILITY (μ = 25.4, σ = 4.2)</span>
+          <span style="color:#10b981">P(SCORE ≥ 25) = 88.4%</span>
+        </div>
+        <div style="position:relative;width:100%;height:130px;background:#09090b;border:1px solid #1f1f23;border-radius:8px;padding:8px;overflow:hidden">
+          <svg viewBox="0 0 500 120" style="width:100%;height:100%" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="bellPass" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.25"/>
+                <stop offset="100%" stop-color="#f59e0b" stop-opacity="0"/>
+              </linearGradient>
+              <linearGradient id="bellDist" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#10b981" stop-opacity="0.35"/>
+                <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <!-- Normal Distribution Bell Curve -->
+            <path d="M 10 115 Q 120 115, 200 90 T 360 20 T 430 80 T 490 115" fill="none" stroke="#52525b" stroke-width="2"/>
+            
+            <!-- Shaded 25+ Marks Region (Right Tail / Distinction) -->
+            <path d="M 355 23 Q 395 35, 430 80 T 490 115 L 355 115 Z" fill="url(#bellDist)"/>
+            <path d="M 200 90 Q 280 40, 355 23 L 355 115 L 200 115 Z" fill="url(#bellPass)"/>
+
+            <!-- Threshold Line: 12/30 Passing Floor -->
+            <line x1="200" y1="10" x2="200" y2="115" stroke="#f59e0b" stroke-dasharray="3 3" stroke-width="1.5"/>
+            <text x="205" y="24" fill="#fbbf24" font-size="9" font-family="'JetBrains Mono',monospace">Passing: 12/30 (40%)</text>
+
+            <!-- Threshold Line: 25+/30 Target Distinction -->
+            <line x1="355" y1="10" x2="355" y2="115" stroke="#10b981" stroke-width="2"/>
+            <text x="360" y="24" fill="#34d399" font-size="9" font-family="'JetBrains Mono',monospace" font-weight="bold">Target: 25+/30 (83.3%)</text>
+          </svg>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-top:6px;font-family:'JetBrains Mono',monospace;font-size:10px;color:#71717a">
+          <span>0 Marks</span>
+          <span style="color:#fbbf24">12 Marks (Floor)</span>
+          <span>18 Marks</span>
+          <span style="color:#10b981">25 Marks (Distinction)</span>
+          <span>30 Marks (Max)</span>
+        </div>
+      </div>
+
+      <!-- CHART 3: Core Subject Pillars Breakdown -->
+      <div id="mono-panel-pillars" class="mono-chart-panel" style="display:none">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#a1a1aa">
+          <span>4 CORE PILLARS CREDIT &amp; YIELD BREAKDOWN</span>
+          <span style="color:#60a5fa">16 COURSES · NEP 2020</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px">
+          <div style="background:#09090b;border:1px solid #1f1f23;border-radius:8px;padding:10px">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+              <span style="font-size:12px;font-weight:700;color:#f4f4f5">1. DAA &amp; Algorithms</span>
+              <span class="font-mono text-xs text-indigo-400">4 Credits · High Yield</span>
+            </div>
+            <div class="remo-track"><div class="remo-fill" style="width:90%;background:#6366f1"></div></div>
+            <div style="display:flex;justify-content:space-between;margin-top:4px;font-size:10px;color:#71717a;font-family:'JetBrains Mono',monospace">
+              <span>Recurrence + Graphs + DP</span>
+              <span class="text-indigo-400">25+ Floor Lock</span>
+            </div>
+          </div>
+
+          <div style="background:#09090b;border:1px solid #1f1f23;border-radius:8px;padding:10px">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+              <span style="font-size:12px;font-weight:700;color:#f4f4f5">2. DBMS &amp; Normalization</span>
+              <span class="font-mono text-xs text-cyan-400">4 Credits · High Yield</span>
+            </div>
+            <div class="remo-track"><div class="remo-fill" style="width:90%;background:#06b6d4"></div></div>
+            <div style="display:flex;justify-content:space-between;margin-top:4px;font-size:10px;color:#71717a;font-family:'JetBrains Mono',monospace">
+              <span>3NF + ACID + 3-Tier</span>
+              <span class="text-cyan-400">25+ Floor Lock</span>
+            </div>
+          </div>
+
+          <div style="background:#09090b;border:1px solid #1f1f23;border-radius:8px;padding:10px">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+              <span style="font-size:12px;font-weight:700;color:#f4f4f5">3. Digital Systems &amp; CPU</span>
+              <span class="font-mono text-xs text-amber-400">4 Credits · Core Tech</span>
+            </div>
+            <div class="remo-track"><div class="remo-fill" style="width:85%;background:#f59e0b"></div></div>
+            <div style="display:flex;justify-content:space-between;margin-top:4px;font-size:10px;color:#71717a;font-family:'JetBrains Mono',monospace">
+              <span>Full Adder + K-Maps + Von Neumann</span>
+              <span class="text-amber-400">25+ Floor Lock</span>
+            </div>
+          </div>
+
+          <div style="background:#09090b;border:1px solid #1f1f23;border-radius:8px;padding:10px">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+              <span style="font-size:12px;font-weight:700;color:#f4f4f5">4. Descriptive Statistics</span>
+              <span class="font-mono text-xs text-emerald-400">2 Credits · Pure Math</span>
+            </div>
+            <div class="remo-track"><div class="remo-fill" style="width:95%;background:#10b981"></div></div>
+            <div style="display:flex;justify-content:space-between;margin-top:4px;font-size:10px;color:#71717a;font-family:'JetBrains Mono',monospace">
+              <span>Karl Pearson r + Regression</span>
+              <span class="text-emerald-400">25+ Floor Lock</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
        TAB 1: VIDEO ROADMAP
   ═══════════════════════════════════════ -->
   <section class="tab-section active" id="sec-videos">
@@ -1559,7 +1980,9 @@ body{
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
         </div>
         <input type="text" id="globalSearch" placeholder="Search courses, codes, topics (e.g. Dijkstra, 3NF, Python)..." autocomplete="off">
-        <button id="search-clear-btn" class="course-search-clear" onclick="clearCourseSearch()" title="Clear search">✕</button>
+        <button id="search-clear-btn" class="course-search-clear" onclick="clearCourseSearch()" title="Clear search">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
       </div>
 
       <!-- Action Row: Segmented Semester Controls + Expand/Collapse All -->
@@ -1653,7 +2076,7 @@ body{
   </section>
 
   <!-- ═══════════════════════════════════════
-       TAB 5: 📅 30-DAY MASTER CALENDAR (SEPT 1 - SEPT 30)
+       TAB 5: 30-DAY MASTER CALENDAR (SEPT 1 - SEPT 30)
   ═══════════════════════════════════════ -->
   <section class="tab-section" id="sec-schedule">
     
@@ -1674,9 +2097,9 @@ body{
             <div style="font-size:11px;color:#94a3b8;margin-top:2px" id="today-sub-str">Runway: 29 Days remaining until October 1 Exams</div>
           </div>
         </div>
-        <button onclick="goToToday()" style="font-size:11px;font-weight:700;color:#38bdf8;background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.2);padding:5px 10px;border-radius:7px;cursor:pointer;display:inline-flex;align-items:center;gap:4px">
+        <button onclick="goToToday()" style="font-size:11px;font-weight:700;color:#38bdf8;background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.2);padding:5px 10px;border-radius:7px;cursor:pointer;display:inline-flex;align-items:center;gap:5px">
           <span>Jump to Today</span>
-          <span>➔</span>
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
         </button>
       </div>
 
@@ -1918,7 +2341,9 @@ body{
           <p style="font-size:11px;color:#6b7280;margin-top:1px">No login · No database · 100% Private &amp; Instant</p>
         </div>
       </div>
-      <button onclick="closeSyncModal()" style="background:#141720;border:1px solid #252b3b;color:#d4d8e2;border-radius:8px;width:30px;height:30px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0">✕</button>
+      <button onclick="closeSyncModal()" style="background:#18181b;border:1px solid #27272a;color:#d4d4d8;border-radius:8px;width:30px;height:30px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0" title="Close">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
     </div>
 
     <!-- Method 1: QR Code Scanner -->
@@ -2083,7 +2508,7 @@ const calendarDays = [
   { day: 11, date: "Sept 11", dow: "Thu", phase: "Phase 2: Core", m: { sub: "OOP C++ (1102112)", topic: "Diamond Problem & Virtual Base Class in C++", yt: "Gate Smashers Diamond Problem C++ Virtual Base Class", goal: "Write class B : virtual public A syntax" }, a: { sub: "Web Tech (1102411)", topic: "CSS Box Model (box-sizing: border-box) & Flexbox", yt: "CSS Box Model margin border padding", goal: "Draw margin, border, padding, content box diagram" }, e: { sub: "Content Writing (1432311)", topic: "SEO Keyword Types: Informational vs Transactional", yt: "Search Intent Informational Commercial Transactional", goal: "Write examples for 3 search intent keywords" }, n: "Write Virtual Base Class code snippet + Flip 5 Cards" },
   { day: 12, date: "Sept 12", dow: "Fri", phase: "Phase 2: Core", m: { sub: "DAA (1102111)", topic: "Dijkstra Single Source Shortest Path Algorithm", yt: "Gate Smashers Dijkstra shortest path algorithm", goal: "Apply relaxation formula: dist[v] = dist[u] + w(u,v)" }, a: { sub: "Adv Python (1102413)", topic: "Tkinter GUI Window, Entry Boxes & Button Event", yt: "Tkinter Python GUI addition calculator", goal: "Write 10-line script to take 2 inputs and add" }, e: { sub: "People's Skills (2541514)", topic: "Thomas-Kilmann 5 Conflict Handling Modes", yt: "Thomas Kilmann Conflict Modes collaborate compete", goal: "Explain Collaborate, Compete, Compromise, Avoid, Accommodate" }, n: "Run Dijkstra dry run on 4-node graph + Flip 5 Cards" },
   { day: 13, date: "Sept 13", dow: "Sat", phase: "Phase 2: Core", m: { sub: "Digital Systems (1101111)", topic: "JK Flip-Flop Race Around Condition & Master-Slave", yt: "Gate Smashers JK Flip Flop Race around condition", goal: "Explain why tp > tpd causes race around toggling" }, a: { sub: "Statistics (1042212)", topic: "Karl Pearson Coefficient of Correlation (r)", yt: "Karl Pearson Correlation coefficient r formula", goal: "Calculate r value between Marks & Study Hours" }, e: { sub: "Behavioral Skills (2542520)", topic: "Passive vs Aggressive vs Assertive Communication", yt: "Assertive Communication styles passive aggressive", goal: "Explain why Assertiveness (I win, You win) is ideal" }, n: "Test Stats Live Sim on Study Lab + Flip 5 Cards" },
-  { day: 14, date: "Sept 14", dow: "Sun", phase: "Phase 2 Milestone", m: { sub: "MILESTONE CHECKPOINT", topic: "12-Mark Passing Floor Lock Drill (All 16 Subjects)", yt: "Gate Smashers Computer Science exam strategy", goal: "Verify you know top 3 questions in all 16 subjects" }, a: { sub: "Passing Floor Drill", topic: "Write 3 core answers for Sem 1 Subjects on paper", yt: "Neso Academy digital electronics quick revision", goal: "Time: 25 minutes for 3 answers" }, e: { sub: "Passing Floor Drill", topic: "Write 3 core answers for Sem 2 Subjects on paper", yt: "Jenny lectures DAA revision", goal: "Time: 25 minutes for 3 answers" }, n: "🎉 PASSING FLOOR LOCKED: You have passed all 16 papers!" },
+  { day: 14, date: "Sept 14", dow: "Sun", phase: "Phase 2 Milestone", m: { sub: "MILESTONE CHECKPOINT", topic: "12-Mark Passing Floor Lock Drill (All 16 Subjects)", yt: "Gate Smashers Computer Science exam strategy", goal: "Verify you know top 3 questions in all 16 subjects" }, a: { sub: "Passing Floor Drill", topic: "Write 3 core answers for Sem 1 Subjects on paper", yt: "Neso Academy digital electronics quick revision", goal: "Time: 25 minutes for 3 answers" }, e: { sub: "Passing Floor Drill", topic: "Write 3 core answers for Sem 2 Subjects on paper", yt: "Jenny lectures DAA revision", goal: "Time: 25 minutes for 3 answers" }, n: "MILESTONE ACHIEVED: Passing floor locked across all 16 papers." },
 
   // WEEK 3: 25+ DISTINCTION EXPANSION
   { day: 15, date: "Sept 15", dow: "Tue", phase: "Phase 3: Distinction", m: { sub: "DAA (1102111)", topic: "8-Queens Problem using Backtracking & State Tree", yt: "Gate Smashers 8 Queens Problem backtracking", goal: "Draw state space tree for 4-Queens mini version" }, a: { sub: "Python (1101411)", topic: "File Handling (r, w, a) & Word Frequency Dictionary", yt: "Python count word frequency in text file", goal: "Write script to read 'data.txt' and count word counts" }, e: { sub: "Management (1172311)", topic: "Line vs Matrix Organizational Structure & Control", yt: "Matrix organization structure advantages", goal: "Draw 2-boss Matrix structure diagram" }, n: "Draw 8-Queens tree + Flip 5 Cards" },
@@ -2092,7 +2517,7 @@ const calendarDays = [
   { day: 18, date: "Sept 18", dow: "Fri", phase: "Phase 3: Distinction", m: { sub: "OOP C++ (1102112)", topic: "Virtual Functions, Pure Virtual & Abstract Classes", yt: "Jenny lectures Pure Virtual Functions Abstract Class C++", goal: "Write virtual void show() = 0 syntax" }, a: { sub: "Web Tech (1102411)", topic: "JavaScript DOM Selection & Form Submit Validation", yt: "JavaScript Form Validation querySelector", goal: "Write email validation check before submit" }, e: { sub: "Content Writing (1432311)", topic: "PAS Framework (Problem, Agitate, Solve) & Readability", yt: "PAS copywriting framework Problem Agitate Solve", goal: "Write 3-line landing page copy using PAS" }, n: "Write Abstract Class snippet + Flip 5 Cards" },
   { day: 19, date: "Sept 19", dow: "Sat", phase: "Phase 3: Distinction", m: { sub: "DAA (1102111)", topic: "P vs NP vs NP-Complete vs NP-Hard Classes", yt: "Gate Smashers P NP NP Complete NP Hard", goal: "Define Polynomial time solvable vs verifiable" }, a: { sub: "Adv Python (1102413)", topic: "SQLite3 Database Connection & CRUD Queries in Python", yt: "Python sqlite3 database connect insert query", goal: "Write connect, cursor, execute INSERT, commit()" }, e: { sub: "People's Skills (2541514)", topic: "7-Stage Communication Process & Physical Barriers", yt: "Communication Process Sender Encoding Channel Receiver", goal: "Draw Sender -> Encoding -> Channel -> Receiver loop" }, n: "Write SQLite Python block + Flip 5 Cards" },
   { day: 20, date: "Sept 20", dow: "Sun", phase: "Phase 3: Distinction", m: { sub: "Digital Systems (1101111)", topic: "Memory Hierarchy & Cache Mapping (L1, L2, L3)", yt: "Gate Smashers Memory Hierarchy Cache RAM Disk", goal: "Draw speed vs cost pyramid: Registers -> Cache -> RAM" }, a: { sub: "Statistics (1042212)", topic: "Properties of Correlation Coefficient r (-1 to +1)", yt: "Properties of Correlation Coefficient r limits", goal: "State r is independent of change of origin & scale" }, e: { sub: "Hindi Bhasha (2512517)", topic: "प्रयोजनमूलक हिंदी की परिभाषा एवं प्रशासनिक शब्दावली", yt: "Prayojanmoolak Hindi prashasnik shabdavali", goal: "Write definitions of Circular, Order, Notification" }, n: "Draw Memory Pyramid + Flip 5 Cards" },
-  { day: 21, date: "Sept 21", dow: "Mon", phase: "Phase 3 Milestone", m: { sub: "MILESTONE CHECKPOINT", topic: "Full Syllabus Coverage Verification (16 Subjects)", yt: "Gate Smashers Computer Science quick review", goal: "Confirm you have touched all Units 1, 2, and 3" }, a: { sub: "Sem 1 Formula Sheet", topic: "Consolidate all Sem 1 Diagrams & Code on 2 Sheets", yt: "Neso Academy digital logic revision", goal: "Draw 6 diagrams on one A4 sheet" }, e: { sub: "Sem 2 Formula Sheet", topic: "Consolidate all Sem 2 Formulas & Classes on 2 Sheets", yt: "Jenny lectures DAA formulas revision", goal: "Write all formulas on one A4 sheet" }, n: "🎉 25+ SYLLABUS EXPANSION COMPLETE!" },
+  { day: 21, date: "Sept 21", dow: "Mon", phase: "Phase 3 Milestone", m: { sub: "MILESTONE CHECKPOINT", topic: "Full Syllabus Coverage Verification (16 Subjects)", yt: "Gate Smashers Computer Science quick review", goal: "Confirm you have touched all Units 1, 2, and 3" }, a: { sub: "Sem 1 Formula Sheet", topic: "Consolidate all Sem 1 Diagrams & Code on 2 Sheets", yt: "Neso Academy digital logic revision", goal: "Draw 6 diagrams on one A4 sheet" }, e: { sub: "Sem 2 Formula Sheet", topic: "Consolidate all Sem 2 Formulas & Classes on 2 Sheets", yt: "Jenny lectures DAA formulas revision", goal: "Write all formulas on one A4 sheet" }, n: "MILESTONE ACHIEVED: 25+ syllabus expansion complete." },
 
   // WEEK 4: TIMED DRILLS & EVALUATOR BLUEPRINTS
   { day: 22, date: "Sept 22", dow: "Tue", phase: "Phase 4: Speed Drills", m: { sub: "DAA Timed Drill", topic: "Write Dijkstra + Merge Sort in 16 Mins flat", yt: "Jenny lectures Merge sort quick revision", goal: "Follow 5/5 Formula: Def + Diagram + 4 Bullets + Recurrence" }, a: { sub: "Python Timed Drill", topic: "Write Prime loop + Word count dict in 14 Mins", yt: "CodeWithHarry Python exercises", goal: "Clean indentation without compiler bugs" }, e: { sub: "Management Timed Drill", topic: "Write Fayol 14 Principles + Maslow in 16 Mins", yt: "Fayol principles fast writing", goal: "Clean numbered bullets + Gangplank diagram" }, n: "Score yourself: 15/15 target" },
@@ -2101,11 +2526,11 @@ const calendarDays = [
   { day: 25, date: "Sept 25", dow: "Fri", phase: "Phase 4: Speed Drills", m: { sub: "OOP C++ Drill", topic: "Write 4 Pillars + Virtual Base Class in 16 Mins", yt: "C++ diamond problem exam answer", goal: "Include class A, B: virtual public A code" }, a: { sub: "Web Tech Drill", topic: "Write HTTP Cycle + Box Model + JS Form in 20 Mins", yt: "Web tech exam questions revision", goal: "Draw Box model + write querySelector code" }, e: { sub: "Content Writing Drill", topic: "Write AIDA + Search Intent + PAS in 16 Mins", yt: "Content writing copywriting exam", goal: "Clean marketing examples" }, n: "Score yourself: 15/15 target" },
   { day: 26, date: "Sept 26", dow: "Sat", phase: "Phase 4: Speed Drills", m: { sub: "DAA & Python Drill", topic: "Write Knapsack Greedy vs DP + Generators in 16 Mins", yt: "DAA Knapsack dry run", goal: "Draw DP matrix recurrence equation" }, a: { sub: "Adv Python & Linux", topic: "Write Tkinter GUI + SQLite CRUD in 16 Mins", yt: "Tkinter sqlite script revision", goal: "Clean Python code syntax" }, e: { sub: "Life Skills Drill", topic: "Write Goleman 5 EQ + Johari Window in 16 Mins", yt: "EQ Johari window revision", goal: "Draw 4 Johari quadrants" }, n: "Score yourself: 15/15 target" },
   { day: 27, date: "Sept 27", dow: "Sun", phase: "Phase 4: Speed Drills", m: { sub: "Digital & Stats Drill", topic: "Write Von Neumann + Regression Lines in 16 Mins", yt: "Von Neumann architecture exam diagram", goal: "Draw register data bus connections" }, a: { sub: "Language & Ethics", topic: "Write Hindi Prashasnik + Assertiveness in 16 Mins", yt: "Prayojanmoolak Hindi exam", goal: "Clear Hindi terminology" }, e: { sub: "All Flashcard Speedrun", topic: "Flip all 8 Flashcards on Study Lab in 10 Mins", yt: "Active recall study lab", goal: "Recall 100% answers before card flips" }, n: "100% Flashcard accuracy verified" },
-  { day: 28, date: "Sept 28", dow: "Mon", phase: "Full Mock Exam", m: { sub: "FULL MOCK EXAM 1", topic: "Timed 1-Hour 30-Mark Simulation Paper (Sem 1)", yt: "Gate Smashers full paper solve", goal: "Write 5 questions in 50 minutes flat" }, a: { sub: "FULL MOCK EXAM 2", topic: "Timed 1-Hour 30-Mark Simulation Paper (Sem 2)", yt: "Jenny lectures full DAA paper solve", goal: "Write 5 questions in 50 minutes flat" }, e: { sub: "Mock Evaluation", topic: "Self-grade using 5/5 Evaluator Formula", yt: "Evaluation marking scheme Mumbai University", goal: "Confirm 25+ Marks achieved in both mocks" }, n: "🎯 25+ MARKS CERTIFIED: Ready for Distinction!" },
+  { day: 28, date: "Sept 28", dow: "Mon", phase: "Full Mock Exam", m: { sub: "FULL MOCK EXAM 1", topic: "Timed 1-Hour 30-Mark Simulation Paper (Sem 1)", yt: "Gate Smashers full paper solve", goal: "Write 5 questions in 50 minutes flat" }, a: { sub: "FULL MOCK EXAM 2", topic: "Timed 1-Hour 30-Mark Simulation Paper (Sem 2)", yt: "Jenny lectures full DAA paper solve", goal: "Write 5 questions in 50 minutes flat" }, e: { sub: "Mock Evaluation", topic: "Self-grade using 5/5 Evaluator Formula", yt: "Evaluation marking scheme Mumbai University", goal: "Confirm 25+ Marks achieved in both mocks" }, n: "TARGET LOCKED: 25+ marks verified. Ready for Distinction." },
 
   // DAYS 29-30: PRE-EXAM HALL TICKET PRE-FLIGHT
   { day: 29, date: "Sept 29", dow: "Tue", phase: "Pre-Flight Scan", m: { sub: "Sem 1 Formula Scan", topic: "De Morgan, K-Maps, Adders, 3-Tier, chmod, Patents", yt: "Digital logic formulas quick scan", goal: "Rapid visual scan on Study Lab app" }, a: { sub: "Sem 2 Formula Scan", topic: "Dijkstra, Merge Sort, C++ Virtual, Stats r, AIDA", yt: "DAA stats formulas quick scan", goal: "Rapid visual scan on Study Lab app" }, e: { sub: "Relaxation & Confidence", topic: "Rest your brain. Light walking & good meal", yt: "Exam mindset calm confidence", goal: "Zero panic. You have prepared 30 solid days." }, n: "Sleep early (8 hours restful sleep)" },
-  { day: 30, date: "Sept 30", dow: "Wed", phase: "Final Readiness", m: { sub: "Stationery & Hall Ticket", topic: "Check Hall Ticket, College ID, 2 Black/Blue Pens, Scale", yt: "Exam hall readiness checklist", goal: "Bag packed and ready" }, a: { sub: "Mobile Quick Scan", topic: "Scroll Study Lab on phone: Flashcards + KaTeX formulas", yt: "Study lab quick scan", goal: "15 minutes light review" }, e: { sub: "Mental Peace", topic: "Early dinner + calm evening with family", yt: "Positive exam morning routine", goal: "You are going in with a full 25+ blueprint." }, n: "🌙 EXAM READY: Tomorrow is Day 1 of Victory!" }
+  { day: 30, date: "Sept 30", dow: "Wed", phase: "Final Readiness", m: { sub: "Stationery & Hall Ticket", topic: "Check Hall Ticket, College ID, 2 Black/Blue Pens, Scale", yt: "Exam hall readiness checklist", goal: "Bag packed and ready" }, a: { sub: "Mobile Quick Scan", topic: "Scroll Study Lab on phone: Flashcards + KaTeX formulas", yt: "Study lab quick scan", goal: "15 minutes light review" }, e: { sub: "Mental Peace", topic: "Early dinner + calm evening with family", yt: "Positive exam morning routine", goal: "You are going in with a full 25+ blueprint." }, n: "EXAM READY: All materials consolidated. Ready for tomorrow." }
 ];
 
 let currentCalDay = 1;
@@ -2161,7 +2586,7 @@ function renderMonthGrid() {
       </div>
       <div style="display:flex;justify-content:space-between;align-items:center;margin-top:4px">
         <span style="font-size:9px;color:#525866">${d.phase.split(':')[0]}</span>
-        <span style="font-size:10px">${isDone ? '✅' : (dayCount > 0 ? '🟡' : '⚪')}</span>
+        <span style="display:inline-flex;align-items:center">${isDone ? '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>' : (dayCount > 0 ? '<span style="width:7px;height:7px;border-radius:50%;background:#f59e0b;display:inline-block"></span>' : '<span style="width:7px;height:7px;border-radius:50%;border:1px solid #3f3f46;display:inline-block"></span>')}</span>
       </div>
     `;
     container.appendChild(card);
@@ -2199,11 +2624,14 @@ function loadDayDetail(dayNum) {
     <!-- Session 1: Morning -->
     <div class="day-session-card" style="border-left:4px solid #6366f1">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;flex-wrap:wrap;gap:6px">
-        <span class="tag tag-indigo">🌅 BLOCK 1: MORNING (8:00 AM – 10:30 AM | 2.5h)</span>
+        <span class="tag tag-indigo" style="display:inline-flex;align-items:center;gap:5px">
+          <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          BLOCK 1: MORNING (8:00 AM – 10:30 AM | 2.5h)
+        </span>
         <span style="font-size:12px;font-weight:700;color:#818cf8">${d.m.sub}</span>
       </div>
       <div style="font-size:14px;font-weight:700;color:#f4f4f5;margin-bottom:4px">${d.m.topic}</div>
-      <p style="font-size:12px;color:#94a3b8;line-height:1.5;margin-bottom:10px">🎯 <strong>Action Goal:</strong> ${d.m.goal}</p>
+      <p style="font-size:12px;color:#94a3b8;line-height:1.5;margin-bottom:10px"><strong style="color:#e4e4e7">Action Goal:</strong> ${d.m.goal}</p>
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
         <a href="https://www.youtube.com/results?search_query=${encodeURIComponent(d.m.yt)}" target="_blank" class="yt-link" style="padding:6px 10px;font-size:11px">
           <span>▶ Watch Lecture on YouTube</span>
@@ -2218,11 +2646,14 @@ function loadDayDetail(dayNum) {
     <!-- Session 2: Afternoon -->
     <div class="day-session-card" style="border-left:4px solid #06b6d4">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;flex-wrap:wrap;gap:6px">
-        <span class="tag tag-cyan">☀️ BLOCK 2: AFTERNOON (2:00 PM – 4:30 PM | 2.5h)</span>
+        <span class="tag tag-cyan" style="display:inline-flex;align-items:center;gap:5px">
+          <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M5.64 18.36l-1.42 1.42M19.78 4.22l-1.42 1.42"/></svg>
+          BLOCK 2: AFTERNOON (2:00 PM – 4:30 PM | 2.5h)
+        </span>
         <span style="font-size:12px;font-weight:700;color:#22d3ee">${d.a.sub}</span>
       </div>
       <div style="font-size:14px;font-weight:700;color:#f4f4f5;margin-bottom:4px">${d.a.topic}</div>
-      <p style="font-size:12px;color:#94a3b8;line-height:1.5;margin-bottom:10px">🎯 <strong>Action Goal:</strong> ${d.a.goal}</p>
+      <p style="font-size:12px;color:#94a3b8;line-height:1.5;margin-bottom:10px"><strong style="color:#e4e4e7">Action Goal:</strong> ${d.a.goal}</p>
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
         <a href="https://www.youtube.com/results?search_query=${encodeURIComponent(d.a.yt)}" target="_blank" class="yt-link" style="padding:6px 10px;font-size:11px">
           <span>▶ Watch Lecture on YouTube</span>
@@ -2237,11 +2668,14 @@ function loadDayDetail(dayNum) {
     <!-- Session 3: Evening -->
     <div class="day-session-card" style="border-left:4px solid #10b981">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;flex-wrap:wrap;gap:6px">
-        <span class="tag tag-green">🌆 BLOCK 3: EVENING (6:30 PM – 8:30 PM | 2.0h)</span>
+        <span class="tag tag-green" style="display:inline-flex;align-items:center;gap:5px">
+          <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 18a5 5 0 0 0-10 0"/><line x1="12" y1="2" x2="12" y2="9"/><line x1="4.22" y1="10.22" x2="5.64" y2="11.64"/><line x1="1" y1="18" x2="3" y2="18"/><line x1="21" y1="18" x2="23" y2="18"/><line x1="18.36" y1="11.64" x2="19.78" y2="10.22"/></svg>
+          BLOCK 3: EVENING (6:30 PM – 8:30 PM | 2.0h)
+        </span>
         <span style="font-size:12px;font-weight:700;color:#4ade80">${d.e.sub}</span>
       </div>
       <div style="font-size:14px;font-weight:700;color:#f4f4f5;margin-bottom:4px">${d.e.topic}</div>
-      <p style="font-size:12px;color:#94a3b8;line-height:1.5;margin-bottom:10px">🎯 <strong>Action Goal:</strong> ${d.e.goal}</p>
+      <p style="font-size:12px;color:#94a3b8;line-height:1.5;margin-bottom:10px"><strong style="color:#e4e4e7">Action Goal:</strong> ${d.e.goal}</p>
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
         <a href="https://www.youtube.com/results?search_query=${encodeURIComponent(d.e.yt)}" target="_blank" class="yt-link" style="padding:6px 10px;font-size:11px">
           <span>▶ Watch Lecture on YouTube</span>
@@ -2256,11 +2690,14 @@ function loadDayDetail(dayNum) {
     <!-- Session 4: Night Recall -->
     <div class="day-session-card" style="border-left:4px solid #f59e0b">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;flex-wrap:wrap;gap:6px">
-        <span class="tag tag-amber">🌙 BLOCK 4: NIGHT RECALL (10:00 PM – 10:45 PM | 45m)</span>
+        <span class="tag tag-amber" style="display:inline-flex;align-items:center;gap:5px">
+          <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          BLOCK 4: NIGHT RECALL (10:00 PM – 10:45 PM | 45m)
+        </span>
         <span style="font-size:12px;font-weight:700;color:#fbbf24">Active Spaced Repetition</span>
       </div>
       <div style="font-size:14px;font-weight:700;color:#f4f4f5;margin-bottom:4px">${d.n}</div>
-      <p style="font-size:12px;color:#94a3b8;line-height:1.5;margin-bottom:10px">🎯 <strong>Action Goal:</strong> Test yourself without looking at notes. Let sleep solidify long-term memory.</p>
+      <p style="font-size:12px;color:#94a3b8;line-height:1.5;margin-bottom:10px"><strong style="color:#e4e4e7">Action Goal:</strong> Test yourself without looking at notes. Let sleep solidify long-term memory.</p>
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
         <button onclick="showSection('flashcards')" style="padding:6px 12px;border-radius:8px;background:#2563eb;border:none;color:#fff;font-size:11px;font-weight:700;cursor:pointer">Open Flashcards →</button>
         <label style="display:flex;align-items:center;gap:8px;font-size:12px;color:#cbd5e1;cursor:pointer">
@@ -3550,10 +3987,33 @@ function renderHeatmapAndStreak() {
   }
 
   const totalStat = document.getElementById('total-blocks-stat');
+  const percent = Math.round((totalBlocksDone / totalPossible) * 100);
   if (totalStat) {
-    const percent = Math.round((totalBlocksDone / totalPossible) * 100);
     totalStat.innerHTML = `<span style="color:#4ade80;font-weight:800">${totalBlocksDone}</span> / 120 Blocks <span style="color:#717684">(${percent}%)</span>`;
   }
+
+  // Update REMO CN Executive Cockpit in real time
+  const kpiBlocksNum = document.getElementById('kpi-blocks-num');
+  if (kpiBlocksNum) kpiBlocksNum.innerText = totalBlocksDone;
+  const kpiPercentBadge = document.getElementById('kpi-percent-badge');
+  if (kpiPercentBadge) kpiPercentBadge.innerText = `${percent}% Done`;
+  const kpiBlocksBar = document.getElementById('kpi-blocks-bar');
+  if (kpiBlocksBar) kpiBlocksBar.style.width = `${percent}%`;
+  const kpiStreakNum = document.getElementById('kpi-streak-num');
+  if (kpiStreakNum) kpiStreakNum.innerText = `${currentStreak}d Streak`;
+}
+
+// ══════════════════════════════════════════
+// MONO CHARTS SWITCHER
+// ══════════════════════════════════════════
+function switchMonoChart(chartId) {
+  const panels = ['velocity', 'bell', 'pillars'];
+  panels.forEach(p => {
+    const el = document.getElementById(`mono-panel-${p}`);
+    const btn = document.getElementById(`btn-mono-${p}`);
+    if (el) el.style.display = (p === chartId) ? 'block' : 'none';
+    if (btn) btn.classList.toggle('active', p === chartId);
+  });
 }
 
 // ══════════════════════════════════════════
@@ -3598,10 +4058,10 @@ function copySyncLink() {
   navigator.clipboard.writeText(url).then(() => {
     const btn = document.getElementById('btn-copy-sync');
     if (btn) {
-      btn.innerHTML = '<span>✅ Copied Link to Clipboard!</span>';
+      btn.innerHTML = '<span style="display:inline-flex;align-items:center;gap:6px"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Copied Link to Clipboard!</span>';
       btn.style.background = '#16a34a';
       setTimeout(() => {
-        btn.innerHTML = '<span>📋 Copy 1-Click Sync Link</span>';
+        btn.innerHTML = '<span style="display:inline-flex;align-items:center;gap:6px"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy 1-Click Sync Link</span>';
         btn.style.background = '#2563eb';
       }, 3000);
     }
@@ -3627,7 +4087,7 @@ function importSyncCode(rawStr) {
       renderHeatmapAndStreak();
 
       closeSyncModal();
-      showToast('🎉 Progress Synced Successfully Across Devices!');
+      showToast('Progress Synced Successfully Across Devices');
     }
   } catch (err) {
     alert('Invalid sync code. Please make sure the entire code was copied correctly.');
