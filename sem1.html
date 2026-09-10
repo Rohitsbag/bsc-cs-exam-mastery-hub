@@ -582,6 +582,10 @@
         <span class="font-mono" style="font-size:11px;color:#34d399">Evaluator Blueprint &amp; Mocks</span>
       </div>
       <div style="font-size:15px;font-weight:800;color:#fff;margin-bottom:4px">Timed Simulations, Presentation Blueprint &amp; Pre-Flight Calm</div>
+      <div style="display:flex;align-items:center;gap:6px;margin:6px 0">
+        <span class="tag tag-green" style="font-size:9px">Final Polish</span>
+        <span style="font-size:11px;color:#34d399;font-weight:700">Exam Day: October 1, 2026</span>
+      </div>
       <div style="font-size:12px;color:var(--text-secondary);line-height:1.6">
         • <strong>The 5/5 Evaluator Formula:</strong> Definition + Labeled Diagram + 4 Numbered Bullets + Practical Code/Circuit.<br>
         • <strong>3 Full Timed Mocks:</strong> Handwritten mock papers under strict 1.5-hour exam conditions without looking at notes.<br>
@@ -751,10 +755,7 @@
      8. JAVASCRIPT MASTER DATA & LOGIC
 ═══════════════════════════════════════ -->
 <script>
-// ─────────────────────────────────────────
 // A. 21-DAY MASTER SPRINT DATASET (SEPT 10 - SEPT 30, 2026)
-// 100% SEMESTER 1 SUBJECTS ONLY
-// ─────────────────────────────────────────
 const sem1SprintDays = [
   {
     "day": 1,
@@ -1283,222 +1284,296 @@ const sem1SprintDays = [
   }
 ];
 
-// ─────────────────────────────────────────
 // B. 7 SEMESTER 1 COURSES COMPREHENSIVE DATASET
-// ─────────────────────────────────────────
 const sem1Courses = [
   {
-    code: "1101111", name: "Digital Systems & Architecture", type: "Major Core", credits: "2.0",
-    units: [
+    "code": "1101111",
+    "name": "Digital Systems & Architecture",
+    "type": "Major Core",
+    "credits": "2.0",
+    "units": [
       {
-        title: "Unit 1: Number Systems & Logic Gates",
-        topics: "Binary, Octal, Hex Conversions, 1s & 2s Complements, De Morgan's Theorems, Universal Gates (NAND/NOR), SOP & POS.",
-        keyQ: "State and prove De Morgan's Laws using truth tables and logic circuit diagrams.",
-        badge: "Boolean Logic",
-        formula: "\overline{A \cdot B} = \overline{A} + \overline{B} \quad \text{and} \quad \overline{A + B} = \overline{A} \cdot \overline{B}"
+        "title": "Unit 1: Number Systems & Logic Gates",
+        "topics": "Binary, Octal, Hex Conversions, 1s & 2s Complements, De Morgan's Theorems, Universal Gates (NAND/NOR), SOP & POS.",
+        "keyQ": "State and prove De Morgan's Laws using truth tables and logic circuit diagrams.",
+        "badge": "Boolean Logic",
+        "formula": "\\overline{A \\cdot B} = \\overline{A} + \\overline{B} \\quad \\text{and} \\quad \\overline{A + B} = \\overline{A} \\cdot \\overline{B}"
       },
       {
-        title: "Unit 2: Combinational & Sequential Circuits",
-        topics: "Half Adder, Full Adder (using 2 Half Adders + OR), K-Maps (3 & 4 variable), Multiplexers (4:1, 8:1 MUX), Flip-Flops (SR, JK, D, T), Master-Slave JK Race Around Fix.",
-        keyQ: "Design a Full Adder using two Half Adders and an OR gate. Derive equations for Sum and Carry.",
-        badge: "Circuit Equations",
-        formula: "\text{Sum} = A \oplus B \oplus C_{in}, \quad \text{Carry} = AB + BC_{in} + AC_{in}"
+        "title": "Unit 2: Combinational & Sequential Circuits",
+        "topics": "Half Adder, Full Adder (using 2 Half Adders + OR), K-Maps (3 & 4 variable), Multiplexers (4:1, 8:1 MUX), Flip-Flops (SR, JK, D, T), Master-Slave JK Race Around Fix.",
+        "keyQ": "Design a Full Adder using two Half Adders and an OR gate. Derive equations for Sum and Carry.",
+        "badge": "Circuit Equations",
+        "formula": "\\text{Sum} = A \\oplus B \\oplus C_{in}, \\quad \\text{Carry} = AB + BC_{in} + AC_{in}"
       },
       {
-        title: "Unit 3: Computer Organization & Architecture",
-        topics: "Von Neumann Architecture, Registers (PC, MAR, MDR, IR, AC), Instruction Cycle (Fetch, Decode, Execute), Memory Hierarchy (Registers -> Cache L1/L2/L3 -> RAM -> Disk).",
-        keyQ: "Explain Von Neumann Architecture with a block diagram and register data paths.",
-        badge: "Register Flow",
-        flow: ["PC (Program Counter)", "MAR (Memory Address Bus)", "MDR (Memory Data Bus)", "IR (Instruction Register)", "AC (Accumulator)"]
+        "title": "Unit 3: Computer Organization & Architecture",
+        "topics": "Von Neumann Architecture, Registers (PC, MAR, MDR, IR, AC), Instruction Cycle (Fetch, Decode, Execute), Memory Hierarchy (Registers -> Cache L1/L2/L3 -> RAM -> Disk).",
+        "keyQ": "Explain Von Neumann Architecture with a block diagram and register data paths.",
+        "badge": "Register Flow",
+        "flow": [
+          "PC (Program Counter)",
+          "MAR (Memory Address Bus)",
+          "MDR (Memory Data Bus)",
+          "IR (Instruction Register)",
+          "AC (Accumulator)"
+        ]
       }
     ]
   },
   {
-    code: "1101112", name: "Fundamentals of Database Systems", type: "Major Core", credits: "2.0",
-    units: [
+    "code": "1101112",
+    "name": "Fundamentals of Database Systems",
+    "type": "Major Core",
+    "credits": "2.0",
+    "units": [
       {
-        title: "Unit 1: DBMS Architecture & Data Modeling",
-        topics: "File System vs DBMS, 3-Tier ANSI/SPARC Architecture, Physical vs Logical Data Independence, ER Model (Entities, Attributes, Primary/Foreign Keys).",
-        keyQ: "Explain 3-Tier ANSI/SPARC Architecture and describe Physical vs. Logical Data Independence.",
-        badge: "3-Tier Schema",
-        flow: ["External Level (User Views)", "Conceptual Level (Logical Schemas)", "Internal Level (Physical Storage)"]
+        "title": "Unit 1: DBMS Architecture & Data Modeling",
+        "topics": "File System vs DBMS, 3-Tier ANSI/SPARC Architecture, Physical vs Logical Data Independence, ER Model (Entities, Attributes, Primary/Foreign Keys).",
+        "keyQ": "Explain 3-Tier ANSI/SPARC Architecture and describe Physical vs. Logical Data Independence.",
+        "badge": "3-Tier Schema",
+        "flow": [
+          "External Level (User Views)",
+          "Conceptual Level (Logical Schemas)",
+          "Internal Level (Physical Storage)"
+        ]
       },
       {
-        title: "Unit 2: Relational Model, Algebra & Normalization",
-        topics: "Relational Algebra (Select, Project, Joins), Normalization: 1NF, 2NF (Partial Dependency), 3NF (Transitive Dependency), BCNF.",
-        keyQ: "What is Normalization? Explain 1NF, 2NF, and 3NF with a student table decomposition example.",
-        badge: "Normalization Rules",
-        points: ["1NF: Atomic values only (no comma-separated lists)", "2NF: 1NF + No Partial Dependency (Non-prime depends on full PK)", "3NF: 2NF + No Transitive Dependency (A -> B, B -> C eliminated)"]
+        "title": "Unit 2: Relational Model, Algebra & Normalization",
+        "topics": "Relational Algebra (Select, Project, Joins), Normalization: 1NF, 2NF (Partial Dependency), 3NF (Transitive Dependency), BCNF.",
+        "keyQ": "What is Normalization? Explain 1NF, 2NF, and 3NF with a student table decomposition example.",
+        "badge": "Normalization Rules",
+        "points": [
+          "1NF: Atomic values only (no comma-separated lists)",
+          "2NF: 1NF + No Partial Dependency (Non-prime depends on full PK)",
+          "3NF: 2NF + No Transitive Dependency (A -> B, B -> C eliminated)"
+        ]
       },
       {
-        title: "Unit 3: SQL & Transaction Management",
-        topics: "DDL/DML/DCL commands, SQL Joins (Inner, Left, Right), Group By, Having, ACID Properties, Transaction States.",
-        keyQ: "Explain ACID properties in DBMS with a real bank transfer transaction example.",
-        badge: "ACID Transactions",
-        points: ["Atomicity: All operations succeed or all roll back", "Consistency: Preserves database constraints", "Isolation: Concurrent transactions do not interfere", "Durability: Committed data survives hardware failure"]
+        "title": "Unit 3: SQL & Transaction Management",
+        "topics": "DDL/DML/DCL commands, SQL Joins (Inner, Left, Right), Group By, Having, ACID Properties, Transaction States.",
+        "keyQ": "Explain ACID properties in DBMS with a real bank transfer transaction example.",
+        "badge": "ACID Transactions",
+        "points": [
+          "Atomicity: All operations succeed or all roll back",
+          "Consistency: Preserves database constraints",
+          "Isolation: Concurrent transactions do not interfere",
+          "Durability: Committed data survives hardware failure"
+        ]
       }
     ]
   },
   {
-    code: "1101411", name: "Introduction to Programming with Python", type: "Vocational / Skill", credits: "2.0",
-    units: [
+    "code": "1101411",
+    "name": "Introduction to Programming with Python",
+    "type": "Vocational / Skill",
+    "credits": "2.0",
+    "units": [
       {
-        title: "Unit 1: Control Flow & Basic Syntax",
-        topics: "Data types, Arithmetic/Logical operators, If-elif-else, For/While loops, Break, Continue, Pass, For-Else construct.",
-        keyQ: "Write a Python program to check if a number is Prime using a for-else construct.",
-        badge: "Code Snippet",
-        code: "n = int(input("Enter num: "))\nfor i in range(2, int(n**0.5) + 1):\n    if n % i == 0:\n        print("Not Prime"); break\nelse: print("Prime")"
+        "title": "Unit 1: Control Flow & Basic Syntax",
+        "topics": "Data types, Arithmetic/Logical operators, If-elif-else, For/While loops, Break, Continue, Pass, For-Else construct.",
+        "keyQ": "Write a Python program to check if a number is Prime using a for-else construct.",
+        "badge": "Code Snippet",
+        "code": "n = int(input('Enter num: '))\nfor i in range(2, int(n**0.5) + 1):\n    if n % i == 0:\n        print('Not Prime'); break\nelse:\n    print('Prime')"
       },
       {
-        title: "Unit 2: Core Data Structures",
-        topics: "List (mutable), Tuple (immutable), Set (unique), Dictionary (key-value hash), Slicing, Comprehensions.",
-        keyQ: "Compare Lists vs Tuples vs Sets vs Dictionaries with syntax and mutability.",
-        badge: "Data Structures",
-        points: ["List [ ]: Ordered, Mutable, Allows Duplicates", "Tuple ( ): Ordered, Immutable (Fixed)", "Set { }: Unordered, Unique elements only", "Dict {k:v}: Key-Value pairs with fast O(1) hash lookup"]
+        "title": "Unit 2: Core Data Structures",
+        "topics": "List (mutable), Tuple (immutable), Set (unique), Dictionary (key-value hash), Slicing, Comprehensions.",
+        "keyQ": "Compare Lists vs Tuples vs Sets vs Dictionaries with syntax and mutability.",
+        "badge": "Data Structures",
+        "points": [
+          "List [ ]: Ordered, Mutable, Allows Duplicates",
+          "Tuple ( ): Ordered, Immutable (Fixed)",
+          "Set { }: Unordered, Unique elements only",
+          "Dict {k:v}: Key-Value pairs with fast O(1) hash lookup"
+        ]
       },
       {
-        title: "Unit 3: Functions & File Handling",
-        topics: "def, *args, **kwargs, Lambda functions, Recursion, File modes (r, w, a), Word frequency counting.",
-        keyQ: "Write a Python function to read a text file and count the frequency of each word using a Dictionary.",
-        badge: "File Handling",
-        code: "with open("data.txt", "r") as f:\n    words = f.read().split()\n    counts = {w: words.count(w) for w in set(words)}\n    print(counts)"
+        "title": "Unit 3: Functions & File Handling",
+        "topics": "def, *args, **kwargs, Lambda functions, Recursion, File modes (r, w, a), Word frequency counting.",
+        "keyQ": "Write a Python function to read a text file and count the frequency of each word using a Dictionary.",
+        "badge": "File Handling",
+        "code": "with open('data.txt', 'r') as f:\n    words = f.read().split()\n    counts = {w: words.count(w) for w in set(words)}\n    print(counts)"
       }
     ]
   },
   {
-    code: "1101413", name: "Linux Operating System", type: "Skill Course", credits: "2.0",
-    units: [
+    "code": "1101413",
+    "name": "Linux Operating System",
+    "type": "Skill Course",
+    "credits": "2.0",
+    "units": [
       {
-        title: "Unit 1: FHS & Core Commands",
-        topics: "Kernel vs Shell, Filesystem Hierarchy Standard (/bin, /sbin, /etc, /home, /var, /proc), Navigation (ls -la, cd, mkdir -p, rm -rf).",
-        keyQ: "Explain the Linux Filesystem Hierarchy Standard (FHS) and describe 5 essential directories.",
-        badge: "FHS Hierarchy",
-        flow: ["/ (Root)", "/bin (Essential User Binaries)", "/etc (Host-specific Config)", "/home (User Directories)", "/var (Variable Log Files)"]
+        "title": "Unit 1: FHS & Core Commands",
+        "topics": "Kernel vs Shell, Filesystem Hierarchy Standard (/bin, /sbin, /etc, /home, /var, /proc), Navigation (ls -la, cd, mkdir -p, rm -rf).",
+        "keyQ": "Explain the Linux Filesystem Hierarchy Standard (FHS) and describe 5 essential directories.",
+        "badge": "FHS Hierarchy",
+        "flow": [
+          "/ (Root)",
+          "/bin (Essential User Binaries)",
+          "/etc (Host-specific Config)",
+          "/home (User Directories)",
+          "/var (Variable Log Files)"
+        ]
       },
       {
-        title: "Unit 2: Permissions & Process Control",
-        topics: "Chmod (755 vs 644, symbolic vs octal), Chown, Grep, Find, Pipes (|), Redirection, ps aux, top, kill -9.",
-        keyQ: "Explain Linux File Permissions with symbolic vs. octal notation with examples.",
-        badge: "Octal Permissions",
-        code: "# 755: Owner=rwx (7), Group=r-x (5), Others=r-x (5)\nchmod 755 script.sh\nps aux | grep python | awk '{print $2}' | xargs kill -9"
+        "title": "Unit 2: Permissions & Process Control",
+        "topics": "Chmod (755 vs 644, symbolic vs octal), Chown, Grep, Find, Pipes (|), Redirection, ps aux, top, kill -9.",
+        "keyQ": "Explain Linux File Permissions with symbolic vs. octal notation with examples.",
+        "badge": "Octal Permissions",
+        "code": "# 755: Owner=rwx (7), Group=r-x (5), Others=r-x (5)\nchmod 755 script.sh\nps aux | grep python | awk '{print $2}' | xargs kill -9"
       },
       {
-        title: "Unit 3: Shell Scripting & Admin",
-        topics: "Shebang #!/bin/bash, Variables, If-else test operators (-eq, -f, -d), For/While loops, Tar compression.",
-        keyQ: "Write a shell script to take a directory name and backup all .txt files into an archive.tar file.",
-        badge: "Bash Script",
-        code: "#!/bin/bash\nread -p "Enter dir: " d\nif [ -d "$d" ]; then\n    tar -cvf backup.tar "$d"/*.txt\nfi"
+        "title": "Unit 3: Shell Scripting & Admin",
+        "topics": "Shebang #!/bin/bash, Variables, If-else test operators (-eq, -f, -d), For/While loops, Tar compression.",
+        "keyQ": "Write a shell script to take a directory name and backup all .txt files into an archive.tar file.",
+        "badge": "Bash Script",
+        "code": "#!/bin/bash\nread -p 'Enter dir: ' d\nif [ -d \"$d\" ]; then\n    tar -cvf backup.tar \"$d\"/*.txt\nfi"
       }
     ]
   },
   {
-    code: "1481311", name: "Intellectual Property Rights (IPR)", type: "Open Elective", credits: "2.0",
-    units: [
+    "code": "1481311",
+    "name": "Intellectual Property Rights (IPR)",
+    "type": "Open Elective",
+    "credits": "2.0",
+    "units": [
       {
-        title: "Unit 1: Patents & Trademarks",
-        topics: "Tangible vs Intangible Property, 3 Criteria for Patentability (Novelty, Inventive Step, Industrial Application), Trademark registration.",
-        keyQ: "What are the 3 essential criteria for patent grant under Indian Patent Act 1970?",
-        badge: "Patent Law",
-        points: ["1. Novelty: The invention must be globally new", "2. Inventive Step: Non-obvious to a person skilled in the art", "3. Industrial Utility: Must possess practical real-world application"]
+        "title": "Unit 1: Patents & Trademarks",
+        "topics": "Tangible vs Intangible Property, 3 Criteria for Patentability (Novelty, Inventive Step, Industrial Application), Trademark registration.",
+        "keyQ": "What are the 3 essential criteria for patent grant under Indian Patent Act 1970?",
+        "badge": "Patent Law",
+        "points": [
+          "1. Novelty: The invention must be globally new",
+          "2. Inventive Step: Non-obvious to a person skilled in the art",
+          "3. Industrial Utility: Must possess practical real-world application"
+        ]
       },
       {
-        title: "Unit 2: Copyrights & Trade Secrets",
-        topics: "Copyright Act 1957, Software copyright protection, Fair Dealing doctrine, Trade Secrets (NDAs), IT Act 2000 Sec 66.",
-        keyQ: "Explain the Doctrine of Fair Dealing under Copyright law with exemptions for education and research.",
-        badge: "Copyright Exceptions",
-        points: ["Copyright Term: Author lifetime + 60 years post-mortem", "Fair Dealing: Statutorily exempts educational study, critique, and private research", "Trade Secrets: Protected indefinitely via confidential NDA contracts"]
+        "title": "Unit 2: Copyrights & Trade Secrets",
+        "topics": "Copyright Act 1957, Software copyright protection, Fair Dealing doctrine, Trade Secrets (NDAs), IT Act 2000 Sec 66.",
+        "keyQ": "Explain the Doctrine of Fair Dealing under Copyright law with exemptions for education and research.",
+        "badge": "Copyright Exceptions",
+        "points": [
+          "Copyright Term: Author lifetime + 60 years post-mortem",
+          "Fair Dealing: Statutorily exempts educational study, critique, and private research",
+          "Trade Secrets: Protected indefinitely via confidential NDA contracts"
+        ]
       }
     ]
   },
   {
-    code: "2531511", name: "Indian Knowledge System (IKS)", type: "IKS Core", credits: "2.0",
-    units: [
+    "code": "2531511",
+    "name": "Indian Knowledge System (IKS)",
+    "type": "IKS Core",
+    "credits": "2.0",
+    "units": [
       {
-        title: "Unit 1: Ancient Mathematics & Astronomy",
-        topics: "Decimal system, Concept of Shunya (Zero) by Brahmagupta, Aryabhata (pi ≈ 3.1416, earth axial rotation), Bhaskara II.",
-        keyQ: "Describe the mathematical contributions of Aryabhata and Brahmagupta to global mathematics.",
-        badge: "Ancient Science",
-        points: ["Aryabhata: Aryabhatiya calculated pi ≈ 3.1416 and proved Earth's axial rotation", "Brahmagupta: Brahmasphutasiddhanta established formal arithmetic for Zero and negative numbers", "Bhaskara II: Developed cyclic Chakravala method for indeterminate equations"]
+        "title": "Unit 1: Ancient Mathematics & Astronomy",
+        "topics": "Decimal system, Concept of Shunya (Zero) by Brahmagupta, Aryabhata (pi \u2248 3.1416, earth axial rotation), Bhaskara II.",
+        "keyQ": "Describe the mathematical contributions of Aryabhata and Brahmagupta to global mathematics.",
+        "badge": "Ancient Science",
+        "points": [
+          "Aryabhata: Aryabhatiya calculated pi \u2248 3.1416 and proved Earth's axial rotation",
+          "Brahmagupta: Brahmasphutasiddhanta established formal arithmetic for Zero and negative numbers",
+          "Bhaskara II: Developed cyclic Chakravala method for indeterminate equations"
+        ]
       },
       {
-        title: "Unit 2: Ayurveda & Town Planning",
-        topics: "Tridosha Theory (Vata, Pitta, Kapha), Panchamahabhutas, Harappan Grid layout & underground covered drainage.",
-        keyQ: "Explain the Tridosha Theory of Ayurveda and its balance in human health.",
-        badge: "Ayurveda & Architecture",
-        points: ["Vata (Air + Ether): Governs nervous system and kinetic movement", "Pitta (Fire + Water): Governs digestion, metabolism, and heat", "Kapha (Water + Earth): Governs cellular structure and immunity"]
+        "title": "Unit 2: Ayurveda & Town Planning",
+        "topics": "Tridosha Theory (Vata, Pitta, Kapha), Panchamahabhutas, Harappan Grid layout & underground covered drainage.",
+        "keyQ": "Explain the Tridosha Theory of Ayurveda and its balance in human health.",
+        "badge": "Ayurveda & Architecture",
+        "points": [
+          "Vata (Air + Ether): Governs nervous system and kinetic movement",
+          "Pitta (Fire + Water): Governs digestion, metabolism, and heat",
+          "Kapha (Water + Earth): Governs cellular structure and immunity"
+        ]
       }
     ]
   },
   {
-    code: "2541514", name: "Fundamental of People's Skills", type: "Value Education", credits: "2.0",
-    units: [
+    "code": "2541514",
+    "name": "Fundamental of People's Skills",
+    "type": "Value Education",
+    "credits": "2.0",
+    "units": [
       {
-        title: "Unit 1: Communication Models & Active Listening",
-        topics: "7-Stage communication model, Physical and psychological barriers, Active listening vs passive hearing, Proxemics.",
-        keyQ: "Describe the 7-stage Communication Process and explain physical vs semantic barriers.",
-        badge: "Communication",
-        flow: ["Sender", "Encoding", "Message & Channel", "Receiver", "Decoding", "Feedback"]
+        "title": "Unit 1: Communication Models & Active Listening",
+        "topics": "7-Stage communication model, Physical and psychological barriers, Active listening vs passive hearing, Proxemics.",
+        "keyQ": "Describe the 7-stage Communication Process and explain physical vs semantic barriers.",
+        "badge": "Communication",
+        "flow": [
+          "Sender",
+          "Encoding",
+          "Message & Channel",
+          "Receiver",
+          "Decoding",
+          "Feedback"
+        ]
       },
       {
-        title: "Unit 2: Emotional Intelligence & Conflict Resolution",
-        topics: "Daniel Goleman 5 EQ Pillars, Thomas-Kilmann Conflict Modes (Collaborate, Compete, Compromise, Avoid, Accommodate).",
-        keyQ: "Explain Daniel Goleman's 5 Pillars of Emotional Intelligence (EQ) in professional life.",
-        badge: "Emotional Intelligence",
-        points: ["1. Self-Awareness: Understanding your own emotional states", "2. Self-Regulation: Managing impulses and adapting", "3. Motivation: Internal passion beyond external rewards", "4. Empathy: Recognizing emotions in team members", "5. Social Skills: Constructive conflict resolution"]
+        "title": "Unit 2: Emotional Intelligence & Conflict Resolution",
+        "topics": "Daniel Goleman 5 EQ Pillars, Thomas-Kilmann Conflict Modes (Collaborate, Compete, Compromise, Avoid, Accommodate).",
+        "keyQ": "Explain Daniel Goleman's 5 Pillars of Emotional Intelligence (EQ) in professional life.",
+        "badge": "Emotional Intelligence",
+        "points": [
+          "1. Self-Awareness: Understanding your own emotional states",
+          "2. Self-Regulation: Managing impulses and adapting",
+          "3. Motivation: Internal passion beyond external rewards",
+          "4. Empathy: Recognizing emotions in team members",
+          "5. Social Skills: Constructive conflict resolution"
+        ]
       }
     ]
   }
 ];
 
-// ─────────────────────────────────────────
 // C. 8 HIGH-YIELD SEM 1 FLASHCARDS
-// ─────────────────────────────────────────
 const sem1Cards = [
   {
-    subject: "Digital Systems (1101111)",
-    q: "State and prove De Morgan's Laws with truth table and logic gate representations.",
-    a: "<strong>Law 1:</strong> (A · B)' = A' + B'<br>NAND gate is logically equivalent to a Bubbled OR gate.<br><br><strong>Law 2:</strong> (A + B)' = A' · B'<br>NOR gate is logically equivalent to a Bubbled AND gate.<br><br><strong>Proof:</strong> Construct 4-row truth table for inputs 00, 01, 10, 11 proving equality of LHS and RHS columns."
+    "subject": "Digital Systems (1101111)",
+    "q": "State and prove De Morgan's Laws with truth table and logic gate representations.",
+    "a": "<strong>Law 1:</strong> (A \u00b7 B)' = A' + B'<br>NAND gate is logically equivalent to a Bubbled OR gate.<br><br><strong>Law 2:</strong> (A + B)' = A' \u00b7 B'<br>NOR gate is logically equivalent to a Bubbled AND gate.<br><br><strong>Proof:</strong> Construct 4-row truth table for inputs 00, 01, 10, 11 proving equality of LHS and RHS columns."
   },
   {
-    subject: "Digital Systems (1101111)",
-    q: "Design a Full Adder using two Half Adders and an OR gate. Derive Sum & Carry.",
-    a: "<strong>Half Adder 1:</strong> S1 = A ⊕ B, C1 = A · B<br><strong>Half Adder 2:</strong> Sum = S1 ⊕ Cin = A ⊕ B ⊕ Cin<br><strong>Carry Logic:</strong> C2 = S1 · Cin = (A ⊕ B) · Cin<br><strong>Final Carry:</strong> Cout = C1 + C2 = AB + (A ⊕ B)Cin = AB + BCin + ACin.<br>Requires 2 XOR gates, 2 AND gates, and 1 OR gate."
+    "subject": "Digital Systems (1101111)",
+    "q": "Design a Full Adder using two Half Adders and an OR gate. Derive Sum & Carry.",
+    "a": "<strong>Half Adder 1:</strong> S1 = A \u2295 B, C1 = A \u00b7 B<br><strong>Half Adder 2:</strong> Sum = S1 \u2295 Cin = A \u2295 B \u2295 Cin<br><strong>Carry Logic:</strong> C2 = S1 \u00b7 Cin = (A \u2295 B) \u00b7 Cin<br><strong>Final Carry:</strong> Cout = C1 + C2 = AB + (A \u2295 B)Cin = AB + BCin + ACin.<br>Requires 2 XOR gates, 2 AND gates, and 1 OR gate."
   },
   {
-    subject: "DBMS (1101112)",
-    q: "Explain the 3-Tier ANSI/SPARC Architecture and explain Data Independence.",
-    a: "<strong>1. External Level:</strong> Multiple customized views for end-users.<br><strong>2. Conceptual Level:</strong> Unified logical view of all tables, entities, and primary/foreign keys.<br><strong>3. Internal Level:</strong> Physical file structures, B-trees, and disk blocks.<br><br><strong>Logical Independence:</strong> Changing conceptual schemas without breaking user views.<br><strong>Physical Independence:</strong> Upgrading storage disks without modifying table definitions."
+    "subject": "DBMS (1101112)",
+    "q": "Explain the 3-Tier ANSI/SPARC Architecture and explain Data Independence.",
+    "a": "<strong>1. External Level:</strong> Multiple customized views for end-users.<br><strong>2. Conceptual Level:</strong> Unified logical view of all tables, entities, and primary/foreign keys.<br><strong>3. Internal Level:</strong> Physical file structures, B-trees, and disk blocks.<br><br><strong>Logical Independence:</strong> Changing conceptual schemas without breaking user views.<br><strong>Physical Independence:</strong> Upgrading storage disks without modifying table definitions."
   },
   {
-    subject: "DBMS (1101112)",
-    q: "Explain 1NF, 2NF, and 3NF Normalization with clear functional dependency rules.",
-    a: "<strong>1NF:</strong> All attribute values must be atomic (no multi-valued sets or nested lists).<br><strong>2NF:</strong> Must be in 1NF + No Partial Dependency (every non-prime attribute must depend on the FULL candidate key, not a proper subset).<br><strong>3NF:</strong> Must be in 2NF + No Transitive Dependency (if A → B and B → C, C must not depend on non-prime B)."
+    "subject": "DBMS (1101112)",
+    "q": "Explain 1NF, 2NF, and 3NF Normalization with clear functional dependency rules.",
+    "a": "<strong>1NF:</strong> All attribute values must be atomic (no multi-valued sets or nested lists).<br><strong>2NF:</strong> Must be in 1NF + No Partial Dependency (every non-prime attribute must depend on the FULL candidate key, not a proper subset).<br><strong>3NF:</strong> Must be in 2NF + No Transitive Dependency (if A \u2192 B and B \u2192 C, C must not depend on non-prime B)."
   },
   {
-    subject: "DBMS (1101112)",
-    q: "Explain ACID properties in database transactions with a bank transfer example.",
-    a: "<strong>Scenario:</strong> Transfer ₹5,000 from Account A to Account B.<br>• <strong>Atomicity:</strong> Either both A - ₹5000 and B + ₹5000 occur, or whole transaction rolls back.<br>• <strong>Consistency:</strong> Total money (A + B) remains mathematically constant before and after.<br>• <strong>Isolation:</strong> Concurrent queries cannot see intermediate states.<br>• <strong>Durability:</strong> Once committed, the ₹5000 transfer is permanently written to disk."
+    "subject": "DBMS (1101112)",
+    "q": "Explain ACID properties in database transactions with a bank transfer example.",
+    "a": "<strong>Scenario:</strong> Transfer \u20b95,000 from Account A to Account B.<br>\u2022 <strong>Atomicity:</strong> Either both A - \u20b95000 and B + \u20b95000 occur, or whole transaction rolls back.<br>\u2022 <strong>Consistency:</strong> Total money (A + B) remains mathematically constant before and after.<br>\u2022 <strong>Isolation:</strong> Concurrent queries cannot see intermediate states.<br>\u2022 <strong>Durability:</strong> Once committed, the \u20b95000 transfer is permanently written to disk."
   },
   {
-    subject: "Python (1101411)",
-    q: "Write a Python program to check if an integer is Prime using for-else loop.",
-    a: "<pre class="font-mono" style="background:#000;padding:8px;border-radius:6px;font-size:11px;color:#38bdf8">num = int(input("Enter num: "))\nif num > 1:\n    for i in range(2, int(num**0.5) + 1):\n        if num % i == 0:\n            print(f"{num} is NOT Prime")\n            break\n    else:\n        print(f"{num} is PRIME")\nelse:\n    print("Not Prime")</pre>"
+    "subject": "Python (1101411)",
+    "q": "Write a Python program to check if an integer is Prime using for-else loop.",
+    "a": "<pre class='font-mono' style='background:#000;padding:8px;border-radius:6px;font-size:11px;color:#38bdf8'>num = int(input('Enter num: '))\nif num > 1:\n    for i in range(2, int(num**0.5) + 1):\n        if num % i == 0:\n            print(f'{num} is NOT Prime')\n            break\n    else:\n        print(f'{num} is PRIME')\nelse:\n    print('Not Prime')</pre>"
   },
   {
-    subject: "Linux OS (1101413)",
-    q: "Explain Linux File Permissions with chmod 755 vs 644 and symbolic calculation.",
-    a: "<strong>Permission Values:</strong> Read (r) = 4, Write (w) = 2, Execute (x) = 1.<br><br>• <strong>chmod 755 (rwxr-xr-x):</strong><br>Owner: 4+2+1 = 7 (Full)<br>Group: 4+0+1 = 5 (Read+Exec)<br>Others: 4+0+1 = 5 (Read+Exec)<br><em>Used for executable scripts and binaries.</em><br><br>• <strong>chmod 644 (rw-r--r--):</strong><br>Owner: 4+2+0 = 6 (Read+Write)<br>Group & Others: 4 (Read-only)<br><em>Standard for web HTML and config files.</em>"
+    "subject": "Linux OS (1101413)",
+    "q": "Explain Linux File Permissions with chmod 755 vs 644 and symbolic calculation.",
+    "a": "<strong>Permission Values:</strong> Read (r) = 4, Write (w) = 2, Execute (x) = 1.<br><br>\u2022 <strong>chmod 755 (rwxr-xr-x):</strong><br>Owner: 4+2+1 = 7 (Full)<br>Group: 4+0+1 = 5 (Read+Exec)<br>Others: 4+0+1 = 5 (Read+Exec)<br><em>Used for executable scripts and binaries.</em><br><br>\u2022 <strong>chmod 644 (rw-r--r--):</strong><br>Owner: 4+2+0 = 6 (Read+Write)<br>Group & Others: 4 (Read-only)<br><em>Standard for web HTML and config files.</em>"
   },
   {
-    subject: "IPR (1481311)",
-    q: "What are the 3 essential criteria for patentability under the Indian Patent Act 1970?",
-    a: "<strong>1. Novelty:</strong> The invention must never have been published, publicly disclosed, or used anywhere in the world prior to the filing date.<br><br><strong>2. Inventive Step (Non-Obviousness):</strong> The solution must not be obvious to a normal person skilled in that technical art.<br><br><strong>3. Industrial Applicability (Utility):</strong> The invention must have practical utility and be capable of being produced or used in industry."
+    "subject": "IPR (1481311)",
+    "q": "What are the 3 essential criteria for patentability under the Indian Patent Act 1970?",
+    "a": "<strong>1. Novelty:</strong> The invention must never have been published, publicly disclosed, or used anywhere in the world prior to the filing date.<br><br><strong>2. Inventive Step (Non-Obviousness):</strong> The solution must not be obvious to a normal person skilled in that technical art.<br><br><strong>3. Industrial Applicability (Utility):</strong> The invention must have practical utility and be capable of being produced or used in industry."
   }
 ];
 
-// ─────────────────────────────────────────
 // D. APPLICATION STATE & LOCALSTORAGE
-// ─────────────────────────────────────────
 const STATE_KEY = 'bsc_cs_sem1_sprint_21d_state';
 let sprintState = {
   tasks: {},
@@ -1566,10 +1641,6 @@ function updateProgressStats() {
     if (dayBarEl) dayBarEl.style.width = `${dayPct}%`;
   }
 }
-
-// ─────────────────────────────────────────
-// E. RENDERERS
-// ─────────────────────────────────────────
 
 // 1. Render 21-Day Sprint Grid
 function renderSprintGrid() {
@@ -1685,7 +1756,7 @@ function loadDay(dayNum) {
   container.innerHTML = `
     <!-- Block 1: Morning -->
     <div class="session-card" style="border-left-color:#6366f1">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;flex-wrap:wrap;gap:6px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;flex-wrap:gap:6px">
         <span class="tag tag-indigo">BLOCK 1: MORNING (8:00 AM – 10:30 AM | 2.5h)</span>
         <span style="font-size:12px;font-weight:700;color:#818cf8">${d.m.sub}</span>
       </div>
@@ -1705,7 +1776,7 @@ function loadDay(dayNum) {
 
     <!-- Block 2: Afternoon -->
     <div class="session-card" style="border-left-color:#06b6d4">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;flex-wrap:wrap;gap:6px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;flex-wrap:gap:6px">
         <span class="tag tag-blue" style="background:rgba(6,182,212,0.15);color:#67e8f9;border-color:rgba(6,182,212,0.3)">BLOCK 2: AFTERNOON (1:30 PM – 4:00 PM | 2.5h)</span>
         <span style="font-size:12px;font-weight:700;color:#22d3ee">${d.a.sub}</span>
       </div>
@@ -1725,7 +1796,7 @@ function loadDay(dayNum) {
 
     <!-- Block 3: Evening -->
     <div class="session-card" style="border-left-color:#10b981">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;flex-wrap:wrap;gap:6px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;flex-wrap:gap:6px">
         <span class="tag tag-green">BLOCK 3: EVENING (6:00 PM – 8:00 PM | 2.0h)</span>
         <span style="font-size:12px;font-weight:700;color:#34d399">${d.e.sub}</span>
       </div>
@@ -1745,7 +1816,7 @@ function loadDay(dayNum) {
 
     <!-- Block 4: Night Active Recall Drill -->
     <div class="session-card" style="border-left-color:#f59e0b">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;flex-wrap:wrap;gap:6px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;flex-wrap:gap:6px">
         <span class="tag tag-amber">BLOCK 4: NIGHT DRILL (9:30 PM – 10:30 PM | 1.0h)</span>
         <span style="font-size:12px;font-weight:700;color:#fbbf24">Active Recall &amp; 5/5 Exam Blueprint</span>
       </div>
@@ -1869,14 +1940,11 @@ function switchTab(tabId) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// ─────────────────────────────────────────
 // F. JSON SYNC & BACKUP ENGINE
-// ─────────────────────────────────────────
 function openJsonModal() {
   const modal = document.getElementById('json-sync-modal');
   if (modal) {
     modal.style.display = 'flex';
-    refreshExportJsonText();
     const msgEl = document.getElementById('modal-status-msg');
     if (msgEl) msgEl.style.display = 'none';
   }
@@ -1885,10 +1953,6 @@ function openJsonModal() {
 function closeJsonModal() {
   const modal = document.getElementById('json-sync-modal');
   if (modal) modal.style.display = 'none';
-}
-
-function refreshExportJsonText() {
-  // Ready
 }
 
 function copyExportJson() {
@@ -2027,9 +2091,7 @@ function checkUrlSync() {
   }
 }
 
-// ─────────────────────────────────────────
 // G. INITIALIZATION
-// ─────────────────────────────────────────
 window.addEventListener('DOMContentLoaded', () => {
   loadState();
   checkUrlSync();
