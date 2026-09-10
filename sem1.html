@@ -606,27 +606,32 @@
         </div>
       </div>
 
-      <!-- 3 Stat Blocks -->
-      <div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:8px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06);text-align:center">
+      <!-- 4 Stat Blocks -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(110px, 1fr));gap:8px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06);text-align:center">
         <div>
-          <div style="font-size:9px;color:var(--text-muted);font-weight:700;text-transform:uppercase">Banked Foundation</div>
-          <div class="font-mono" style="font-size:15px;font-weight:800;color:#34d399">15 Blocks</div>
+          <div style="font-size:9px;color:var(--text-muted);font-weight:700;text-transform:uppercase">Total Done</div>
+          <div class="font-mono" style="font-size:15px;font-weight:800;color:#34d399" id="completed-total-stat">15 Blocks</div>
         </div>
         <div>
-          <div style="font-size:9px;color:var(--text-muted);font-weight:700;text-transform:uppercase">21-Day Sprint Done</div>
+          <div style="font-size:9px;color:#34d399;font-weight:700;text-transform:uppercase">Semester 1 (Core)</div>
+          <div class="font-mono" style="font-size:15px;font-weight:800;color:#34d399" id="completed-sem1-stat">10 Blocks</div>
+        </div>
+        <div>
+          <div style="font-size:9px;color:#c084fc;font-weight:700;text-transform:uppercase">Semester 2 (Prep)</div>
+          <div class="font-mono" style="font-size:15px;font-weight:800;color:#c084fc" id="completed-sem2-stat">5 Blocks</div>
+        </div>
+        <div>
+          <div style="font-size:9px;color:#38bdf8;font-weight:700;text-transform:uppercase">21-Day Sprint</div>
           <div class="font-mono" style="font-size:15px;font-weight:800;color:#38bdf8" id="completed-sprint-count">0 Blocks</div>
-        </div>
-        <div>
-          <div style="font-size:9px;color:var(--text-muted);font-weight:700;text-transform:uppercase">Sem 1 Coverage</div>
-          <div class="font-mono" style="font-size:15px;font-weight:800;color:#fbbf24" id="completed-sem1-count">8 / 7 Courses</div>
         </div>
       </div>
     </div>
 
     <!-- Filter Buttons -->
     <div style="display:flex;gap:6px;overflow-x:auto;padding-bottom:8px;margin-bottom:14px">
-      <button class="course-filter-btn active" id="cfilter-all" onclick="filterCompleted('all')">All Completed</button>
-      <button class="course-filter-btn" id="cfilter-sem1" onclick="filterCompleted('sem1')">Semester 1 Topics</button>
+      <button class="course-filter-btn active" id="cfilter-all" onclick="filterCompleted('all')">All Completed (15)</button>
+      <button class="course-filter-btn" id="cfilter-sem1" onclick="filterCompleted('sem1')">Semester 1 (10)</button>
+      <button class="course-filter-btn" id="cfilter-sem2" onclick="filterCompleted('sem2')">Semester 2 (5)</button>
       <button class="course-filter-btn" id="cfilter-foundation" onclick="filterCompleted('foundation')">Banked Foundation (15)</button>
       <button class="course-filter-btn" id="cfilter-sprint" onclick="filterCompleted('sprint')">21-Day Sprint Log</button>
     </div>
@@ -1430,7 +1435,7 @@ const bankedFoundationBlocks = [
     "sem": "Sem 2",
     "topic": "Algorithm Complexity & Big-O Notation",
     "goal": "Understood O(1) vs O(n) vs O(n log n) curves",
-    "badge": "Prep Foundation"
+    "badge": "Sem 2 Prep"
   },
   {
     "day": 1,
@@ -1441,7 +1446,7 @@ const bankedFoundationBlocks = [
     "sem": "Sem 2",
     "topic": "Henri Fayol 14 Principles (Principles 1-7)",
     "goal": "Memorized Division of Work, Authority, and Unity of Command",
-    "badge": "Prep Foundation"
+    "badge": "Sem 2 Prep"
   },
   {
     "day": 1,
@@ -1529,7 +1534,7 @@ const bankedFoundationBlocks = [
     "sem": "Sem 2",
     "topic": "HTTP/HTTPS Cycle & Semantic HTML5 Tags",
     "goal": "Explained GET vs POST and HTML5 page layout hierarchy",
-    "badge": "Prep Foundation"
+    "badge": "Sem 2 Prep"
   },
   {
     "day": 4,
@@ -1540,7 +1545,7 @@ const bankedFoundationBlocks = [
     "sem": "Sem 2",
     "topic": "AIDA Copywriting Framework & Search Intent",
     "goal": "Broke down Attention, Interest, Desire, Action framework",
-    "badge": "Prep Foundation"
+    "badge": "Sem 2 Prep"
   },
   {
     "day": 5,
@@ -1562,7 +1567,7 @@ const bankedFoundationBlocks = [
     "sem": "Sem 2",
     "topic": "Johari Window Model (4 Quadrants of Awareness)",
     "goal": "Drew Open, Blind, Hidden, and Unknown quadrants",
-    "badge": "Prep Foundation"
+    "badge": "Sem 2 Prep"
   },
   {
     "day": 8,
@@ -1573,7 +1578,7 @@ const bankedFoundationBlocks = [
     "sem": "Sem 2",
     "topic": "Maslow Need Hierarchy Theory 5-Level Pyramid",
     "goal": "Drew 5 levels from Physiological to Self-Actualization",
-    "badge": "Prep Foundation"
+    "badge": "Sem 2 Prep"
   }
 ];
 
@@ -2171,6 +2176,8 @@ function renderCompletedView() {
 
   // 1. Banked Foundation items
   bankedFoundationBlocks.forEach(item => {
+    const isSem1 = item.sem === 'Sem 1' || item.sem === 'Sem 1 & 2';
+    const isSem2 = item.sem === 'Sem 2' || item.sem === 'Sem 1 & 2';
     items.push({
       source: 'foundation',
       sourceLabel: 'Banked Foundation',
@@ -2181,7 +2188,8 @@ function renderCompletedView() {
       goal: item.goal,
       badge: item.badge,
       sem: item.sem,
-      isSem1: item.sem === 'Sem 1' || item.badge === 'Sem 1 Core'
+      isSem1: isSem1,
+      isSem2: isSem2
     });
   });
 
@@ -2209,6 +2217,7 @@ function renderCompletedView() {
           badge: 'Active Sprint',
           sem: 'Sem 1',
           isSem1: true,
+          isSem2: false,
           dayNum: d.day
         });
       }
@@ -2216,6 +2225,18 @@ function renderCompletedView() {
   });
 
   // Update Counters in Completed Tab
+  const sem1Count = items.filter(it => it.isSem1).length;
+  const sem2Count = items.filter(it => it.isSem2).length;
+
+  const totalStatEl = document.getElementById('completed-total-stat');
+  if (totalStatEl) totalStatEl.innerText = `${items.length} Blocks`;
+
+  const sem1StatEl = document.getElementById('completed-sem1-stat');
+  if (sem1StatEl) sem1StatEl.innerText = `${sem1Count} Blocks`;
+
+  const sem2StatEl = document.getElementById('completed-sem2-stat');
+  if (sem2StatEl) sem2StatEl.innerText = `${sem2Count} Blocks`;
+
   const sprintCountEl = document.getElementById('completed-sprint-count');
   if (sprintCountEl) sprintCountEl.innerText = `${sprintDoneCount} Blocks`;
 
@@ -2225,10 +2246,24 @@ function renderCompletedView() {
   const hoursEl = document.getElementById('completed-hours-stat');
   if (hoursEl) hoursEl.innerText = `~${(items.length * 2.5).toFixed(1)} Hours`;
 
+  // Update filter pill labels dynamically
+  const btnAll = document.getElementById('cfilter-all');
+  if (btnAll) btnAll.innerText = `All Completed (${items.length})`;
+  const btnS1 = document.getElementById('cfilter-sem1');
+  if (btnS1) btnS1.innerText = `Semester 1 (${sem1Count})`;
+  const btnS2 = document.getElementById('cfilter-sem2');
+  if (btnS2) btnS2.innerText = `Semester 2 (${sem2Count})`;
+  const btnFound = document.getElementById('cfilter-foundation');
+  if (btnFound) btnFound.innerText = `Banked Foundation (${bankedFoundationBlocks.length})`;
+  const btnSp = document.getElementById('cfilter-sprint');
+  if (btnSp) btnSp.innerText = `21-Day Sprint (${sprintDoneCount})`;
+
   // Apply Filter
   let filtered = items;
   if (mode === 'sem1') {
     filtered = items.filter(it => it.isSem1);
+  } else if (mode === 'sem2') {
+    filtered = items.filter(it => it.isSem2);
   } else if (mode === 'foundation') {
     filtered = items.filter(it => it.source === 'foundation');
   } else if (mode === 'sprint') {
@@ -2247,27 +2282,41 @@ function renderCompletedView() {
     return;
   }
 
-  filtered.forEach((it, idx) => {
+  filtered.forEach((it) => {
     const itemCard = document.createElement('div');
     itemCard.className = 'completed-item-card';
 
     const isSprint = it.source === 'sprint';
-    const tagColor = isSprint ? 'tag-blue' : (it.isSem1 ? 'tag-green' : 'tag-amber');
+    const isSem2 = it.sem === 'Sem 2';
+    const isShared = it.sem === 'Sem 1 & 2';
+
+    // Highlight Semester Badge with prominent high-contrast tags
+    let semBadgeHtml = '';
+    if (isSem2) {
+      semBadgeHtml = `<span class="tag tag-purple" style="font-weight:800;letter-spacing:0.04em">SEMESTER 2</span>`;
+    } else if (isShared) {
+      semBadgeHtml = `<span class="tag tag-blue" style="font-weight:800;letter-spacing:0.04em">SEM 1 &amp; 2</span>`;
+    } else {
+      semBadgeHtml = `<span class="tag tag-green" style="font-weight:800;letter-spacing:0.04em">SEMESTER 1</span>`;
+    }
+
+    const tagColor = isSprint ? 'tag-blue' : (isSem2 ? 'tag-purple' : 'tag-green');
 
     itemCard.innerHTML = `
-      <div style="width:28px;height:28px;border-radius:50%;background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.4);display:flex;align-items:center;justify-content:center;color:#34d399;flex-shrink:0;margin-top:2px">
-        <i data-lucide="check" style="width:15px;height:15px;stroke-width:2.5"></i>
+      <div style="width:30px;height:30px;border-radius:50%;background:${isSem2 ? 'rgba(168,85,247,0.15)' : 'rgba(16,185,129,0.15)'};border:1px solid ${isSem2 ? 'rgba(168,85,247,0.4)' : 'rgba(16,185,129,0.4)'};display:flex;align-items:center;justify-content:center;color:${isSem2 ? '#c084fc' : '#34d399'};flex-shrink:0;margin-top:2px">
+        <i data-lucide="check" style="width:16px;height:16px;stroke-width:2.5"></i>
       </div>
       <div style="flex:1;min-width:0">
         <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px;margin-bottom:4px">
-          <div style="display:flex;align-items:center;gap:6px">
+          <div style="display:flex;align-items:center;flex-wrap:wrap;gap:6px">
+            ${semBadgeHtml}
             <span class="tag ${tagColor}">${it.sub.split(' ')[0]}</span>
             <span style="font-size:11px;color:var(--text-muted);font-family:'JetBrains Mono',monospace">${it.date} · ${it.slot}</span>
           </div>
-          <span class="tag ${isSprint ? 'tag-indigo' : 'tag-green'}" style="font-size:9px">${it.sourceLabel}</span>
+          <span class="tag ${isSprint ? 'tag-indigo' : (isSem2 ? 'tag-purple' : 'tag-green')}" style="font-size:9px">${it.sourceLabel}</span>
         </div>
-        <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:2px">${it.topic}</div>
-        <div style="font-size:11px;color:var(--text-secondary)"><strong>Mastered:</strong> ${it.goal}</div>
+        <div style="font-size:13.5px;font-weight:700;color:#fff;margin-bottom:3px">${it.topic}</div>
+        <div style="font-size:11.5px;color:var(--text-secondary);line-height:1.4"><strong style="color:#94a3b8">Mastered:</strong> ${it.goal}</div>
       </div>
       ${isSprint ? `
         <button onclick="switchTab('day');loadDay(${it.dayNum})" class="header-btn" style="padding:4px 8px;font-size:10px;align-self:center">
