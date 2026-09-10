@@ -1191,7 +1191,15 @@ const sem1Cards = [
 // ─────────────────────────────────────────
 const STATE_KEY = 'bsc_cs_sem1_sprint_state';
 let sprintState = {
-  tasks: {},
+  tasks: {
+    "1_m": true, "1_a": true, "1_e": true, "1_n": true,
+    "2_m": true, "2_e": true,
+    "3_m": true, "3_a": true, "3_e": true, "3_n": true,
+    "4_a": true, "4_e": true,
+    "5_e": true,
+    "6_e": true,
+    "8_e": true
+  },
   currentDay: 10, // Default to Sept 10 (TODAY)
   currentCard: 0
 };
@@ -1200,7 +1208,12 @@ function loadState() {
   try {
     const saved = localStorage.getItem(STATE_KEY);
     if (saved) {
-      sprintState = Object.assign(sprintState, JSON.parse(saved));
+      const parsed = JSON.parse(saved);
+      if (parsed && typeof parsed === 'object') {
+        sprintState.tasks = Object.assign({}, sprintState.tasks, parsed.tasks || {});
+        if (parsed.currentDay) sprintState.currentDay = parsed.currentDay;
+        if (parsed.currentCard !== undefined) sprintState.currentCard = parsed.currentCard;
+      }
     }
   } catch (e) {
     console.error('Failed to load sprint state:', e);
@@ -1601,15 +1614,15 @@ function downloadJsonFile() {
 function autoSyncFromStudyLab() {
   const msgEl = document.getElementById('modal-status-msg');
   try {
-    const raw = localStorage.getItem('bsc_cs_app_state');
+    const raw = localStorage.getItem('bsc_cs_mastery_state_v2') || localStorage.getItem('bsc_cs_app_state');
     if (!raw) {
-      showModalMsg('No existing progress found in index.html (bsc_cs_app_state).', '#fbbf24');
+      showModalMsg('No existing progress found in browser storage for Study Lab.', '#fbbf24');
       return;
     }
     const parsed = JSON.parse(raw);
-    if (parsed && parsed.tasks) {
-      // Merge tasks
-      sprintState.tasks = Object.assign({}, sprintState.tasks, parsed.tasks);
+    const tasks = parsed.tasks || parsed.t;
+    if (tasks && typeof tasks === 'object') {
+      sprintState.tasks = Object.assign({}, sprintState.tasks, tasks);
       saveState();
       updateProgressStats();
       renderSprintGrid();
@@ -1625,30 +1638,16 @@ function autoSyncFromStudyLab() {
   }
 }
 
-function importJsonData() {
-  const inputArea = document.getElementById('json-import-area');
-  if (!inputArea || !inputArea.value.trim()) {
-    showModalMsg('Please paste JSON or sync code first.', '#fbbf24');
-    return;
-  }
-  const raw = inputArea.value.trim();
+function parseAndApplySync(raw) {
+  if (!raw || typeof raw !== 'string') return false;
+  const trimmed = raw.trim();
   let importedTasks = null;
-
   try {
-    // Case 1: Try parsing direct JSON
-    if (raw.startsWith('{') || raw.startsWith('[')) {
-      const parsed = JSON.parse(raw);
-      if (parsed.tasks) {
-        importedTasks = parsed.tasks;
-      } else if (parsed.t) {
-        importedTasks = parsed.t;
-      } else {
-        // Assume dictionary of tasks directly
-        importedTasks = parsed;
-      }
+    if (trimmed.startsWith('{') || trimmed.startsWith('[')) {
+      const parsed = JSON.parse(trimmed);
+      importedTasks = parsed.tasks || parsed.t || parsed;
     } else {
-      // Case 2: Base64 sync string from index.html
-      const decoded = JSON.parse(decodeURIComponent(escape(atob(raw))));
+      const decoded = JSON.parse(decodeURIComponent(escape(atob(trimmed))));
       if (decoded && (decoded.t || decoded.tasks)) {
         importedTasks = decoded.t || decoded.tasks;
       }
@@ -1661,13 +1660,26 @@ function importJsonData() {
       renderSprintGrid();
       renderHeatmap();
       loadDay(sprintState.currentDay);
-      showModalMsg('✓ Progress Restored Successfully!', '#34d399');
-      inputArea.value = '';
-    } else {
-      showModalMsg('Could not find task data in the input.', '#fbbf24');
+      return true;
     }
   } catch (err) {
-    showModalMsg('Invalid JSON or Sync format: ' + err.message, '#fb7185');
+    console.error('parseAndApplySync error:', err);
+  }
+  return false;
+}
+
+function importJsonData() {
+  const inputArea = document.getElementById('json-import-area');
+  if (!inputArea || !inputArea.value.trim()) {
+    showModalMsg('Please paste JSON or sync code first.', '#fbbf24');
+    return;
+  }
+  const success = parseAndApplySync(inputArea.value);
+  if (success) {
+    showModalMsg('✓ Progress Restored Successfully!', '#34d399');
+    inputArea.value = '';
+  } else {
+    showModalMsg('Could not find valid task data in the input.', '#fb7185');
   }
 }
 
@@ -1692,11 +1704,27 @@ function showModalMsg(txt, color) {
   }
 }
 
+function checkUrlSync() {
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const syncData = params.get('sync');
+    if (syncData) {
+      const success = parseAndApplySync(syncData);
+      if (success) {
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }
+    }
+  } catch (err) {
+    console.error('checkUrlSync error:', err);
+  }
+}
+
 // ─────────────────────────────────────────
 // G. INITIALIZATION
 // ─────────────────────────────────────────
 window.addEventListener('DOMContentLoaded', () => {
   loadState();
+  checkUrlSync();
 
   // Populate Dropdown with 30 Days
   const select = document.getElementById('day-select-dropdown');
