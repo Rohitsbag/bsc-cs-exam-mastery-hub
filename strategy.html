@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Strategic Gameplan 2026–2027 · Rohit Bag</title>
+<meta name="theme-color" content="#09090b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+  :root {
+    --bg-canvas: #09090b;
+    --bg-surface: #0c0c0e;
+    --bg-surface-raised: #141418;
+    --bg-surface-recessed: #050507;
+    --border-subtle: #1f1f23;
+    --border-strong: #27272a;
+    --text-primary: #fafafa;
+    --text-secondary: #a1a1aa;
+    --text-muted: #71717a;
+    --accent-emerald: #10b981;
+    --accent-amber: #f59e0b;
+    --accent-blue: #3b82f6;
+    --accent-purple: #a855f7;
+    --accent-rose: #f43f5e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  body {
+    background: var(--bg-canvas);
+    color: var(--text-primary);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    min-height: 100vh;
+    padding-bottom: 90px;
+  }
+
+  .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+  /* APP HEADER */
+  .app-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(9, 9, 11, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .user-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: #18181b;
+    border: 1px solid var(--border-strong);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 11px;
+    color: #e4e4e7;
+  }
+
+  /* SEGMENTED TAB SWITCHER */
+  .seg-nav-wrap {
+    padding: 12px 16px;
+    background: var(--bg-canvas);
+    position: sticky;
+    top: 53px;
+    z-index: 40;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .seg-nav {
+    display: flex;
+    background: var(--bg-surface-recessed);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    padding: 3px;
+    gap: 3px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .seg-nav::-webkit-scrollbar { display: none; }
+  .seg-btn {
+    flex: 1;
+    min-width: fit-content;
+    white-space: nowrap;
+    padding: 7px 12px;
+    border-radius: 7px;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .seg-btn.active {
+    background: var(--bg-surface-raised);
+    color: var(--text-primary);
+    border: 1px solid var(--border-strong);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+  }
+
+  /* CARDS & SURFACES */
+  .container { max-width: 720px; margin: 0 auto; padding: 16px; }
+  .card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 14px;
+    position: relative;
+  }
+  .card-highlight {
+    background: linear-gradient(145deg, #101c14 0%, #0c0c0e 100%);
+    border: 1px solid rgba(16, 185, 129, 0.35);
+  }
+  .card-amber {
+    background: linear-gradient(145deg, #181305 0%, #0c0c0e 100%);
+    border: 1px solid rgba(245, 158, 11, 0.35);
+  }
+  .card-blue {
+    background: linear-gradient(145deg, #0a1120 0%, #0c0c0e 100%);
+    border: 1px solid rgba(59, 130, 246, 0.35);
+  }
+  .card-purple {
+    background: linear-gradient(145deg, #150a24 0%, #0c0c0e 100%);
+    border: 1px solid rgba(168, 85, 247, 0.35);
+  }
+
+  /* PILLS & TAGS */
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+  .tag-green { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+  .tag-amber { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+  .tag-blue { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+  .tag-purple { background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
+  .tag-rose { background: rgba(244, 63, 94, 0.15); color: #fb7185; border: 1px solid rgba(244, 63, 94, 0.3); }
+  .tag-zinc { background: #18181b; color: #a1a1aa; border: 1px solid var(--border-subtle); }
+
+  /* COMPARISON GRID */
+  .split-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  @media (max-width: 600px) {
+    .split-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ACCORDION */
+  details {
+    border-radius: 8px;
+    transition: background 0.15s ease;
+  }
+  details summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+  }
+  details summary::-webkit-details-marker { display: none; }
+  details[open] .chevron { transform: rotate(180deg); }
+  .chevron { transition: transform 0.2s ease; width: 15px; height: 15px; color: var(--text-muted); }
+
+  /* BOTTOM NAV DOCK */
+  .bottom-dock {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(12, 12, 14, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid var(--border-subtle);
+    padding: 8px 16px 18px;
+    z-index: 100;
+  }
+  .dock-inner {
+    display: flex;
+    justify-content: space-around;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .dock-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 10px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 8px;
+    transition: all 0.15s ease;
+  }
+  .dock-btn.active {
+    color: var(--text-primary);
+    background: var(--bg-surface-raised);
+    border: 1px solid var(--border-strong);
+  }
+
+  .stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 12px;
+  }
+  .stat-row:last-child { border-bottom: none; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     1. APP HEADER
+═══════════════════════════════════════ -->
+<header class="app-header">
+  <div class="user-badge">
+    <div class="avatar">RB</div>
+    <div>
+      <div style="font-size:13px;font-weight:700;color:#fafafa;display:flex;align-items:center;gap:6px">
+        Rohit Bag
+        <span style="width:6px;height:6px;border-radius:50%;background:#10b981;display:inline-block"></span>
+      </div>
+      <div style="font-size:10px;color:var(--text-muted)">B.Sc CS · NEP 2020 · Nallasopara</div>
+    </div>
+  </div>
+  <div style="display:flex;gap:6px;align-items:center">
+    <a href="index.html" style="text-decoration:none;font-size:11px;color:var(--text-secondary);background:var(--bg-surface-raised);border:1px solid var(--border-strong);padding:5px 9px;border-radius:6px;font-weight:600;display:inline-flex;align-items:center;gap:4px">
+      <i data-lucide="book-open" style="width:13px;height:13px"></i>
+      <span>Study Lab</span>
+    </a>
+    <a href="dossier.html" style="text-decoration:none;font-size:11px;color:var(--text-secondary);background:var(--bg-surface-raised);border:1px solid var(--border-strong);padding:5px 9px;border-radius:6px;font-weight:600;display:inline-flex;align-items:center;gap:4px">
+      <i data-lucide="wallet" style="width:13px;height:13px"></i>
+      <span>Dossier</span>
+    </a>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════
+     2. SEGMENTED NAVIGATION
+═══════════════════════════════════════ -->
+<div class="seg-nav-wrap">
+  <div class="seg-nav">
+    <button class="seg-btn active" onclick="switchView('decision')">
+      <i data-lucide="split" style="width:13px;height:13px"></i>
+      <span>Decision Matrix</span>
+    </button>
+    <button class="seg-btn" onclick="switchView('financial')">
+      <i data-lucide="shield-check" style="width:13px;height:13px"></i>
+      <span>Financial &amp; Fees</span>
+    </button>
+    <button class="seg-btn" onclick="switchView('commute')">
+      <i data-lucide="map-pin" style="width:13px;height:13px"></i>
+      <span>College Transfer</span>
+    </button>
+    <button class="seg-btn" onclick="switchView('timeline')">
+      <i data-lucide="calendar" style="width:13px;height:13px"></i>
+      <span>Master Timeline</span>
+    </button>
+    <button class="seg-btn" onclick="switchView('doubts')">
+      <i data-lucide="help-circle" style="width:13px;height:13px"></i>
+      <span>360° Doubts Vault</span>
+    </button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     MAIN CONTENT VIEWS
+═══════════════════════════════════════ -->
+<main class="container">
+
+  <!-- ───────────────────────────────────────
+       VIEW 1: DECISION MATRIX
+  ─────────────────────────────────────── -->
+  <div id="view-decision" class="tab-view">
+    
+    <!-- Hero Alert / Context -->
+    <div class="card card-highlight" style="margin-bottom:14px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+        <div>
+          <span class="tag tag-green">Strategic Pivot · 10 Sept 2026</span>
+          <div style="font-size:16px;font-weight:900;color:#fff;margin-top:4px">The Split-Session Execution Strategy</div>
+        </div>
+        <div style="text-align:right">
+          <div class="font-mono" style="font-size:16px;font-weight:900;color:#34d399">20 Days</div>
+          <div style="font-size:10px;color:var(--text-muted)">Until Oct Exams</div>
+        </div>
+      </div>
+      <div style="font-size:12px;color:#d1fae5;line-height:1.6">
+        Instead of cramming <strong>16 technical subjects</strong> in 20 days and risking repeat failures, you split the load: master <strong>Semester 1 (8 subjects) now in October</strong>, and clear <strong>Semester 2 in March 2027</strong>. Result: zero burnout, maximum marks, business continuity, and a 100% clean college transfer in June 2027.
+      </div>
+    </div>
+
+    <!-- Comparative Grid -->
+    <div class="split-grid" style="margin-bottom:14px">
+      
+      <!-- Option A (Risky Cramming) -->
+      <div class="card" style="border-color:rgba(244,63,94,0.3);background:#12080a">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+          <span class="tag tag-rose">Option A: Dual Cramming</span>
+          <span style="font-size:10px;color:#fda4af;font-weight:700">High Risk</span>
+        </div>
+        <div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:6px">Attempt All 16 Papers in Oct</div>
+        <div style="display:flex;flex-direction:column;gap:8px;font-size:11px;color:#cbd5e1;line-height:1.5">
+          <div>• <strong>Time Budget:</strong> Just 1.2 days per subject. High mental fatigue.</div>
+          <div>• <strong>Subject Collision:</strong> DAA, C++ OOP, Stats clashing with DBMS, Digital Systems, Python.</div>
+          <div>• <strong>Passing Risk:</strong> High chance of missing 40% threshold (12/30) in 3–4 subjects again.</div>
+          <div>• <strong>Business Impact:</strong> "Parishram" completely frozen for 30 days of panic study.</div>
+          <div>• <strong>Outcome:</strong> Exhaustion, repeated backlogs, zero peace of mind.</div>
+        </div>
+        <div style="margin-top:12px;padding:6px;border-radius:6px;background:rgba(244,63,94,0.1);border:1px solid rgba(244,63,94,0.25);text-align:center;font-size:11px;font-weight:700;color:#fb7185">
+          NOT RECOMMENDED
+        </div>
+      </div>
+
+      <!-- Option B (The Winner) -->
+      <div class="card card-highlight">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+          <span class="tag tag-green">Option B: Split Strategy ⭐</span>
+          <span style="font-size:10px;color:#34d399;font-weight:700">Recommended</span>
+        </div>
+        <div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:6px">Sem 1 in Oct · Sem 2 in March</div>
+        <div style="display:flex;flex-direction:column;gap:8px;font-size:11px;color:#d1fae5;line-height:1.5">
+          <div>• <strong>Time Budget:</strong> A relaxed 2.5 days per subject for only 8 papers.</div>
+          <div>• <strong>Mastery:</strong> Target 20–25+ Distinction marks using the 5/5 MU Evaluator formula.</div>
+          <div>• <strong>Pass Guarantee:</strong> 95%+ probability of wiping Sem 1 completely clean.</div>
+          <div>• <strong>Business Growth:</strong> Full freedom from Nov 2026 to Feb 2027 to scale business.</div>
+          <div>• <strong>Clean Transfer:</strong> All-Clear First Year result ready by May 2027 for June transfer.</div>
+        </div>
+        <div style="margin-top:12px;padding:6px;border-radius:6px;background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.3);text-align:center;font-size:11px;font-weight:800;color:#34d399">
+          OFFICIAL RECOMMENDED PATH
+        </div>
+      </div>
+
+    </div>
+
+    <!-- The 4 Core Benefits of Option B -->
+    <div class="card">
+      <div style="font-size:11px;font-weight:800;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:12px">
+        Why Option B is a Tactical Masterstroke
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;gap:10px;align-items:flex-start">
+          <div style="width:24px;height:24px;border-radius:6px;background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.3);color:#34d399;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0">1</div>
+          <div>
+            <div style="font-size:13px;font-weight:700;color:#fff">Cognitive Focus: 8 Papers Instead of 16</div>
+            <div style="font-size:11px;color:var(--text-secondary);margin-top:2px">Your brain isn't stretched thin across two entirely different semesters. You focus purely on the foundational architecture of Sem 1.</div>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:10px;align-items:flex-start">
+          <div style="width:24px;height:24px;border-radius:6px;background:rgba(59,130,246,0.15);border:1px solid rgba(59,130,246,0.3);color:#60a5fa;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0">2</div>
+          <div>
+            <div style="font-size:13px;font-weight:700;color:#fff">Permanent Internal Marks Security</div>
+            <div style="font-size:11px;color:var(--text-secondary);margin-top:2px">Under Mumbai University NEP carry-forward rules, internal marks (CIA) you passed in both semesters are locked forever. Skipping Sem 2 in Oct only leaves an "AB" placeholder with zero penalty.</div>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:10px;align-items:flex-start">
+          <div style="width:24px;height:24px;border-radius:6px;background:rgba(245,158,11,0.15);border:1px solid rgba(245,158,11,0.3);color:#fbbf24;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0">3</div>
+          <div>
+            <div style="font-size:13px;font-weight:700;color:#fff">4 Months of Uninterrupted Business Time</div>
+            <div style="font-size:11px;color:var(--text-secondary);margin-top:2px">From November 1, 2026 to February 28, 2027, you have zero college attendance stress. You can work 8+ hours a day on your business "Parishram" and client projects.</div>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:10px;align-items:flex-start">
+          <div style="width:24px;height:24px;border-radius:6px;background:rgba(168,85,247,0.15);border:1px solid rgba(168,85,247,0.3);color:#c084fc;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0">4</div>
+          <div>
+            <div style="font-size:13px;font-weight:700;color:#fff">Cleanest Possible College Transfer in June 2027</div>
+            <div style="font-size:11px;color:var(--text-secondary);margin-top:2px">Clearing Sem 2 in March 2027 gives you an All-Clear F.Y. Marksheet by May. You transfer to a college 15 minutes from home in Vasai/Virar, saving 75+ hours of commute every month.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ───────────────────────────────────────
+       VIEW 2: FINANCIAL & SCHOLARSHIP AUDIT
+  ─────────────────────────────────────── -->
+  <div id="view-financial" class="tab-view" style="display:none">
+
+    <!-- The ₹1,257 Truth Card -->
+    <div class="card card-amber">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <span class="tag tag-amber">Fee Audit · Circular Exam/Fees/15/2018</span>
+        <span class="font-mono" style="font-size:14px;font-weight:800;color:#fbbf24">₹1,257 Paid</span>
+      </div>
+      <div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:4px">The ₹1,257 Semester 2 Fee: Is It Refundable?</div>
+      <div style="font-size:12px;color:#fef9c3;line-height:1.6">
+        <strong>Strict Rule:</strong> University and college exam fees are strictly <strong>non-refundable and non-transferable</strong> once paid. If you do not write the Sem 2 exam in October, you will not receive a cash refund, and you will pay ₹1,257 again when re-registering for the March 2027 session.
+      </div>
+      <div style="margin-top:10px;padding:8px 10px;border-radius:8px;background:rgba(0,0,0,0.4);border:1px solid rgba(245,158,11,0.25);font-size:11px;color:#fef08a">
+        💡 <strong>The Strategic Perspective:</strong> View that ₹1,257 as a cheap <strong>"Mental Health &amp; Focus Insurance"</strong>. Sacrificing ₹1,257 prevents you from failing 4 subjects, burning out, and protects your father from paying ₹35,000+ S.Y. college fees prematurely!
+      </div>
+    </div>
+
+    <!-- Dossier Schemes Impact Matrix -->
+    <div class="card">
+      <div style="font-size:11px;font-weight:800;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:12px">
+        Dossier Schemes Impact Analysis
+      </div>
+
+      <!-- Scheme 1: MahaDBT -->
+      <div style="padding:10px 0;border-bottom:1px solid var(--border-subtle)">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+          <div style="font-weight:700;color:#fff">1. MahaDBT (50% State Tuition Waiver)</div>
+          <span class="tag tag-green">Zero Loss</span>
+        </div>
+        <div style="font-size:11px;color:var(--text-secondary);line-height:1.5">
+          • <strong>Mechanism:</strong> MahaDBT reimburses 50% of the actual tuition fees paid to a college for the academic year you are enrolled in.<br>
+          • <strong>Your Status:</strong> By deferring S.Y. B.Sc to June 2027, you pay ₹0 tuition fees now. When you take admission in June 2027 at your local college, you apply for MahaDBT and claim your full 50% refund.
+        </div>
+      </div>
+
+      <!-- Scheme 2: Reliance Foundation -->
+      <div style="padding:10px 0;border-bottom:1px solid var(--border-subtle)">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+          <div style="font-weight:700;color:#fff">2. Reliance Foundation UG Grant (Up to ₹2L)</div>
+          <span class="tag tag-amber">100% Active</span>
+        </div>
+        <div style="font-size:11px;color:var(--text-secondary);line-height:1.5">
+          • <strong>Eligibility:</strong> Based strictly on your 12th Board marks (64.17% &gt; 60%) and family income (&lt;₹2.5L priority tier; your verified cert is ₹84k).<br>
+          • <strong>Aptitude Test:</strong> 60-min MCQ test taken from your home laptop in December 2026. Target 42+/60.<br>
+          • <strong>Payout:</strong> Up to ₹2,00,000 direct bank transfer starting March–April 2027.
+        </div>
+      </div>
+
+      <!-- Scheme 3: SBI Loan -->
+      <div style="padding:10px 0">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+          <div style="font-weight:700;color:#fff">3. SBI Vidya Lakshmi 0% Education Loan</div>
+          <span class="tag tag-blue">Paused / ₹0 Debt</span>
+        </div>
+        <div style="font-size:11px;color:var(--text-secondary);line-height:1.5">
+          • <strong>Status:</strong> There is zero reason to draw a loan now when no S.Y. tuition fees are due.<br>
+          • <strong>Future Move:</strong> In June 2027, you can easily activate the SBI loan for your new college tuition if desired, keeping out-of-pocket costs at zero.
+        </div>
+      </div>
+    </div>
+
+    <!-- Family Cashflow Summary -->
+    <div class="card card-highlight">
+      <div style="font-size:11px;font-weight:800;color:#34d399;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px">
+        Family Immediate Cashflow Impact
+      </div>
+      <div class="stat-row">
+        <span style="color:var(--text-secondary)">Immediate S.Y. Tuition Fees to R.D. National:</span>
+        <span class="font-mono" style="font-weight:800;color:#34d399">₹0 (Dad saves ₹35,000+ now)</span>
+      </div>
+      <div class="stat-row">
+        <span style="color:var(--text-secondary)">Sunk Exam Fees (CIMS Receipts #85 &amp; #86):</span>
+        <span class="font-mono" style="font-weight:700;color:#fbbf24">₹2,514 (Already paid on 28 Aug)</span>
+      </div>
+      <div class="stat-row">
+        <span style="color:var(--text-secondary)">Repeat Exam Fee for Sem 2 in March 2027:</span>
+        <span class="font-mono" style="font-weight:700;color:#cbd5e1">₹1,257</span>
+      </div>
+      <div class="stat-row">
+        <span style="color:var(--text-secondary)">Net Financial Inflow Potential (Reliance + MahaDBT):</span>
+        <span class="font-mono" style="font-weight:900;color:#34d399">+₹2,52,500</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ───────────────────────────────────────
+       VIEW 3: COLLEGE TRANSFER & COMMUTE ROI
+  ─────────────────────────────────────── -->
+  <div id="view-commute" class="tab-view" style="display:none">
+
+    <!-- The Commute Nightmare vs Relief -->
+    <div class="card">
+      <div style="font-size:11px;font-weight:800;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:10px">
+        The Commute Reality: Nallasopara to Bandra West
+      </div>
+      <div class="split-grid" style="margin-bottom:12px">
+        <div style="background:var(--bg-surface-recessed);border:1px solid var(--border-subtle);border-radius:8px;padding:12px">
+          <div style="font-size:10px;color:#fb7185;font-weight:800;text-transform:uppercase">Current Route (R.D. National)</div>
+          <div class="font-mono" style="font-size:18px;font-weight:900;color:#fff;margin:4px 0">3.5 – 4.0 Hours</div>
+          <div style="font-size:10px;color:var(--text-muted)">Daily train commute · 50 km each way · Physical &amp; mental drain</div>
+        </div>
+        <div style="background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.25);border-radius:8px;padding:12px">
+          <div style="font-size:10px;color:#34d399;font-weight:800;text-transform:uppercase">Transferred Route (Vasai / Virar)</div>
+          <div class="font-mono" style="font-size:18px;font-weight:900;color:#34d399;margin:4px 0">20 – 30 Mins</div>
+          <div style="font-size:10px;color:#a7f3d0">Saves 75+ hours every month for your business &amp; coding</div>
+        </div>
+      </div>
+      <div style="font-size:12px;color:var(--text-secondary);line-height:1.6">
+        Traveling 4 hours a day on the Western Line leaves you exhausted, killing your ability to write code, serve clients, or scale your startup. Moving to a college in Vasai or Virar in June 2027 gives you back **over 900 hours of peak productive life per year**.
+      </div>
+    </div>
+
+    <!-- Mumbai University Transfer Legal Mechanics -->
+    <div class="card card-blue">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <span class="tag tag-blue">MU Ordinance O.5042 · Inter-Collegiate Transfer</span>
+        <span style="font-size:10px;color:#93c5fd;font-weight:700">June 2027 Window</span>
+      </div>
+      <div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:6px">How College Transfer Officially Works</div>
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:11px;color:#cbd5e1;line-height:1.5">
+        <div>1. <strong>Transfer Window:</strong> Inter-collegiate transfers within Mumbai University happen <strong>strictly between academic years (June–July)</strong> for admission into S.Y. B.Sc.</div>
+        <div>2. <strong>Prerequisite:</strong> Both colleges are affiliated with Mumbai University. R.D. National issues a No Objection Certificate (NOC) and Transfer Certificate (TC).</div>
+        <div>3. <strong>The "All-Clear" Edge:</strong> When you clear Sem 1 in Oct and Sem 2 in March, your May 2027 marksheet shows <strong>First Year 100% Passed</strong>. Colleges accept all-clear transfer students instantly.</div>
+        <div>4. <strong>Distance Clause:</strong> University regulations officially recognize long-distance travel as valid ground for transfer. Nallasopara to Bandra (50 km) is an open-and-shut case.</div>
+      </div>
+    </div>
+
+    <!-- Candidate Colleges Near Home -->
+    <div class="card">
+      <div style="font-size:11px;font-weight:800;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:10px">
+        Target Transfer Colleges (15–20 Mins from Nallasopara)
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="background:var(--bg-surface-recessed);border:1px solid var(--border-subtle);border-radius:8px;padding:10px;display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div style="font-size:12px;font-weight:700;color:#fff">Vartak College (Vasai West)</div>
+            <div style="font-size:10px;color:var(--text-muted)">Top-tier MU college · 1 station away · High CS reputation</div>
+          </div>
+          <span class="tag tag-green">#1 Target</span>
+        </div>
+        <div style="background:var(--bg-surface-recessed);border:1px solid var(--border-subtle);border-radius:8px;padding:10px;display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div style="font-size:12px;font-weight:700;color:#fff">Viva College of Arts, Commerce &amp; Science (Virar West)</div>
+            <div style="font-size:10px;color:var(--text-muted)">Massive CS batch size · Easy seat vacancy for S.Y. transfer</div>
+          </div>
+          <span class="tag tag-blue">#2 Target</span>
+        </div>
+        <div style="background:var(--bg-surface-recessed);border:1px solid var(--border-subtle);border-radius:8px;padding:10px;display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div style="font-size:12px;font-weight:700;color:#fff">Abhinav College (Bhayandar East)</div>
+            <div style="font-size:10px;color:var(--text-muted)">Good backup · 20 mins local train from Nallasopara</div>
+          </div>
+          <span class="tag tag-zinc">Backup</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ───────────────────────────────────────
+       VIEW 4: MASTER TIMELINE (SEPT 2026 - JUNE 2027)
+  ─────────────────────────────────────── -->
+  <div id="view-timeline" class="tab-view" style="display:none">
+
+    <div class="card">
+      <div style="font-size:11px;font-weight:800;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:14px">
+        The 6-Phase Strategic Execution Roadmap
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:14px;position:relative">
+        
+        <!-- Phase 1 -->
+        <div style="display:flex;gap:12px">
+          <div style="display:flex;flex-direction:column;align-items:center">
+            <div style="width:28px;height:28px;border-radius:50%;background:rgba(16,185,129,0.2);border:1px solid #10b981;color:#34d399;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:11px">1</div>
+            <div style="width:2px;height:100%;background:var(--border-subtle);margin-top:4px"></div>
+          </div>
+          <div style="padding-bottom:14px">
+            <div style="display:flex;align-items:center;gap:6px">
+              <span class="tag tag-green">CURRENT · SEPT 10 – SEPT 30, 2026</span>
+            </div>
+            <div style="font-size:13px;font-weight:700;color:#fff;margin:3px 0">Semester 1 Laser Focus (8 Papers)</div>
+            <div style="font-size:11px;color:var(--text-secondary);line-height:1.5">
+              Submit Sem 1 Samarth form (Ref #1368800 done!) &amp; drop off printouts by Sept 12. Spend 2.5 days per subject on DAA, Digital Systems, DBMS, Python, Linux, Management, IPR, and IKS.
+            </div>
+          </div>
+        </div>
+
+        <!-- Phase 2 -->
+        <div style="display:flex;gap:12px">
+          <div style="display:flex;flex-direction:column;align-items:center">
+            <div style="width:28px;height:28px;border-radius:50%;background:rgba(59,130,246,0.2);border:1px solid #3b82f6;color:#60a5fa;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:11px">2</div>
+            <div style="width:2px;height:100%;background:var(--border-subtle);margin-top:4px"></div>
+          </div>
+          <div style="padding-bottom:14px">
+            <div style="display:flex;align-items:center;gap:6px">
+              <span class="tag tag-blue">OCTOBER 2026</span>
+            </div>
+            <div style="font-size:13px;font-weight:700;color:#fff;margin:3px 0">Write Semester 1 Exams · Skip Sem 2</div>
+            <div style="font-size:11px;color:var(--text-secondary);line-height:1.5">
+              Write all 8 Sem 1 papers using the 5/5 Exam Formula. Lock Grade O/Distinction. For Sem 2, don't show up (marked AB). Submit Reliance Foundation application online.
+            </div>
+          </div>
+        </div>
+
+        <!-- Phase 3 -->
+        <div style="display:flex;gap:12px">
+          <div style="display:flex;flex-direction:column;align-items:center">
+            <div style="width:28px;height:28px;border-radius:50%;background:rgba(245,158,11,0.2);border:1px solid #f59e0b;color:#fbbf24;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:11px">3</div>
+            <div style="width:2px;height:100%;background:var(--border-subtle);margin-top:4px"></div>
+          </div>
+          <div style="padding-bottom:14px">
+            <div style="display:flex;align-items:center;gap:6px">
+              <span class="tag tag-amber">NOV 2026 – FEB 2027 (4 MONTHS)</span>
+            </div>
+            <div style="font-size:13px;font-weight:700;color:#fff;margin:3px 0">The Golden Business Window ("Parishram")</div>
+            <div style="font-size:11px;color:var(--text-secondary);line-height:1.5">
+              Zero college travel or attendance pressure. Work full-time with your co-founder to generate revenue. Take the 60-min Reliance Aptitude Test from home in December 2026.
+            </div>
+          </div>
+        </div>
+
+        <!-- Phase 4 -->
+        <div style="display:flex;gap:12px">
+          <div style="display:flex;flex-direction:column;align-items:center">
+            <div style="width:28px;height:28px;border-radius:50%;background:rgba(168,85,247,0.2);border:1px solid #a855f7;color:#c084fc;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:11px">4</div>
+            <div style="width:2px;height:100%;background:var(--border-subtle);margin-top:4px"></div>
+          </div>
+          <div style="padding-bottom:14px">
+            <div style="display:flex;align-items:center;gap:6px">
+              <span class="tag tag-purple">MARCH – APRIL 2027</span>
+            </div>
+            <div style="font-size:13px;font-weight:700;color:#fff;margin:3px 0">Semester 2 ATKT Exams (Summer Session)</div>
+            <div style="font-size:11px;color:var(--text-secondary);line-height:1.5">
+              Register for Sem 2 ATKT on CIMS/Samarth (pay ₹1,257). Study in February and clear all 8 papers of Semester 2 with flying colors.
+            </div>
+          </div>
+        </div>
+
+        <!-- Phase 5 -->
+        <div style="display:flex;gap:12px">
+          <div style="display:flex;flex-direction:column;align-items:center">
+            <div style="width:28px;height:28px;border-radius:50%;background:rgba(16,185,129,0.2);border:1px solid #10b981;color:#34d399;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:11px">5</div>
+            <div style="width:2px;height:100%;background:var(--border-subtle);margin-top:4px"></div>
+          </div>
+          <div style="padding-bottom:14px">
+            <div style="display:flex;align-items:center;gap:6px">
+              <span class="tag tag-green">MAY 2027</span>
+            </div>
+            <div style="font-size:13px;font-weight:700;color:#fff;margin:3px 0">First Year All-Clear Marksheet Issued</div>
+            <div style="font-size:11px;color:var(--text-secondary);line-height:1.5">
+              Results announced: All backlogs cleared! Official F.Y. Marksheet shows "PASSED". Collect NOC and TC from R.D. National College exam cell.
+            </div>
+          </div>
+        </div>
+
+        <!-- Phase 6 -->
+        <div style="display:flex;gap:12px">
+          <div style="display:flex;flex-direction:column;align-items:center">
+            <div style="width:28px;height:28px;border-radius:50%;background:rgba(59,130,246,0.2);border:1px solid #3b82f6;color:#60a5fa;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:11px">6</div>
+          </div>
+          <div>
+            <div style="display:flex;align-items:center;gap:6px">
+              <span class="tag tag-blue">JUNE 2027</span>
+            </div>
+            <div style="font-size:13px;font-weight:700;color:#fff;margin:3px 0">Fresh S.Y. B.Sc Admission in Vasai/Virar</div>
+            <div style="font-size:11px;color:var(--text-secondary);line-height:1.5">
+              Join your new college 20 minutes from home. Apply for MahaDBT 50% tuition waiver. Clean slate, zero backlogs, high GPA, flourishing business!
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ───────────────────────────────────────
+       VIEW 5: 360° DOUBTS & OBJECTIONS VAULT
+  ─────────────────────────────────────── -->
+  <div id="view-doubts" class="tab-view" style="display:none">
+
+    <!-- Category 1: Rohit's Doubts -->
+    <div class="card" style="border-left:3px solid #10b981">
+      <div style="font-size:11px;font-weight:800;color:#34d399;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px">
+        1. Academic &amp; University Inquiries (Rohit's Doubts)
+      </div>
+
+      <details style="border-bottom:1px solid var(--border-subtle);padding-bottom:8px;margin-bottom:8px">
+        <summary>
+          <span style="font-weight:700;color:#e4e4e7">If I don't write Sem 2 in October, does Mumbai University fail or penalize me?</span>
+          <i data-lucide="chevron-down" class="chevron"></i>
+        </summary>
+        <div style="font-size:11px;color:var(--text-secondary);line-height:1.6;margin-top:6px">
+          <strong>No.</strong> In Mumbai University, when an applied candidate skips an examination paper, the university marksheet simply records <strong>`AB` (Absent)</strong>. It is not an unfair means violation, disciplinary penalty, or permanent demerit. Under the university's carry-forward ordinance, your passed internal marks (CIA) remain completely safe and are carried forward to the March 2027 attempt automatically.
+        </div>
+      </details>
+
+      <details style="border-bottom:1px solid var(--border-subtle);padding-bottom:8px;margin-bottom:8px">
+        <summary>
+          <span style="font-weight:700;color:#e4e4e7">Will my final degree certificate state "Passed in ATKT" or have a red mark?</span>
+          <i data-lucide="chevron-down" class="chevron"></i>
+        </summary>
+        <div style="font-size:11px;color:var(--text-secondary);line-height:1.6;margin-top:6px">
+          <strong>Never.</strong> Mumbai University degree certificates (awarded upon graduation) state: *"Bachelor of Science (Computer Science) - Awarded with Grade [O/A+] / First Class with Distinction"*. Degree certificates never state how many attempts you took or print the word "ATKT". Only the internal semester grade-card shows the month/year of passing that specific unit.
+        </div>
+      </details>
+
+      <details>
+        <summary>
+          <span style="font-weight:700;color:#e4e4e7">What if I change my mind in October and want to write a Sem 2 paper?</span>
+          <i data-lucide="chevron-down" class="chevron"></i>
+        </summary>
+        <div style="font-size:11px;color:var(--text-secondary);line-height:1.6;margin-top:6px">
+          Because you already paid on CIMS (Receipt #86) and submitted your Samarth form, you will have the official hall ticket generated for Sem 2. If you feel like sitting for an easy paper (like Web Technologies or Hindi) without stress, you can literally walk into the hall and write it! If you don't go, it's just marked AB. You hold 100% optionality.
+        </div>
+      </details>
+    </div>
+
+    <!-- Category 2: Co-Founder & Business Doubts -->
+    <div class="card" style="border-left:3px solid #f59e0b">
+      <div style="font-size:11px;font-weight:800;color:#fbbf24;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px">
+        2. Business &amp; Co-Founder Objections ("Parishram")
+      </div>
+
+      <details style="border-bottom:1px solid var(--border-subtle);padding-bottom:8px;margin-bottom:8px">
+        <summary>
+          <span style="font-weight:700;color:#e4e4e7">Will Rohit disappear from business operations for months due to college?</span>
+          <i data-lucide="chevron-down" class="chevron"></i>
+        </summary>
+        <div style="font-size:11px;color:var(--text-secondary);line-height:1.6;margin-top:6px">
+          <strong>The exact opposite!</strong> Under this strategy, Rohit only spends 20 days (Sept 10–30) studying for Sem 1. Once October exams conclude, Rohit has **four solid, uninterrupted months (November, December, January, February)** with zero college lectures or attendance requirements. He can work 8+ hours a day on "Parishram" sprint cycles.
+        </div>
+      </details>
+
+      <details style="border-bottom:1px solid var(--border-subtle);padding-bottom:8px;margin-bottom:8px">
+        <summary>
+          <span style="font-weight:700;color:#e4e4e7">Does having ATKT or deferring S.Y. affect company registration, GST, or startup funding?</span>
+          <i data-lucide="chevron-down" class="chevron"></i>
+        </summary>
+        <div style="font-size:11px;color:var(--text-secondary);line-height:1.6;margin-top:6px">
+          <strong>Zero interference.</strong> Indian corporate law (MCA / Ministry of Corporate Affairs) allows any Indian citizen aged 18+ with a PAN card to serve as a Director, Partner, or Proprietor. College academic records, backlogs, or ATKTs are 100% separated from company incorporation, GST registration, bank accounts, and startup investor equity.
+        </div>
+      </details>
+
+      <details>
+        <summary>
+          <span style="font-weight:700;color:#e4e4e7">How does eliminating the Bandra train commute benefit the company?</span>
+          <i data-lucide="chevron-down" class="chevron"></i>
+        </summary>
+        <div style="font-size:11px;color:var(--text-secondary);line-height:1.6;margin-top:6px">
+          The 4-hour daily roundtrip commute to Bandra was consuming **80 hours every month** and causing severe cognitive fatigue. In June 2027, transferring to a local college in Vasai/Virar saves those 80 hours/month permanently, keeping Rohit fresh to build software, close deals, and run daily operations.
+        </div>
+      </details>
+    </div>
+
+    <!-- Category 3: Parents & Family Doubts -->
+    <div class="card" style="border-left:3px solid #3b82f6">
+      <div style="font-size:11px;font-weight:800;color:#60a5fa;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px">
+        3. Family &amp; Parental Concerns (Dad &amp; Mom)
+      </div>
+
+      <details style="border-bottom:1px solid var(--border-subtle);padding-bottom:8px;margin-bottom:8px">
+        <summary>
+          <span style="font-weight:700;color:#e4e4e7">Are we "wasting" a year? What will relatives or society say?</span>
+          <i data-lucide="chevron-down" class="chevron"></i>
+        </summary>
+        <div style="font-size:11px;color:var(--text-secondary);line-height:1.6;margin-top:6px">
+          <strong>No year is wasted.</strong> In the tech and software industry, nobody cares which year you graduated — they care about your practical skills, portfolio, and GPA. Graduating in 2028 with a clean 8.5+ CGPA and an established business is vastly superior to barely scraping through with 16 backlogs and an empty resume.
+        </div>
+      </details>
+
+      <details style="border-bottom:1px solid var(--border-subtle);padding-bottom:8px;margin-bottom:8px">
+        <summary>
+          <span style="font-weight:700;color:#e4e4e7">Does Dad have to arrange ₹35,000–₹40,000 college fees right now?</span>
+          <i data-lucide="chevron-down" class="chevron"></i>
+        </summary>
+        <div style="font-size:11px;color:var(--text-secondary);line-height:1.6;margin-top:6px">
+          <strong>NO! That is the huge financial relief of this plan.</strong> Because you are deferring S.Y. admission to June 2027, your father does **not** need to pay the S.Y. tuition fees now. That hard-earned money stays safely in your family's bank account. In June 2027, MahaDBT will cover 50% of the tuition fee automatically!
+        </div>
+      </details>
+
+      <details>
+        <summary>
+          <span style="font-weight:700;color:#e4e4e7">Was the ₹1,257 paid on August 28 completely thrown away?</span>
+          <i data-lucide="chevron-down" class="chevron"></i>
+        </summary>
+        <div style="font-size:11px;color:var(--text-secondary);line-height:1.6;margin-top:6px">
+          Not at all. That ₹1,257 unlocked your official university registration and bought you complete legal standing in Mumbai University records. Spending ₹1,257 to protect a family savings of ₹35,000 and ensure guaranteed distinction in Sem 1 is the most cost-effective decision you can make.
+        </div>
+      </details>
+    </div>
+
+    <!-- Category 4: Administrative & Desk Logistics -->
+    <div class="card" style="border-left:3px solid #a855f7">
+      <div style="font-size:11px;font-weight:800;color:#c084fc;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px">
+        4. College Desk &amp; Administrative Logistics
+      </div>
+
+      <details style="border-bottom:1px solid var(--border-subtle);padding-bottom:8px;margin-bottom:8px">
+        <summary>
+          <span style="font-weight:700;color:#e4e4e7">Should I tell Ms. Avni Shah or the exam clerk right now that I might skip Sem 2?</span>
+          <i data-lucide="chevron-down" class="chevron"></i>
+        </summary>
+        <div style="font-size:11px;color:var(--text-secondary);line-height:1.6;margin-top:6px">
+          <strong>ABSOLUTELY NOT.</strong> Never volunteer your personal exam strategy to college clerks or teachers in advance. College staff deal in rigid administrative checkboxes: they just need your paid receipts and submitted Samarth printouts before Sept 12. Submit both forms as required. If you don't appear for Sem 2 in October, the exam hall attendant simply marks `AB` on the day of the exam. It is 100% automated and routine.
+        </div>
+      </details>
+
+      <details>
+        <summary>
+          <span style="font-weight:700;color:#e4e4e7">What exact documents do I hand over at R.D. National College before Sept 12?</span>
+          <i data-lucide="chevron-down" class="chevron"></i>
+        </summary>
+        <div style="font-size:11px;color:var(--text-secondary);line-height:1.6;margin-top:6px">
+          Take printouts of:<br>
+          1. <strong>University Samarth Sem 1 Form</strong> (Reference #1368800)<br>
+          2. <strong>University Samarth Sem 2 Form</strong><br>
+          3. <strong>CIMS / FeePayr Receipt #85</strong> (Sem 1 - ₹1,257 paid on 28 Aug)<br>
+          4. <strong>CIMS / FeePayr Receipt #86</strong> (Sem 2 - ₹1,257 paid on 28 Aug)<br>
+          Submit these at the Examination Section counter between 11:00 AM and 1:00 PM. Keep 1 xerox copy stamped for your personal records!
+        </div>
+      </details>
+    </div>
+
+  </div>
+
+</main>
+
+<!-- ═══════════════════════════════════════
+     FLOATING BOTTOM NAVIGATION DOCK
+═══════════════════════════════════════ -->
+<nav class="bottom-dock">
+  <div class="dock-inner">
+    <a href="index.html" class="dock-btn">
+      <i data-lucide="calendar" style="width:16px;height:16px"></i>
+      <span>Study Hub</span>
+    </a>
+    <a href="dossier.html" class="dock-btn">
+      <i data-lucide="landmark" style="width:16px;height:16px"></i>
+      <span>Dossier</span>
+    </a>
+    <a href="strategy.html" class="dock-btn active">
+      <i data-lucide="compass" style="width:16px;height:16px"></i>
+      <span>Gameplan</span>
+    </a>
+    <a href="https://mu.samarth.edu.in" target="_blank" rel="noopener noreferrer" class="dock-btn">
+      <i data-lucide="external-link" style="width:16px;height:16px"></i>
+      <span>Samarth</span>
+    </a>
+  </div>
+</nav>
+
+<script>
+  // Initialize Lucide Icons
+  lucide.createIcons();
+
+  // Tab View Switcher
+  function switchView(viewId) {
+    // Hide all views
+    document.querySelectorAll('.tab-view').forEach(v => v.style.display = 'none');
+    // Deactivate all buttons
+    document.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('active'));
+
+    // Show target view
+    const target = document.getElementById('view-' + viewId);
+    if (target) {
+      target.style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Activate button
+    const btn = Array.from(document.querySelectorAll('.seg-btn')).find(b => 
+      b.getAttribute('onclick').includes(viewId)
+    );
+    if (btn) btn.classList.add('active');
+  }
+</script>
+
+</body>
+</html>

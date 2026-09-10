@@ -1,8 +1,9 @@
-const CACHE_NAME = 'bsc-cs-mastery-v14';
+const CACHE_NAME = 'bsc-cs-mastery-v15';
 const STATIC_ASSETS = [
   './',
   './index.html',
   './dossier.html',
+  './strategy.html',
   './favicon.svg',
   './manifest.json',
   'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap',
