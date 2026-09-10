@@ -78,50 +78,7 @@
     color: #e4e4e7;
   }
 
-  /* SEGMENTED TAB SWITCHER */
-  .seg-nav-wrap {
-    padding: 12px 16px;
-    background: var(--bg-canvas);
-    position: sticky;
-    top: 53px;
-    z-index: 40;
-    border-bottom: 1px solid var(--border-subtle);
-  }
-  .seg-nav {
-    display: flex;
-    background: var(--bg-surface-recessed);
-    border: 1px solid var(--border-subtle);
-    border-radius: 10px;
-    padding: 3px;
-    gap: 3px;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-  .seg-nav::-webkit-scrollbar { display: none; }
-  .seg-btn {
-    flex: 1;
-    min-width: fit-content;
-    white-space: nowrap;
-    padding: 7px 12px;
-    border-radius: 7px;
-    border: none;
-    background: transparent;
-    color: var(--text-muted);
-    font-size: 11px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.15s ease;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-  }
-  .seg-btn.active {
-    background: var(--bg-surface-raised);
-    color: var(--text-primary);
-    border: 1px solid var(--border-strong);
-    box-shadow: 0 1px 4px rgba(0,0,0,0.4);
-  }
+
 
   /* CARDS & SURFACES */
   .container { max-width: 720px; margin: 0 auto; padding: 16px; }
@@ -202,36 +159,69 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(12, 12, 14, 0.92);
+    background: rgba(12, 12, 14, 0.95);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-top: 1px solid var(--border-subtle);
-    padding: 8px 16px 18px;
+    padding: 6px 10px calc(8px + env(safe-area-inset-bottom, 0px));
     z-index: 100;
   }
   .dock-inner {
     display: flex;
-    justify-content: space-around;
-    max-width: 480px;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 520px;
     margin: 0 auto;
+    gap: 4px;
   }
   .dock-btn {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3px;
-    text-decoration: none;
+    justify-content: center;
+    gap: 4px;
+    background: transparent;
+    border: 1px solid transparent;
+    cursor: pointer;
     color: var(--text-muted);
+    font-family: inherit;
     font-size: 10px;
     font-weight: 600;
-    padding: 6px 12px;
+    padding: 6px 4px;
     border-radius: 8px;
     transition: all 0.15s ease;
+    flex: 1;
+    min-width: 0;
+    min-height: 44px;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .dock-btn svg, .dock-btn i {
+    width: 17px;
+    height: 17px;
+    stroke-width: 1.75px;
+  }
+  .dock-btn span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 10px;
+    letter-spacing: -0.01em;
+  }
+  .dock-btn:hover {
+    color: var(--text-secondary);
+  }
+  .dock-btn:active {
+    transform: scale(0.95);
   }
   .dock-btn.active {
-    color: var(--text-primary);
+    color: #ffffff;
     background: var(--bg-surface-raised);
     border: 1px solid var(--border-strong);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+  }
+  .dock-btn.active svg, .dock-btn.active i {
+    color: #38bdf8;
   }
 
   .stat-row {
@@ -273,33 +263,7 @@
   </div>
 </header>
 
-<!-- ═══════════════════════════════════════
-     2. SEGMENTED NAVIGATION
-═══════════════════════════════════════ -->
-<div class="seg-nav-wrap">
-  <div class="seg-nav">
-    <button class="seg-btn active" onclick="switchView('decision')">
-      <i data-lucide="split" style="width:13px;height:13px"></i>
-      <span>Decision Matrix</span>
-    </button>
-    <button class="seg-btn" onclick="switchView('financial')">
-      <i data-lucide="shield-check" style="width:13px;height:13px"></i>
-      <span>Financial &amp; Fees</span>
-    </button>
-    <button class="seg-btn" onclick="switchView('commute')">
-      <i data-lucide="map-pin" style="width:13px;height:13px"></i>
-      <span>College Transfer</span>
-    </button>
-    <button class="seg-btn" onclick="switchView('timeline')">
-      <i data-lucide="calendar" style="width:13px;height:13px"></i>
-      <span>Master Timeline</span>
-    </button>
-    <button class="seg-btn" onclick="switchView('doubts')">
-      <i data-lucide="help-circle" style="width:13px;height:13px"></i>
-      <span>360° Doubts Vault</span>
-    </button>
-  </div>
-</div>
+
 
 <!-- ═══════════════════════════════════════
      MAIN CONTENT VIEWS
@@ -848,26 +812,30 @@
 </main>
 
 <!-- ═══════════════════════════════════════
-     FLOATING BOTTOM NAVIGATION DOCK
+     FLOATING BOTTOM NAVIGATION DOCK (SECTION TABS)
 ═══════════════════════════════════════ -->
-<nav class="bottom-dock">
+<nav class="bottom-dock" aria-label="Section Navigation">
   <div class="dock-inner">
-    <a href="index.html" class="dock-btn">
-      <i data-lucide="calendar" style="width:16px;height:16px"></i>
-      <span>Study Hub</span>
-    </a>
-    <a href="dossier.html" class="dock-btn">
-      <i data-lucide="landmark" style="width:16px;height:16px"></i>
-      <span>Dossier</span>
-    </a>
-    <a href="strategy.html" class="dock-btn active">
-      <i data-lucide="compass" style="width:16px;height:16px"></i>
-      <span>Gameplan</span>
-    </a>
-    <a href="https://mu.samarth.edu.in" target="_blank" rel="noopener noreferrer" class="dock-btn">
-      <i data-lucide="external-link" style="width:16px;height:16px"></i>
-      <span>Samarth</span>
-    </a>
+    <button id="dock-decision" class="dock-btn active" onclick="switchView('decision')">
+      <i data-lucide="split"></i>
+      <span>Decision</span>
+    </button>
+    <button id="dock-financial" class="dock-btn" onclick="switchView('financial')">
+      <i data-lucide="shield-check"></i>
+      <span>Finance</span>
+    </button>
+    <button id="dock-commute" class="dock-btn" onclick="switchView('commute')">
+      <i data-lucide="map-pin"></i>
+      <span>Transfer</span>
+    </button>
+    <button id="dock-timeline" class="dock-btn" onclick="switchView('timeline')">
+      <i data-lucide="calendar"></i>
+      <span>Timeline</span>
+    </button>
+    <button id="dock-doubts" class="dock-btn" onclick="switchView('doubts')">
+      <i data-lucide="help-circle"></i>
+      <span>Doubts</span>
+    </button>
   </div>
 </nav>
 
@@ -879,8 +847,8 @@
   function switchView(viewId) {
     // Hide all views
     document.querySelectorAll('.tab-view').forEach(v => v.style.display = 'none');
-    // Deactivate all buttons
-    document.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('active'));
+    // Deactivate all dock buttons
+    document.querySelectorAll('.dock-btn').forEach(b => b.classList.remove('active'));
 
     // Show target view
     const target = document.getElementById('view-' + viewId);
@@ -889,12 +857,20 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Activate button
-    const btn = Array.from(document.querySelectorAll('.seg-btn')).find(b => 
-      b.getAttribute('onclick').includes(viewId)
-    );
-    if (btn) btn.classList.add('active');
+    // Activate corresponding dock button
+    const activeBtn = document.getElementById('dock-' + viewId);
+    if (activeBtn) {
+      activeBtn.classList.add('active');
+    }
   }
+
+  // Handle URL hash on initial load
+  window.addEventListener('DOMContentLoaded', () => {
+    const hash = window.location.hash.replace('#', '');
+    if (['decision', 'financial', 'commute', 'timeline', 'doubts'].includes(hash)) {
+      switchView(hash);
+    }
+  });
 </script>
 
 </body>
