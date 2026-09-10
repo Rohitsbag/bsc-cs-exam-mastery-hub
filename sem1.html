@@ -12,6 +12,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet">
 
+<!-- KaTeX for Beautiful Math -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+
 <!-- Lucide Icons -->
 <script src="https://unpkg.com/lucide@latest"></script>
 
@@ -56,7 +61,7 @@
     position: sticky;
     top: 0;
     z-index: 60;
-    background: rgba(7, 10, 15, 0.92);
+    background: rgba(7, 10, 15, 0.94);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border-subtle);
@@ -222,7 +227,7 @@
   .yt-action:hover { background: rgba(239, 68, 68, 0.25); color: #fff; }
 
   /* FLIP CARDS */
-  .flashcard-box { perspective: 1000px; height: 240px; cursor: pointer; margin-bottom: 12px; }
+  .flashcard-box { perspective: 1000px; height: 250px; cursor: pointer; margin-bottom: 12px; }
   .flashcard-inner {
     position: relative;
     width: 100%;
@@ -252,6 +257,41 @@
     border: 1px solid rgba(16, 185, 129, 0.4);
     transform: rotateY(180deg);
     overflow-y: auto;
+  }
+
+  /* COURSE FILTER PILLS */
+  .course-filter-btn {
+    background: var(--bg-surface-raised);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.15s ease;
+  }
+  .course-filter-btn:hover {
+    color: #fff;
+    border-color: var(--border-strong);
+  }
+  .course-filter-btn.active {
+    background: rgba(56, 189, 248, 0.15);
+    color: #38bdf8;
+    border-color: rgba(56, 189, 248, 0.4);
+  }
+
+  /* MATH & CODE FORMULA BOX */
+  .math-formula-box {
+    background: #05070a;
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-top: 8px;
+    color: #38bdf8;
+    font-size: 13px;
+    overflow-x: auto;
   }
 
   /* MODAL */
@@ -358,123 +398,113 @@
 <main class="container">
 
   <!-- ═══════════════════════════════════════
-       2. BANKED FOUNDATION XP BADGE (ZERO GUILT)
+       TAB 1: 21-DAY SPRINT CALENDAR (DASHBOARD)
   ═══════════════════════════════════════ -->
-  <div class="card" style="background:linear-gradient(135deg, rgba(16,185,129,0.08) 0%, rgba(6,182,212,0.05) 100%);border:1px solid rgba(16,185,129,0.3);margin-bottom:14px;padding:12px 14px">
-    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
-      <div style="display:flex;align-items:center;gap:10px">
-        <div style="width:34px;height:34px;border-radius:8px;background:rgba(16,185,129,0.18);border:1px solid rgba(16,185,129,0.4);display:flex;align-items:center;justify-content:center;color:#34d399;flex-shrink:0">
-          <i data-lucide="shield-check" style="width:18px;height:18px"></i>
+  <div id="view-calendar" class="tab-view">
+
+    <!-- Banked Foundation XP Badge -->
+    <div class="card" style="background:linear-gradient(135deg, rgba(16,185,129,0.08) 0%, rgba(6,182,212,0.05) 100%);border:1px solid rgba(16,185,129,0.3);margin-bottom:14px;padding:12px 14px">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="width:34px;height:34px;border-radius:8px;background:rgba(16,185,129,0.18);border:1px solid rgba(16,185,129,0.4);display:flex;align-items:center;justify-content:center;color:#34d399;flex-shrink:0">
+            <i data-lucide="shield-check" style="width:18px;height:18px"></i>
+          </div>
+          <div>
+            <div style="font-size:12px;font-weight:800;color:#fff;display:flex;align-items:center;gap:6px">
+              <span>15 Study Blocks Banked from Prep Phase</span>
+              <span class="tag tag-green" style="font-size:9px">Foundation Active</span>
+            </div>
+            <div style="font-size:11px;color:var(--text-secondary);margin-top:2px">
+              Python Loops &amp; Primes, De Morgan Laws, 3-Tier DBMS, Linux FHS, and Aryabhata Math are already locked into your memory. Zero guilt, 100% forward momentum!
+            </div>
+          </div>
+        </div>
+        <div style="text-align:right" class="font-mono">
+          <span style="font-size:14px;font-weight:800;color:#34d399">+15 Blocks XP</span>
+          <div style="font-size:10px;color:#94a3b8">Ready for Phase 1</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cockpit Hero Strip -->
+    <div class="card" style="background:linear-gradient(145deg, #0e1522 0%, #0a0d14 100%);border-color:var(--border-strong);margin-bottom:14px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;flex-wrap:wrap;gap:8px">
+        <div>
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+            <span class="tag tag-blue" id="today-full-title">Wed, Sept 10, 2026</span>
+            <span class="tag tag-amber" id="today-day-pill">Day 1 of 21 (TODAY)</span>
+          </div>
+          <div style="font-size:18px;font-weight:900;color:#fff;display:flex;align-items:baseline;gap:6px">
+            20 Days Remaining
+            <span style="font-size:12px;font-weight:600;color:#38bdf8">(Until October 1 Exams)</span>
+          </div>
+        </div>
+        <div style="text-align:right">
+          <span class="tag tag-green">Target: 35–42+ / 50 Marks</span>
+          <div style="font-size:11px;color:var(--text-secondary);margin-top:2px">Passing Floor: 20 Marks (40%)</div>
+        </div>
+      </div>
+
+      <!-- Pacing & Milestone Banners -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
+        <div class="card-inner" style="display:flex;align-items:center;gap:8px;padding:8px 10px">
+          <i data-lucide="shield-alert" style="width:16px;height:16px;color:#fbbf24;flex-shrink:0"></i>
+          <div style="min-width:0;overflow:hidden">
+            <div style="font-size:11px;font-weight:800;color:#fbbf24">Milestone 1: Sept 18 (Day 9)</div>
+            <div style="font-size:10px;color:#94a3b8;white-space:nowrap;text-overflow:ellipsis">Passing Floor Lock (8d Left)</div>
+          </div>
+        </div>
+        <div class="card-inner" style="display:flex;align-items:center;gap:8px;padding:8px 10px">
+          <i data-lucide="award" style="width:16px;height:16px;color:#c084fc;flex-shrink:0"></i>
+          <div style="min-width:0;overflow:hidden">
+            <div style="font-size:11px;font-weight:800;color:#c084fc">Milestone 2: Sept 26 (Day 17)</div>
+            <div style="font-size:10px;color:#94a3b8;white-space:nowrap;text-overflow:ellipsis">Distinction Expansion Lock (16d Left)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 Metrics Row -->
+      <div style="display:grid;grid-template-columns:repeat(4, 1fr);gap:6px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06);text-align:center">
+        <div>
+          <div style="font-size:9px;color:var(--text-muted);font-weight:700;text-transform:uppercase">Sprint Runway</div>
+          <div class="font-mono" style="font-size:14px;font-weight:800;color:#38bdf8" id="stat-sprint-day">Day 1 / 21</div>
         </div>
         <div>
-          <div style="font-size:12px;font-weight:800;color:#fff;display:flex;align-items:center;gap:6px">
-            <span>15 Study Blocks Banked from Prep Phase</span>
-            <span class="tag tag-green" style="font-size:9px">Foundation Active</span>
-          </div>
-          <div style="font-size:11px;color:var(--text-secondary);margin-top:2px">
-            Python Loops &amp; Primes, De Morgan Laws, 3-Tier DBMS, Linux FHS, and Aryabhata Math are already locked into your memory. Zero guilt, 100% forward momentum!
-          </div>
+          <div style="font-size:9px;color:var(--text-muted);font-weight:700;text-transform:uppercase">Daily Study</div>
+          <div class="font-mono" style="font-size:14px;font-weight:800;color:#4ade80">7.5h (4 Blocks)</div>
         </div>
-      </div>
-      <div style="text-align:right" class="font-mono">
-        <span style="font-size:14px;font-weight:800;color:#34d399">+15 Blocks XP</span>
-        <div style="font-size:10px;color:#94a3b8">Ready for Phase 1</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ═══════════════════════════════════════
-       3. COCKPIT HERO STRIP (21-DAY TIMELINE)
-  ═══════════════════════════════════════ -->
-  <div class="card" style="background:linear-gradient(145deg, #0e1522 0%, #0a0d14 100%);border-color:var(--border-strong);margin-bottom:14px">
-    
-    <!-- Top Row: Date Pill & Target -->
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;flex-wrap:wrap;gap:8px">
-      <div>
-        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
-          <span class="tag tag-blue" id="today-full-title">Wed, Sept 10, 2026</span>
-          <span class="tag tag-amber" id="today-day-pill">Day 1 of 21 (TODAY)</span>
+        <div>
+          <div style="font-size:9px;color:var(--text-muted);font-weight:700;text-transform:uppercase">Sem 1 Subjects</div>
+          <div class="font-mono" style="font-size:14px;font-weight:800;color:#fbbf24">7 Courses</div>
         </div>
-        <div style="font-size:18px;font-weight:900;color:#fff;display:flex;align-items:baseline;gap:6px">
-          20 Days Remaining
-          <span style="font-size:12px;font-weight:600;color:#38bdf8">(Until October 1 Exams)</span>
-        </div>
-      </div>
-      <div style="text-align:right">
-        <span class="tag tag-green">Target: 35–42+ / 50 Marks</span>
-        <div style="font-size:11px;color:var(--text-secondary);margin-top:2px">Passing Floor: 20 Marks (40%)</div>
-      </div>
-    </div>
-
-    <!-- Pacing & Milestone Banners -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
-      <div class="card-inner" style="display:flex;align-items:center;gap:8px;padding:8px 10px">
-        <i data-lucide="shield-alert" style="width:16px;height:16px;color:#fbbf24;flex-shrink:0"></i>
-        <div style="min-width:0;overflow:hidden">
-          <div style="font-size:11px;font-weight:800;color:#fbbf24">Milestone 1: Sept 18 (Day 9)</div>
-          <div style="font-size:10px;color:#94a3b8;white-space:nowrap;text-overflow:ellipsis">Passing Floor Lock (8d Left)</div>
-        </div>
-      </div>
-      <div class="card-inner" style="display:flex;align-items:center;gap:8px;padding:8px 10px">
-        <i data-lucide="award" style="width:16px;height:16px;color:#c084fc;flex-shrink:0"></i>
-        <div style="min-width:0;overflow:hidden">
-          <div style="font-size:11px;font-weight:800;color:#c084fc">Milestone 2: Sept 26 (Day 17)</div>
-          <div style="font-size:10px;color:#94a3b8;white-space:nowrap;text-overflow:ellipsis">Distinction Expansion Lock (16d Left)</div>
+        <div>
+          <div style="font-size:9px;color:var(--text-muted);font-weight:700;text-transform:uppercase">Blocks Done</div>
+          <div class="font-mono" style="font-size:14px;font-weight:800;color:#c084fc" id="stat-blocks-completed">0 / 84 (0%)</div>
         </div>
       </div>
     </div>
 
-    <!-- 4 Metrics Row -->
-    <div style="display:grid;grid-template-columns:repeat(4, 1fr);gap:6px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06);text-align:center">
-      <div>
-        <div style="font-size:9px;color:var(--text-muted);font-weight:700;text-transform:uppercase">Sprint Runway</div>
-        <div class="font-mono" style="font-size:14px;font-weight:800;color:#38bdf8" id="stat-sprint-day">Day 1 / 21</div>
+    <!-- 21-Day Activity Heatmap -->
+    <div class="card" style="margin-bottom:14px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <div style="display:flex;align-items:center;gap:6px">
+          <i data-lucide="flame" style="width:15px;height:15px;color:#f59e0b"></i>
+          <span style="font-size:12px;font-weight:700;color:#fff">21-Day Sprint Heatmap (Sept 10 – Sept 30)</span>
+        </div>
+        <span class="font-mono" style="font-size:11px;color:#94a3b8" id="heatmap-streak-label">0 Days Active</span>
       </div>
-      <div>
-        <div style="font-size:9px;color:var(--text-muted);font-weight:700;text-transform:uppercase">Daily Study</div>
-        <div class="font-mono" style="font-size:14px;font-weight:800;color:#4ade80">7.5h (4 Blocks)</div>
-      </div>
-      <div>
-        <div style="font-size:9px;color:var(--text-muted);font-weight:700;text-transform:uppercase">Sem 1 Subjects</div>
-        <div class="font-mono" style="font-size:14px;font-weight:800;color:#fbbf24">7 Courses</div>
-      </div>
-      <div>
-        <div style="font-size:9px;color:var(--text-muted);font-weight:700;text-transform:uppercase">Blocks Done</div>
-        <div class="font-mono" style="font-size:14px;font-weight:800;color:#c084fc" id="stat-blocks-completed">0 / 84 (0%)</div>
+      <div style="background:var(--bg-surface-recessed);border:1px solid var(--border-subtle);border-radius:10px;padding:10px;overflow-x:auto">
+        <div style="display:flex;justify-content:space-between;font-size:9px;color:var(--text-muted);margin-bottom:6px">
+          <span style="color:#38bdf8;font-weight:700">Sept 10 (TODAY · Day 1)</span>
+          <span style="color:#fbbf24;font-weight:700">Sept 18 (Passing Lock)</span>
+          <span style="color:#c084fc;font-weight:700">Sept 26 (Distinction)</span>
+          <span>Sept 30 (Pre-Flight)</span>
+        </div>
+        <div id="heatmap-grid" style="display:grid;grid-template-columns:repeat(21, 1fr);gap:4px;min-width:420px"></div>
       </div>
     </div>
-  </div>
 
-  <!-- ═══════════════════════════════════════
-       4. 21-DAY ACTIVITY HEATMAP (SEPT 10 - 30)
-  ═══════════════════════════════════════ -->
-  <div class="card" style="margin-bottom:14px">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-      <div style="display:flex;align-items:center;gap:6px">
-        <i data-lucide="flame" style="width:15px;height:15px;color:#f59e0b"></i>
-        <span style="font-size:12px;font-weight:700;color:#fff">21-Day Sprint Heatmap (Sept 10 – Sept 30)</span>
-      </div>
-      <span class="font-mono" style="font-size:11px;color:#94a3b8" id="heatmap-streak-label">0 Days Active</span>
-    </div>
-    <div style="background:var(--bg-surface-recessed);border:1px solid var(--border-subtle);border-radius:10px;padding:10px;overflow-x:auto">
-      <div style="display:flex;justify-content:space-between;font-size:9px;color:var(--text-muted);margin-bottom:6px">
-        <span style="color:#38bdf8;font-weight:700">Sept 10 (TODAY · Day 1)</span>
-        <span style="color:#fbbf24;font-weight:700">Sept 18 (Passing Lock)</span>
-        <span style="color:#c084fc;font-weight:700">Sept 26 (Distinction)</span>
-        <span>Sept 30 (Pre-Flight)</span>
-      </div>
-      <div id="heatmap-grid" style="display:grid;grid-template-columns:repeat(21, 1fr);gap:4px;min-width:420px"></div>
-    </div>
-  </div>
-
-  <!-- ═══════════════════════════════════════
-       5. MAIN TABS VIEW CONTAINER
-  ═══════════════════════════════════════ -->
-
-  <!-- ───────────────────────────────────────
-       TAB 1: 21-DAY SPRINT CALENDAR (MONTH GRID)
-  ─────────────────────────────────────── -->
-  <div id="view-calendar" class="tab-view">
+    <!-- Timetable Grid -->
     <div class="card" style="margin-bottom:14px">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px">
         <div>
@@ -494,9 +524,9 @@
     </div>
   </div>
 
-  <!-- ───────────────────────────────────────
+  <!-- ═══════════════════════════════════════
        TAB 2: DAY INSPECTOR & LIVE TRACKER
-  ─────────────────────────────────────── -->
+  ═══════════════════════════════════════ -->
   <div id="view-day" class="tab-view" style="display:none">
     <div class="card" style="margin-bottom:14px">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
@@ -530,9 +560,9 @@
     </div>
   </div>
 
-  <!-- ───────────────────────────────────────
+  <!-- ═══════════════════════════════════════
        TAB 3: 3-PHASE ROADMAP
-  ─────────────────────────────────────── -->
+  ═══════════════════════════════════════ -->
   <div id="view-phases" class="tab-view" style="display:none">
     
     <!-- Phase 1 -->
@@ -596,16 +626,30 @@
 
   </div>
 
-  <!-- ───────────────────────────────────────
+  <!-- ═══════════════════════════════════════
        TAB 4: 7 SEMESTER 1 COURSES DIRECTORY
-  ─────────────────────────────────────── -->
+  ═══════════════════════════════════════ -->
   <div id="view-courses" class="tab-view" style="display:none">
+    
+    <!-- Filter Pills -->
+    <div style="display:flex;gap:6px;overflow-x:auto;padding-bottom:8px;margin-bottom:14px">
+      <button class="course-filter-btn active" id="filter-btn-all" onclick="filterCourses('all')">All 7 Courses</button>
+      <button class="course-filter-btn" id="filter-btn-1101111" onclick="filterCourses('1101111')">Digital Systems</button>
+      <button class="course-filter-btn" id="filter-btn-1101112" onclick="filterCourses('1101112')">DBMS</button>
+      <button class="course-filter-btn" id="filter-btn-1101411" onclick="filterCourses('1101411')">Python</button>
+      <button class="course-filter-btn" id="filter-btn-1101413" onclick="filterCourses('1101413')">Linux OS</button>
+      <button class="course-filter-btn" id="filter-btn-1481311" onclick="filterCourses('1481311')">IPR</button>
+      <button class="course-filter-btn" id="filter-btn-2531511" onclick="filterCourses('2531511')">IKS</button>
+      <button class="course-filter-btn" id="filter-btn-2541514" onclick="filterCourses('2541514')">People's Skills</button>
+    </div>
+
+    <!-- Courses List -->
     <div id="courses-list-container"></div>
   </div>
 
-  <!-- ───────────────────────────────────────
+  <!-- ═══════════════════════════════════════
        TAB 5: HIGH-YIELD FLASHCARDS
-  ─────────────────────────────────────── -->
+  ═══════════════════════════════════════ -->
   <div id="view-cards" class="tab-view" style="display:none">
     <div class="card">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
@@ -1297,14 +1341,16 @@ const sem1Courses = [
         "topics": "Binary, Octal, Hex Conversions, 1s & 2s Complements, De Morgan's Theorems, Universal Gates (NAND/NOR), SOP & POS.",
         "keyQ": "State and prove De Morgan's Laws using truth tables and logic circuit diagrams.",
         "badge": "Boolean Logic",
-        "formula": "\\overline{A \\cdot B} = \\overline{A} + \\overline{B} \\quad \\text{and} \\quad \\overline{A + B} = \\overline{A} \\cdot \\overline{B}"
+        "formula": "\\overline{A \\cdot B} = \\overline{A} + \\overline{B} \\quad \\text{and} \\quad \\overline{A + B} = \\overline{A} \\cdot \\overline{B}",
+        "formulaPlain": "(A \u00b7 B)' = A' + B'   and   (A + B)' = A' \u00b7 B'"
       },
       {
         "title": "Unit 2: Combinational & Sequential Circuits",
         "topics": "Half Adder, Full Adder (using 2 Half Adders + OR), K-Maps (3 & 4 variable), Multiplexers (4:1, 8:1 MUX), Flip-Flops (SR, JK, D, T), Master-Slave JK Race Around Fix.",
         "keyQ": "Design a Full Adder using two Half Adders and an OR gate. Derive equations for Sum and Carry.",
         "badge": "Circuit Equations",
-        "formula": "\\text{Sum} = A \\oplus B \\oplus C_{in}, \\quad \\text{Carry} = AB + BC_{in} + AC_{in}"
+        "formula": "\\text{Sum} = A \\oplus B \\oplus C_{in}, \\quad \\text{Carry} = AB + BC_{in} + AC_{in}",
+        "formulaPlain": "Sum = A \u2295 B \u2295 Cin,   Carry = AB + BCin + ACin"
       },
       {
         "title": "Unit 3: Computer Organization & Architecture",
@@ -1578,7 +1624,8 @@ const STATE_KEY = 'bsc_cs_sem1_sprint_21d_state';
 let sprintState = {
   tasks: {},
   currentDay: 1, // Default to Day 1 (Sept 10, TODAY)
-  currentCard: 0
+  currentCard: 0,
+  currentCourseFilter: 'all'
 };
 
 function loadState() {
@@ -1846,50 +1893,90 @@ function nextDay() {
   }
 }
 
-// 4. Render Courses
+// 4. Render Courses with KaTeX and Filter Support
+function filterCourses(code) {
+  sprintState.currentCourseFilter = code;
+  document.querySelectorAll('.course-filter-btn').forEach(b => b.classList.remove('active'));
+  const activeBtn = document.getElementById('filter-btn-' + code);
+  if (activeBtn) activeBtn.classList.add('active');
+  renderCourses();
+}
+
 function renderCourses() {
   const container = document.getElementById('courses-list-container');
   if (!container) return;
   container.innerHTML = '';
 
-  sem1Courses.forEach(c => {
+  const filterCode = sprintState.currentCourseFilter || 'all';
+  const filtered = filterCode === 'all' ? sem1Courses : sem1Courses.filter(c => c.code === filterCode);
+
+  filtered.forEach(c => {
     const card = document.createElement('div');
     card.className = 'card';
-    card.style.marginBottom = '14px';
+    card.style.marginBottom = '16px';
 
     let unitsHTML = '';
     c.units.forEach((u, i) => {
       let extra = '';
       if (u.formula) {
-        extra = `<div style="background:var(--bg-surface-recessed);border:1px solid var(--border-subtle);border-radius:6px;padding:8px 10px;margin-top:6px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#38bdf8">${u.formula}</div>`;
+        extra = `<div class="math-formula-box">
+          <div class="katex-eq">$$${u.formula}$$</div>
+          <div style="font-size:11px;color:#94a3b8;margin-top:4px;font-family:'JetBrains Mono',monospace">${u.formulaPlain || ''}</div>
+        </div>`;
       } else if (u.code) {
-        extra = `<pre class="font-mono" style="background:var(--bg-surface-recessed);border:1px solid var(--border-subtle);border-radius:6px;padding:8px 10px;margin-top:6px;font-size:11px;color:#4ade80;overflow-x:auto">${u.code}</pre>`;
+        extra = `<pre class="font-mono" style="background:#05070a;border:1px solid var(--border-subtle);border-radius:8px;padding:10px 12px;margin-top:8px;font-size:11px;color:#4ade80;overflow-x:auto;line-height:1.5">${u.code}</pre>`;
       } else if (u.flow) {
-        extra = `<div style="display:flex;gap:4px;flex-wrap:wrap;margin-top:6px">${u.flow.map(f => `<span class="tag tag-blue" style="font-size:9px">${f}</span>`).join(' &rarr; ')}</div>`;
+        extra = `<div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px">${u.flow.map(f => `<span class="tag tag-blue" style="font-size:10px;padding:3px 8px">${f}</span>`).join(' <span style="color:#64748b;align-self:center">&rarr;</span> ')}</div>`;
       } else if (u.points) {
-        extra = `<ul style="font-size:11px;color:var(--text-secondary);margin-top:6px;padding-left:16px;line-height:1.5">${u.points.map(p => `<li>${p}</li>`).join('')}</ul>`;
+        extra = `<ul style="font-size:12px;color:var(--text-secondary);margin-top:8px;padding-left:18px;line-height:1.6">${u.points.map(p => `<li style="margin-bottom:3px">${p}</li>`).join('')}</ul>`;
       }
 
       unitsHTML += `
-        <div style="padding:10px 0;border-bottom:1px solid var(--border-subtle)">
-          <div style="font-weight:700;color:#fff;font-size:12px;margin-bottom:3px">${u.title}</div>
-          <div style="font-size:11px;color:var(--text-secondary);line-height:1.5">${u.topics}</div>
-          <div style="font-size:11px;color:#fbbf24;font-weight:600;margin-top:4px">★ Key 5-Mark Question: ${u.keyQ}</div>
+        <div style="padding:12px 0;border-bottom:1px solid var(--border-subtle)">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+            <span class="tag tag-indigo" style="font-size:9px">${u.badge || 'Core'}</span>
+            <div style="font-weight:800;color:#fff;font-size:13px">${u.title}</div>
+          </div>
+          <div style="font-size:12px;color:var(--text-secondary);line-height:1.5;margin-bottom:6px">${u.topics}</div>
+          <div style="background:rgba(245,158,11,0.08);border-left:3px solid #f59e0b;padding:6px 10px;border-radius:4px;font-size:11.5px;color:#fbbf24;font-weight:600">
+            ★ Key 5-Mark Question: ${u.keyQ}
+          </div>
           ${extra}
         </div>
       `;
     });
 
     card.innerHTML = `
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-        <span class="tag tag-indigo">${c.type}</span>
-        <span class="font-mono" style="font-size:11px;color:#38bdf8;font-weight:700">Code: ${c.code} (${c.credits} Cr)</span>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--border-subtle)">
+        <div>
+          <span class="tag tag-indigo">${c.type}</span>
+          <div style="font-size:17px;font-weight:900;color:#fff;margin-top:4px">${c.name}</div>
+        </div>
+        <div class="font-mono" style="font-size:12px;color:#38bdf8;font-weight:800;text-align:right">
+          Code: ${c.code}<br><span style="font-size:10px;color:var(--text-muted)">${c.credits} Credits</span>
+        </div>
       </div>
-      <div style="font-size:16px;font-weight:800;color:#fff;margin-bottom:10px">${c.name}</div>
       ${unitsHTML}
     `;
     container.appendChild(card);
   });
+
+  // Render KaTeX if loaded
+  if (window.renderMathInElement) {
+    try {
+      renderMathInElement(container, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '\[', right: '\]', display: true},
+          {left: '\(', right: '\)', display: false},
+          {left: '$', right: '$', display: false}
+        ],
+        throwOnError: false
+      });
+    } catch(e) {
+      console.warn('KaTeX render warning:', e);
+    }
+  }
 }
 
 // 5. Flashcards
@@ -1937,6 +2024,13 @@ function switchTab(tabId) {
   if (btn) {
     btn.classList.add('active');
   }
+
+  if (tabId === 'courses') {
+    renderCourses();
+  } else if (tabId === 'cards') {
+    renderFlashcard();
+  }
+
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
