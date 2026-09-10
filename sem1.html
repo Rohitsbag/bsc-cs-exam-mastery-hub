@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Semester 1 ATKT Mastery Sprint · B.Sc CS</title>
+<meta name="theme-color" content="#070a0f">
+<meta name="description" content="Dedicated 20-Day High-Intensity Sprint for Mumbai University B.Sc CS Semester 1 ATKT Examination (Oct 2026).">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+  :root {
+    --bg-canvas: #070a0f;
+    --bg-surface: #0f131a;
+    --bg-surface-raised: #141923;
+    --bg-surface-recessed: #05070a;
+    --border-subtle: #1c2331;
+    --border-strong: #273145;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --accent-emerald: #10b981;
+    --accent-amber: #f59e0b;
+    --accent-blue: #3b82f6;
+    --accent-indigo: #6366f1;
+    --accent-purple: #a855f7;
+    --accent-rose: #f43f5e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  html { width: 100%; max-width: 100%; overflow-x: clip; touch-action: pan-y; -webkit-text-size-adjust: 100%; }
+  body {
+    background: var(--bg-canvas);
+    color: var(--text-primary);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    min-height: 100vh;
+    padding-bottom: 96px;
+    overflow-x: clip;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+  /* APP HEADER */
+  .app-header {
+    position: sticky;
+    top: 0;
+    z-index: 60;
+    background: rgba(7, 10, 15, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .user-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+    background: #161f30;
+    border: 1px solid var(--border-strong);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 11px;
+    color: #38bdf8;
+  }
+
+  .header-actions {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .header-btn {
+    text-decoration: none;
+    font-size: 11px;
+    color: var(--text-secondary);
+    background: var(--bg-surface-raised);
+    border: 1px solid var(--border-strong);
+    padding: 5px 9px;
+    border-radius: 6px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.15s ease;
+  }
+  .header-btn:hover {
+    color: #fff;
+    border-color: #3b82f6;
+  }
+
+  /* CONTAINER & CARDS */
+  .container { max-width: 760px; margin: 0 auto; padding: 14px 16px; }
+  .card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 14px;
+    position: relative;
+  }
+  .card-inner {
+    background: var(--bg-surface-raised);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    padding: 12px;
+  }
+  .card-highlight {
+    background: linear-gradient(145deg, #0e1e16 0%, #0c1018 100%);
+    border: 1px solid rgba(16, 185, 129, 0.35);
+  }
+  .card-blue {
+    background: linear-gradient(145deg, #0d1a30 0%, #0b111c 100%);
+    border: 1px solid rgba(59, 130, 246, 0.35);
+  }
+
+  /* TAGS & PILLS */
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+  .tag-green { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+  .tag-amber { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+  .tag-blue { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+  .tag-indigo { background: rgba(99, 102, 241, 0.15); color: #818cf8; border: 1px solid rgba(99, 102, 241, 0.3); }
+  .tag-purple { background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
+  .tag-rose { background: rgba(244, 63, 94, 0.15); color: #fb7185; border: 1px solid rgba(244, 63, 94, 0.3); }
+  .tag-zinc { background: #161f30; color: #a1a1aa; border: 1px solid var(--border-subtle); }
+
+  /* CALENDAR GRID */
+  .cal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 8px;
+  }
+  .cal-card {
+    background: var(--bg-surface-raised);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 125px;
+  }
+  .cal-card:hover {
+    border-color: #3b82f6;
+    transform: translateY(-1px);
+  }
+  .cal-card.is-today {
+    border: 1.5px solid #38bdf8;
+    background: #0f1c2e;
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.2);
+  }
+  .cal-card.active-day {
+    border-color: #a855f7;
+    background: #181126;
+  }
+  .cal-card.is-complete {
+    border-color: rgba(16, 185, 129, 0.4);
+    background: #0c1813;
+  }
+
+  .pill {
+    font-size: 9px;
+    font-weight: 700;
+    padding: 2px 5px;
+    border-radius: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.3;
+  }
+  .pill-m { background: rgba(99, 102, 241, 0.2); color: #a5b4fc; border: 1px solid rgba(99, 102, 241, 0.3); }
+  .pill-a { background: rgba(6, 182, 212, 0.2); color: #67e8f9; border: 1px solid rgba(6, 182, 212, 0.3); }
+  .pill-e { background: rgba(16, 185, 129, 0.2); color: #6ee7b7; border: 1px solid rgba(16, 185, 129, 0.3); }
+
+  /* DAY INSPECTOR SESSION CARD */
+  .session-card {
+    background: var(--bg-surface-raised);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 10px;
+    border-left: 4px solid var(--accent-indigo);
+  }
+  .yt-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(239, 68, 68, 0.12);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #fca5a5;
+    padding: 6px 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 600;
+    transition: all 0.15s ease;
+  }
+  .yt-action:hover {
+    background: rgba(239, 68, 68, 0.25);
+    color: #fff;
+  }
+
+  /* FLIP CARDS */
+  .flashcard-box {
+    perspective: 1000px;
+    height: 240px;
+    cursor: pointer;
+    margin-bottom: 12px;
+  }
+  .flashcard-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+  }
+  .flashcard-box.flipped .flashcard-inner {
+    transform: rotateY(180deg);
+  }
+  .flashcard-front, .flashcard-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 14px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .flashcard-front {
+    background: linear-gradient(145deg, #101624 0%, #0d111c 100%);
+    border: 1px solid var(--border-strong);
+  }
+  .flashcard-back {
+    background: linear-gradient(145deg, #0e1e17 0%, #0c1410 100%);
+    border: 1px solid rgba(16, 185, 129, 0.4);
+    transform: rotateY(180deg);
+    overflow-y: auto;
+  }
+
+  /* BOTTOM NAVIGATION DOCK */
+  .bottom-dock {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(7, 10, 15, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid var(--border-subtle);
+    padding: 6px 12px calc(8px + env(safe-area-inset-bottom, 0px));
+    z-index: 100;
+  }
+  .dock-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 560px;
+    margin: 0 auto;
+    gap: 4px;
+  }
+  .dock-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    background: transparent;
+    border: 1px solid transparent;
+    cursor: pointer;
+    color: var(--text-muted);
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 6px 6px;
+    border-radius: 8px;
+    transition: all 0.15s ease;
+    flex: 1;
+    min-width: 0;
+    min-height: 44px;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .dock-btn svg, .dock-btn i {
+    width: 17px;
+    height: 17px;
+    stroke-width: 1.75px;
+  }
+  .dock-btn span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .dock-btn:hover { color: var(--text-secondary); }
+  .dock-btn:active { transform: scale(0.95); }
+  .dock-btn.active {
+    color: #ffffff;
+    background: var(--bg-surface-raised);
+    border: 1px solid var(--border-strong);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+  }
+  .dock-btn.active svg, .dock-btn.active i {
+    color: #38bdf8;
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     1. APP HEADER
+═══════════════════════════════════════ -->
+<header class="app-header">
+  <div class="user-badge">
+    <div class="avatar">S1</div>
+    <div>
+      <div style="font-size:13px;font-weight:700;color:#fafafa;display:flex;align-items:center;gap:6px">
+        Rohit Bag
+        <span style="width:6px;height:6px;border-radius:50%;background:#38bdf8;display:inline-block"></span>
+      </div>
+      <div style="font-size:10px;color:var(--text-muted)">Semester 1 ATKT Sprint · 7 Subjects Focus</div>
+    </div>
+  </div>
+  <div class="header-actions">
+    <a href="index.html" class="header-btn" title="Full 16-Course Study Hub">
+      <i data-lucide="layout-grid" style="width:13px;height:13px"></i>
+      <span>Full Hub</span>
+    </a>
+    <a href="strategy.html" class="header-btn" title="Strategic Gameplan &amp; Decision Matrix">
+      <i data-lucide="compass" style="width:13px;height:13px"></i>
+      <span>Strategy</span>
+    </a>
+    <a href="dossier.html" class="header-btn" title="Financial &amp; Scholarship Dossier">
+      <i data-lucide="wallet" style="width:13px;height:13px"></i>
+      <span>Dossier</span>
+    </a>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- ═══════════════════════════════════════
+       2. COCKPIT HERO STRIP
+  ═══════════════════════════════════════ -->
+  <div class="card" style="background:linear-gradient(145deg, #0e1522 0%, #0a0d14 100%);border-color:var(--border-strong);margin-bottom:14px">
+    
+    <!-- Top Row: Days Left & Target -->
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;flex-wrap:wrap;gap:8px">
+      <div>
+        <span class="tag tag-blue" style="margin-bottom:4px">Oct 2026 ATKT Exam Window</span>
+        <div style="font-size:18px;font-weight:900;color:#fff;display:flex;align-items:baseline;gap:6px">
+          20 Days Remaining
+          <span style="font-size:12px;font-weight:600;color:#38bdf8">(Sept 10 &rarr; Sept 30)</span>
+        </div>
+      </div>
+      <div style="text-align:right">
+        <span class="tag tag-green">Target: 25+ / 30 Marks</span>
+        <div style="font-size:11px;color:var(--text-secondary);margin-top:2px">Passing Floor: 12 Marks (40%)</div>
+      </div>
+    </div>
+
+    <!-- Pacing & Baseline Banner -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
+      <div class="card-inner" style="display:flex;align-items:center;gap:8px;padding:8px 10px">
+        <i data-lucide="check-circle" style="width:16px;height:16px;color:#34d399;flex-shrink:0"></i>
+        <div style="min-width:0;overflow:hidden">
+          <div style="font-size:11px;font-weight:800;color:#f8fafc">Pace: 100% On Track</div>
+          <div style="font-size:10px;color:#94a3b8;white-space:nowrap;text-overflow:ellipsis">Fresh Day 1 Baseline · Zero Guilt</div>
+        </div>
+      </div>
+      <div class="card-inner" style="display:flex;align-items:center;gap:8px;padding:8px 10px">
+        <i data-lucide="flag" style="width:16px;height:16px;color:#fbbf24;flex-shrink:0"></i>
+        <div style="min-width:0;overflow:hidden">
+          <div style="font-size:11px;font-weight:800;color:#fbbf24">Milestone: Sept 14</div>
+          <div style="font-size:10px;color:#94a3b8;white-space:nowrap;text-overflow:ellipsis">Passing Floor Lock (4d Left)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 Metrics Row -->
+    <div style="display:grid;grid-template-columns:repeat(4, 1fr);gap:6px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06);text-align:center">
+      <div>
+        <div style="font-size:9px;color:var(--text-muted);font-weight:700;text-transform:uppercase">Sprint Day</div>
+        <div class="font-mono" style="font-size:14px;font-weight:800;color:#38bdf8" id="stat-sprint-day">1 / 20</div>
+      </div>
+      <div>
+        <div style="font-size:9px;color:var(--text-muted);font-weight:700;text-transform:uppercase">Velocity</div>
+        <div class="font-mono" style="font-size:14px;font-weight:800;color:#4ade80">7.5h / day</div>
+      </div>
+      <div>
+        <div style="font-size:9px;color:var(--text-muted);font-weight:700;text-transform:uppercase">Sem 1 Subjects</div>
+        <div class="font-mono" style="font-size:14px;font-weight:800;color:#fbbf24">7 Courses</div>
+      </div>
+      <div>
+        <div style="font-size:9px;color:var(--text-muted);font-weight:700;text-transform:uppercase">Blocks Done</div>
+        <div class="font-mono" style="font-size:14px;font-weight:800;color:#c084fc" id="stat-blocks-completed">0 / 60</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       3. 20-DAY ACTIVITY HEATMAP
+  ═══════════════════════════════════════ -->
+  <div class="card" style="margin-bottom:14px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <div style="display:flex;align-items:center;gap:6px">
+        <i data-lucide="flame" style="width:15px;height:15px;color:#f59e0b"></i>
+        <span style="font-size:12px;font-weight:700;color:#fff">20-Day Activity Heatmap (Sept 10 – Sept 30)</span>
+      </div>
+      <span class="font-mono" style="font-size:11px;color:#94a3b8" id="heatmap-streak-label">0 Day Streak</span>
+    </div>
+    <div style="background:var(--bg-surface-recessed);border:1px solid var(--border-subtle);border-radius:10px;padding:10px;overflow-x:auto">
+      <div id="heatmap-grid" style="display:grid;grid-template-columns:repeat(20, 1fr);gap:4px;min-width:380px"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       4. MAIN TABS VIEW CONTAINER
+  ═══════════════════════════════════════ -->
+
+  <!-- ───────────────────────────────────────
+       TAB 1: 20-DAY SPRINT CALENDAR
+  ─────────────────────────────────────── -->
+  <div id="view-calendar" class="tab-view">
+    <div class="card" style="margin-bottom:14px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px">
+        <div>
+          <div style="font-size:14px;font-weight:800;color:#fff">September 2026 — Sem 1 Master Calendar</div>
+          <div style="font-size:11px;color:var(--text-secondary)">Click any day card to inspect its hourly timetable and video lectures.</div>
+        </div>
+        <div style="display:flex;gap:8px;font-size:10px">
+          <span style="display:inline-flex;align-items:center;gap:4px;color:#a5b4fc"><span style="width:7px;height:7px;border-radius:50%;background:#6366f1"></span> Morning Major</span>
+          <span style="display:inline-flex;align-items:center;gap:4px;color:#67e8f9"><span style="width:7px;height:7px;border-radius:50%;background:#06b6d4"></span> Aft Code/Linux</span>
+          <span style="display:inline-flex;align-items:center;gap:4px;color:#6ee7b7"><span style="width:7px;height:7px;border-radius:50%;background:#10b981"></span> Eve Electives</span>
+        </div>
+      </div>
+
+      <!-- Grid Cards -->
+      <div class="cal-grid" id="sprint-grid-container"></div>
+    </div>
+  </div>
+
+  <!-- ───────────────────────────────────────
+       TAB 2: DAY INSPECTOR & LIVE TRACKER
+  ─────────────────────────────────────── -->
+  <div id="view-day" class="tab-view" style="display:none">
+    <div class="card" style="margin-bottom:14px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+        <div>
+          <div style="display:flex;align-items:center;gap:6px">
+            <span class="tag tag-indigo" id="insp-day-badge">DAY 1 OF 20</span>
+            <div style="font-size:15px;font-weight:800;color:#fff" id="insp-date-title">Sept 10, 2026 (Wednesday)</div>
+          </div>
+          <div style="font-size:11px;color:var(--text-secondary);margin-top:2px" id="insp-phase-desc">Phase 1: Foundation Sprint · Digital Systems + Python + IKS</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px">
+          <button onclick="prevDay()" class="header-btn">‹ Prev</button>
+          <select id="day-select-dropdown" onchange="loadDay(parseInt(this.value))" style="background:var(--bg-surface-raised);border:1px solid var(--border-strong);color:#fff;padding:5px 8px;border-radius:6px;font-family:inherit;font-size:11px;outline:none"></select>
+          <button onclick="nextDay()" class="header-btn">Next ›</button>
+        </div>
+      </div>
+
+      <!-- Progress Bar -->
+      <div style="background:var(--bg-surface-recessed);border:1px solid var(--border-subtle);border-radius:8px;padding:10px;margin-bottom:14px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+          <span style="font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase">Daily Study Completion</span>
+          <span class="font-mono" style="font-size:11px;font-weight:800;color:#4ade80" id="daily-pct">0%</span>
+        </div>
+        <div style="width:100%;height:6px;background:#182030;border-radius:3px;overflow:hidden">
+          <div id="daily-bar" style="width:0%;height:100%;background:linear-gradient(90deg,#3b82f6,#10b981);transition:width 0.3s ease"></div>
+        </div>
+      </div>
+
+      <!-- 3 Hourly Sessions -->
+      <div id="day-sessions-container"></div>
+    </div>
+  </div>
+
+  <!-- ───────────────────────────────────────
+       TAB 3: PHASE ROADMAP
+  ─────────────────────────────────────── -->
+  <div id="view-phases" class="tab-view" style="display:none">
+    
+    <!-- Phase 1 -->
+    <div class="card" style="border-left:4px solid #3b82f6">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <span class="tag tag-blue">Phase 1 · Days 1–5 (Sept 10–14)</span>
+        <span class="font-mono" style="font-size:11px;color:#60a5fa">Passing Floor Lock</span>
+      </div>
+      <div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:4px">Foundation &amp; 12-Mark Passing Anchor</div>
+      <div style="font-size:12px;color:var(--text-secondary);line-height:1.6">
+        • <strong>Digital Systems:</strong> Number Systems, De Morgan's Proofs, 3/4-Variable K-Maps.<br>
+        • <strong>DBMS:</strong> 3-Tier ANSI/SPARC Architecture, Logical vs Physical Independence.<br>
+        • <strong>Python &amp; Linux:</strong> For-else Prime check, FHS 5 essential directories, chmod 755 math.<br>
+        • <strong>Milestone (Sept 14):</strong> Write top 3 passing questions for all 7 subjects on paper in 25 mins.
+      </div>
+    </div>
+
+    <!-- Phase 2 -->
+    <div class="card" style="border-left:4px solid #10b981">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <span class="tag tag-green">Phase 2 · Days 6–10 (Sept 15–19)</span>
+        <span class="font-mono" style="font-size:11px;color:#34d399">Core Architecture</span>
+      </div>
+      <div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:4px">Circuit Design &amp; Normalization Drills</div>
+      <div style="font-size:12px;color:var(--text-secondary);line-height:1.6">
+        • <strong>Digital Systems:</strong> Half/Full Adders with 2 Half Adders, JK Flip-Flop Race Around Condition.<br>
+        • <strong>DBMS:</strong> 1NF, 2NF (Partial Dep), 3NF (Transitive Dep), SQL Joins.<br>
+        • <strong>Python &amp; Linux:</strong> Lists vs Tuples vs Sets vs Dicts, grep &amp; find pipes, shell if-else.<br>
+        • <strong>Electives:</strong> 3 Criteria for Patentability under Patent Act 1970, Tridosha Ayurveda.
+      </div>
+    </div>
+
+    <!-- Phase 3 -->
+    <div class="card" style="border-left:4px solid #a855f7">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <span class="tag tag-purple">Phase 3 · Days 11–15 (Sept 20–24)</span>
+        <span class="font-mono" style="font-size:11px;color:#c084fc">Distinction Tier</span>
+      </div>
+      <div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:4px">25+ Score Floor Expansion</div>
+      <div style="font-size:12px;color:var(--text-secondary);line-height:1.6">
+        • <strong>Digital Systems:</strong> Von Neumann Architecture, Register Paths (PC &rarr; MAR &rarr; MDR &rarr; IR &rarr; AC), Cache Hierarchy.<br>
+        • <strong>DBMS:</strong> ACID Properties with Banking Transaction Example, Transaction States.<br>
+        • <strong>Python &amp; Linux:</strong> File word frequency dictionary script, Tar archive automated backup script.<br>
+        • <strong>Milestone (Sept 24):</strong> 100% syllabus touch completed across all 7 subjects.
+      </div>
+    </div>
+
+    <!-- Phase 4 -->
+    <div class="card" style="border-left:4px solid #f59e0b">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <span class="tag tag-amber">Phase 4 · Days 16–20 (Sept 25–30)</span>
+        <span class="font-mono" style="font-size:11px;color:#fbbf24">Exam Hall Readiness</span>
+      </div>
+      <div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:4px">Timed Writing Simulations &amp; Pre-Flight</div>
+      <div style="font-size:12px;color:var(--text-secondary);line-height:1.6">
+        • <strong>5/5 Evaluator Formula:</strong> Definition + Diagram + 4 Core Numbered Bullets + Code/Circuit Math.<br>
+        • <strong>Full Mock Simulation:</strong> Timed 50-minute exam drills without looking at notes.<br>
+        • <strong>Pre-Flight Checklist:</strong> Hall ticket printed, stationery packed, mental calm. Ready to clear Sem 1 with distinction!
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ───────────────────────────────────────
+       TAB 4: 7 SEMESTER 1 COURSES DIRECTORY
+  ─────────────────────────────────────── -->
+  <div id="view-courses" class="tab-view" style="display:none">
+    <div id="courses-list-container"></div>
+  </div>
+
+  <!-- ───────────────────────────────────────
+       TAB 5: HIGH-YIELD FLASHCARDS
+  ─────────────────────────────────────── -->
+  <div id="view-cards" class="tab-view" style="display:none">
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <div>
+          <div style="font-size:14px;font-weight:800;color:#fff">Sem 1 High-Yield Flashcard Vault</div>
+          <div style="font-size:11px;color:var(--text-secondary)">8 essential 5-mark blueprint questions for rapid memory recall.</div>
+        </div>
+        <span class="font-mono" style="font-size:11px;color:#38bdf8" id="fc-counter">Card 1 of 8</span>
+      </div>
+
+      <!-- Flashcard Interactive Element -->
+      <div class="flashcard-box" id="flashcard-element" onclick="flipCard()">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span class="tag tag-indigo" id="fc-subject">Digital Systems</span>
+              <span style="font-size:10px;color:var(--text-muted);font-weight:700">TAP TO FLIP</span>
+            </div>
+            <div style="text-align:center;padding:12px 0">
+              <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;font-weight:700;margin-bottom:6px">High-Yield Question</div>
+              <div style="font-size:15px;font-weight:700;color:#fff;line-height:1.5" id="fc-question"></div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:center;gap:6px;font-size:11px;color:var(--text-muted)">
+              <i data-lucide="rotate-cw" style="width:13px;height:13px"></i>
+              <span>Tap to reveal 5/5 model answer</span>
+            </div>
+          </div>
+          <div class="flashcard-back">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+              <span class="tag tag-green">5/5 Evaluator Blueprint</span>
+              <span style="font-size:10px;color:#34d399;font-weight:700">MEMORIZED</span>
+            </div>
+            <div style="font-size:12px;color:#e2e8f0;line-height:1.6;flex:1" id="fc-answer"></div>
+            <div style="text-align:center;font-size:10px;color:var(--text-muted);margin-top:8px">Tap to flip front</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px">
+        <button onclick="prevCard()" class="header-btn">‹ Previous Card</button>
+        <button onclick="nextCard()" class="header-btn">Next Card ›</button>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- ═══════════════════════════════════════
+     5. FLOATING BOTTOM NAVIGATION DOCK
+═══════════════════════════════════════ -->
+<nav class="bottom-dock" aria-label="Sprint Navigation">
+  <div class="dock-inner">
+    <button id="dock-calendar" class="dock-btn active" onclick="switchTab('calendar')">
+      <i data-lucide="calendar"></i>
+      <span>Calendar</span>
+    </button>
+    <button id="dock-day" class="dock-btn" onclick="switchTab('day')">
+      <i data-lucide="list-checks"></i>
+      <span>Day Log</span>
+    </button>
+    <button id="dock-phases" class="dock-btn" onclick="switchTab('phases')">
+      <i data-lucide="map"></i>
+      <span>Phases</span>
+    </button>
+    <button id="dock-courses" class="dock-btn" onclick="switchTab('courses')">
+      <i data-lucide="book-open"></i>
+      <span>Courses</span>
+    </button>
+    <button id="dock-cards" class="dock-btn" onclick="switchTab('cards')">
+      <i data-lucide="layers"></i>
+      <span>Cards</span>
+    </button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════
+     6. JAVASCRIPT MASTER DATA & LOGIC
+═══════════════════════════════════════ -->
+<script>
+// ─────────────────────────────────────────
+// A. 20-DAY SPRINT DATASET (SEPT 10 – SEPT 30, 2026)
+// 100% SEMESTER 1 SUBJECTS ONLY
+// ─────────────────────────────────────────
+const sem1SprintDays = [
+  {
+    day: 1, date: "Sept 10", dow: "Wed", phase: "Phase 1: Basics",
+    m: { sub: "Digital Systems (1101111)", topic: "Logic Gates & De Morgan's Laws", yt: "Neso Academy De Morgan proof with truth table", goal: "Prove (A.B)' = A' + B' with truth table and logic diagram" },
+    a: { sub: "Python (1101411)", topic: "Control Flow, If-Else & Prime Check Loop", yt: "CodeWithHarry Python prime check loop for else", goal: "Write for-else prime loop without syntax errors" },
+    e: { sub: "IKS (2531511)", topic: "Ancient Mathematics: Aryabhata & Brahmagupta", yt: "Aryabhata Aryabhatiya Pi value Brahmagupta Zero arithmetic", goal: "Memorize Aryabhatiya Pi value and formal zero arithmetic rules" },
+    n: "Flashcard #1 (De Morgan) + draw logic gate symbols on paper"
+  },
+  {
+    day: 2, date: "Sept 11", dow: "Thu", phase: "Phase 1: Basics",
+    m: { sub: "DBMS (1101112)", topic: "3-Tier ANSI/SPARC Architecture & Data Independence", yt: "Gate Smashers 3 Tier Architecture DBMS", goal: "Draw External, Conceptual, and Internal levels with independence definitions" },
+    a: { sub: "Linux OS (1101413)", topic: "Filesystem Hierarchy Standard (FHS) & Commands", yt: "Gate Smashers Linux FHS filesystem hierarchy", goal: "Explain /bin, /etc, /home, /var, /proc directories" },
+    e: { sub: "IPR (1481311)", topic: "3 Essential Criteria for Patentability", yt: "Gate Smashers Patent Criteria Novelty Inventive step", goal: "Memorize Novelty, Non-obviousness, Industrial Utility" },
+    n: "Flashcard #3 (3-Tier DBMS) + list FHS directories from memory"
+  },
+  {
+    day: 3, date: "Sept 12", dow: "Fri", phase: "Phase 1: Basics",
+    m: { sub: "Digital Systems (1101111)", topic: "K-Map 3 & 4 Variable Minimization (SOP)", yt: "Gate Smashers K Map 3 and 4 variable SOP", goal: "Minimize 4-variable truth tables using grouping of 1s without error" },
+    a: { sub: "Python (1101411)", topic: "Data Structures: List vs Tuple vs Set vs Dict", yt: "CodeWithHarry Python data structures comparison list tuple dict", goal: "Create comparison table of mutability, syntax, and O(1) hash lookup" },
+    e: { sub: "People's Skills (2541514)", topic: "7-Stage Communication Process & Noise", yt: "7 stage communication process sender channel receiver feedback", goal: "Draw Sender -> Encoding -> Channel -> Receiver -> Feedback loop" },
+    n: "Solve 1 K-Map on blank paper + Flashcard #6 (Python)"
+  },
+  {
+    day: 4, date: "Sept 13", dow: "Sat", phase: "Phase 1: Basics",
+    m: { sub: "DBMS (1101112)", topic: "Relational Model, Keys & 1NF/2NF Normalization", yt: "Gate Smashers Normalization 1NF 2NF partial dependency", goal: "Eliminate multi-valued attributes (1NF) and partial dependencies (2NF)" },
+    a: { sub: "Linux OS (1101413)", topic: "File Permissions (chmod 755 vs 644, chown)", yt: "Gate Smashers Linux File Permissions chmod 755", goal: "Calculate octal permissions: Owner=rwx (7), Group=r-x (5), Others=r-x (5)" },
+    e: { sub: "IKS (2531511)", topic: "Tridosha Theory of Ayurveda & 5 Elements", yt: "Tridosha Ayurveda Vata Pitta Kapha elements", goal: "Explain Vata, Pitta, Kapha and combination of Panchamahabhutas" },
+    n: "Flashcard #4 (1NF/2NF) + calculate chmod 644 vs 755"
+  },
+  {
+    day: 5, date: "Sept 14", dow: "Sun", phase: "Phase 1 Milestone",
+    m: { sub: "PASSING FLOOR DRILL 1", topic: "Digital Systems & DBMS 12-Mark Checkpoint", yt: "Neso Academy digital logic Gate Smashers DBMS revision", goal: "Write De Morgan, K-Map, and 3-Tier answers in 25 mins flat" },
+    a: { sub: "PASSING FLOOR DRILL 2", topic: "Python & Linux OS 12-Mark Checkpoint", yt: "CodeWithHarry Python Gate Smashers Linux permissions", goal: "Write Python Prime loop and chmod permission table on paper" },
+    e: { sub: "PASSING FLOOR DRILL 3", topic: "IPR, IKS & People's Skills Checkpoint", yt: "Patent criteria Aryabhata communication model revision", goal: "List 3 Patent Criteria and Aryabhata contributions from memory" },
+    n: "MILESTONE ACHIEVED: 12-Mark Passing Floor Locked across all 7 subjects"
+  },
+  {
+    day: 6, date: "Sept 15", dow: "Mon", phase: "Phase 2: Core",
+    m: { sub: "Digital Systems (1101111)", topic: "Full Adder Design using 2 Half Adders & OR Gate", yt: "Gate Smashers Full Adder using two half adders", goal: "Derive Sum = A ^ B ^ Cin and Carry equations with logic circuit" },
+    a: { sub: "Python (1101411)", topic: "Functions, *args, **kwargs & Recursion", yt: "CodeWithHarry Python functions args kwargs recursion", goal: "Write recursive factorial function and test parameter unpacking" },
+    e: { sub: "IPR (1481311)", topic: "Copyright Act 1957 & Fair Dealing Doctrine", yt: "Doctrine of Fair Dealing copyright exceptions India", goal: "List statutory exceptions for educational and research use" },
+    n: "Draw Full Adder circuit on paper + Flashcard #2"
+  },
+  {
+    day: 7, date: "Sept 16", dow: "Tue", phase: "Phase 2: Core",
+    m: { sub: "DBMS (1101112)", topic: "3NF Normalization & Transitive Dependencies", yt: "Gate Smashers 3NF Normalization transitive dependency", goal: "Decompose Customer table to eliminate A -> B, B -> C transitive chain" },
+    a: { sub: "Linux OS (1101413)", topic: "Filters: grep, find, pipes (|) & xargs", yt: "Gate Smashers Linux grep find pipes", goal: "Write command: ps aux | grep python | awk '{print $2}'" },
+    e: { sub: "People's Skills (2541514)", topic: "Daniel Goleman 5 Pillars of Emotional Intelligence", yt: "Daniel Goleman Emotional Intelligence 5 domains", goal: "Explain Self-Awareness, Self-Regulation, Motivation, Empathy, Social Skills" },
+    n: "Flashcard #4 (3NF) + write grep command"
+  },
+  {
+    day: 8, date: "Sept 17", dow: "Wed", phase: "Phase 2: Core",
+    m: { sub: "Digital Systems (1101111)", topic: "Flip-Flops: SR, JK & Master-Slave Race Around Fix", yt: "Gate Smashers JK Flip Flop Race around condition and Master Slave", goal: "Explain why tp > tpd causes race around toggling and how master-slave fixes it" },
+    a: { sub: "Python (1101411)", topic: "File Handling: Read, Write & Word Frequency Count", yt: "Python count word frequency in text file dictionary", goal: "Write 8-line script to open 'data.txt' and count word frequencies" },
+    e: { sub: "IKS (2531511)", topic: "Harappan Grid Town Planning & Drainage Architecture", yt: "Harappan civilization town planning drainage system", goal: "Describe right-angle street grid, soak pits, and covered terracotta drains" },
+    n: "Draw JK Flip-Flop Master-Slave diagram + Flashcard #7"
+  },
+  {
+    day: 9, date: "Sept 18", dow: "Thu", phase: "Phase 2: Core",
+    m: { sub: "DBMS (1101112)", topic: "SQL Joins: Inner, Left, Right, Full & Aggregation", yt: "Gate Smashers Joins in SQL Inner Left Right", goal: "Write queries with GROUP BY and HAVING clauses on student/orders data" },
+    a: { sub: "Linux OS (1101413)", topic: "Shell Scripting: Variables ($?), If-Else & For Loops", yt: "CodeWithHarry Bash Shell Scripting tutorial", goal: "Write script checking if directory exists before creating files" },
+    e: { sub: "IPR (1481311)", topic: "Trade Secrets, NDAs & IT Act 2000 Section 66", yt: "Trade secrets protection NDA Section 66 IT Act", goal: "Explain civil breach vs criminal hacking penalties under Sec 66" },
+    n: "Write 3 SQL Join queries + Flashcard #8"
+  },
+  {
+    day: 10, date: "Sept 19", dow: "Fri", phase: "Phase 2: Core",
+    m: { sub: "Digital Systems (1101111)", topic: "Von Neumann Architecture & Register Data Paths", yt: "Gate Smashers Von Neumann Architecture registers PC MAR MDR", goal: "Draw PC -> MAR -> MDR -> IR -> AC register bus architecture" },
+    a: { sub: "Python (1101411)", topic: "Exception Handling: Try-Except-Finally & Modules", yt: "CodeWithHarry Python try except finally custom exception", goal: "Write clean division program handling ZeroDivisionError gracefully" },
+    e: { sub: "People's Skills (2541514)", topic: "Thomas-Kilmann 5 Conflict Handling Modes", yt: "Thomas Kilmann Conflict Modes collaborate compete compromise", goal: "Draw Assertiveness vs Cooperativeness grid: Collaborate, Compete, Avoid" },
+    n: "Draw Von Neumann Block Diagram from memory"
+  },
+  {
+    day: 11, date: "Sept 20", dow: "Sat", phase: "Phase 3: Distinction",
+    m: { sub: "DBMS (1101112)", topic: "ACID Properties in Transactions & Concurrency", yt: "Gate Smashers ACID properties transaction management", goal: "Detail Atomicity, Consistency, Isolation, Durability with a bank transfer case" },
+    a: { sub: "Linux OS (1101413)", topic: "Shell Scripting: Tar Backup Automation & Cron", yt: "Bash shell script tar backup directory cron", goal: "Write script: tar -cvf backup.tar /home/user/*.txt" },
+    e: { sub: "IKS (2531511)", topic: "Ancient Indian Metallurgy: Iron Pillar of Delhi & Wootz", yt: "Iron pillar of Delhi corrosion resistance metallurgy ancient India", goal: "Explain high phosphorus rust-resistant iron technology" },
+    n: "Flashcard #5 (ACID) + write tar backup script"
+  },
+  {
+    day: 12, date: "Sept 21", dow: "Sun", phase: "Phase 3 Milestone",
+    m: { sub: "DISTINCTION DRILL 1", topic: "Full Syllabus Review: Digital Systems & DBMS", yt: "Gate Smashers Digital Systems DBMS marathon revision", goal: "Verify Units 1, 2, and 3 key definitions across both core majors" },
+    a: { sub: "DISTINCTION DRILL 2", topic: "Full Syllabus Review: Python & Linux OS", yt: "Python Linux OS core questions revision", goal: "Write Python file handling and Linux chmod scripts in 20 mins" },
+    e: { sub: "DISTINCTION DRILL 3", topic: "Full Syllabus Review: IPR, IKS & People's Skills", yt: "IPR IKS Peoples Skills quick revision", goal: "Recite patent criteria, Fayol/communication stages, and Aryabhata" },
+    n: "MILESTONE ACHIEVED: 25+ Mark Distinction Expansion Complete"
+  },
+  {
+    day: 13, date: "Sept 22", dow: "Mon", phase: "Phase 3: Distinction",
+    m: { sub: "Digital Systems (1101111)", topic: "Instruction Cycle: Fetch, Decode & Execute", yt: "Gate Smashers Instruction Cycle Fetch Decode Execute", goal: "Write step-by-step register transfer notation for Fetch & Execute" },
+    a: { sub: "Python (1101411)", topic: "List Comprehensions & String Methods", yt: "Python list comprehensions string manipulation methods", goal: "Write 1-line list comprehensions for filtering even squares" },
+    e: { sub: "IPR (1481311)", topic: "Trademarks & Industrial Designs Protection", yt: "Trademarks Act India design registration classes", goal: "Differentiate trademark brand identity vs functional design patent" },
+    n: "Write instruction cycle steps on paper"
+  },
+  {
+    day: 14, date: "Sept 23", dow: "Tue", phase: "Phase 3: Distinction",
+    m: { sub: "DBMS (1101112)", topic: "Functional Dependencies & Armstrong Axioms", yt: "Gate Smashers Functional Dependency Armstrong Axioms", goal: "Explain Reflexivity, Augmentation, and Transitivity axioms" },
+    a: { sub: "Linux OS (1101413)", topic: "Process Management: ps aux, top, kill -9 & nice", yt: "Gate Smashers Linux Process Management ps top kill", goal: "Explain process states (Running, Sleeping, Zombie, Stopped)" },
+    e: { sub: "People's Skills (2541514)", topic: "Active Listening vs Passive Hearing & Feedback", yt: "Active listening barriers feedback communication", goal: "Explain 5 steps of active listening: Receiving, Evaluating, Responding" },
+    n: "Test Armstrong Axioms proof + Flashcard #3"
+  },
+  {
+    day: 15, date: "Sept 24", dow: "Wed", phase: "Phase 3: Distinction",
+    m: { sub: "Digital Systems (1101111)", topic: "Memory Hierarchy & Cache Mapping (L1, L2, L3)", yt: "Gate Smashers Memory Hierarchy Cache RAM Disk", goal: "Draw speed vs cost pyramid: Registers -> Cache -> RAM -> Secondary Disk" },
+    a: { sub: "Python (1101411)", topic: "Consolidated Python Code Practice (5 Key Programs)", yt: "Python practical exam programs prime fibonacci file", goal: "Code Prime, Palindrome, File count, Dict lookup, and Factorial" },
+    e: { sub: "IKS (2531511)", topic: "Comprehensive Review of Vedic & Classical Science", yt: "Indian Knowledge System summary exam questions", goal: "Consolidate 1-page summary of Aryabhata, Sushruta, and Harappa" },
+    n: "Draw Memory Hierarchy pyramid on paper"
+  },
+  {
+    day: 16, date: "Sept 25", dow: "Thu", phase: "Phase 4: Speed Drills",
+    m: { sub: "Digital Systems Speed Drill", topic: "Write De Morgan + K-Map + Full Adder in 22 Mins", yt: "Neso Academy digital electronics fast writing", goal: "Target 15/15 marks using clean circuit diagrams and truth tables" },
+    a: { sub: "DBMS Speed Drill", topic: "Write 3-Tier + 1NF/2NF/3NF + ACID in 22 Mins", yt: "Gate Smashers DBMS paper solve fast", goal: "Draw schema tables + ACID banking transaction example" },
+    e: { sub: "Elective Quick Review", topic: "3 Patent Criteria + Fair Dealing + Goleman EQ", yt: "IPR and Peoples skills quick points", goal: "Write bulleted points in 15 mins" },
+    n: "Self-grade papers with 5/5 Evaluator marking scheme"
+  },
+  {
+    day: 17, date: "Sept 26", dow: "Fri", phase: "Phase 4: Speed Drills",
+    m: { sub: "Python Speed Drill", topic: "Write 3 Python Programs on paper in 20 Mins", yt: "Python exam written questions dry run", goal: "Code Prime check, Word count file script, and Dict comparison" },
+    a: { sub: "Linux OS Speed Drill", topic: "Write FHS 5 Dirs + chmod 755/644 + Backup Script", yt: "Linux OS exam questions practice", goal: "Clean octal calculations and bash shebang syntax" },
+    e: { sub: "IKS Speed Drill", topic: "Write Aryabhata + Tridosha in 15 Mins", yt: "IKS key questions answer writing", goal: "Clean Sanskrit terminologies & English explanations" },
+    n: "Review syntax: zero indent/compiler errors"
+  },
+  {
+    day: 18, date: "Sept 27", dow: "Sat", phase: "Phase 4: Speed Drills",
+    m: { sub: "FULL MOCK 1 (Core Majors)", topic: "Timed 1-Hour 30-Mark Paper (Digital Systems & DBMS)", yt: "Computer science exam question paper solve", goal: "Complete 5 high-yield answers in 50 minutes flat" },
+    a: { sub: "FULL MOCK 2 (Systems & Skills)", topic: "Timed 1-Hour 30-Mark Paper (Python & Linux OS)", yt: "Python Linux exam paper writing", goal: "Complete 5 practical answers in 50 minutes flat" },
+    e: { sub: "Flashcard Speedrun", topic: "Flip all 8 Flashcards on Study Lab in 8 Mins", yt: "Active recall flashcard study drill", goal: "100% recall before card flips" },
+    n: "Confirmed: Passing floor locked at 25+ marks"
+  },
+  {
+    day: 19, date: "Sept 28", dow: "Sun", phase: "Pre-Flight Scan",
+    m: { sub: "Digital & DBMS Formula Scan", topic: "Rapid visual review of all circuits, gates, and schemas", yt: "Digital logic DBMS quick formula scan", goal: "15 minutes high-speed visual memory refresh" },
+    a: { sub: "Python & Linux Quick Scan", topic: "Review syntax rules, octal permissions, and file modes", yt: "Python Linux quick cheat sheet", goal: "15 minutes code review" },
+    e: { sub: "Mindset & Relaxation", topic: "Calm breathing, healthy dinner, rest your brain", yt: "Exam mindset calm positive confidence", goal: "Zero panic. 20 days of focused effort have prepared you." },
+    n: "Sleep 8 restful hours"
+  },
+  {
+    day: 20, date: "Sept 29-30", dow: "Mon-Tue", phase: "Final Readiness",
+    m: { sub: "Hall Ticket & Stationery Check", topic: "Print Hall Ticket, College ID card, 2 Blue/Black pens, scale", yt: "Exam hall stationery checklist", goal: "Exam pouch packed and ready" },
+    a: { sub: "Mobile Quick Glance", topic: "Quick scroll through Sem 1 Sprint Flashcards on phone", yt: "Mobile quick study scan", goal: "Light 10-minute glance" },
+    e: { sub: "Mental Peace & Confidence", topic: "Evening walk, light family dinner", yt: "Positive morning exam visualization", goal: "You have 100% mastery over Sem 1. Go in and dominate." },
+    n: "READY FOR EXAM: Total Sem 1 clarity achieved."
+  }
+];
+
+// ─────────────────────────────────────────
+// B. 7 SEMESTER 1 COURSES FULL CURRICULUM
+// ─────────────────────────────────────────
+const sem1Courses = [
+  {
+    code: "1101111", name: "Digital Systems & Architecture", type: "Major Core", credits: "2.0",
+    units: [
+      {
+        title: "Unit 1: Number Systems & Boolean Logic",
+        topics: "Binary, Octal, Hex conversions, 1s & 2s complements, De Morgan's Theorems, K-Maps (SOP & POS 3/4-variable minimization).",
+        keyQ: "Explain De Morgan's Theorems with circuit diagrams and truth tables.",
+        badge: "Boolean Math",
+        formula: "\\overline{A \\cdot B} = \\overline{A} + \\overline{B} \\quad \\text{and} \\quad \\overline{A + B} = \\overline{A} \\cdot \\overline{B}"
+      },
+      {
+        title: "Unit 2: Combinational & Sequential Circuits",
+        topics: "Half Adder, Full Adder (using 2 Half Adders), Multiplexers (4:1 MUX), Flip-Flops (SR, JK, D, T), Master-Slave JK Race Around Condition.",
+        keyQ: "Design a Full Adder using two Half Adders and an OR gate. Derive Sum and Carry equations.",
+        badge: "Circuit Blueprint",
+        formula: "\\text{Sum} = A \\oplus B \\oplus C_{in}, \\quad \\text{Carry} = AB + BC_{in} + AC_{in}"
+      },
+      {
+        title: "Unit 3: Processor Organization & Memory Hierarchy",
+        topics: "Von Neumann Architecture, Registers (PC, MAR, MDR, IR, AC), Instruction Cycle (Fetch, Decode, Execute), Cache Memory (L1, L2, L3).",
+        keyQ: "Explain the Von Neumann Architecture with a block diagram and register data paths.",
+        badge: "Processor Architecture",
+        flow: ["PC (Program Counter)", "MAR (Address Bus)", "MDR (Data Bus)", "IR (Instruction Register)", "AC (Accumulator)"]
+      }
+    ]
+  },
+  {
+    code: "1101112", name: "Fundamentals of Database Systems", type: "Major Core", credits: "2.0",
+    units: [
+      {
+        title: "Unit 1: DBMS Architecture & Data Modeling",
+        topics: "File System vs DBMS, 3-Tier ANSI/SPARC Schema Architecture, Data Independence (Physical vs Logical), ER Diagrams (Entities, Keys, Cardinality).",
+        keyQ: "Explain 3-Tier ANSI/SPARC Architecture and Data Independence with diagrams.",
+        badge: "3-Tier Schema",
+        flow: ["External Level (User Views)", "Conceptual Level (Logical Schemas & Tables)", "Internal Level (Physical Disk Storage)"]
+      },
+      {
+        title: "Unit 2: Relational Model & Normalization",
+        topics: "Relational Algebra (Select σ, Project π, Join ⋈), Normal Forms: 1NF (Atomic), 2NF (No Partial Dep), 3NF (No Transitive Dep), BCNF.",
+        keyQ: "What is Normalization? Explain 1NF, 2NF, and 3NF with a student table example.",
+        badge: "Normalization Rules",
+        points: ["1NF: Atomic values only (no comma-separated lists)", "2NF: 1NF + No Partial Dependency (Non-prime depends on full PK)", "3NF: 2NF + No Transitive Dependency (A → B, B → C eliminated)"]
+      },
+      {
+        title: "Unit 3: SQL & Transaction Management",
+        topics: "DDL/DML/DCL commands, SQL Joins (Inner, Left, Right), Group By, Having, ACID Properties, Transaction States.",
+        keyQ: "Explain ACID properties in DBMS with a real bank transfer transaction example.",
+        badge: "ACID Transactions",
+        points: ["Atomicity: All operations succeed or all roll back", "Consistency: Preserves database constraints", "Isolation: Concurrent transactions do not interfere", "Durability: Committed data survives hardware failure"]
+      }
+    ]
+  },
+  {
+    code: "1101411", name: "Introduction to Programming with Python", type: "Vocational / Skill", credits: "2.0",
+    units: [
+      {
+        title: "Unit 1: Control Flow & Basic Syntax",
+        topics: "Data types, Arithmetic/Logical operators, If-elif-else, For/While loops, Break, Continue, Pass, For-Else construct.",
+        keyQ: "Write a Python program to check if a number is Prime using a for-else construct.",
+        badge: "Code Snippet",
+        code: "n = int(input(\"Enter num: \"))\nfor i in range(2, int(n**0.5) + 1):\n    if n % i == 0:\n        print(\"Not Prime\"); break\nelse: print(\"Prime\")"
+      },
+      {
+        title: "Unit 2: Core Data Structures",
+        topics: "List (mutable), Tuple (immutable), Set (unique), Dictionary (key-value hash), Slicing, Comprehensions.",
+        keyQ: "Compare Lists vs Tuples vs Sets vs Dictionaries with syntax and mutability.",
+        badge: "Data Structures",
+        points: ["List [ ]: Ordered, Mutable, Allows Duplicates", "Tuple ( ): Ordered, Immutable (Fixed)", "Set { }: Unordered, Unique elements only", "Dict {k:v}: Key-Value pairs with fast O(1) hash lookup"]
+      },
+      {
+        title: "Unit 3: Functions & File Handling",
+        topics: "def, *args, **kwargs, Lambda functions, Recursion, File modes (r, w, a), Word frequency counting.",
+        keyQ: "Write a Python function to read a text file and count the frequency of each word using a Dictionary.",
+        badge: "File Handling",
+        code: "with open(\"data.txt\", \"r\") as f:\n    words = f.read().split()\n    counts = {w: words.count(w) for w in set(words)}\n    print(counts)"
+      }
+    ]
+  },
+  {
+    code: "1101413", name: "Linux Operating System", type: "Skill Course", credits: "2.0",
+    units: [
+      {
+        title: "Unit 1: FHS & Core Commands",
+        topics: "Kernel vs Shell, Filesystem Hierarchy Standard (/bin, /sbin, /etc, /home, /var, /proc), Navigation (ls -la, cd, mkdir -p, rm -rf).",
+        keyQ: "Explain the Linux Filesystem Hierarchy Standard (FHS) and describe 5 essential directories.",
+        badge: "FHS Hierarchy",
+        flow: ["/ (Root)", "/bin (Essential User Binaries)", "/etc (Host-specific Config)", "/home (User Directories)", "/var (Variable Log Files)"]
+      },
+      {
+        title: "Unit 2: Permissions & Process Control",
+        topics: "Chmod (755 vs 644, symbolic vs octal), Chown, Grep, Find, Pipes (|), Redirection, ps aux, top, kill -9.",
+        keyQ: "Explain Linux File Permissions with symbolic vs. octal notation with examples.",
+        badge: "Octal Permissions",
+        code: "# 755: Owner=rwx (7), Group=r-x (5), Others=r-x (5)\nchmod 755 script.sh\nps aux | grep python | awk '{print $2}' | xargs kill -9"
+      },
+      {
+        title: "Unit 3: Shell Scripting & Admin",
+        topics: "Shebang #!/bin/bash, Variables, If-else test operators (-eq, -f, -d), For/While loops, Tar compression.",
+        keyQ: "Write a shell script to take a directory name and backup all .txt files into an archive.tar file.",
+        badge: "Bash Script",
+        code: "#!/bin/bash\nread -p \"Enter dir: \" d\nif [ -d \"$d\" ]; then\n    tar -cvf backup.tar \"$d\"/*.txt\nfi"
+      }
+    ]
+  },
+  {
+    code: "1481311", name: "Intellectual Property Rights (IPR)", type: "Open Elective", credits: "2.0",
+    units: [
+      {
+        title: "Unit 1: Patents & Trademarks",
+        topics: "Tangible vs Intangible Property, 3 Criteria for Patentability (Novelty, Inventive Step, Industrial Application), Trademark registration.",
+        keyQ: "What are the 3 essential criteria for patent grant under Indian Patent Act 1970?",
+        badge: "Patent Law",
+        points: ["1. Novelty: The invention must be globally new", "2. Inventive Step: Non-obvious to a person skilled in the art", "3. Industrial Utility: Must possess practical real-world application"]
+      },
+      {
+        title: "Unit 2: Copyrights & Trade Secrets",
+        topics: "Copyright Act 1957, Software copyright protection, Fair Dealing doctrine, Trade Secrets (NDAs), IT Act 2000 Sec 66.",
+        keyQ: "Explain the Doctrine of Fair Dealing under Copyright law with exemptions for education and research.",
+        badge: "Copyright Exceptions",
+        points: ["Copyright Term: Author lifetime + 60 years post-mortem", "Fair Dealing: Statutorily exempts educational study, critique, and private research", "Trade Secrets: Protected indefinitely via confidential NDA contracts"]
+      }
+    ]
+  },
+  {
+    code: "2531511", name: "Indian Knowledge System (IKS)", type: "IKS Core", credits: "2.0",
+    units: [
+      {
+        title: "Unit 1: Ancient Mathematics & Astronomy",
+        topics: "Decimal system, Concept of Shunya (Zero) by Brahmagupta, Aryabhata (π ≈ 3.1416, earth axial rotation), Bhaskara II.",
+        keyQ: "Describe the mathematical contributions of Aryabhata and Brahmagupta to global mathematics.",
+        badge: "Ancient Science",
+        points: ["Aryabhata: Aryabhatiya calculated π ≈ 3.1416 and proved Earth's axial rotation", "Brahmagupta: Brahmasphutasiddhanta established formal arithmetic for Zero and negative numbers", "Bhaskara II: Developed cyclic Chakravala method for indeterminate equations"]
+      },
+      {
+        title: "Unit 2: Ayurveda & Town Planning",
+        topics: "Tridosha Theory (Vata, Pitta, Kapha), Panchamahabhutas, Harappan Grid layout & underground covered drainage.",
+        keyQ: "Explain the Tridosha Theory of Ayurveda and its balance in human health.",
+        badge: "Ayurveda & Architecture",
+        points: ["Vata (Air + Ether): Governs nervous system and kinetic movement", "Pitta (Fire + Water): Governs digestion, metabolism, and heat", "Kapha (Water + Earth): Governs cellular structure and immunity"]
+      }
+    ]
+  },
+  {
+    code: "2541514", name: "Fundamental of People's Skills", type: "Value Education", credits: "2.0",
+    units: [
+      {
+        title: "Unit 1: Communication Models & Active Listening",
+        topics: "7-Stage communication model, Physical and psychological barriers, Active listening vs passive hearing, Proxemics.",
+        keyQ: "Describe the 7-stage Communication Process and explain physical vs semantic barriers.",
+        badge: "Communication",
+        flow: ["Sender", "Encoding", "Message & Channel", "Receiver", "Decoding", "Feedback"]
+      },
+      {
+        title: "Unit 2: Emotional Intelligence & Conflict Resolution",
+        topics: "Daniel Goleman 5 EQ Pillars, Thomas-Kilmann Conflict Modes (Collaborate, Compete, Compromise, Avoid, Accommodate).",
+        keyQ: "Explain Daniel Goleman's 5 Pillars of Emotional Intelligence (EQ) in professional life.",
+        badge: "Emotional Intelligence",
+        points: ["1. Self-Awareness: Understanding your own emotional states", "2. Self-Regulation: Managing impulses and adapting", "3. Motivation: Internal passion beyond external rewards", "4. Empathy: Recognizing emotions in team members", "5. Social Skills: Constructive conflict resolution"]
+      }
+    ]
+  }
+];
+
+// ─────────────────────────────────────────
+// C. 8 HIGH-YIELD SEM 1 FLASHCARDS
+// ─────────────────────────────────────────
+const sem1Cards = [
+  {
+    subject: "Digital Systems (1101111)",
+    q: "State and prove De Morgan's Laws with truth table and logic gate representations.",
+    a: "<strong>Law 1:</strong> (A · B)' = A' + B'<br>NAND gate is logically equivalent to a Bubbled OR gate.<br><br><strong>Law 2:</strong> (A + B)' = A' · B'<br>NOR gate is logically equivalent to a Bubbled AND gate.<br><br><strong>Proof:</strong> Construct 4-row truth table for inputs 00, 01, 10, 11 proving equality of LHS and RHS columns."
+  },
+  {
+    subject: "Digital Systems (1101111)",
+    q: "Design a Full Adder using two Half Adders and an OR gate. Derive Sum & Carry.",
+    a: "<strong>Half Adder 1:</strong> S1 = A ⊕ B, C1 = A · B<br><strong>Half Adder 2:</strong> Sum = S1 ⊕ Cin = A ⊕ B ⊕ Cin<br><strong>Carry Logic:</strong> C2 = S1 · Cin = (A ⊕ B) · Cin<br><strong>Final Carry:</strong> Cout = C1 + C2 = AB + (A ⊕ B)Cin = AB + BCin + ACin.<br>Requires 2 XOR gates, 2 AND gates, and 1 OR gate."
+  },
+  {
+    subject: "DBMS (1101112)",
+    q: "Explain the 3-Tier ANSI/SPARC Architecture and explain Data Independence.",
+    a: "<strong>1. External Level:</strong> Multiple customized views for end-users.<br><strong>2. Conceptual Level:</strong> Unified logical view of all tables, entities, and primary/foreign keys.<br><strong>3. Internal Level:</strong> Physical file structures, B-trees, and disk blocks.<br><br><strong>Logical Independence:</strong> Changing conceptual schemas without breaking user views.<br><strong>Physical Independence:</strong> Upgrading storage disks without modifying table definitions."
+  },
+  {
+    subject: "DBMS (1101112)",
+    q: "Explain 1NF, 2NF, and 3NF Normalization with clear functional dependency rules.",
+    a: "<strong>1NF:</strong> All attribute values must be atomic (no multi-valued sets or nested lists).<br><strong>2NF:</strong> Must be in 1NF + No Partial Dependency (every non-prime attribute must depend on the FULL candidate key, not a proper subset).<br><strong>3NF:</strong> Must be in 2NF + No Transitive Dependency (if A → B and B → C, C must not depend on non-prime B)."
+  },
+  {
+    subject: "DBMS (1101112)",
+    q: "Explain ACID properties in database transactions with a bank transfer example.",
+    a: "<strong>Scenario:</strong> Transfer ₹5,000 from Account A to Account B.<br>• <strong>Atomicity:</strong> Either both A - ₹5000 and B + ₹5000 occur, or whole transaction rolls back.<br>• <strong>Consistency:</strong> Total money (A + B) remains mathematically constant before and after.<br>• <strong>Isolation:</strong> Concurrent queries cannot see intermediate states.<br>• <strong>Durability:</strong> Once committed, the ₹5000 transfer is permanently written to disk."
+  },
+  {
+    subject: "Python (1101411)",
+    q: "Write a Python program to check if an integer is Prime using for-else loop.",
+    a: "<pre class=\"font-mono\" style=\"background:#000;padding:8px;border-radius:6px;font-size:11px;color:#38bdf8\">num = int(input(\"Enter num: \"))\nif num > 1:\n    for i in range(2, int(num**0.5) + 1):\n        if num % i == 0:\n            print(f\"{num} is NOT Prime\")\n            break\n    else:\n        print(f\"{num} is PRIME\")\nelse:\n    print(\"Not Prime\")</pre>"
+  },
+  {
+    subject: "Linux OS (1101413)",
+    q: "Explain Linux File Permissions with chmod 755 vs 644 and symbolic calculation.",
+    a: "<strong>Permission Values:</strong> Read (r) = 4, Write (w) = 2, Execute (x) = 1.<br><br>• <strong>chmod 755 (rwxr-xr-x):</strong><br>Owner: 4+2+1 = 7 (Full)<br>Group: 4+0+1 = 5 (Read+Exec)<br>Others: 4+0+1 = 5 (Read+Exec)<br><em>Used for executable scripts and binaries.</em><br><br>• <strong>chmod 644 (rw-r--r--):</strong><br>Owner: 4+2+0 = 6 (Read+Write)<br>Group & Others: 4 (Read-only)<br><em>Standard for web HTML and config files.</em>"
+  },
+  {
+    subject: "IPR (1481311)",
+    q: "What are the 3 essential criteria for patentability under the Indian Patent Act 1970?",
+    a: "<strong>1. Novelty:</strong> The invention must never have been published, publicly disclosed, or used anywhere in the world prior to the filing date.<br><br><strong>2. Inventive Step (Non-Obviousness):</strong> The solution must not be obvious to a normal person skilled in that technical art.<br><br><strong>3. Industrial Applicability (Utility):</strong> The invention must have practical utility and be capable of being produced or used in industry."
+  }
+];
+
+// ─────────────────────────────────────────
+// D. APPLICATION STATE & PERSISTENCE
+// ─────────────────────────────────────────
+const STATE_KEY = 'bsc_cs_sem1_sprint_state';
+let sprintState = {
+  tasks: {},
+  currentDay: 1,
+  currentCard: 0
+};
+
+function loadState() {
+  try {
+    const saved = localStorage.getItem(STATE_KEY);
+    if (saved) {
+      sprintState = Object.assign(sprintState, JSON.parse(saved));
+    }
+  } catch (e) {
+    console.error('Failed to load sprint state:', e);
+  }
+}
+
+function saveState() {
+  try {
+    localStorage.setItem(STATE_KEY, JSON.stringify(sprintState));
+  } catch (e) {
+    console.error('Failed to save sprint state:', e);
+  }
+}
+
+function toggleSprintTask(dayNum, slot) {
+  const key = `${dayNum}_${slot}`;
+  sprintState.tasks[key] = !sprintState.tasks[key];
+  saveState();
+  updateProgressStats();
+  renderSprintGrid();
+  renderHeatmap();
+}
+
+function updateProgressStats() {
+  let doneCount = 0;
+  sem1SprintDays.forEach(d => {
+    ['m', 'a', 'e'].forEach(s => {
+      if (sprintState.tasks[`${d.day}_${s}`]) doneCount++;
+    });
+  });
+  const total = sem1SprintDays.length * 3; // 60 blocks
+  const pct = Math.round((doneCount / total) * 100);
+
+  const blockStat = document.getElementById('stat-blocks-completed');
+  if (blockStat) blockStat.innerText = `${doneCount} / ${total} (${pct}%)`;
+
+  // Update day inspector percentage if visible
+  const d = sem1SprintDays.find(item => item.day === sprintState.currentDay);
+  if (d) {
+    let dayDone = 0;
+    ['m', 'a', 'e'].forEach(s => {
+      if (sprintState.tasks[`${d.day}_${s}`]) dayDone++;
+    });
+    const dayPct = Math.round((dayDone / 3) * 100);
+    const dayPctEl = document.getElementById('daily-pct');
+    const dayBarEl = document.getElementById('daily-bar');
+    if (dayPctEl) dayPctEl.innerText = `${dayPct}%`;
+    if (dayBarEl) dayBarEl.style.width = `${dayPct}%`;
+  }
+}
+
+// ─────────────────────────────────────────
+// E. RENDERERS
+// ─────────────────────────────────────────
+
+// 1. Render Month Grid
+function renderSprintGrid() {
+  const container = document.getElementById('sprint-grid-container');
+  if (!container) return;
+  container.innerHTML = '';
+
+  sem1SprintDays.forEach(d => {
+    let done = 0;
+    ['m', 'a', 'e'].forEach(s => {
+      if (sprintState.tasks[`${d.day}_${s}`]) done++;
+    });
+    const isComplete = done === 3;
+    const isToday = d.day === 1; // Sept 10 is Sprint Day 1
+
+    const card = document.createElement('div');
+    card.className = `cal-card ${d.day === sprintState.currentDay ? 'active-day' : ''} ${isToday ? 'is-today' : ''} ${isComplete ? 'is-complete' : ''}`;
+    card.onclick = () => {
+      sprintState.currentDay = d.day;
+      saveState();
+      switchTab('day');
+      loadDay(d.day);
+    };
+
+    card.innerHTML = `
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2px">
+          <span style="font-size:12px;font-weight:800;color:${isToday ? '#38bdf8' : '#f8fafc'}">${d.date}</span>
+          <span style="font-size:9px;color:${isToday ? '#38bdf8' : 'var(--text-muted)'};font-family:'JetBrains Mono',monospace;font-weight:700">${isToday ? 'TODAY' : d.dow}</span>
+        </div>
+        <div style="font-size:9px;color:#fbbf24;font-weight:700;margin-bottom:4px">Sprint Day ${d.day}</div>
+        <div style="display:flex;flex-direction:column;gap:3px">
+          <span class="pill pill-m">${d.m.sub.split(' ')[0]}</span>
+          <span class="pill pill-a">${d.a.sub.split(' ')[0]}</span>
+          <span class="pill pill-e">${d.e.sub.split(' ')[0]}</span>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px;font-size:9px;color:var(--text-muted)">
+        <span>${d.phase.split(':')[0]}</span>
+        <span style="font-size:10px">${isComplete ? '<span style="color:#34d399">✓ Done</span>' : (done > 0 ? `<span style="color:#fbbf24">${done}/3</span>` : '○')}</span>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+// 2. Render Heatmap
+function renderHeatmap() {
+  const grid = document.getElementById('heatmap-grid');
+  if (!grid) return;
+  grid.innerHTML = '';
+
+  let streak = 0;
+  sem1SprintDays.forEach(d => {
+    let count = 0;
+    ['m', 'a', 'e'].forEach(s => {
+      if (sprintState.tasks[`${d.day}_${s}`]) count++;
+    });
+    if (count > 0) streak++;
+
+    let bg = '#141a26';
+    let border = '#1f2738';
+    if (count === 1) { bg = '#0e4429'; border = '#006d32'; }
+    else if (count === 2) { bg = '#006d32'; border = '#26a641'; }
+    else if (count === 3) { bg = '#26a641'; border = '#39d353'; }
+
+    const sq = document.createElement('div');
+    sq.style.cssText = `height:24px;border-radius:4px;background:${bg};border:1px solid ${border};display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff;cursor:pointer`;
+    sq.innerText = d.day;
+    sq.title = `Day ${d.day} (${d.date}): ${count}/3 blocks completed`;
+    sq.onclick = () => {
+      sprintState.currentDay = d.day;
+      saveState();
+      switchTab('day');
+      loadDay(d.day);
+    };
+    grid.appendChild(sq);
+  });
+
+  const streakEl = document.getElementById('heatmap-streak-label');
+  if (streakEl) streakEl.innerText = `${streak} Days Active`;
+}
+
+// 3. Load Day in Inspector
+function loadDay(dayNum) {
+  sprintState.currentDay = dayNum;
+  const d = sem1SprintDays.find(item => item.day === dayNum);
+  if (!d) return;
+
+  const select = document.getElementById('day-select-dropdown');
+  if (select) select.value = dayNum;
+
+  document.getElementById('insp-day-badge').innerText = `DAY ${d.day} OF 20`;
+  document.getElementById('insp-date-title').innerText = `${d.date}, 2026 (${d.dow})`;
+  document.getElementById('insp-phase-desc').innerText = `${d.phase} · ${d.m.sub.split(' ')[0]} + ${d.a.sub.split(' ')[0]} + ${d.e.sub.split(' ')[0]}`;
+
+  const container = document.getElementById('day-sessions-container');
+  container.innerHTML = `
+    <!-- Block 1: Morning -->
+    <div class="session-card" style="border-left-color:#6366f1">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;flex-wrap:wrap;gap:6px">
+        <span class="tag tag-indigo">BLOCK 1: MORNING (8:00 AM – 10:30 AM | 2.5h)</span>
+        <span style="font-size:12px;font-weight:700;color:#818cf8">${d.m.sub}</span>
+      </div>
+      <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:4px">${d.m.topic}</div>
+      <p style="font-size:12px;color:var(--text-secondary);margin-bottom:10px"><strong>Action Goal:</strong> ${d.m.goal}</p>
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+        <a href="https://www.youtube.com/results?search_query=${encodeURIComponent(d.m.yt)}" target="_blank" rel="noopener noreferrer" class="yt-action">
+          <i data-lucide="play-circle" style="width:14px;height:14px"></i>
+          <span>Watch Curated Lecture on YouTube</span>
+        </a>
+        <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:#e2e8f0;cursor:pointer">
+          <input type="checkbox" id="chk_${d.day}_m" ${sprintState.tasks[`${d.day}_m`] ? 'checked' : ''} onchange="toggleSprintTask(${d.day}, 'm')" style="width:16px;height:16px;accent-color:#3b82f6">
+          <span style="font-weight:600">Block Completed</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Block 2: Afternoon -->
+    <div class="session-card" style="border-left-color:#06b6d4">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;flex-wrap:wrap;gap:6px">
+        <span class="tag tag-blue" style="background:rgba(6,182,212,0.15);color:#67e8f9;border-color:rgba(6,182,212,0.3)">BLOCK 2: AFTERNOON (1:30 PM – 4:00 PM | 2.5h)</span>
+        <span style="font-size:12px;font-weight:700;color:#22d3ee">${d.a.sub}</span>
+      </div>
+      <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:4px">${d.a.topic}</div>
+      <p style="font-size:12px;color:var(--text-secondary);margin-bottom:10px"><strong>Action Goal:</strong> ${d.a.goal}</p>
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+        <a href="https://www.youtube.com/results?search_query=${encodeURIComponent(d.a.yt)}" target="_blank" rel="noopener noreferrer" class="yt-action">
+          <i data-lucide="play-circle" style="width:14px;height:14px"></i>
+          <span>Watch Curated Lecture on YouTube</span>
+        </a>
+        <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:#e2e8f0;cursor:pointer">
+          <input type="checkbox" id="chk_${d.day}_a" ${sprintState.tasks[`${d.day}_a`] ? 'checked' : ''} onchange="toggleSprintTask(${d.day}, 'a')" style="width:16px;height:16px;accent-color:#06b6d4">
+          <span style="font-weight:600">Block Completed</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Block 3: Evening -->
+    <div class="session-card" style="border-left-color:#10b981">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;flex-wrap:wrap;gap:6px">
+        <span class="tag tag-green">BLOCK 3: EVENING (6:00 PM – 8:00 PM | 2.0h)</span>
+        <span style="font-size:12px;font-weight:700;color:#34d399">${d.e.sub}</span>
+      </div>
+      <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:4px">${d.e.topic}</div>
+      <p style="font-size:12px;color:var(--text-secondary);margin-bottom:10px"><strong>Action Goal:</strong> ${d.e.goal}</p>
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+        <a href="https://www.youtube.com/results?search_query=${encodeURIComponent(d.e.yt)}" target="_blank" rel="noopener noreferrer" class="yt-action">
+          <i data-lucide="play-circle" style="width:14px;height:14px"></i>
+          <span>Watch Curated Lecture on YouTube</span>
+        </a>
+        <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:#e2e8f0;cursor:pointer">
+          <input type="checkbox" id="chk_${d.day}_e" ${sprintState.tasks[`${d.day}_e`] ? 'checked' : ''} onchange="toggleSprintTask(${d.day}, 'e')" style="width:16px;height:16px;accent-color:#10b981">
+          <span style="font-weight:600">Block Completed</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Block 4: Night Review -->
+    <div class="card-inner" style="border:1px dashed var(--border-strong);padding:10px;background:var(--bg-surface-recessed)">
+      <div style="font-size:10px;font-weight:700;color:#fbbf24;text-transform:uppercase;margin-bottom:2px">Night Active Recall Routine (9:30 PM – 10:00 PM)</div>
+      <div style="font-size:12px;color:#e2e8f0">${d.n}</div>
+    </div>
+  `;
+
+  updateProgressStats();
+  lucide.createIcons();
+}
+
+function prevDay() {
+  if (sprintState.currentDay > 1) {
+    loadDay(sprintState.currentDay - 1);
+  }
+}
+function nextDay() {
+  if (sprintState.currentDay < sem1SprintDays.length) {
+    loadDay(sprintState.currentDay + 1);
+  }
+}
+
+// 4. Render Courses
+function renderCourses() {
+  const container = document.getElementById('courses-list-container');
+  if (!container) return;
+  container.innerHTML = '';
+
+  sem1Courses.forEach(c => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.style.marginBottom = '14px';
+
+    let unitsHTML = '';
+    c.units.forEach((u, i) => {
+      let extra = '';
+      if (u.formula) {
+        extra = `<div style="background:var(--bg-surface-recessed);border:1px solid var(--border-subtle);border-radius:6px;padding:8px 10px;margin-top:6px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#38bdf8">${u.formula}</div>`;
+      } else if (u.code) {
+        extra = `<pre class="font-mono" style="background:var(--bg-surface-recessed);border:1px solid var(--border-subtle);border-radius:6px;padding:8px 10px;margin-top:6px;font-size:11px;color:#4ade80;overflow-x:auto">${u.code}</pre>`;
+      } else if (u.flow) {
+        extra = `<div style="display:flex;gap:4px;flex-wrap:wrap;margin-top:6px">${u.flow.map(f => `<span class="tag tag-blue" style="font-size:9px">${f}</span>`).join(' &rarr; ')}</div>`;
+      } else if (u.points) {
+        extra = `<ul style="font-size:11px;color:var(--text-secondary);margin-top:6px;padding-left:16px;line-height:1.5">${u.points.map(p => `<li>${p}</li>`).join('')}</ul>`;
+      }
+
+      unitsHTML += `
+        <div style="padding:10px 0;border-bottom:1px solid var(--border-subtle)">
+          <div style="font-weight:700;color:#fff;font-size:12px;margin-bottom:3px">${u.title}</div>
+          <div style="font-size:11px;color:var(--text-secondary);line-height:1.5">${u.topics}</div>
+          <div style="font-size:11px;color:#fbbf24;font-weight:600;margin-top:4px">★ Key 5-Mark Question: ${u.keyQ}</div>
+          ${extra}
+        </div>
+      `;
+    });
+
+    card.innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <span class="tag tag-indigo">${c.type}</span>
+        <span class="font-mono" style="font-size:11px;color:#38bdf8;font-weight:700">Code: ${c.code} (${c.credits} Cr)</span>
+      </div>
+      <div style="font-size:16px;font-weight:800;color:#fff;margin-bottom:10px">${c.name}</div>
+      ${unitsHTML}
+    `;
+    container.appendChild(card);
+  });
+}
+
+// 5. Flashcards
+function renderFlashcard() {
+  const card = sem1Cards[sprintState.currentCard];
+  if (!card) return;
+
+  document.getElementById('fc-counter').innerText = `Card ${sprintState.currentCard + 1} of ${sem1Cards.length}`;
+  document.getElementById('fc-subject').innerText = card.subject;
+  document.getElementById('fc-question').innerText = card.q;
+  document.getElementById('fc-answer').innerHTML = card.a;
+
+  const box = document.getElementById('flashcard-element');
+  if (box) box.classList.remove('flipped');
+  lucide.createIcons();
+}
+
+function flipCard() {
+  const box = document.getElementById('flashcard-element');
+  if (box) box.classList.toggle('flipped');
+}
+function prevCard() {
+  if (sprintState.currentCard > 0) {
+    sprintState.currentCard--;
+    renderFlashcard();
+  }
+}
+function nextCard() {
+  if (sprintState.currentCard < sem1Cards.length - 1) {
+    sprintState.currentCard++;
+    renderFlashcard();
+  }
+}
+
+// 6. Navigation Tabs
+function switchTab(tabId) {
+  document.querySelectorAll('.tab-view').forEach(v => v.style.display = 'none');
+  document.querySelectorAll('.dock-btn').forEach(b => b.classList.remove('active'));
+
+  const view = document.getElementById('view-' + tabId);
+  if (view) {
+    view.style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  const btn = document.getElementById('dock-' + tabId);
+  if (btn) btn.classList.add('active');
+
+  if (tabId === 'day') {
+    loadDay(sprintState.currentDay);
+  } else if (tabId === 'cards') {
+    renderFlashcard();
+  }
+}
+
+// ─────────────────────────────────────────
+// F. INITIALIZATION
+// ─────────────────────────────────────────
+window.addEventListener('DOMContentLoaded', () => {
+  loadState();
+
+  // Populate Dropdown
+  const select = document.getElementById('day-select-dropdown');
+  if (select) {
+    select.innerHTML = '';
+    sem1SprintDays.forEach(d => {
+      const opt = document.createElement('option');
+      opt.value = d.day;
+      opt.innerText = `Day ${d.day}: ${d.date} (${d.dow})`;
+      select.appendChild(opt);
+    });
+  }
+
+  renderSprintGrid();
+  renderHeatmap();
+  renderCourses();
+  renderFlashcard();
+  updateProgressStats();
+
+  lucide.createIcons();
+});
+</script>
+
+</body>
+</html>
