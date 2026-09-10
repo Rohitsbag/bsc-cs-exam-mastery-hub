@@ -170,24 +170,24 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 520px;
+    max-width: 580px;
     margin: 0 auto;
-    gap: 4px;
+    gap: 2px;
   }
   .dock-btn {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 4px;
+    gap: 3px;
     background: transparent;
     border: 1px solid transparent;
     cursor: pointer;
     color: var(--text-muted);
     font-family: inherit;
-    font-size: 10px;
+    font-size: 9.5px;
     font-weight: 600;
-    padding: 6px 4px;
+    padding: 5px 2px;
     border-radius: 8px;
     transition: all 0.15s ease;
     flex: 1;
@@ -379,6 +379,191 @@
   </div>
 
   <!-- ───────────────────────────────────────
+       VIEW: HYPOTHESIS & EXPECTED VALUE
+  ─────────────────────────────────────── -->
+  <div id="view-hypothesis" class="tab-view" style="display:none">
+
+    <!-- Header Card -->
+    <div class="card card-blue" style="margin-bottom:14px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+        <div>
+          <span class="tag tag-blue">Decision Hypothesis · Expected Value Analysis</span>
+          <div style="font-size:16px;font-weight:800;color:#fff;margin-top:4px">Second-Order Analysis: Utility of Marks, Sunk Costs &amp; Focus</div>
+        </div>
+        <span class="font-mono" style="font-size:11px;color:#93c5fd;background:rgba(59,130,246,0.15);padding:3px 8px;border-radius:6px;border:1px solid rgba(59,130,246,0.3)">
+          Mathematical Calculus
+        </span>
+      </div>
+      <div style="font-size:12px;color:#dbeafe;line-height:1.6">
+        Evaluating the expected value and real-world utility of attempting Semester 2 in October 2026 versus strategic deferral to Summer 2027. This framework models transcript impact, cognitive bandwidth, and sunk cost traps to maximize long-term return on effort.
+      </div>
+    </div>
+
+    <!-- Section 1: The Threshold Utility Curve of Marks -->
+    <div class="card">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+        <i data-lucide="line-chart" style="width:16px;height:16px;color:#60a5fa"></i>
+        <div style="font-size:13px;font-weight:800;color:#fff">The Threshold Utility Model: Do Marks Actually Matter?</div>
+      </div>
+      <div style="font-size:12px;color:var(--text-secondary);margin-bottom:14px;line-height:1.6">
+        In computer science and technology entrepreneurship, academic marks do not follow a linear benefit curve. Instead, they operate on a <strong>step-function threshold model with sharp diminishing returns</strong>.
+      </div>
+
+      <!-- Tier 1: Below 50% -->
+      <div style="padding:12px;border-radius:8px;background:rgba(244,63,94,0.06);border:1px solid rgba(244,63,94,0.25);margin-bottom:10px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+          <div style="font-weight:700;color:#fb7185;font-size:12px">Tier 1: Below 50% (The Restricted Danger Zone)</div>
+          <span class="tag tag-rose">High Risk</span>
+        </div>
+        <div style="font-size:11px;color:#fecdd3;line-height:1.5">
+          • <strong>Consequences:</strong> Severe institutional barriers. Disqualifies you from 90%+ of postgraduate programs (MCA, M.Sc CS), competitive exams (CAT, NIMCET require 50%–55%), and student visa evaluations.<br>
+          • <strong>Rule:</strong> You must never allow your cumulative aggregate to sink into this tier.
+        </div>
+      </div>
+
+      <!-- Tier 2: 50% to 59.9% -->
+      <div style="padding:12px;border-radius:8px;background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.25);margin-bottom:10px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+          <div style="font-weight:700;color:#fbbf24;font-size:12px">Tier 2: 50.0% – 59.9% (Second Class / Pass Baseline)</div>
+          <span class="tag tag-amber">Baseline</span>
+        </div>
+        <div style="font-size:11px;color:#fef3c7;line-height:1.5">
+          • <strong>Consequences:</strong> Grants basic degree validity. Sufficient for government service eligibility, startups, client freelancing, and specialized technical interviews that evaluate raw code.<br>
+          • <strong>Limitation:</strong> Triggers automatic screening cutoffs for mass IT recruiters (TCS, Infosys, Wipro, Capgemini enforce strict 60% filters).
+        </div>
+      </div>
+
+      <!-- Tier 3: 60% to 70% -->
+      <div style="padding:12px;border-radius:8px;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.3);margin-bottom:10px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+          <div style="font-weight:700;color:#34d399;font-size:12px">Tier 3: 60.0% – 70.0% (First Class / 6.5–7.5 CGPA) — Optimal Target</div>
+          <span class="tag tag-green">Maximum Utility</span>
+        </div>
+        <div style="font-size:11px;color:#d1fae5;line-height:1.5">
+          • <strong>Consequences:</strong> <strong>Unlocks 95%+ of all institutional gates.</strong> Clears every MNC corporate screening threshold, MCA/M.Sc university cutoff, education loan clearance, and foreign evaluation criterion.<br>
+          • <strong>Return on Effort:</strong> Highest expected utility. Requires focused preparation without cannibalizing your startup development bandwidth.
+        </div>
+      </div>
+
+      <!-- Tier 4: 75%+ -->
+      <div style="padding:12px;border-radius:8px;background:rgba(168,85,247,0.06);border:1px solid rgba(168,85,247,0.25)">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+          <div style="font-weight:700;color:#c084fc;font-size:12px">Tier 4: 75.0%+ (Distinction / 8.0+ CGPA)</div>
+          <span class="tag tag-purple">Diminishing Returns</span>
+        </div>
+        <div style="font-size:11px;color:#f3e8ff;line-height:1.5">
+          • <strong>Consequences:</strong> In software engineering and tech entrepreneurship, marginal market utility drops close to zero. Clients, venture investors, and high-growth startups evaluate GitHub code, deployed systems, problem-solving speed, and product traction—not whether your Operating Systems theory exam score was 72 vs 85.<br>
+          • <strong>Opportunity Cost:</strong> The 250+ additional hours required to reach 80% steals directly from shipping code and acquiring paying customers.
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 2: Second-Order Thinking & Three Cognitive Traps -->
+    <div class="card">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+        <i data-lucide="brain-circuit" style="width:16px;height:16px;color:#c084fc"></i>
+        <div style="font-size:13px;font-weight:800;color:#fff">Second-Order Consequences: The Three Traps</div>
+      </div>
+
+      <!-- Trap 1 -->
+      <div style="padding:10px 0;border-bottom:1px solid var(--border-subtle)">
+        <div style="font-weight:700;color:#fff;font-size:12px;margin-bottom:2px">1. The Sunk Cost Fallacy of the ₹1,257 Examination Fee</div>
+        <div style="font-size:11px;color:var(--text-secondary);line-height:1.5">
+          • <strong>The Cognitive Trap:</strong> <em>"I already paid the ₹1,257 fee on Samarth, so sitting for the Sem 2 exam is free. If I don't give it, I waste ₹1,257."</em><br>
+          • <strong>The Second-Order Reality:</strong> Money spent in the past is non-refundable regardless of your choice. Attempting the exam does not recover the cash; it consumes your finite cognitive energy, sleep, and preparation time during the critical October exam window.
+        </div>
+      </div>
+
+      <!-- Trap 2 -->
+      <div style="padding:10px 0;border-bottom:1px solid var(--border-subtle)">
+        <div style="font-weight:700;color:#fff;font-size:12px;margin-bottom:2px">2. The Attention Dilution Penalty (Resource Misallocation)</div>
+        <div style="font-size:11px;color:var(--text-secondary);line-height:1.5">
+          • <strong>Mathematical Allocation:</strong><br>
+          &nbsp;&nbsp;– <strong>Focus on Sem 1 Only (5 Subjects):</strong> ~150 available study hours &divide; 5 = <strong>30 hours/subject</strong> &rarr; Projected pass rate: <strong>85%–95%</strong>.<br>
+          &nbsp;&nbsp;– <strong>Split Across Sem 1 &amp; 2 (10 Subjects):</strong> ~150 available study hours &divide; 10 = <strong>15 hours/subject</strong> &rarr; Projected pass rate: <strong>Plunges to 45%–55%</strong>.<br>
+          • <strong>Downside Catastrophe:</strong> If trying to write Sem 2 causes you to fail even one or two Sem 1 subjects, you enter March 2027 with active backlogs in <em>both</em> semesters.
+        </div>
+      </div>
+
+      <!-- Trap 3 -->
+      <div style="padding:10px 0">
+        <div style="font-weight:700;color:#fff;font-size:12px;margin-bottom:2px">3. The "Low-Mark Permanent Anchor" &amp; Bureaucracy of Class Improvement</div>
+        <div style="font-size:11px;color:var(--text-secondary);line-height:1.5">
+          • <strong>The Permanent Anchor:</strong> If you write Sem 2 unprepared and scrape a 40% (Grade D/E), human psychology will stop you from paying again and re-studying cleared subjects. That 40% is locked into your permanent university transcript, depressing your final degree CGPA.<br>
+          • <strong>The Mumbai University Constraint:</strong> Formal "Class Improvement" under MU regulations requires burdensome administrative permissions and surrendering the marksheet to re-sit all theory papers at once. It is rarely allowed for intermediate ATKT students.<br>
+          • <strong>The Strategic Alternative:</strong> Strategic absenteeism in October leaves zero black mark. You re-appear in March 2027 with 5 full months of runway and lock in a clean <strong>65%–75% (First Class)</strong> mark sheet.
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 3: Expected Value (EV) Decision Matrix -->
+    <div class="card">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+        <i data-lucide="split" style="width:16px;height:16px;color:#38bdf8"></i>
+        <div style="font-size:13px;font-weight:800;color:#fff">Expected Value Comparison Matrix</div>
+      </div>
+
+      <div style="overflow-x:auto">
+        <table style="width:100%;border-collapse:collapse;font-size:11px">
+          <thead>
+            <tr style="border-bottom:1px solid var(--border-strong);text-align:left;color:var(--text-muted)">
+              <th style="padding:8px 6px">Evaluation Metric</th>
+              <th style="padding:8px 6px;color:#34d399">Path A: Strategic Deferral (Sem 1 Focus)</th>
+              <th style="padding:8px 6px;color:#fbbf24">Path B: Scramble Attempt (Both Semesters)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--border-subtle)">
+              <td style="padding:8px 6px;font-weight:700;color:#fff">Sem 1 Pass Probability</td>
+              <td style="padding:8px 6px;color:#34d399;font-weight:700">~90% (High Certainty)</td>
+              <td style="padding:8px 6px;color:#fb7185">~50% (Severe Dilution Risk)</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border-subtle)">
+              <td style="padding:8px 6px;font-weight:700;color:#fff">Sem 2 Grade Quality</td>
+              <td style="padding:8px 6px;color:#34d399">Projected 65%–75% (March 2027)</td>
+              <td style="padding:8px 6px;color:#fbbf24">40%–45% (Scraped pass) or Fail</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border-subtle)">
+              <td style="padding:8px 6px;font-weight:700;color:#fff">Transcript Quality</td>
+              <td style="padding:8px 6px;color:#34d399">Clean First-Class Foundation</td>
+              <td style="padding:8px 6px;color:#fb7185">Permanently depressed CGPA anchor</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border-subtle)">
+              <td style="padding:8px 6px;font-weight:700;color:#fff">Incremental Cash Outlay</td>
+              <td style="padding:8px 6px" class="font-mono">₹1,200 (March 2027 fee)</td>
+              <td style="padding:8px 6px" class="font-mono">₹0 to ₹1,200 (if papers fail)</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border-subtle)">
+              <td style="padding:8px 6px;font-weight:700;color:#fff">Mental Bandwidth &amp; Anxiety</td>
+              <td style="padding:8px 6px;color:#34d399">Structured, calm, predictable</td>
+              <td style="padding:8px 6px;color:#fb7185">Severe cognitive exhaustion</td>
+            </tr>
+            <tr>
+              <td style="padding:8px 6px;font-weight:700;color:#fff">Startup &amp; Coding Output</td>
+              <td style="padding:8px 6px;color:#34d399">Preserved (~15 hrs/week)</td>
+              <td style="padding:8px 6px;color:#fb7185">Zero productive coding for 40 days</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Section 4: Rational Conclusion & Optimal Action -->
+    <div class="card card-highlight">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+        <i data-lucide="check-circle" style="width:16px;height:16px;color:#34d399"></i>
+        <div style="font-size:13px;font-weight:800;color:#fff">The Optimal Action Rule</div>
+      </div>
+      <div style="font-size:12px;color:#d1fae5;line-height:1.6">
+        <strong>1. Treat the ₹1,257 as "Focus Insurance":</strong> The money is gone. In the context of your lifetime software earnings and startup equity, ₹1,200 in March is statistically trivial. Sacrificing your CGPA to justify a past ₹1,257 transaction is a negative expected-value gamble.<br>
+        <strong>2. Execute Strategic Absenteeism:</strong> Focus 100% of study capacity on clearing the 5 Semester 1 subjects in October 2026. Be deliberately absent for Semester 2 (no penalty, no permanent mark).<br>
+        <strong>3. Lock In First-Class in March 2027:</strong> Use the 5-month runway to master Semester 2 calmly, secure a 65%–75% score, and present a 100% all-clear, high-CGPA First Year marksheet for your college transfer in June 2027.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ───────────────────────────────────────
        VIEW 2: FINANCIAL & SCHOLARSHIP AUDIT
   ─────────────────────────────────────── -->
   <div id="view-financial" class="tab-view" style="display:none">
@@ -394,7 +579,7 @@
         <strong>Strict Rule:</strong> University and college exam fees are strictly <strong>non-refundable and non-transferable</strong> once paid. If you do not write the Sem 2 exam in October, you will not receive a cash refund, and you will pay ₹1,257 again when re-registering for the March 2027 session.
       </div>
       <div style="margin-top:10px;padding:8px 10px;border-radius:8px;background:rgba(0,0,0,0.4);border:1px solid rgba(245,158,11,0.25);font-size:11px;color:#fef08a">
-        💡 <strong>The Strategic Perspective:</strong> View that ₹1,257 as a cheap <strong>"Mental Health &amp; Focus Insurance"</strong>. Sacrificing ₹1,257 prevents you from failing 4 subjects, burning out, and protects your father from paying ₹35,000+ S.Y. college fees prematurely!
+        <i data-lucide="sparkles" style="width:13px;height:13px;display:inline-block;vertical-align:-2px;margin-right:4px"></i> <strong>The Strategic Perspective:</strong> View that ₹1,257 as a cheap <strong>"Mental Health &amp; Focus Insurance"</strong>. Sacrificing ₹1,257 prevents you from failing 4 subjects, burning out, and protects your father from paying ₹35,000+ S.Y. college fees prematurely!
       </div>
     </div>
 
@@ -820,6 +1005,10 @@
       <i data-lucide="split"></i>
       <span>Decision</span>
     </button>
+    <button id="dock-hypothesis" class="dock-btn" onclick="switchView('hypothesis')">
+      <i data-lucide="line-chart"></i>
+      <span>Hypothesis</span>
+    </button>
     <button id="dock-financial" class="dock-btn" onclick="switchView('financial')">
       <i data-lucide="shield-check"></i>
       <span>Finance</span>
@@ -867,7 +1056,7 @@
   // Handle URL hash on initial load
   window.addEventListener('DOMContentLoaded', () => {
     const hash = window.location.hash.replace('#', '');
-    if (['decision', 'financial', 'commute', 'timeline', 'doubts'].includes(hash)) {
+    if (['decision', 'hypothesis', 'financial', 'commute', 'timeline', 'doubts'].includes(hash)) {
       switchView(hash);
     }
   });
