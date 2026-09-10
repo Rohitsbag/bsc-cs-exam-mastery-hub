@@ -282,6 +282,22 @@
     border-color: rgba(56, 189, 248, 0.4);
   }
 
+  /* COMPLETED ITEM CARD */
+  .completed-item-card {
+    background: var(--bg-surface-raised);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    padding: 12px 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    transition: all 0.15s ease;
+  }
+  .completed-item-card:hover {
+    border-color: rgba(16, 185, 129, 0.35);
+    background: #111822;
+  }
+
   /* MATH & CODE FORMULA BOX */
   .math-formula-box {
     background: #05070a;
@@ -331,7 +347,7 @@
     padding: 6px 12px 10px;
   }
   .dock-inner {
-    max-width: 540px;
+    max-width: 600px;
     margin: 0 auto;
     display: flex;
     justify-content: space-around;
@@ -345,16 +361,16 @@
     flex-direction: column;
     align-items: center;
     gap: 3px;
-    font-size: 10px;
+    font-size: 9px;
     font-weight: 600;
     cursor: pointer;
-    padding: 6px 10px;
+    padding: 6px 6px;
     border-radius: 8px;
-    min-width: 56px;
+    min-width: 48px;
     min-height: 44px;
     transition: all 0.15s ease;
   }
-  .dock-btn svg { width: 18px; height: 18px; stroke-width: 2; }
+  .dock-btn svg { width: 17px; height: 17px; stroke-width: 2; }
   .dock-btn.active {
     color: #38bdf8;
     background: rgba(56, 189, 248, 0.1);
@@ -380,6 +396,10 @@
     </div>
   </div>
   <div class="header-actions">
+    <button onclick="switchTab('completed')" class="header-btn" style="color:#34d399;background:rgba(16,185,129,0.12);border-color:rgba(16,185,129,0.35)" title="View All Completed Topics &amp; Banked Knowledge">
+      <i data-lucide="check-circle-2" style="width:13px;height:13px"></i>
+      <span id="header-completed-count">Completed (15)</span>
+    </button>
     <button onclick="openJsonModal()" class="header-btn" style="color:#38bdf8;background:rgba(56,189,248,0.1);border-color:rgba(56,189,248,0.3)" title="Export or Import Progress JSON">
       <i data-lucide="arrow-left-right" style="width:13px;height:13px"></i>
       <span>JSON Sync</span>
@@ -419,9 +439,11 @@
             </div>
           </div>
         </div>
-        <div style="text-align:right" class="font-mono">
-          <span style="font-size:14px;font-weight:800;color:#34d399">+15 Blocks XP</span>
-          <div style="font-size:10px;color:#94a3b8">Ready for Phase 1</div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <button onclick="switchTab('completed')" class="header-btn" style="color:#34d399;background:rgba(16,185,129,0.15);border-color:rgba(16,185,129,0.35);font-size:11px">
+            <i data-lucide="list-checks" style="width:13px;height:13px"></i>
+            <span>View Completed Log &rarr;</span>
+          </button>
         </div>
       </div>
     </div>
@@ -561,7 +583,61 @@
   </div>
 
   <!-- ═══════════════════════════════════════
-       TAB 3: 3-PHASE ROADMAP
+       TAB 3: COMPLETED TOPICS & KNOWLEDGE VAULT
+  ═══════════════════════════════════════ -->
+  <div id="view-completed" class="tab-view" style="display:none">
+    
+    <!-- Hero Summary -->
+    <div class="card" style="background:linear-gradient(145deg, #0d1e17 0%, #08110d 100%);border-color:rgba(16,185,129,0.35);margin-bottom:14px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:12px">
+        <div>
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+            <span class="tag tag-green">Knowledge Vault</span>
+            <span class="tag tag-indigo">100% Retained</span>
+          </div>
+          <div style="font-size:18px;font-weight:900;color:#fff;display:flex;align-items:center;gap:8px">
+            <span id="completed-hero-title">15 Study Blocks Completed</span>
+            <span style="font-size:12px;font-weight:600;color:#34d399">(Foundation &amp; Sprint Log)</span>
+          </div>
+        </div>
+        <div style="text-align:right" class="font-mono">
+          <span style="font-size:16px;font-weight:800;color:#34d399" id="completed-hours-stat">~37.5 Hours</span>
+          <div style="font-size:10px;color:#94a3b8">Productive Study Time</div>
+        </div>
+      </div>
+
+      <!-- 3 Stat Blocks -->
+      <div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:8px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06);text-align:center">
+        <div>
+          <div style="font-size:9px;color:var(--text-muted);font-weight:700;text-transform:uppercase">Banked Foundation</div>
+          <div class="font-mono" style="font-size:15px;font-weight:800;color:#34d399">15 Blocks</div>
+        </div>
+        <div>
+          <div style="font-size:9px;color:var(--text-muted);font-weight:700;text-transform:uppercase">21-Day Sprint Done</div>
+          <div class="font-mono" style="font-size:15px;font-weight:800;color:#38bdf8" id="completed-sprint-count">0 Blocks</div>
+        </div>
+        <div>
+          <div style="font-size:9px;color:var(--text-muted);font-weight:700;text-transform:uppercase">Sem 1 Coverage</div>
+          <div class="font-mono" style="font-size:15px;font-weight:800;color:#fbbf24" id="completed-sem1-count">8 / 7 Courses</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filter Buttons -->
+    <div style="display:flex;gap:6px;overflow-x:auto;padding-bottom:8px;margin-bottom:14px">
+      <button class="course-filter-btn active" id="cfilter-all" onclick="filterCompleted('all')">All Completed</button>
+      <button class="course-filter-btn" id="cfilter-sem1" onclick="filterCompleted('sem1')">Semester 1 Topics</button>
+      <button class="course-filter-btn" id="cfilter-foundation" onclick="filterCompleted('foundation')">Banked Foundation (15)</button>
+      <button class="course-filter-btn" id="cfilter-sprint" onclick="filterCompleted('sprint')">21-Day Sprint Log</button>
+    </div>
+
+    <!-- Completed Items Container -->
+    <div id="completed-items-container" style="display:flex;flex-direction:column;gap:8px"></div>
+
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       TAB 4: 3-PHASE ROADMAP
   ═══════════════════════════════════════ -->
   <div id="view-phases" class="tab-view" style="display:none">
     
@@ -627,7 +703,7 @@
   </div>
 
   <!-- ═══════════════════════════════════════
-       TAB 4: 7 SEMESTER 1 COURSES DIRECTORY
+       TAB 5: 7 SEMESTER 1 COURSES DIRECTORY
   ═══════════════════════════════════════ -->
   <div id="view-courses" class="tab-view" style="display:none">
     
@@ -648,7 +724,7 @@
   </div>
 
   <!-- ═══════════════════════════════════════
-       TAB 5: HIGH-YIELD FLASHCARDS
+       TAB 6: HIGH-YIELD FLASHCARDS
   ═══════════════════════════════════════ -->
   <div id="view-cards" class="tab-view" style="display:none">
     <div class="card">
@@ -779,6 +855,10 @@
     <button id="dock-day" class="dock-btn" onclick="switchTab('day')">
       <i data-lucide="list-checks"></i>
       <span>Day Log</span>
+    </button>
+    <button id="dock-completed" class="dock-btn" onclick="switchTab('completed')">
+      <i data-lucide="check-circle-2"></i>
+      <span>Completed</span>
     </button>
     <button id="dock-phases" class="dock-btn" onclick="switchTab('phases')">
       <i data-lucide="map"></i>
@@ -1328,7 +1408,176 @@ const sem1SprintDays = [
   }
 ];
 
-// B. 7 SEMESTER 1 COURSES COMPREHENSIVE DATASET
+// B. 15 BANKED FOUNDATION BLOCKS DATASET (PREP PHASE)
+const bankedFoundationBlocks = [
+  {
+    "day": 1,
+    "date": "Sept 1",
+    "slot": "Morning",
+    "slotKey": "1_m",
+    "sub": "Python (1101411)",
+    "sem": "Sem 1",
+    "topic": "Variables, Data Types, If-Else & Prime Check Loop",
+    "goal": "Mastered for-else loop and prime number check",
+    "badge": "Sem 1 Core"
+  },
+  {
+    "day": 1,
+    "date": "Sept 1",
+    "slot": "Afternoon",
+    "slotKey": "1_a",
+    "sub": "DAA (1102111)",
+    "sem": "Sem 2",
+    "topic": "Algorithm Complexity & Big-O Notation",
+    "goal": "Understood O(1) vs O(n) vs O(n log n) curves",
+    "badge": "Prep Foundation"
+  },
+  {
+    "day": 1,
+    "date": "Sept 1",
+    "slot": "Evening",
+    "slotKey": "1_e",
+    "sub": "Management (1172311)",
+    "sem": "Sem 2",
+    "topic": "Henri Fayol 14 Principles (Principles 1-7)",
+    "goal": "Memorized Division of Work, Authority, and Unity of Command",
+    "badge": "Prep Foundation"
+  },
+  {
+    "day": 1,
+    "date": "Sept 1",
+    "slot": "Night",
+    "slotKey": "1_n",
+    "sub": "Active Recall Drill",
+    "sem": "Sem 1 & 2",
+    "topic": "Flashcard Set 1 + Big-O Curve Drawing",
+    "goal": "Retained core definitions and formulas",
+    "badge": "Active Recall"
+  },
+  {
+    "day": 2,
+    "date": "Sept 2",
+    "slot": "Morning",
+    "slotKey": "2_m",
+    "sub": "Digital Systems (1101111)",
+    "sem": "Sem 1",
+    "topic": "Number Base Conversions & De Morgan's Laws",
+    "goal": "Proved (A.B)' = A' + B' with 4-row truth table",
+    "badge": "Sem 1 Core"
+  },
+  {
+    "day": 2,
+    "date": "Sept 2",
+    "slot": "Evening",
+    "slotKey": "2_e",
+    "sub": "IPR (1481311)",
+    "sem": "Sem 1",
+    "topic": "3 Essential Criteria for Patentability",
+    "goal": "Memorized Novelty, Non-obviousness, and Utility under Patent Act 1970",
+    "badge": "Sem 1 Core"
+  },
+  {
+    "day": 3,
+    "date": "Sept 3",
+    "slot": "Morning",
+    "slotKey": "3_m",
+    "sub": "DBMS (1101112)",
+    "sem": "Sem 1",
+    "topic": "3-Tier ANSI/SPARC Architecture & Data Independence",
+    "goal": "Drew External, Conceptual, and Internal schema layers",
+    "badge": "Sem 1 Core"
+  },
+  {
+    "day": 3,
+    "date": "Sept 3",
+    "slot": "Afternoon",
+    "slotKey": "3_a",
+    "sub": "Linux OS (1101413)",
+    "sem": "Sem 1",
+    "topic": "Filesystem Hierarchy Standard (FHS) & Navigation",
+    "goal": "Explained /bin, /etc, /home, /var, and /proc directories",
+    "badge": "Sem 1 Core"
+  },
+  {
+    "day": 3,
+    "date": "Sept 3",
+    "slot": "Evening",
+    "slotKey": "3_e",
+    "sub": "IKS (2531511)",
+    "sem": "Sem 1",
+    "topic": "Ancient Mathematics: Aryabhata & Brahmagupta Shunya",
+    "goal": "Wrote Aryabhatiya Pi value (3.1416) and Zero arithmetic rules",
+    "badge": "Sem 1 Core"
+  },
+  {
+    "day": 3,
+    "date": "Sept 3",
+    "slot": "Night",
+    "slotKey": "3_n",
+    "sub": "Active Recall Drill",
+    "sem": "Sem 1",
+    "topic": "Flashcard Set 2 + 3-Tier Schema Diagram",
+    "goal": "Retained database physical vs logical independence",
+    "badge": "Active Recall"
+  },
+  {
+    "day": 4,
+    "date": "Sept 4",
+    "slot": "Afternoon",
+    "slotKey": "4_a",
+    "sub": "Web Tech (1102411)",
+    "sem": "Sem 2",
+    "topic": "HTTP/HTTPS Cycle & Semantic HTML5 Tags",
+    "goal": "Explained GET vs POST and HTML5 page layout hierarchy",
+    "badge": "Prep Foundation"
+  },
+  {
+    "day": 4,
+    "date": "Sept 4",
+    "slot": "Evening",
+    "slotKey": "4_e",
+    "sub": "Content Writing (1432311)",
+    "sem": "Sem 2",
+    "topic": "AIDA Copywriting Framework & Search Intent",
+    "goal": "Broke down Attention, Interest, Desire, Action framework",
+    "badge": "Prep Foundation"
+  },
+  {
+    "day": 5,
+    "date": "Sept 5",
+    "slot": "Evening",
+    "slotKey": "5_e",
+    "sub": "People's Skills (2541514)",
+    "sem": "Sem 1",
+    "topic": "Daniel Goleman 5 Pillars of Emotional Intelligence (EQ)",
+    "goal": "Listed Self-Awareness, Self-Regulation, Motivation, Empathy, Social Skills",
+    "badge": "Sem 1 Core"
+  },
+  {
+    "day": 6,
+    "date": "Sept 6",
+    "slot": "Evening",
+    "slotKey": "6_e",
+    "sub": "Behavioral Skills (2542520)",
+    "sem": "Sem 2",
+    "topic": "Johari Window Model (4 Quadrants of Awareness)",
+    "goal": "Drew Open, Blind, Hidden, and Unknown quadrants",
+    "badge": "Prep Foundation"
+  },
+  {
+    "day": 8,
+    "date": "Sept 8",
+    "slot": "Evening",
+    "slotKey": "8_e",
+    "sub": "Management (1172311)",
+    "sem": "Sem 2",
+    "topic": "Maslow Need Hierarchy Theory 5-Level Pyramid",
+    "goal": "Drew 5 levels from Physiological to Self-Actualization",
+    "badge": "Prep Foundation"
+  }
+];
+
+// C. 7 SEMESTER 1 COURSES COMPREHENSIVE DATASET
 const sem1Courses = [
   {
     "code": "1101111",
@@ -1575,7 +1824,7 @@ const sem1Courses = [
   }
 ];
 
-// C. 8 HIGH-YIELD SEM 1 FLASHCARDS
+// D. 8 HIGH-YIELD SEM 1 FLASHCARDS
 const sem1Cards = [
   {
     "subject": "Digital Systems (1101111)",
@@ -1619,13 +1868,14 @@ const sem1Cards = [
   }
 ];
 
-// D. APPLICATION STATE & LOCALSTORAGE
+// E. APPLICATION STATE & LOCALSTORAGE
 const STATE_KEY = 'bsc_cs_sem1_sprint_21d_state';
 let sprintState = {
   tasks: {},
   currentDay: 1, // Default to Day 1 (Sept 10, TODAY)
   currentCard: 0,
-  currentCourseFilter: 'all'
+  currentCourseFilter: 'all',
+  currentCompletedFilter: 'all'
 };
 
 function loadState() {
@@ -1659,6 +1909,9 @@ function toggleSprintTask(dayNum, slot) {
   updateProgressStats();
   renderSprintGrid();
   renderHeatmap();
+  if (document.getElementById('view-completed') && document.getElementById('view-completed').style.display !== 'none') {
+    renderCompletedView();
+  }
 }
 
 function updateProgressStats() {
@@ -1673,6 +1926,10 @@ function updateProgressStats() {
 
   const blockStat = document.getElementById('stat-blocks-completed');
   if (blockStat) blockStat.innerText = `${doneCount} / ${total} (${pct}%)`;
+
+  const totalCompletedAll = bankedFoundationBlocks.length + doneCount;
+  const headerCount = document.getElementById('header-completed-count');
+  if (headerCount) headerCount.innerText = `Completed (${totalCompletedAll})`;
 
   // Update day inspector percentage if visible
   const d = sem1SprintDays.find(item => item.day === sprintState.currentDay);
@@ -1893,10 +2150,141 @@ function nextDay() {
   }
 }
 
-// 4. Render Courses with KaTeX and Filter Support
+// 4. Render Completed View
+function filterCompleted(mode) {
+  sprintState.currentCompletedFilter = mode;
+  document.querySelectorAll('#view-completed .course-filter-btn').forEach(b => b.classList.remove('active'));
+  const btn = document.getElementById('cfilter-' + mode);
+  if (btn) btn.classList.add('active');
+  renderCompletedView();
+}
+
+function renderCompletedView() {
+  const container = document.getElementById('completed-items-container');
+  if (!container) return;
+  container.innerHTML = '';
+
+  const mode = sprintState.currentCompletedFilter || 'all';
+
+  // Build combined list
+  let items = [];
+
+  // 1. Banked Foundation items
+  bankedFoundationBlocks.forEach(item => {
+    items.push({
+      source: 'foundation',
+      sourceLabel: 'Banked Foundation',
+      date: item.date,
+      slot: item.slot,
+      sub: item.sub,
+      topic: item.topic,
+      goal: item.goal,
+      badge: item.badge,
+      sem: item.sem,
+      isSem1: item.sem === 'Sem 1' || item.badge === 'Sem 1 Core'
+    });
+  });
+
+  // 2. Active 21-Day Sprint completed items
+  let sprintDoneCount = 0;
+  sem1SprintDays.forEach(d => {
+    const slots = [
+      { key: 'm', name: 'Morning', data: d.m },
+      { key: 'a', name: 'Afternoon', data: d.a },
+      { key: 'e', name: 'Evening', data: d.e },
+      { key: 'n', name: 'Night Drill', data: { sub: 'Active Recall', topic: d.n, goal: 'Mastered 5/5 Exam Answer Blueprint' } }
+    ];
+
+    slots.forEach(s => {
+      if (sprintState.tasks[`${d.day}_${s.key}`]) {
+        sprintDoneCount++;
+        items.push({
+          source: 'sprint',
+          sourceLabel: `Day ${d.day} Sprint`,
+          date: d.date,
+          slot: s.name,
+          sub: s.data.sub,
+          topic: s.data.topic,
+          goal: s.data.goal,
+          badge: 'Active Sprint',
+          sem: 'Sem 1',
+          isSem1: true,
+          dayNum: d.day
+        });
+      }
+    });
+  });
+
+  // Update Counters in Completed Tab
+  const sprintCountEl = document.getElementById('completed-sprint-count');
+  if (sprintCountEl) sprintCountEl.innerText = `${sprintDoneCount} Blocks`;
+
+  const heroTitle = document.getElementById('completed-hero-title');
+  if (heroTitle) heroTitle.innerText = `${items.length} Study Blocks Completed`;
+
+  const hoursEl = document.getElementById('completed-hours-stat');
+  if (hoursEl) hoursEl.innerText = `~${(items.length * 2.5).toFixed(1)} Hours`;
+
+  // Apply Filter
+  let filtered = items;
+  if (mode === 'sem1') {
+    filtered = items.filter(it => it.isSem1);
+  } else if (mode === 'foundation') {
+    filtered = items.filter(it => it.source === 'foundation');
+  } else if (mode === 'sprint') {
+    filtered = items.filter(it => it.source === 'sprint');
+  }
+
+  if (filtered.length === 0) {
+    container.innerHTML = `
+      <div class="card-inner" style="text-align:center;padding:24px;border:1px dashed var(--border-strong)">
+        <i data-lucide="info" style="width:24px;height:24px;color:#94a3b8;margin-bottom:8px"></i>
+        <div style="font-size:13px;font-weight:700;color:#fff">No completed blocks found under this filter</div>
+        <div style="font-size:11px;color:var(--text-secondary);margin-top:4px">Check off sessions in the Day Log or choose 'All Completed' to see your banked foundation.</div>
+      </div>
+    `;
+    lucide.createIcons();
+    return;
+  }
+
+  filtered.forEach((it, idx) => {
+    const itemCard = document.createElement('div');
+    itemCard.className = 'completed-item-card';
+
+    const isSprint = it.source === 'sprint';
+    const tagColor = isSprint ? 'tag-blue' : (it.isSem1 ? 'tag-green' : 'tag-amber');
+
+    itemCard.innerHTML = `
+      <div style="width:28px;height:28px;border-radius:50%;background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.4);display:flex;align-items:center;justify-content:center;color:#34d399;flex-shrink:0;margin-top:2px">
+        <i data-lucide="check" style="width:15px;height:15px;stroke-width:2.5"></i>
+      </div>
+      <div style="flex:1;min-width:0">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px;margin-bottom:4px">
+          <div style="display:flex;align-items:center;gap:6px">
+            <span class="tag ${tagColor}">${it.sub.split(' ')[0]}</span>
+            <span style="font-size:11px;color:var(--text-muted);font-family:'JetBrains Mono',monospace">${it.date} · ${it.slot}</span>
+          </div>
+          <span class="tag ${isSprint ? 'tag-indigo' : 'tag-green'}" style="font-size:9px">${it.sourceLabel}</span>
+        </div>
+        <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:2px">${it.topic}</div>
+        <div style="font-size:11px;color:var(--text-secondary)"><strong>Mastered:</strong> ${it.goal}</div>
+      </div>
+      ${isSprint ? `
+        <button onclick="switchTab('day');loadDay(${it.dayNum})" class="header-btn" style="padding:4px 8px;font-size:10px;align-self:center">
+          <span>Day ${it.dayNum} &rarr;</span>
+        </button>
+      ` : ''}
+    `;
+    container.appendChild(itemCard);
+  });
+
+  lucide.createIcons();
+}
+
+// 5. Render Courses with KaTeX and Filter Support
 function filterCourses(code) {
   sprintState.currentCourseFilter = code;
-  document.querySelectorAll('.course-filter-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('#view-courses .course-filter-btn').forEach(b => b.classList.remove('active'));
   const activeBtn = document.getElementById('filter-btn-' + code);
   if (activeBtn) activeBtn.classList.add('active');
   renderCourses();
@@ -1979,7 +2367,7 @@ function renderCourses() {
   }
 }
 
-// 5. Flashcards
+// 6. Flashcards
 function renderFlashcard() {
   const card = sem1Cards[sprintState.currentCard];
   if (!card) return;
@@ -2011,7 +2399,7 @@ function nextCard() {
   }
 }
 
-// 6. Navigation Tabs
+// 7. Navigation Tabs
 function switchTab(tabId) {
   document.querySelectorAll('.tab-view').forEach(v => v.style.display = 'none');
   document.querySelectorAll('.dock-btn').forEach(b => b.classList.remove('active'));
@@ -2029,6 +2417,8 @@ function switchTab(tabId) {
     renderCourses();
   } else if (tabId === 'cards') {
     renderFlashcard();
+  } else if (tabId === 'completed') {
+    renderCompletedView();
   }
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -2206,6 +2596,7 @@ window.addEventListener('DOMContentLoaded', () => {
   renderHeatmap();
   renderCourses();
   renderFlashcard();
+  renderCompletedView();
   updateProgressStats();
 
   // Load Day 1 (TODAY)
