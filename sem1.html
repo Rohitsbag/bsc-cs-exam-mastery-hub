@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Semester 1 ATKT Mastery Sprint · B.Sc CS</title>
 <meta name="theme-color" content="#070a0f">
-<meta name="description" content="Dedicated 20-Day High-Intensity Sprint for Mumbai University B.Sc CS Semester 1 ATKT Examination (Oct 2026).">
+<meta name="description" content="Dedicated 30-Day Master Sprint for Mumbai University B.Sc CS Semester 1 ATKT Examination (Oct 2026).">
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -66,11 +66,7 @@
     justify-content: space-between;
   }
 
-  .user-badge {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
+  .user-badge { display: flex; align-items: center; gap: 10px; }
   .avatar {
     width: 34px;
     height: 34px;
@@ -85,11 +81,7 @@
     color: #38bdf8;
   }
 
-  .header-actions {
-    display: flex;
-    gap: 6px;
-    align-items: center;
-  }
+  .header-actions { display: flex; gap: 6px; align-items: center; }
   .header-btn {
     text-decoration: none;
     font-size: 11px;
@@ -102,12 +94,10 @@
     display: inline-flex;
     align-items: center;
     gap: 5px;
+    cursor: pointer;
     transition: all 0.15s ease;
   }
-  .header-btn:hover {
-    color: #fff;
-    border-color: #3b82f6;
-  }
+  .header-btn:hover { color: #fff; border-color: #3b82f6; }
 
   /* CONTAINER & CARDS */
   .container { max-width: 760px; margin: 0 auto; padding: 14px 16px; }
@@ -129,10 +119,6 @@
     background: linear-gradient(145deg, #0e1e16 0%, #0c1018 100%);
     border: 1px solid rgba(16, 185, 129, 0.35);
   }
-  .card-blue {
-    background: linear-gradient(145deg, #0d1a30 0%, #0b111c 100%);
-    border: 1px solid rgba(59, 130, 246, 0.35);
-  }
 
   /* TAGS & PILLS */
   .tag {
@@ -152,7 +138,6 @@
   .tag-indigo { background: rgba(99, 102, 241, 0.15); color: #818cf8; border: 1px solid rgba(99, 102, 241, 0.3); }
   .tag-purple { background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
   .tag-rose { background: rgba(244, 63, 94, 0.15); color: #fb7185; border: 1px solid rgba(244, 63, 94, 0.3); }
-  .tag-zinc { background: #161f30; color: #a1a1aa; border: 1px solid var(--border-subtle); }
 
   /* CALENDAR GRID */
   .cal-grid {
@@ -172,23 +157,14 @@
     justify-content: space-between;
     min-height: 125px;
   }
-  .cal-card:hover {
-    border-color: #3b82f6;
-    transform: translateY(-1px);
-  }
+  .cal-card:hover { border-color: #3b82f6; transform: translateY(-1px); }
   .cal-card.is-today {
     border: 1.5px solid #38bdf8;
     background: #0f1c2e;
-    box-shadow: 0 0 12px rgba(56, 189, 248, 0.2);
+    box-shadow: 0 0 14px rgba(56, 189, 248, 0.25);
   }
-  .cal-card.active-day {
-    border-color: #a855f7;
-    background: #181126;
-  }
-  .cal-card.is-complete {
-    border-color: rgba(16, 185, 129, 0.4);
-    background: #0c1813;
-  }
+  .cal-card.active-day { border-color: #a855f7; background: #181126; }
+  .cal-card.is-complete { border-color: rgba(16, 185, 129, 0.45); background: #0c1813; }
 
   .pill {
     font-size: 9px;
@@ -227,18 +203,10 @@
     font-weight: 600;
     transition: all 0.15s ease;
   }
-  .yt-action:hover {
-    background: rgba(239, 68, 68, 0.25);
-    color: #fff;
-  }
+  .yt-action:hover { background: rgba(239, 68, 68, 0.25); color: #fff; }
 
   /* FLIP CARDS */
-  .flashcard-box {
-    perspective: 1000px;
-    height: 240px;
-    cursor: pointer;
-    margin-bottom: 12px;
-  }
+  .flashcard-box { perspective: 1000px; height: 240px; cursor: pointer; margin-bottom: 12px; }
   .flashcard-inner {
     position: relative;
     width: 100%;
@@ -246,9 +214,7 @@
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     transform-style: preserve-3d;
   }
-  .flashcard-box.flipped .flashcard-inner {
-    transform: rotateY(180deg);
-  }
+  .flashcard-box.flipped .flashcard-inner { transform: rotateY(180deg); }
   .flashcard-front, .flashcard-back {
     position: absolute;
     width: 100%;
@@ -270,6 +236,46 @@
     border: 1px solid rgba(16, 185, 129, 0.4);
     transform: rotateY(180deg);
     overflow-y: auto;
+  }
+
+  /* MODAL */
+  .modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.82);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 200;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+  .modal-card {
+    background: #0f131a;
+    border: 1px solid var(--border-strong);
+    border-radius: 16px;
+    max-width: 540px;
+    width: 100%;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+  }
+  .modal-header {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border-subtle);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .modal-body {
+    padding: 18px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
   }
 
   /* BOTTOM NAVIGATION DOCK */
@@ -315,16 +321,8 @@
     outline: none;
     -webkit-tap-highlight-color: transparent;
   }
-  .dock-btn svg, .dock-btn i {
-    width: 17px;
-    height: 17px;
-    stroke-width: 1.75px;
-  }
-  .dock-btn span {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+  .dock-btn svg, .dock-btn i { width: 17px; height: 17px; stroke-width: 1.75px; }
+  .dock-btn span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .dock-btn:hover { color: var(--text-secondary); }
   .dock-btn:active { transform: scale(0.95); }
   .dock-btn.active {
@@ -333,9 +331,7 @@
     border: 1px solid var(--border-strong);
     box-shadow: 0 1px 4px rgba(0,0,0,0.4);
   }
-  .dock-btn.active svg, .dock-btn.active i {
-    color: #38bdf8;
-  }
+  .dock-btn.active svg, .dock-btn.active i { color: #38bdf8; }
 </style>
 </head>
 <body>
@@ -351,10 +347,14 @@
         Rohit Bag
         <span style="width:6px;height:6px;border-radius:50%;background:#38bdf8;display:inline-block"></span>
       </div>
-      <div style="font-size:10px;color:var(--text-muted)">Semester 1 ATKT Sprint · 7 Subjects Focus</div>
+      <div style="font-size:10px;color:var(--text-muted)">Sem 1 ATKT Master Sprint · 7 Subjects</div>
     </div>
   </div>
   <div class="header-actions">
+    <button onclick="openJsonModal()" class="header-btn" style="color:#38bdf8;background:rgba(56,189,248,0.1);border-color:rgba(56,189,248,0.3)" title="Export or Import Progress JSON">
+      <i data-lucide="arrow-left-right" style="width:13px;height:13px"></i>
+      <span>JSON Sync</span>
+    </button>
     <a href="index.html" class="header-btn" title="Full 16-Course Study Hub">
       <i data-lucide="layout-grid" style="width:13px;height:13px"></i>
       <span>Full Hub</span>
@@ -363,27 +363,26 @@
       <i data-lucide="compass" style="width:13px;height:13px"></i>
       <span>Strategy</span>
     </a>
-    <a href="dossier.html" class="header-btn" title="Financial &amp; Scholarship Dossier">
-      <i data-lucide="wallet" style="width:13px;height:13px"></i>
-      <span>Dossier</span>
-    </a>
   </div>
 </header>
 
 <main class="container">
 
   <!-- ═══════════════════════════════════════
-       2. COCKPIT HERO STRIP
+       2. COCKPIT HERO STRIP (30-DAY TIMELINE)
   ═══════════════════════════════════════ -->
   <div class="card" style="background:linear-gradient(145deg, #0e1522 0%, #0a0d14 100%);border-color:var(--border-strong);margin-bottom:14px">
     
-    <!-- Top Row: Days Left & Target -->
+    <!-- Top Row: Date Pill & Target -->
     <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;flex-wrap:wrap;gap:8px">
       <div>
-        <span class="tag tag-blue" style="margin-bottom:4px">Oct 2026 ATKT Exam Window</span>
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+          <span class="tag tag-blue" id="today-full-title">Wed, Sept 10, 2026</span>
+          <span class="tag tag-amber">Day 10 of 30</span>
+        </div>
         <div style="font-size:18px;font-weight:900;color:#fff;display:flex;align-items:baseline;gap:6px">
           20 Days Remaining
-          <span style="font-size:12px;font-weight:600;color:#38bdf8">(Sept 10 &rarr; Sept 30)</span>
+          <span style="font-size:12px;font-weight:600;color:#38bdf8">(Until October 1 Exams)</span>
         </div>
       </div>
       <div style="text-align:right">
@@ -395,16 +394,16 @@
     <!-- Pacing & Baseline Banner -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
       <div class="card-inner" style="display:flex;align-items:center;gap:8px;padding:8px 10px">
-        <i data-lucide="check-circle" style="width:16px;height:16px;color:#34d399;flex-shrink:0"></i>
+        <i data-lucide="calendar-check" style="width:16px;height:16px;color:#34d399;flex-shrink:0"></i>
         <div style="min-width:0;overflow:hidden">
-          <div style="font-size:11px;font-weight:800;color:#f8fafc">Pace: 100% On Track</div>
-          <div style="font-size:10px;color:#94a3b8;white-space:nowrap;text-overflow:ellipsis">Fresh Day 1 Baseline · Zero Guilt</div>
+          <div style="font-size:11px;font-weight:800;color:#f8fafc" id="cockpit-progress-stat">15 / 90 Blocks Done</div>
+          <div style="font-size:10px;color:#94a3b8;white-space:nowrap;text-overflow:ellipsis" id="cockpit-progress-sub">Groundwork Active · Sept 1–10 Tracked</div>
         </div>
       </div>
       <div class="card-inner" style="display:flex;align-items:center;gap:8px;padding:8px 10px">
         <i data-lucide="flag" style="width:16px;height:16px;color:#fbbf24;flex-shrink:0"></i>
         <div style="min-width:0;overflow:hidden">
-          <div style="font-size:11px;font-weight:800;color:#fbbf24">Milestone: Sept 14</div>
+          <div style="font-size:11px;font-weight:800;color:#fbbf24">Milestone: Sept 14 (Day 14)</div>
           <div style="font-size:10px;color:#94a3b8;white-space:nowrap;text-overflow:ellipsis">Passing Floor Lock (4d Left)</div>
         </div>
       </div>
@@ -413,11 +412,11 @@
     <!-- 4 Metrics Row -->
     <div style="display:grid;grid-template-columns:repeat(4, 1fr);gap:6px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06);text-align:center">
       <div>
-        <div style="font-size:9px;color:var(--text-muted);font-weight:700;text-transform:uppercase">Sprint Day</div>
-        <div class="font-mono" style="font-size:14px;font-weight:800;color:#38bdf8" id="stat-sprint-day">1 / 20</div>
+        <div style="font-size:9px;color:var(--text-muted);font-weight:700;text-transform:uppercase">Calendar Day</div>
+        <div class="font-mono" style="font-size:14px;font-weight:800;color:#38bdf8">10 / 30</div>
       </div>
       <div>
-        <div style="font-size:9px;color:var(--text-muted);font-weight:700;text-transform:uppercase">Velocity</div>
+        <div style="font-size:9px;color:var(--text-muted);font-weight:700;text-transform:uppercase">Daily Study</div>
         <div class="font-mono" style="font-size:14px;font-weight:800;color:#4ade80">7.5h / day</div>
       </div>
       <div>
@@ -425,25 +424,30 @@
         <div class="font-mono" style="font-size:14px;font-weight:800;color:#fbbf24">7 Courses</div>
       </div>
       <div>
-        <div style="font-size:9px;color:var(--text-muted);font-weight:700;text-transform:uppercase">Blocks Done</div>
-        <div class="font-mono" style="font-size:14px;font-weight:800;color:#c084fc" id="stat-blocks-completed">0 / 60</div>
+        <div style="font-size:9px;color:var(--text-muted);font-weight:700;text-transform:uppercase">Total Blocks</div>
+        <div class="font-mono" style="font-size:14px;font-weight:800;color:#c084fc" id="stat-blocks-completed">0 / 90</div>
       </div>
     </div>
   </div>
 
   <!-- ═══════════════════════════════════════
-       3. 20-DAY ACTIVITY HEATMAP
+       3. 30-DAY ACTIVITY HEATMAP (SEPT 1 - 30)
   ═══════════════════════════════════════ -->
   <div class="card" style="margin-bottom:14px">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
       <div style="display:flex;align-items:center;gap:6px">
         <i data-lucide="flame" style="width:15px;height:15px;color:#f59e0b"></i>
-        <span style="font-size:12px;font-weight:700;color:#fff">20-Day Activity Heatmap (Sept 10 – Sept 30)</span>
+        <span style="font-size:12px;font-weight:700;color:#fff">September 2026 Activity Heatmap (Days 1–30)</span>
       </div>
-      <span class="font-mono" style="font-size:11px;color:#94a3b8" id="heatmap-streak-label">0 Day Streak</span>
+      <span class="font-mono" style="font-size:11px;color:#94a3b8" id="heatmap-streak-label">7 Days Active</span>
     </div>
     <div style="background:var(--bg-surface-recessed);border:1px solid var(--border-subtle);border-radius:10px;padding:10px;overflow-x:auto">
-      <div id="heatmap-grid" style="display:grid;grid-template-columns:repeat(20, 1fr);gap:4px;min-width:380px"></div>
+      <div style="display:flex;justify-content:space-between;font-size:9px;color:var(--text-muted);margin-bottom:6px">
+        <span>Sept 1 (Start)</span>
+        <span style="color:#38bdf8;font-weight:700">Sept 10 (TODAY)</span>
+        <span>Sept 30 (Pre-Flight)</span>
+      </div>
+      <div id="heatmap-grid" style="display:grid;grid-template-columns:repeat(30, 1fr);gap:4px;min-width:540px"></div>
     </div>
   </div>
 
@@ -452,14 +456,14 @@
   ═══════════════════════════════════════ -->
 
   <!-- ───────────────────────────────────────
-       TAB 1: 20-DAY SPRINT CALENDAR
+       TAB 1: 30-DAY SPRINT CALENDAR (MONTH GRID)
   ─────────────────────────────────────── -->
   <div id="view-calendar" class="tab-view">
     <div class="card" style="margin-bottom:14px">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px">
         <div>
-          <div style="font-size:14px;font-weight:800;color:#fff">September 2026 — Sem 1 Master Calendar</div>
-          <div style="font-size:11px;color:var(--text-secondary)">Click any day card to inspect its hourly timetable and video lectures.</div>
+          <div style="font-size:14px;font-weight:800;color:#fff">September 2026 — 30-Day Sem 1 Sprint Calendar</div>
+          <div style="font-size:11px;color:var(--text-secondary)">Click any day card to view its hourly timetable, video lectures, and goals.</div>
         </div>
         <div style="display:flex;gap:8px;font-size:10px">
           <span style="display:inline-flex;align-items:center;gap:4px;color:#a5b4fc"><span style="width:7px;height:7px;border-radius:50%;background:#6366f1"></span> Morning Major</span>
@@ -481,10 +485,10 @@
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
         <div>
           <div style="display:flex;align-items:center;gap:6px">
-            <span class="tag tag-indigo" id="insp-day-badge">DAY 1 OF 20</span>
+            <span class="tag tag-indigo" id="insp-day-badge">DAY 10 OF 30</span>
             <div style="font-size:15px;font-weight:800;color:#fff" id="insp-date-title">Sept 10, 2026 (Wednesday)</div>
           </div>
-          <div style="font-size:11px;color:var(--text-secondary);margin-top:2px" id="insp-phase-desc">Phase 1: Foundation Sprint · Digital Systems + Python + IKS</div>
+          <div style="font-size:11px;color:var(--text-secondary);margin-top:2px" id="insp-phase-desc">Phase 2: Core Mechanics · Full Adder + Python Functions + Conflict Modes</div>
         </div>
         <div style="display:flex;align-items:center;gap:6px">
           <button onclick="prevDay()" class="header-btn">‹ Prev</button>
@@ -517,55 +521,59 @@
     <!-- Phase 1 -->
     <div class="card" style="border-left:4px solid #3b82f6">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-        <span class="tag tag-blue">Phase 1 · Days 1–5 (Sept 10–14)</span>
-        <span class="font-mono" style="font-size:11px;color:#60a5fa">Passing Floor Lock</span>
+        <span class="tag tag-blue">Phase 1 · Days 1–7 (Sept 1–7)</span>
+        <span class="font-mono" style="font-size:11px;color:#60a5fa">Groundwork &amp; Fundamentals</span>
       </div>
-      <div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:4px">Foundation &amp; 12-Mark Passing Anchor</div>
+      <div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:4px">Core Theorems, FHS &amp; Basic Loops</div>
       <div style="font-size:12px;color:var(--text-secondary);line-height:1.6">
-        • <strong>Digital Systems:</strong> Number Systems, De Morgan's Proofs, 3/4-Variable K-Maps.<br>
-        • <strong>DBMS:</strong> 3-Tier ANSI/SPARC Architecture, Logical vs Physical Independence.<br>
+        • <strong>Digital Systems:</strong> Number Systems, De Morgan's Laws, K-Map 3-variable groupings.<br>
+        • <strong>DBMS:</strong> 3-Tier ANSI/SPARC Schema Architecture, Relational Keys &amp; ER Diagrams.<br>
         • <strong>Python &amp; Linux:</strong> For-else Prime check, FHS 5 essential directories, chmod 755 math.<br>
-        • <strong>Milestone (Sept 14):</strong> Write top 3 passing questions for all 7 subjects on paper in 25 mins.
+        • <strong>Electives:</strong> Aryabhata's Pi &amp; Zero rules, Patent criteria, 7-stage communication process.
       </div>
     </div>
 
     <!-- Phase 2 -->
     <div class="card" style="border-left:4px solid #10b981">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-        <span class="tag tag-green">Phase 2 · Days 6–10 (Sept 15–19)</span>
-        <span class="font-mono" style="font-size:11px;color:#34d399">Core Architecture</span>
+        <span class="tag tag-green">Phase 2 · Days 8–14 (Sept 8–14)</span>
+        <span class="font-mono" style="font-size:11px;color:#34d399">Passing Floor Lock</span>
       </div>
       <div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:4px">Circuit Design &amp; Normalization Drills</div>
+      <div style="display:flex;align-items:center;gap:6px;margin:6px 0">
+        <span class="tag tag-amber" style="font-size:9px">Current Active Phase</span>
+        <span style="font-size:11px;color:#fbbf24;font-weight:700">Today: Day 10 (Sept 10)</span>
+      </div>
       <div style="font-size:12px;color:var(--text-secondary);line-height:1.6">
-        • <strong>Digital Systems:</strong> Half/Full Adders with 2 Half Adders, JK Flip-Flop Race Around Condition.<br>
+        • <strong>Digital Systems:</strong> 4-Variable K-Maps, Full Adder using 2 Half Adders, JK Flip-Flop Race Around Fix.<br>
         • <strong>DBMS:</strong> 1NF, 2NF (Partial Dep), 3NF (Transitive Dep), SQL Joins.<br>
         • <strong>Python &amp; Linux:</strong> Lists vs Tuples vs Sets vs Dicts, grep &amp; find pipes, shell if-else.<br>
-        • <strong>Electives:</strong> 3 Criteria for Patentability under Patent Act 1970, Tridosha Ayurveda.
+        • <strong>Critical Milestone (Sept 14):</strong> Lock in the 12-Mark Passing Floor across all 7 subjects.
       </div>
     </div>
 
     <!-- Phase 3 -->
     <div class="card" style="border-left:4px solid #a855f7">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-        <span class="tag tag-purple">Phase 3 · Days 11–15 (Sept 20–24)</span>
-        <span class="font-mono" style="font-size:11px;color:#c084fc">Distinction Tier</span>
+        <span class="tag tag-purple">Phase 3 · Days 15–21 (Sept 15–21)</span>
+        <span class="font-mono" style="font-size:11px;color:#c084fc">Distinction Expansion</span>
       </div>
-      <div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:4px">25+ Score Floor Expansion</div>
+      <div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:4px">25+ Score Floor Mastery</div>
       <div style="font-size:12px;color:var(--text-secondary);line-height:1.6">
-        • <strong>Digital Systems:</strong> Von Neumann Architecture, Register Paths (PC &rarr; MAR &rarr; MDR &rarr; IR &rarr; AC), Cache Hierarchy.<br>
-        • <strong>DBMS:</strong> ACID Properties with Banking Transaction Example, Transaction States.<br>
+        • <strong>Digital Systems:</strong> Von Neumann Architecture, Instruction Cycle (Fetch/Decode/Execute), Cache Hierarchy.<br>
+        • <strong>DBMS:</strong> ACID Properties with Banking Transaction Example, Transaction States, Armstrong Axioms.<br>
         • <strong>Python &amp; Linux:</strong> File word frequency dictionary script, Tar archive automated backup script.<br>
-        • <strong>Milestone (Sept 24):</strong> 100% syllabus touch completed across all 7 subjects.
+        • <strong>Milestone (Sept 21):</strong> 100% syllabus coverage complete across all Units 1, 2, and 3.
       </div>
     </div>
 
     <!-- Phase 4 -->
     <div class="card" style="border-left:4px solid #f59e0b">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-        <span class="tag tag-amber">Phase 4 · Days 16–20 (Sept 25–30)</span>
+        <span class="tag tag-amber">Phase 4 · Days 22–30 (Sept 22–30)</span>
         <span class="font-mono" style="font-size:11px;color:#fbbf24">Exam Hall Readiness</span>
       </div>
-      <div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:4px">Timed Writing Simulations &amp; Pre-Flight</div>
+      <div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:4px">Timed Simulations &amp; Pre-Flight</div>
       <div style="font-size:12px;color:var(--text-secondary);line-height:1.6">
         • <strong>5/5 Evaluator Formula:</strong> Definition + Diagram + 4 Core Numbered Bullets + Code/Circuit Math.<br>
         • <strong>Full Mock Simulation:</strong> Timed 50-minute exam drills without looking at notes.<br>
@@ -634,7 +642,83 @@
 </main>
 
 <!-- ═══════════════════════════════════════
-     5. FLOATING BOTTOM NAVIGATION DOCK
+     5. JSON SYNC & BACKUP MODAL
+═══════════════════════════════════════ -->
+<div class="modal-overlay" id="json-sync-modal" onclick="if(event.target===this)closeJsonModal()">
+  <div class="modal-card">
+    <div class="modal-header">
+      <div style="display:flex;align-items:center;gap:8px">
+        <i data-lucide="database" style="width:16px;height:16px;color:#38bdf8"></i>
+        <span style="font-size:14px;font-weight:800;color:#fff">Progress Backup &amp; JSON Engine</span>
+      </div>
+      <button onclick="closeJsonModal()" style="background:transparent;border:none;color:var(--text-muted);cursor:pointer;padding:4px">
+        <i data-lucide="x" style="width:18px;height:18px"></i>
+      </button>
+    </div>
+    <div class="modal-body">
+      
+      <!-- Option 1: Direct 1-Click Sync from Study Lab -->
+      <div class="card-inner" style="border-color:rgba(56,189,248,0.3);background:#0b1526">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+          <span style="font-size:12px;font-weight:800;color:#38bdf8">1-Click Auto-Import from Study Lab</span>
+          <span class="tag tag-blue" style="font-size:9px">Same Browser</span>
+        </div>
+        <p style="font-size:11px;color:#93c5fd;line-height:1.5;margin-bottom:8px">
+          Pulls your marked checkboxes directly from <code class="font-mono">index.html</code> stored in your browser and automatically credits all Sem 1 blocks!
+        </p>
+        <button onclick="autoSyncFromStudyLab()" class="header-btn" style="background:#0284c7;color:#fff;border-color:#38bdf8;width:100%;justify-content:center;padding:7px">
+          <i data-lucide="refresh-cw" style="width:14px;height:14px"></i>
+          <span>Auto-Pull from Study Lab (index.html)</span>
+        </button>
+      </div>
+
+      <!-- Option 2: Export JSON -->
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+          <span style="font-size:12px;font-weight:700;color:#fff">Export Progress JSON</span>
+          <span style="font-size:10px;color:var(--text-muted)">Human-readable data</span>
+        </div>
+        <textarea id="json-export-area" readonly class="font-mono" style="width:100%;height:85px;background:#05070a;border:1px solid var(--border-strong);border-radius:8px;padding:8px;font-size:10px;color:#34d399;outline:none;resize:none"></textarea>
+        <div style="display:flex;gap:6px;margin-top:6px">
+          <button onclick="copyExportJson()" class="header-btn" id="btn-copy-json" style="flex:1;justify-content:center">
+            <i data-lucide="copy" style="width:13px;height:13px"></i>
+            <span>Copy JSON to Clipboard</span>
+          </button>
+          <button onclick="downloadJsonFile()" class="header-btn" style="flex:1;justify-content:center">
+            <i data-lucide="download" style="width:13px;height:13px"></i>
+            <span>Download .json</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Option 3: Import JSON or Sync Code -->
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+          <span style="font-size:12px;font-weight:700;color:#fff">Import JSON / Sync Code</span>
+          <span style="font-size:10px;color:var(--text-muted)">Paste JSON or index.html sync code</span>
+        </div>
+        <textarea id="json-import-area" placeholder='Paste raw JSON like {"tasks":{"1_m":true...}} OR paste sync code from index.html...' class="font-mono" style="width:100%;height:85px;background:#05070a;border:1px solid var(--border-strong);border-radius:8px;padding:8px;font-size:10px;color:#f8fafc;outline:none;resize:none"></textarea>
+        <div style="display:flex;gap:6px;margin-top:6px">
+          <button onclick="importJsonData()" class="header-btn" style="background:#16a34a;color:#fff;border-color:#22c55e;flex:1;justify-content:center">
+            <i data-lucide="upload" style="width:13px;height:13px"></i>
+            <span>Import &amp; Restore Progress</span>
+          </button>
+          <label class="header-btn" style="cursor:pointer;flex:1;justify-content:center">
+            <i data-lucide="file-text" style="width:13px;height:13px"></i>
+            <span>Upload File</span>
+            <input type="file" accept=".json,text/plain" onchange="handleFileUpload(event)" style="display:none">
+          </label>
+        </div>
+      </div>
+
+      <div id="modal-status-msg" style="font-size:11px;text-align:center;display:none"></div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     6. FLOATING BOTTOM NAVIGATION DOCK
 ═══════════════════════════════════════ -->
 <nav class="bottom-dock" aria-label="Sprint Navigation">
   <div class="dock-inner">
@@ -662,152 +746,229 @@
 </nav>
 
 <!-- ═══════════════════════════════════════
-     6. JAVASCRIPT MASTER DATA & LOGIC
+     7. JAVASCRIPT MASTER DATA & LOGIC
 ═══════════════════════════════════════ -->
 <script>
 // ─────────────────────────────────────────
-// A. 20-DAY SPRINT DATASET (SEPT 10 – SEPT 30, 2026)
+// A. 30-DAY MASTER SPRINT DATASET (SEPT 1 - SEPT 30, 2026)
 // 100% SEMESTER 1 SUBJECTS ONLY
 // ─────────────────────────────────────────
 const sem1SprintDays = [
+  // WEEK 1: FOUNDATION SPRINT
   {
-    day: 1, date: "Sept 10", dow: "Wed", phase: "Phase 1: Basics",
-    m: { sub: "Digital Systems (1101111)", topic: "Logic Gates & De Morgan's Laws", yt: "Neso Academy De Morgan proof with truth table", goal: "Prove (A.B)' = A' + B' with truth table and logic diagram" },
-    a: { sub: "Python (1101411)", topic: "Control Flow, If-Else & Prime Check Loop", yt: "CodeWithHarry Python prime check loop for else", goal: "Write for-else prime loop without syntax errors" },
-    e: { sub: "IKS (2531511)", topic: "Ancient Mathematics: Aryabhata & Brahmagupta", yt: "Aryabhata Aryabhatiya Pi value Brahmagupta Zero arithmetic", goal: "Memorize Aryabhatiya Pi value and formal zero arithmetic rules" },
-    n: "Flashcard #1 (De Morgan) + draw logic gate symbols on paper"
+    day: 1, date: "Sept 1", dow: "Tue", phase: "Phase 1: Basics",
+    m: { sub: "Digital Systems (1101111)", topic: "Number Systems & Binary Math", yt: "Neso Academy binary hex octal number system", goal: "Convert between Binary, Hex, and Decimal effortlessly" },
+    a: { sub: "Python (1101411)", topic: "Variables, Data Types & Basic Operators", yt: "CodeWithHarry Python data types operators", goal: "Understand mutable vs immutable types" },
+    e: { sub: "IKS (2531511)", topic: "Ancient Mathematics: Aryabhata & Vedic Math", yt: "Aryabhata Aryabhatiya contribution to mathematics", goal: "Memorize Aryabhatiya calculation of Pi and Earth's rotation" },
+    n: "Flashcard #1 + write binary conversions on paper"
   },
   {
-    day: 2, date: "Sept 11", dow: "Thu", phase: "Phase 1: Basics",
-    m: { sub: "DBMS (1101112)", topic: "3-Tier ANSI/SPARC Architecture & Data Independence", yt: "Gate Smashers 3 Tier Architecture DBMS", goal: "Draw External, Conceptual, and Internal levels with independence definitions" },
-    a: { sub: "Linux OS (1101413)", topic: "Filesystem Hierarchy Standard (FHS) & Commands", yt: "Gate Smashers Linux FHS filesystem hierarchy", goal: "Explain /bin, /etc, /home, /var, /proc directories" },
-    e: { sub: "IPR (1481311)", topic: "3 Essential Criteria for Patentability", yt: "Gate Smashers Patent Criteria Novelty Inventive step", goal: "Memorize Novelty, Non-obviousness, Industrial Utility" },
-    n: "Flashcard #3 (3-Tier DBMS) + list FHS directories from memory"
+    day: 2, date: "Sept 2", dow: "Wed", phase: "Phase 1: Basics",
+    m: { sub: "DBMS (1101112)", topic: "File System vs DBMS & Advantages", yt: "Gate Smashers File system vs DBMS differences", goal: "List 5 major advantages of DBMS over File Processing" },
+    a: { sub: "Linux OS (1101413)", topic: "Filesystem Hierarchy Standard (FHS)", yt: "Gate Smashers Linux FHS filesystem hierarchy", goal: "Explain /bin, /etc, /home, /var, /proc directories" },
+    e: { sub: "IPR (1481311)", topic: "Introduction to Intellectual Property & Patents", yt: "Gate Smashers Intellectual Property Rights basics", goal: "Understand tangible vs intangible property" },
+    n: "List FHS directories from memory"
   },
   {
-    day: 3, date: "Sept 12", dow: "Fri", phase: "Phase 1: Basics",
-    m: { sub: "Digital Systems (1101111)", topic: "K-Map 3 & 4 Variable Minimization (SOP)", yt: "Gate Smashers K Map 3 and 4 variable SOP", goal: "Minimize 4-variable truth tables using grouping of 1s without error" },
-    a: { sub: "Python (1101411)", topic: "Data Structures: List vs Tuple vs Set vs Dict", yt: "CodeWithHarry Python data structures comparison list tuple dict", goal: "Create comparison table of mutability, syntax, and O(1) hash lookup" },
-    e: { sub: "People's Skills (2541514)", topic: "7-Stage Communication Process & Noise", yt: "7 stage communication process sender channel receiver feedback", goal: "Draw Sender -> Encoding -> Channel -> Receiver -> Feedback loop" },
-    n: "Solve 1 K-Map on blank paper + Flashcard #6 (Python)"
+    day: 3, date: "Sept 3", dow: "Thu", phase: "Phase 1: Basics",
+    m: { sub: "Digital Systems (1101111)", topic: "Logic Gates & De Morgan's Theorems", yt: "Neso Academy De Morgan proof with truth table", goal: "Prove (A.B)' = A' + B' with truth table and logic diagram" },
+    a: { sub: "Python (1101411)", topic: "If-Elif-Else & Prime Check Loop", yt: "CodeWithHarry Python prime check loop for else", goal: "Write for-else prime loop without syntax errors" },
+    e: { sub: "People's Skills (2541514)", topic: "7-Stage Communication Process & Channels", yt: "7 stage communication process sender channel receiver", goal: "Draw Sender -> Encoding -> Channel -> Receiver -> Feedback loop" },
+    n: "Flashcard #1 (De Morgan) + draw NAND gate"
   },
   {
-    day: 4, date: "Sept 13", dow: "Sat", phase: "Phase 1: Basics",
-    m: { sub: "DBMS (1101112)", topic: "Relational Model, Keys & 1NF/2NF Normalization", yt: "Gate Smashers Normalization 1NF 2NF partial dependency", goal: "Eliminate multi-valued attributes (1NF) and partial dependencies (2NF)" },
-    a: { sub: "Linux OS (1101413)", topic: "File Permissions (chmod 755 vs 644, chown)", yt: "Gate Smashers Linux File Permissions chmod 755", goal: "Calculate octal permissions: Owner=rwx (7), Group=r-x (5), Others=r-x (5)" },
+    day: 4, date: "Sept 4", dow: "Fri", phase: "Phase 1: Basics",
+    m: { sub: "DBMS (1101112)", topic: "3-Tier ANSI/SPARC Schema Architecture", yt: "Gate Smashers 3 Tier Architecture DBMS", goal: "Draw External, Conceptual, and Internal levels with independence definitions" },
+    a: { sub: "Linux OS (1101413)", topic: "File Permissions (chmod 755 vs 644)", yt: "Gate Smashers Linux File Permissions chmod 755", goal: "Calculate octal permissions: Owner=rwx (7), Group=r-x (5), Others=r-x (5)" },
     e: { sub: "IKS (2531511)", topic: "Tridosha Theory of Ayurveda & 5 Elements", yt: "Tridosha Ayurveda Vata Pitta Kapha elements", goal: "Explain Vata, Pitta, Kapha and combination of Panchamahabhutas" },
-    n: "Flashcard #4 (1NF/2NF) + calculate chmod 644 vs 755"
+    n: "Flashcard #3 (3-Tier DBMS) + chmod math"
   },
   {
-    day: 5, date: "Sept 14", dow: "Sun", phase: "Phase 1 Milestone",
+    day: 5, date: "Sept 5", dow: "Sat", phase: "Phase 1: Basics",
+    m: { sub: "Digital Systems (1101111)", topic: "K-Map 3-Variable Minimization (SOP)", yt: "Gate Smashers K Map 3 variable SOP", goal: "Group 1s in 2x4 K-Maps without errors" },
+    a: { sub: "Python (1101411)", topic: "Lists vs Tuples: Syntax & Mutability", yt: "CodeWithHarry Python lists tuples differences", goal: "Write comparison table of syntax, mutability, and slicing" },
+    e: { sub: "IPR (1481311)", topic: "3 Essential Criteria for Patentability", yt: "Gate Smashers Patent Criteria Novelty Inventive step", goal: "Memorize Novelty, Non-obviousness, Industrial Utility" },
+    n: "Solve 1 K-Map on blank paper + Flashcard #8"
+  },
+  {
+    day: 6, date: "Sept 6", dow: "Sun", phase: "Phase 1: Basics",
+    m: { sub: "DBMS (1101112)", topic: "Relational Algebra: Select σ & Project π", yt: "Gate Smashers Relational Algebra Select Project", goal: "Write syntax for horizontal filtering vs vertical column extraction" },
+    a: { sub: "Linux OS (1101413)", topic: "Filters: grep, find, pipes (|) & head/tail", yt: "Gate Smashers Linux grep find pipes", goal: "Pipe ps aux into grep python and count running processes" },
+    e: { sub: "People's Skills (2541514)", topic: "Daniel Goleman 5 Pillars of Emotional Intelligence", yt: "Daniel Goleman Emotional Intelligence 5 domains", goal: "Explain Self-Awareness, Self-Regulation, Motivation, Empathy, Social Skills" },
+    n: "Flashcard #7 (Linux Permissions) + write grep command"
+  },
+  {
+    day: 7, date: "Sept 7", dow: "Mon", phase: "Phase 1 Review",
+    m: { sub: "Digital & DBMS Review", topic: "Week 1 Core Definitions & Diagrams", yt: "Gate Smashers quick revision computer science", goal: "Recite De Morgan, 3-Tier schema, and K-Map rules from memory" },
+    a: { sub: "Python & Linux Review", topic: "Week 1 Code Writing: Loops & Permissions", yt: "Python Linux core exam questions revision", goal: "Write Prime script and chmod 755 derivation without looking" },
+    e: { sub: "Electives Review", topic: "Week 1 Review: Patent Criteria & Aryabhata", yt: "Patent criteria Aryabhata communication revision", goal: "List 3 Patent Criteria and Aryabhata contributions on blank paper" },
+    n: "Complete 15-Mark Checkpoint Mock on paper"
+  },
+
+  // WEEK 2: CORE MECHANICS (PASSING FLOOR LOCK)
+  {
+    day: 8, date: "Sept 8", dow: "Tue", phase: "Phase 2: Core",
+    m: { sub: "Digital Systems (1101111)", topic: "K-Map 4-Variable Minimization (SOP)", yt: "Gate Smashers K Map 4 variable SOP", goal: "Minimize 4-variable truth tables using grouping of 1s without error" },
+    a: { sub: "Python (1101411)", topic: "Sets & Dictionaries: Unique & Key-Value Lookup", yt: "CodeWithHarry Python sets dictionaries", goal: "Explain fast O(1) hash lookup in dicts" },
+    e: { sub: "IKS (2531511)", topic: "Harappan Grid Town Planning & Drainage", yt: "Harappan civilization town planning drainage system", goal: "Describe right-angle street grid, soak pits, and covered terracotta drains" },
+    n: "Flashcard #6 (Python) + draw K-Map 4x4"
+  },
+  {
+    day: 9, date: "Sept 9", dow: "Wed", phase: "Phase 2: Core",
+    m: { sub: "DBMS (1101112)", topic: "1NF & 2NF Normalization (Partial Dependency)", yt: "Gate Smashers Normalization 1NF 2NF partial dependency", goal: "Eliminate multi-valued attributes (1NF) and partial dependencies (2NF)" },
+    a: { sub: "Linux OS (1101413)", topic: "Process Control: ps aux, top, kill -9", yt: "Gate Smashers Linux Process Management ps top kill", goal: "Explain process states (Running, Sleeping, Zombie, Stopped)" },
+    e: { sub: "IPR (1481311)", topic: "Copyright Act 1957 & Fair Dealing Doctrine", yt: "Doctrine of Fair Dealing copyright exceptions India", goal: "List statutory exceptions for educational and research use" },
+    n: "Flashcard #4 (1NF/2NF) + write kill -9 command"
+  },
+  {
+    day: 10, date: "Sept 10", dow: "Wed", phase: "Phase 2: Core",
+    m: { sub: "Digital Systems (1101111)", topic: "Full Adder Design using 2 Half Adders & OR Gate", yt: "Gate Smashers Full Adder using two half adders", goal: "Derive Sum = A ^ B ^ Cin and Carry equations with logic circuit" },
+    a: { sub: "Python (1101411)", topic: "Functions, *args, **kwargs & Recursion", yt: "CodeWithHarry Python functions args kwargs recursion", goal: "Write recursive factorial function and test parameter unpacking" },
+    e: { sub: "People's Skills (2541514)", topic: "Thomas-Kilmann 5 Conflict Handling Modes", yt: "Thomas Kilmann Conflict Modes collaborate compete compromise", goal: "Draw Assertiveness vs Cooperativeness grid: Collaborate, Compete, Avoid" },
+    n: "Draw Full Adder circuit on paper + Flashcard #2"
+  },
+  {
+    day: 11, date: "Sept 11", dow: "Thu", phase: "Phase 2: Core",
+    m: { sub: "DBMS (1101112)", topic: "3NF Normalization & Transitive Dependencies", yt: "Gate Smashers 3NF Normalization transitive dependency", goal: "Decompose Customer table to eliminate A -> B, B -> C transitive chain" },
+    a: { sub: "Linux OS (1101413)", topic: "Shell Scripting: Variables, If-Else & Test Conditions", yt: "CodeWithHarry Bash Shell Scripting tutorial", goal: "Write script checking if directory exists before creating files" },
+    e: { sub: "IKS (2531511)", topic: "Ancient Indian Metallurgy: Iron Pillar of Delhi", yt: "Iron pillar of Delhi corrosion resistance metallurgy ancient India", goal: "Explain high phosphorus rust-resistant iron technology" },
+    n: "Flashcard #4 (3NF) + write bash if-else"
+  },
+  {
+    day: 12, date: "Sept 12", dow: "Fri", phase: "Phase 2: Core",
+    m: { sub: "Digital Systems (1101111)", topic: "Flip-Flops: SR, JK & Master-Slave Race Around Fix", yt: "Gate Smashers JK Flip Flop Race around condition and Master Slave", goal: "Explain why tp > tpd causes race around toggling and how master-slave fixes it" },
+    a: { sub: "Python (1101411)", topic: "File Handling: Read, Write & Word Frequency Count", yt: "Python count word frequency in text file dictionary", goal: "Write 8-line script to open 'data.txt' and count word frequencies" },
+    e: { sub: "IPR (1481311)", topic: "Trade Secrets, NDAs & IT Act 2000 Section 66", yt: "Trade secrets protection NDA Section 66 IT Act", goal: "Explain civil breach vs criminal hacking penalties under Sec 66" },
+    n: "Draw JK Flip-Flop Master-Slave diagram"
+  },
+  {
+    day: 13, date: "Sept 13", dow: "Sat", phase: "Phase 2: Core",
+    m: { sub: "DBMS (1101112)", topic: "SQL Joins: Inner, Left, Right & Full Joins", yt: "Gate Smashers Joins in SQL Inner Left Right", goal: "Write queries with GROUP BY and HAVING clauses on student/orders data" },
+    a: { sub: "Linux OS (1101413)", topic: "Shell Scripting: For Loops & Tar Backup Script", yt: "Bash shell script tar backup directory cron", goal: "Write script: tar -cvf backup.tar /home/user/*.txt" },
+    e: { sub: "People's Skills (2541514)", topic: "Active Listening vs Passive Hearing & Feedback", yt: "Active listening barriers feedback communication", goal: "Explain 5 steps of active listening: Receiving, Evaluating, Responding" },
+    n: "Write 3 SQL Join queries + Flashcard #5"
+  },
+  {
+    day: 14, date: "Sept 14", dow: "Sun", phase: "Phase 2 Milestone",
     m: { sub: "PASSING FLOOR DRILL 1", topic: "Digital Systems & DBMS 12-Mark Checkpoint", yt: "Neso Academy digital logic Gate Smashers DBMS revision", goal: "Write De Morgan, K-Map, and 3-Tier answers in 25 mins flat" },
     a: { sub: "PASSING FLOOR DRILL 2", topic: "Python & Linux OS 12-Mark Checkpoint", yt: "CodeWithHarry Python Gate Smashers Linux permissions", goal: "Write Python Prime loop and chmod permission table on paper" },
     e: { sub: "PASSING FLOOR DRILL 3", topic: "IPR, IKS & People's Skills Checkpoint", yt: "Patent criteria Aryabhata communication model revision", goal: "List 3 Patent Criteria and Aryabhata contributions from memory" },
     n: "MILESTONE ACHIEVED: 12-Mark Passing Floor Locked across all 7 subjects"
   },
+
+  // WEEK 3: 25+ DISTINCTION EXPANSION
   {
-    day: 6, date: "Sept 15", dow: "Mon", phase: "Phase 2: Core",
-    m: { sub: "Digital Systems (1101111)", topic: "Full Adder Design using 2 Half Adders & OR Gate", yt: "Gate Smashers Full Adder using two half adders", goal: "Derive Sum = A ^ B ^ Cin and Carry equations with logic circuit" },
-    a: { sub: "Python (1101411)", topic: "Functions, *args, **kwargs & Recursion", yt: "CodeWithHarry Python functions args kwargs recursion", goal: "Write recursive factorial function and test parameter unpacking" },
-    e: { sub: "IPR (1481311)", topic: "Copyright Act 1957 & Fair Dealing Doctrine", yt: "Doctrine of Fair Dealing copyright exceptions India", goal: "List statutory exceptions for educational and research use" },
-    n: "Draw Full Adder circuit on paper + Flashcard #2"
-  },
-  {
-    day: 7, date: "Sept 16", dow: "Tue", phase: "Phase 2: Core",
-    m: { sub: "DBMS (1101112)", topic: "3NF Normalization & Transitive Dependencies", yt: "Gate Smashers 3NF Normalization transitive dependency", goal: "Decompose Customer table to eliminate A -> B, B -> C transitive chain" },
-    a: { sub: "Linux OS (1101413)", topic: "Filters: grep, find, pipes (|) & xargs", yt: "Gate Smashers Linux grep find pipes", goal: "Write command: ps aux | grep python | awk '{print $2}'" },
-    e: { sub: "People's Skills (2541514)", topic: "Daniel Goleman 5 Pillars of Emotional Intelligence", yt: "Daniel Goleman Emotional Intelligence 5 domains", goal: "Explain Self-Awareness, Self-Regulation, Motivation, Empathy, Social Skills" },
-    n: "Flashcard #4 (3NF) + write grep command"
-  },
-  {
-    day: 8, date: "Sept 17", dow: "Wed", phase: "Phase 2: Core",
-    m: { sub: "Digital Systems (1101111)", topic: "Flip-Flops: SR, JK & Master-Slave Race Around Fix", yt: "Gate Smashers JK Flip Flop Race around condition and Master Slave", goal: "Explain why tp > tpd causes race around toggling and how master-slave fixes it" },
-    a: { sub: "Python (1101411)", topic: "File Handling: Read, Write & Word Frequency Count", yt: "Python count word frequency in text file dictionary", goal: "Write 8-line script to open 'data.txt' and count word frequencies" },
-    e: { sub: "IKS (2531511)", topic: "Harappan Grid Town Planning & Drainage Architecture", yt: "Harappan civilization town planning drainage system", goal: "Describe right-angle street grid, soak pits, and covered terracotta drains" },
-    n: "Draw JK Flip-Flop Master-Slave diagram + Flashcard #7"
-  },
-  {
-    day: 9, date: "Sept 18", dow: "Thu", phase: "Phase 2: Core",
-    m: { sub: "DBMS (1101112)", topic: "SQL Joins: Inner, Left, Right, Full & Aggregation", yt: "Gate Smashers Joins in SQL Inner Left Right", goal: "Write queries with GROUP BY and HAVING clauses on student/orders data" },
-    a: { sub: "Linux OS (1101413)", topic: "Shell Scripting: Variables ($?), If-Else & For Loops", yt: "CodeWithHarry Bash Shell Scripting tutorial", goal: "Write script checking if directory exists before creating files" },
-    e: { sub: "IPR (1481311)", topic: "Trade Secrets, NDAs & IT Act 2000 Section 66", yt: "Trade secrets protection NDA Section 66 IT Act", goal: "Explain civil breach vs criminal hacking penalties under Sec 66" },
-    n: "Write 3 SQL Join queries + Flashcard #8"
-  },
-  {
-    day: 10, date: "Sept 19", dow: "Fri", phase: "Phase 2: Core",
+    day: 15, date: "Sept 15", dow: "Mon", phase: "Phase 3: Distinction",
     m: { sub: "Digital Systems (1101111)", topic: "Von Neumann Architecture & Register Data Paths", yt: "Gate Smashers Von Neumann Architecture registers PC MAR MDR", goal: "Draw PC -> MAR -> MDR -> IR -> AC register bus architecture" },
-    a: { sub: "Python (1101411)", topic: "Exception Handling: Try-Except-Finally & Modules", yt: "CodeWithHarry Python try except finally custom exception", goal: "Write clean division program handling ZeroDivisionError gracefully" },
-    e: { sub: "People's Skills (2541514)", topic: "Thomas-Kilmann 5 Conflict Handling Modes", yt: "Thomas Kilmann Conflict Modes collaborate compete compromise", goal: "Draw Assertiveness vs Cooperativeness grid: Collaborate, Compete, Avoid" },
+    a: { sub: "Python (1101411)", topic: "Exception Handling: Try-Except-Finally Blocks", yt: "CodeWithHarry Python try except finally custom exception", goal: "Write clean division program handling ZeroDivisionError gracefully" },
+    e: { sub: "IKS (2531511)", topic: "Brahmagupta Arithmetic of Zero & Negatives", yt: "Brahmagupta Brahmasphutasiddhanta Zero arithmetic negative numbers", goal: "Explain formal rules of positive, negative, and cipher numbers" },
     n: "Draw Von Neumann Block Diagram from memory"
   },
   {
-    day: 11, date: "Sept 20", dow: "Sat", phase: "Phase 3: Distinction",
-    m: { sub: "DBMS (1101112)", topic: "ACID Properties in Transactions & Concurrency", yt: "Gate Smashers ACID properties transaction management", goal: "Detail Atomicity, Consistency, Isolation, Durability with a bank transfer case" },
-    a: { sub: "Linux OS (1101413)", topic: "Shell Scripting: Tar Backup Automation & Cron", yt: "Bash shell script tar backup directory cron", goal: "Write script: tar -cvf backup.tar /home/user/*.txt" },
-    e: { sub: "IKS (2531511)", topic: "Ancient Indian Metallurgy: Iron Pillar of Delhi & Wootz", yt: "Iron pillar of Delhi corrosion resistance metallurgy ancient India", goal: "Explain high phosphorus rust-resistant iron technology" },
-    n: "Flashcard #5 (ACID) + write tar backup script"
+    day: 16, date: "Sept 16", dow: "Tue", phase: "Phase 3: Distinction",
+    m: { sub: "DBMS (1101112)", topic: "ACID Properties in Transactions & Banking Case", yt: "Gate Smashers ACID properties transaction management", goal: "Detail Atomicity, Consistency, Isolation, Durability with a bank transfer case" },
+    a: { sub: "Linux OS (1101413)", topic: "Automated Cron Jobs & Output Redirection", yt: "Linux cron crontab schedule jobs syntax", goal: "Write crontab line: 0 2 * * * /path/backup.sh > /var/log/cron.log 2>&1" },
+    e: { sub: "IPR (1481311)", topic: "Patent Infringement, Doctrine of Equivalents & Remedies", yt: "Patent infringement remedies damages injunction", goal: "Explain temporary injunction and punitive damages" },
+    n: "Flashcard #5 (ACID) + crontab syntax"
   },
   {
-    day: 12, date: "Sept 21", dow: "Sun", phase: "Phase 3 Milestone",
+    day: 17, date: "Sept 17", dow: "Wed", phase: "Phase 3: Distinction",
+    m: { sub: "Digital Systems (1101111)", topic: "Instruction Cycle: Fetch, Decode & Execute", yt: "Gate Smashers Instruction Cycle Fetch Decode Execute", goal: "Write step-by-step register transfer notation for Fetch & Execute" },
+    a: { sub: "Python (1101411)", topic: "List Comprehensions & Generator Expressions", yt: "Python list comprehensions string manipulation methods", goal: "Write 1-line list comprehensions for filtering even squares" },
+    e: { sub: "People's Skills (2541514)", topic: "Assertive vs Passive vs Aggressive Communication", yt: "Assertive Communication styles passive aggressive", goal: "Explain why Assertiveness (I win, You win) is ideal" },
+    n: "Write instruction cycle steps on paper"
+  },
+  {
+    day: 18, date: "Sept 18", dow: "Thu", phase: "Phase 3: Distinction",
+    m: { sub: "DBMS (1101112)", topic: "Transaction States & Concurrency Controls", yt: "Gate Smashers Transaction States Active Committed Failed", goal: "Draw state transition diagram: Active -> Partially Committed -> Committed" },
+    a: { sub: "Linux OS (1101413)", topic: "User Administration: Chown, Chgrp & Sudoers", yt: "Linux useradd chown chgrp sudoers permission", goal: "Explain UID, GID, /etc/passwd, and /etc/shadow files" },
+    e: { sub: "IKS (2531511)", topic: "Sushruta Samhita & Ancient Surgical Heritage", yt: "Sushruta Samhita ancient Indian surgery plastic surgery", goal: "Describe Sushruta's classification of surgical instruments" },
+    n: "Draw Transaction States Diagram"
+  },
+  {
+    day: 19, date: "Sept 19", dow: "Fri", phase: "Phase 3: Distinction",
+    m: { sub: "Digital Systems (1101111)", topic: "Memory Hierarchy & Cache Mapping (L1, L2, L3)", yt: "Gate Smashers Memory Hierarchy Cache RAM Disk", goal: "Draw speed vs cost pyramid: Registers -> Cache -> RAM -> Secondary Disk" },
+    a: { sub: "Python (1101411)", topic: "String Methods & Pattern Manipulation", yt: "Python string methods join split replace formatting", goal: "Write string sanitation and palindrome detection functions" },
+    e: { sub: "IPR (1481311)", topic: "Geographical Indications (GI Tags) & Industrial Designs", yt: "Geographical Indications of goods GI tags India", goal: "Explain GI tag legal protection with Indian examples (Darjeeling Tea)" },
+    n: "Draw Memory Hierarchy pyramid on paper"
+  },
+  {
+    day: 20, date: "Sept 20", dow: "Sat", phase: "Phase 3: Distinction",
+    m: { sub: "DBMS (1101112)", topic: "Functional Dependencies & Armstrong Axioms", yt: "Gate Smashers Functional Dependency Armstrong Axioms", goal: "Explain Reflexivity, Augmentation, and Transitivity axioms" },
+    a: { sub: "Linux OS (1101413)", topic: "Stream Processing: Awk & Sed Fundamentals", yt: "Linux awk and sed commands tutorial", goal: "Write awk script to print 2nd and 4th column of a CSV file" },
+    e: { sub: "People's Skills (2541514)", topic: "Johari Window Model of Interpersonal Awareness", yt: "Johari Window 4 quadrants Open Blind Hidden", goal: "Draw 4 quadrants: Open, Blind, Hidden, Unknown" },
+    n: "Test Armstrong Axioms proof"
+  },
+  {
+    day: 21, date: "Sept 21", dow: "Sun", phase: "Phase 3 Milestone",
     m: { sub: "DISTINCTION DRILL 1", topic: "Full Syllabus Review: Digital Systems & DBMS", yt: "Gate Smashers Digital Systems DBMS marathon revision", goal: "Verify Units 1, 2, and 3 key definitions across both core majors" },
     a: { sub: "DISTINCTION DRILL 2", topic: "Full Syllabus Review: Python & Linux OS", yt: "Python Linux OS core questions revision", goal: "Write Python file handling and Linux chmod scripts in 20 mins" },
     e: { sub: "DISTINCTION DRILL 3", topic: "Full Syllabus Review: IPR, IKS & People's Skills", yt: "IPR IKS Peoples Skills quick revision", goal: "Recite patent criteria, Fayol/communication stages, and Aryabhata" },
     n: "MILESTONE ACHIEVED: 25+ Mark Distinction Expansion Complete"
   },
+
+  // WEEK 4: TIMED DRILLS & EVALUATOR BLUEPRINTS
   {
-    day: 13, date: "Sept 22", dow: "Mon", phase: "Phase 3: Distinction",
-    m: { sub: "Digital Systems (1101111)", topic: "Instruction Cycle: Fetch, Decode & Execute", yt: "Gate Smashers Instruction Cycle Fetch Decode Execute", goal: "Write step-by-step register transfer notation for Fetch & Execute" },
-    a: { sub: "Python (1101411)", topic: "List Comprehensions & String Methods", yt: "Python list comprehensions string manipulation methods", goal: "Write 1-line list comprehensions for filtering even squares" },
-    e: { sub: "IPR (1481311)", topic: "Trademarks & Industrial Designs Protection", yt: "Trademarks Act India design registration classes", goal: "Differentiate trademark brand identity vs functional design patent" },
-    n: "Write instruction cycle steps on paper"
-  },
-  {
-    day: 14, date: "Sept 23", dow: "Tue", phase: "Phase 3: Distinction",
-    m: { sub: "DBMS (1101112)", topic: "Functional Dependencies & Armstrong Axioms", yt: "Gate Smashers Functional Dependency Armstrong Axioms", goal: "Explain Reflexivity, Augmentation, and Transitivity axioms" },
-    a: { sub: "Linux OS (1101413)", topic: "Process Management: ps aux, top, kill -9 & nice", yt: "Gate Smashers Linux Process Management ps top kill", goal: "Explain process states (Running, Sleeping, Zombie, Stopped)" },
-    e: { sub: "People's Skills (2541514)", topic: "Active Listening vs Passive Hearing & Feedback", yt: "Active listening barriers feedback communication", goal: "Explain 5 steps of active listening: Receiving, Evaluating, Responding" },
-    n: "Test Armstrong Axioms proof + Flashcard #3"
-  },
-  {
-    day: 15, date: "Sept 24", dow: "Wed", phase: "Phase 3: Distinction",
-    m: { sub: "Digital Systems (1101111)", topic: "Memory Hierarchy & Cache Mapping (L1, L2, L3)", yt: "Gate Smashers Memory Hierarchy Cache RAM Disk", goal: "Draw speed vs cost pyramid: Registers -> Cache -> RAM -> Secondary Disk" },
-    a: { sub: "Python (1101411)", topic: "Consolidated Python Code Practice (5 Key Programs)", yt: "Python practical exam programs prime fibonacci file", goal: "Code Prime, Palindrome, File count, Dict lookup, and Factorial" },
-    e: { sub: "IKS (2531511)", topic: "Comprehensive Review of Vedic & Classical Science", yt: "Indian Knowledge System summary exam questions", goal: "Consolidate 1-page summary of Aryabhata, Sushruta, and Harappa" },
-    n: "Draw Memory Hierarchy pyramid on paper"
-  },
-  {
-    day: 16, date: "Sept 25", dow: "Thu", phase: "Phase 4: Speed Drills",
+    day: 22, date: "Sept 22", dow: "Mon", phase: "Phase 4: Speed Drills",
     m: { sub: "Digital Systems Speed Drill", topic: "Write De Morgan + K-Map + Full Adder in 22 Mins", yt: "Neso Academy digital electronics fast writing", goal: "Target 15/15 marks using clean circuit diagrams and truth tables" },
-    a: { sub: "DBMS Speed Drill", topic: "Write 3-Tier + 1NF/2NF/3NF + ACID in 22 Mins", yt: "Gate Smashers DBMS paper solve fast", goal: "Draw schema tables + ACID banking transaction example" },
-    e: { sub: "Elective Quick Review", topic: "3 Patent Criteria + Fair Dealing + Goleman EQ", yt: "IPR and Peoples skills quick points", goal: "Write bulleted points in 15 mins" },
-    n: "Self-grade papers with 5/5 Evaluator marking scheme"
+    a: { sub: "Python Speed Drill", topic: "Write 3 Python Programs on paper in 20 Mins", yt: "Python exam written questions dry run", goal: "Code Prime check, Word count file script, and Dict comparison" },
+    e: { sub: "IPR Speed Drill", topic: "Write 3 Patent Criteria + Fair Dealing in 15 Mins", yt: "IPR patent criteria exam question", goal: "Bold keywords: Novelty, Non-obvious, Utility" },
+    n: "Score yourself: 15/15 target"
   },
   {
-    day: 17, date: "Sept 26", dow: "Fri", phase: "Phase 4: Speed Drills",
-    m: { sub: "Python Speed Drill", topic: "Write 3 Python Programs on paper in 20 Mins", yt: "Python exam written questions dry run", goal: "Code Prime check, Word count file script, and Dict comparison" },
+    day: 23, date: "Sept 23", dow: "Tue", phase: "Phase 4: Speed Drills",
+    m: { sub: "DBMS Speed Drill", topic: "Write 3-Tier + 1NF/2NF/3NF + ACID in 22 Mins", yt: "Gate Smashers DBMS paper solve fast", goal: "Draw schema tables + ACID banking transaction example" },
     a: { sub: "Linux OS Speed Drill", topic: "Write FHS 5 Dirs + chmod 755/644 + Backup Script", yt: "Linux OS exam questions practice", goal: "Clean octal calculations and bash shebang syntax" },
     e: { sub: "IKS Speed Drill", topic: "Write Aryabhata + Tridosha in 15 Mins", yt: "IKS key questions answer writing", goal: "Clean Sanskrit terminologies & English explanations" },
-    n: "Review syntax: zero indent/compiler errors"
+    n: "Score yourself: 15/15 target"
   },
   {
-    day: 18, date: "Sept 27", dow: "Sat", phase: "Phase 4: Speed Drills",
-    m: { sub: "FULL MOCK 1 (Core Majors)", topic: "Timed 1-Hour 30-Mark Paper (Digital Systems & DBMS)", yt: "Computer science exam question paper solve", goal: "Complete 5 high-yield answers in 50 minutes flat" },
-    a: { sub: "FULL MOCK 2 (Systems & Skills)", topic: "Timed 1-Hour 30-Mark Paper (Python & Linux OS)", yt: "Python Linux exam paper writing", goal: "Complete 5 practical answers in 50 minutes flat" },
-    e: { sub: "Flashcard Speedrun", topic: "Flip all 8 Flashcards on Study Lab in 8 Mins", yt: "Active recall flashcard study drill", goal: "100% recall before card flips" },
-    n: "Confirmed: Passing floor locked at 25+ marks"
+    day: 24, date: "Sept 24", dow: "Wed", phase: "Phase 4: Speed Drills",
+    m: { sub: "Digital & DBMS Mock", topic: "Combined Timed 45-Min Test (Core Majors)", yt: "Computer science exam question paper solve", goal: "Write 4 long answers with zero reference to notes" },
+    a: { sub: "Python & Linux Mock", topic: "Combined Timed 45-Min Test (Systems & Coding)", yt: "Python Linux exam paper writing", goal: "Write scripts with clean syntax and comments" },
+    e: { sub: "Electives Speed Drill", topic: "Write Goleman EQ + Johari Window + Trade Secrets", yt: "EQ Johari window revision", goal: "Draw 4 Johari quadrants and 5 EQ pillars" },
+    n: "Score yourself: 15/15 target"
   },
   {
-    day: 19, date: "Sept 28", dow: "Sun", phase: "Pre-Flight Scan",
+    day: 25, date: "Sept 25", dow: "Thu", phase: "Phase 4: Speed Drills",
+    m: { sub: "Consolidated Error Elimination", topic: "Review past weak points in circuits and normalization", yt: "Common mistakes in computer science exams", goal: "Eliminate recurring syntax and diagram errors" },
+    a: { sub: "Code Polish", topic: "Rewrite Prime, Factorial, Word Count, and Tar Script", yt: "Clean code formatting for college exams", goal: "Flawless handwriting and formatting" },
+    e: { sub: "All Flashcard Speedrun", topic: "Flip all 8 Flashcards on Study Lab in 8 Mins", yt: "Active recall flashcard study drill", goal: "100% recall before card flips" },
+    n: "Verified 100% flashcard accuracy"
+  },
+  {
+    day: 26, date: "Sept 26", dow: "Fri", phase: "Phase 4: Speed Drills",
+    m: { sub: "FULL MOCK 1 (Core Majors)", topic: "Timed 1-Hour 30-Mark Simulation Paper", yt: "Gate Smashers full paper solve", goal: "Complete 5 high-yield answers in 50 minutes flat" },
+    a: { sub: "FULL MOCK 2 (Systems & Skills)", topic: "Timed 1-Hour 30-Mark Simulation Paper", yt: "Python Linux practical exam written", goal: "Complete 5 practical answers in 50 minutes flat" },
+    e: { sub: "Self-Evaluation", topic: "Self-grade using 5/5 Evaluator Formula", yt: "Evaluation marking scheme Mumbai University", goal: "Confirm 25+ Marks achieved in both mocks" },
+    n: "TARGET LOCKED: 25+ marks verified across all subjects"
+  },
+  {
+    day: 27, date: "Sept 27", dow: "Sat", phase: "Pre-Flight Scan",
     m: { sub: "Digital & DBMS Formula Scan", topic: "Rapid visual review of all circuits, gates, and schemas", yt: "Digital logic DBMS quick formula scan", goal: "15 minutes high-speed visual memory refresh" },
     a: { sub: "Python & Linux Quick Scan", topic: "Review syntax rules, octal permissions, and file modes", yt: "Python Linux quick cheat sheet", goal: "15 minutes code review" },
-    e: { sub: "Mindset & Relaxation", topic: "Calm breathing, healthy dinner, rest your brain", yt: "Exam mindset calm positive confidence", goal: "Zero panic. 20 days of focused effort have prepared you." },
+    e: { sub: "Electives Rapid Scan", topic: "Review patent criteria, Aryabhata, and communication models", yt: "Quick revision electives", goal: "15 minutes rapid point review" },
     n: "Sleep 8 restful hours"
   },
   {
-    day: 20, date: "Sept 29-30", dow: "Mon-Tue", phase: "Final Readiness",
-    m: { sub: "Hall Ticket & Stationery Check", topic: "Print Hall Ticket, College ID card, 2 Blue/Black pens, scale", yt: "Exam hall stationery checklist", goal: "Exam pouch packed and ready" },
+    day: 28, date: "Sept 28", dow: "Sun", phase: "Pre-Flight Scan",
+    m: { sub: "Mindset & Calm Confidence", topic: "Light morning walk, healthy breakfast, zero panic", yt: "Exam mindset calm positive confidence", goal: "Zero anxiety. You have prepared 28 solid days." },
+    a: { sub: "Stationery Checklist", topic: "Check 2 Black pens, 2 Blue pens, pencil, eraser, scale", yt: "Exam hall stationery checklist", goal: "Stationery pouch ready" },
+    e: { sub: "Family Dinner", topic: "Relaxed evening with family, early dinner", yt: "Positive morning exam visualization", goal: "Mental peace" },
+    n: "Restful sleep"
+  },
+  {
+    day: 29, date: "Sept 29", dow: "Mon", phase: "Final Readiness",
+    m: { sub: "Hall Ticket Printout Verification", topic: "Print Hall Ticket (2 copies), check exam center and timings", yt: "Mumbai University hall ticket rules", goal: "Hall ticket and College ID in pouch" },
     a: { sub: "Mobile Quick Glance", topic: "Quick scroll through Sem 1 Sprint Flashcards on phone", yt: "Mobile quick study scan", goal: "Light 10-minute glance" },
-    e: { sub: "Mental Peace & Confidence", topic: "Evening walk, light family dinner", yt: "Positive morning exam visualization", goal: "You have 100% mastery over Sem 1. Go in and dominate." },
+    e: { sub: "Pre-Exam Calmness", topic: "Hydrate, pack bag, double-check alarm clock", yt: "Calm evening before exam", goal: "Ready to dominate" },
+    n: "Sleep early"
+  },
+  {
+    day: 30, date: "Sept 30", dow: "Tue", phase: "Final Readiness",
+    m: { sub: "Pre-Flight Final Check", topic: "Verify route to college/exam center, departure time", yt: "Morning exam checklist", goal: "Zero commute surprises" },
+    a: { sub: "Light Visual Memory Touch", topic: "Flip 8 Flashcards once on phone", yt: "Study lab flashcard scan", goal: "Confidence locked" },
+    e: { sub: "Mental Peace", topic: "Calm evening, positive attitude", yt: "Success mindset exam morning", goal: "You have 100% mastery over Sem 1." },
     n: "READY FOR EXAM: Total Sem 1 clarity achieved."
   }
 ];
@@ -1026,12 +1187,12 @@ const sem1Cards = [
 ];
 
 // ─────────────────────────────────────────
-// D. APPLICATION STATE & PERSISTENCE
+// D. APPLICATION STATE & LOCALSTORAGE
 // ─────────────────────────────────────────
 const STATE_KEY = 'bsc_cs_sem1_sprint_state';
 let sprintState = {
   tasks: {},
-  currentDay: 1,
+  currentDay: 10, // Default to Sept 10 (TODAY)
   currentCard: 0
 };
 
@@ -1049,6 +1210,7 @@ function loadState() {
 function saveState() {
   try {
     localStorage.setItem(STATE_KEY, JSON.stringify(sprintState));
+    refreshExportJsonText();
   } catch (e) {
     console.error('Failed to save sprint state:', e);
   }
@@ -1070,11 +1232,14 @@ function updateProgressStats() {
       if (sprintState.tasks[`${d.day}_${s}`]) doneCount++;
     });
   });
-  const total = sem1SprintDays.length * 3; // 60 blocks
+  const total = sem1SprintDays.length * 3; // 90 blocks
   const pct = Math.round((doneCount / total) * 100);
 
   const blockStat = document.getElementById('stat-blocks-completed');
   if (blockStat) blockStat.innerText = `${doneCount} / ${total} (${pct}%)`;
+
+  const cockpitStat = document.getElementById('cockpit-progress-stat');
+  if (cockpitStat) cockpitStat.innerText = `${doneCount} / ${total} Blocks Done (${pct}%)`;
 
   // Update day inspector percentage if visible
   const d = sem1SprintDays.find(item => item.day === sprintState.currentDay);
@@ -1107,7 +1272,7 @@ function renderSprintGrid() {
       if (sprintState.tasks[`${d.day}_${s}`]) done++;
     });
     const isComplete = done === 3;
-    const isToday = d.day === 1; // Sept 10 is Sprint Day 1
+    const isToday = d.day === 10; // Sept 10 is TODAY
 
     const card = document.createElement('div');
     card.className = `cal-card ${d.day === sprintState.currentDay ? 'active-day' : ''} ${isToday ? 'is-today' : ''} ${isComplete ? 'is-complete' : ''}`;
@@ -1124,7 +1289,7 @@ function renderSprintGrid() {
           <span style="font-size:12px;font-weight:800;color:${isToday ? '#38bdf8' : '#f8fafc'}">${d.date}</span>
           <span style="font-size:9px;color:${isToday ? '#38bdf8' : 'var(--text-muted)'};font-family:'JetBrains Mono',monospace;font-weight:700">${isToday ? 'TODAY' : d.dow}</span>
         </div>
-        <div style="font-size:9px;color:#fbbf24;font-weight:700;margin-bottom:4px">Sprint Day ${d.day}</div>
+        <div style="font-size:9px;color:#fbbf24;font-weight:700;margin-bottom:4px">Day ${d.day}</div>
         <div style="display:flex;flex-direction:column;gap:3px">
           <span class="pill pill-m">${d.m.sub.split(' ')[0]}</span>
           <span class="pill pill-a">${d.a.sub.split(' ')[0]}</span>
@@ -1140,7 +1305,7 @@ function renderSprintGrid() {
   });
 }
 
-// 2. Render Heatmap
+// 2. Render Heatmap (All 30 Days)
 function renderHeatmap() {
   const grid = document.getElementById('heatmap-grid');
   if (!grid) return;
@@ -1160,8 +1325,9 @@ function renderHeatmap() {
     else if (count === 2) { bg = '#006d32'; border = '#26a641'; }
     else if (count === 3) { bg = '#26a641'; border = '#39d353'; }
 
+    const isToday = d.day === 10;
     const sq = document.createElement('div');
-    sq.style.cssText = `height:24px;border-radius:4px;background:${bg};border:1px solid ${border};display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff;cursor:pointer`;
+    sq.style.cssText = `height:22px;border-radius:4px;background:${bg};border:${isToday ? '1.5px solid #38bdf8' : '1px solid ' + border};display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;color:${isToday ? '#38bdf8' : '#fff'};cursor:pointer`;
     sq.innerText = d.day;
     sq.title = `Day ${d.day} (${d.date}): ${count}/3 blocks completed`;
     sq.onclick = () => {
@@ -1186,7 +1352,7 @@ function loadDay(dayNum) {
   const select = document.getElementById('day-select-dropdown');
   if (select) select.value = dayNum;
 
-  document.getElementById('insp-day-badge').innerText = `DAY ${d.day} OF 20`;
+  document.getElementById('insp-day-badge').innerText = `DAY ${d.day} OF 30`;
   document.getElementById('insp-date-title').innerText = `${d.date}, 2026 (${d.dow})`;
   document.getElementById('insp-phase-desc').innerText = `${d.phase} · ${d.m.sub.split(' ')[0]} + ${d.a.sub.split(' ')[0]} + ${d.e.sub.split(' ')[0]}`;
 
@@ -1374,19 +1540,172 @@ function switchTab(tabId) {
 }
 
 // ─────────────────────────────────────────
-// F. INITIALIZATION
+// F. JSON BACKUP & IMPORT / EXPORT ENGINE
+// ─────────────────────────────────────────
+function openJsonModal() {
+  const modal = document.getElementById('json-sync-modal');
+  if (modal) modal.style.display = 'flex';
+  refreshExportJsonText();
+}
+
+function closeJsonModal() {
+  const modal = document.getElementById('json-sync-modal');
+  if (modal) modal.style.display = 'none';
+  const msgEl = document.getElementById('modal-status-msg');
+  if (msgEl) msgEl.style.display = 'none';
+}
+
+function refreshExportJsonText() {
+  const exportArea = document.getElementById('json-export-area');
+  if (exportArea) {
+    const payload = {
+      app: "bsc_cs_sem1_sprint",
+      version: 1,
+      currentDay: sprintState.currentDay,
+      exportedAt: new Date().toISOString(),
+      tasks: sprintState.tasks
+    };
+    exportArea.value = JSON.stringify(payload, null, 2);
+  }
+}
+
+function copyExportJson() {
+  const exportArea = document.getElementById('json-export-area');
+  if (!exportArea) return;
+  navigator.clipboard.writeText(exportArea.value).then(() => {
+    const btn = document.getElementById('btn-copy-json');
+    if (btn) {
+      const orig = btn.innerHTML;
+      btn.innerHTML = '<span style="color:#34d399">✓ Copied JSON!</span>';
+      setTimeout(() => { btn.innerHTML = orig; }, 2500);
+    }
+  }).catch(() => {
+    exportArea.select();
+    document.execCommand('copy');
+    alert('JSON copied to clipboard!');
+  });
+}
+
+function downloadJsonFile() {
+  const exportArea = document.getElementById('json-export-area');
+  if (!exportArea) return;
+  const blob = new Blob([exportArea.value], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `sem1_progress_${new Date().toISOString().slice(0, 10)}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function autoSyncFromStudyLab() {
+  const msgEl = document.getElementById('modal-status-msg');
+  try {
+    const raw = localStorage.getItem('bsc_cs_app_state');
+    if (!raw) {
+      showModalMsg('No existing progress found in index.html (bsc_cs_app_state).', '#fbbf24');
+      return;
+    }
+    const parsed = JSON.parse(raw);
+    if (parsed && parsed.tasks) {
+      // Merge tasks
+      sprintState.tasks = Object.assign({}, sprintState.tasks, parsed.tasks);
+      saveState();
+      updateProgressStats();
+      renderSprintGrid();
+      renderHeatmap();
+      loadDay(sprintState.currentDay);
+      showModalMsg('✓ Successfully imported all tasks from Study Lab!', '#34d399');
+    } else {
+      showModalMsg('No tasks found in Study Lab data.', '#fbbf24');
+    }
+  } catch (err) {
+    console.error(err);
+    showModalMsg('Failed to read from Study Lab: ' + err.message, '#fb7185');
+  }
+}
+
+function importJsonData() {
+  const inputArea = document.getElementById('json-import-area');
+  if (!inputArea || !inputArea.value.trim()) {
+    showModalMsg('Please paste JSON or sync code first.', '#fbbf24');
+    return;
+  }
+  const raw = inputArea.value.trim();
+  let importedTasks = null;
+
+  try {
+    // Case 1: Try parsing direct JSON
+    if (raw.startsWith('{') || raw.startsWith('[')) {
+      const parsed = JSON.parse(raw);
+      if (parsed.tasks) {
+        importedTasks = parsed.tasks;
+      } else if (parsed.t) {
+        importedTasks = parsed.t;
+      } else {
+        // Assume dictionary of tasks directly
+        importedTasks = parsed;
+      }
+    } else {
+      // Case 2: Base64 sync string from index.html
+      const decoded = JSON.parse(decodeURIComponent(escape(atob(raw))));
+      if (decoded && (decoded.t || decoded.tasks)) {
+        importedTasks = decoded.t || decoded.tasks;
+      }
+    }
+
+    if (importedTasks && typeof importedTasks === 'object') {
+      sprintState.tasks = Object.assign({}, sprintState.tasks, importedTasks);
+      saveState();
+      updateProgressStats();
+      renderSprintGrid();
+      renderHeatmap();
+      loadDay(sprintState.currentDay);
+      showModalMsg('✓ Progress Restored Successfully!', '#34d399');
+      inputArea.value = '';
+    } else {
+      showModalMsg('Could not find task data in the input.', '#fbbf24');
+    }
+  } catch (err) {
+    showModalMsg('Invalid JSON or Sync format: ' + err.message, '#fb7185');
+  }
+}
+
+function handleFileUpload(event) {
+  const file = event.target.files && event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    const inputArea = document.getElementById('json-import-area');
+    if (inputArea) inputArea.value = e.target.result;
+    importJsonData();
+  };
+  reader.readAsText(file);
+}
+
+function showModalMsg(txt, color) {
+  const msgEl = document.getElementById('modal-status-msg');
+  if (msgEl) {
+    msgEl.style.display = 'block';
+    msgEl.style.color = color || '#38bdf8';
+    msgEl.innerText = txt;
+  }
+}
+
+// ─────────────────────────────────────────
+// G. INITIALIZATION
 // ─────────────────────────────────────────
 window.addEventListener('DOMContentLoaded', () => {
   loadState();
 
-  // Populate Dropdown
+  // Populate Dropdown with 30 Days
   const select = document.getElementById('day-select-dropdown');
   if (select) {
     select.innerHTML = '';
     sem1SprintDays.forEach(d => {
       const opt = document.createElement('option');
       opt.value = d.day;
-      opt.innerText = `Day ${d.day}: ${d.date} (${d.dow})`;
+      opt.innerText = `Day ${d.day}: ${d.date} (${d.dow})${d.day === 10 ? ' · TODAY' : ''}`;
       select.appendChild(opt);
     });
   }
@@ -1396,6 +1715,9 @@ window.addEventListener('DOMContentLoaded', () => {
   renderCourses();
   renderFlashcard();
   updateProgressStats();
+
+  // Load Day 10 (TODAY)
+  loadDay(sprintState.currentDay || 10);
 
   lucide.createIcons();
 });
