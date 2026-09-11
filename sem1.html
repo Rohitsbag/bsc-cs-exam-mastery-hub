@@ -2044,7 +2044,8 @@ function renderSprintGrid() {
       if (sprintState.tasks[`${d.day}_${s}`]) done++;
     });
     const isComplete = done === 4;
-    const isToday = d.day === 2; // Sept 11 is DAY 2 (TODAY)
+    const todayDayNum = getRealTodaySprintDay();
+    const isToday = d.day === todayDayNum;
 
     const card = document.createElement('div');
     card.className = `cal-card ${d.day === sprintState.currentDay ? 'active-day' : ''} ${isToday ? 'is-today' : ''} ${isComplete ? 'is-complete' : ''}`;
@@ -2103,7 +2104,8 @@ function renderHeatmap() {
     else if (count === 3) { bg = '#26a641'; border = '#39d353'; }
     else if (count === 4) { bg = '#39d353'; border = '#4ade80'; }
 
-    const isToday = d.day === 2;
+    const todayDayNum = getRealTodaySprintDay();
+    const isToday = d.day === todayDayNum;
     const isMilestone1 = d.day === 9;
     const isMilestone2 = d.day === 17;
 
@@ -2756,10 +2758,62 @@ function fallbackCopy(text) {
   }, 3000);
 }
 
+
+// ── DYNAMIC CALENDAR & REAL-TIME DATE RESOLVER ──
+function getRealTodaySprintDay() {
+  const now = new Date();
+  const m = now.getMonth(); // 8 = September
+  const d = now.getDate();
+  const y = now.getFullYear();
+  
+  if (m === 8 && y === 2026) {
+    const sprintDay = d - 10 + 1; // Sept 10 is Day 1, Sept 11 is Day 2
+    if (sprintDay >= 1 && sprintDay <= 21) return sprintDay;
+    if (sprintDay < 1) return 1;
+    return 21;
+  }
+  // Default to Day 2 (Sept 11, 2026)
+  return 2;
+}
+
+function updateLiveCockpitHeader() {
+  const realToday = getRealTodaySprintDay();
+  const d = sem1SprintDays.find(x => x.day === realToday) || sem1SprintDays[1];
+  
+  const titleEl = document.getElementById('today-full-title');
+  if (titleEl) titleEl.innerText = `${d.dow}, ${d.date}, 2026`;
+  
+  const pillEl = document.getElementById('today-day-pill');
+  if (pillEl) {
+    const daysLeft = 21 - realToday;
+    pillEl.innerText = `Day ${realToday} of 21 (TODAY · ${daysLeft} Days Left)`;
+  }
+  
+  const statDayEl = document.getElementById('stat-sprint-day');
+  if (statDayEl) statDayEl.innerText = `Day ${realToday} / 21`;
+}
+
 // G. INITIALIZATION
 window.addEventListener('DOMContentLoaded', () => {
   loadState();
   checkUrlSync();
+
+  // Force service worker update check
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then(registrations => {
+      for (let r of registrations) r.update();
+    });
+  }
+
+  const realToday = getRealTodaySprintDay();
+  // Automatically sync to real current day if newly visiting today
+  if (!sprintState.lastVisitedDate || sprintState.lastVisitedDate !== new Date().toDateString()) {
+    sprintState.currentDay = realToday;
+    sprintState.lastVisitedDate = new Date().toDateString();
+    saveState();
+  }
+
+  updateLiveCockpitHeader();
 
   // Populate Dropdown with 21 Days
   const select = document.getElementById('day-select-dropdown');
@@ -2781,7 +2835,7 @@ window.addEventListener('DOMContentLoaded', () => {
   updateProgressStats();
 
   // Load Day 1 (TODAY)
-  loadDay(sprintState.currentDay || 1);
+  loadDay(sprintState.currentDay || realToday);
 
   lucide.createIcons();
 });

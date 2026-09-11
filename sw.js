@@ -1,7 +1,8 @@
-const CACHE_NAME = 'bsc-cs-mastery-v15';
+const CACHE_NAME = 'bsc-cs-mastery-v18';
 const STATIC_ASSETS = [
   './',
   './index.html',
+  './sem1.html',
   './dossier.html',
   './strategy.html',
   './favicon.svg',
@@ -48,9 +49,9 @@ self.addEventListener('fetch', event => {
                  (event.request.headers.get('accept') && event.request.headers.get('accept').includes('text/html'));
 
   if (isHtml) {
-    // NETWORK-FIRST: Always fetch latest UI, fallback to cache if offline
+    // NETWORK-FIRST: Always fetch latest UI without disk cache, fallback to cache if offline
     event.respondWith(
-      fetch(event.request)
+      fetch(event.request, { cache: 'no-cache' })
         .then(networkResponse => {
           if (networkResponse && networkResponse.status === 200) {
             const clone = networkResponse.clone();
