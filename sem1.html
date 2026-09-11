@@ -381,6 +381,196 @@
     .cal-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
+  
+  /* ══════════════════════════════════════════
+     NATIVE MOBILE APP OPTIMIZATIONS
+  ══════════════════════════════════════════ */
+  @media (max-width: 640px) {
+    /* Container & Layout */
+    body {
+      padding-bottom: 84px;
+      font-size: 12px;
+    }
+    .container {
+      padding: 10px 12px 20px;
+    }
+    .card {
+      padding: 12px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+    .card-inner {
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    /* Fixed App Header */
+    .app-header {
+      padding: 8px 12px;
+      height: 50px;
+      gap: 8px;
+    }
+    .app-badge-icon {
+      width: 28px;
+      height: 28px;
+      font-size: 11px;
+      border-radius: 7px;
+    }
+    .brand-sub {
+      display: none !important;
+    }
+    .brand-title {
+      font-size: 12px !important;
+      font-weight: 800;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 120px;
+    }
+    .header-actions {
+      gap: 5px;
+    }
+    .header-btn {
+      padding: 5px;
+      min-width: 32px;
+      height: 32px;
+      border-radius: 7px;
+      justify-content: center;
+    }
+    .header-btn span {
+      display: none !important;
+    }
+
+    /* Hero Cockpit Mobile Stack */
+    .hero-top-row {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 6px !important;
+    }
+    .hero-top-row > div:last-child {
+      text-align: left !important;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 6px;
+    }
+    .hero-top-row > div:last-child div {
+      margin-top: 0 !important;
+    }
+    .hero-milestones {
+      grid-template-columns: 1fr !important;
+      gap: 6px !important;
+    }
+    .hero-metrics-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 6px !important;
+    }
+    .hero-metrics-grid > div {
+      background: var(--bg-surface-recessed);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 8px 6px;
+    }
+
+    /* 90%+ Evaluator Formula Mobile Carousel */
+    .evaluator-formula-grid {
+      display: flex !important;
+      overflow-x: auto !important;
+      scroll-snap-type: x mandatory !important;
+      -webkit-overflow-scrolling: touch !important;
+      gap: 8px !important;
+      padding-bottom: 6px !important;
+      scrollbar-width: none;
+    }
+    .evaluator-formula-grid::-webkit-scrollbar { display: none; }
+    .evaluator-formula-grid > div {
+      min-width: 220px !important;
+      max-width: 240px !important;
+      scroll-snap-align: start !important;
+      flex-shrink: 0 !important;
+    }
+
+    /* 21-Day Heatmap Mobile Fix */
+    #heatmap-grid {
+      min-width: 0 !important;
+      grid-template-columns: repeat(21, 1fr) !important;
+      gap: 2px !important;
+    }
+    .heatmap-marker-row {
+      font-size: 8px !important;
+    }
+
+    /* Calendar Grid */
+    .cal-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 6px !important;
+    }
+    .cal-card {
+      min-height: 110px !important;
+      padding: 8px !important;
+      border-radius: 8px !important;
+    }
+    .pill {
+      font-size: 8.5px !important;
+      padding: 1.5px 4px !important;
+    }
+
+    /* Day Inspector Actions */
+    .session-actions-row {
+      flex-direction: column !important;
+      align-items: stretch !important;
+      gap: 8px !important;
+    }
+    .yt-action {
+      width: 100% !important;
+      justify-content: center !important;
+      padding: 8px 12px !important;
+      font-size: 11px !important;
+    }
+    .session-checkbox-label {
+      width: 100% !important;
+      justify-content: center !important;
+      background: var(--bg-surface-recessed) !important;
+      border: 1px solid var(--border-subtle) !important;
+      padding: 8px 12px !important;
+      border-radius: 8px !important;
+      min-height: 42px !important;
+    }
+
+    /* Floating Bottom Dock Native Feel */
+    .bottom-dock {
+      padding: 5px 6px calc(5px + env(safe-area-inset-bottom, 0px)) !important;
+      height: auto;
+    }
+    .dock-btn {
+      padding: 4px 2px !important;
+      min-width: 42px !important;
+      min-height: 42px !important;
+      font-size: 8.5px !important;
+      gap: 2px !important;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+    .dock-btn svg {
+      width: 16px !important;
+      height: 16px !important;
+    }
+    .dock-btn:active {
+      transform: scale(0.92);
+    }
+  }
+
+  @media (max-width: 360px) {
+    .cal-grid {
+      grid-template-columns: 1fr !important;
+    }
+    .brand-title {
+      max-width: 95px !important;
+    }
+  }
+
   /* Toast Notification */
   #toast-notification {
     position: fixed;
@@ -410,8 +600,8 @@
   <div class="app-branding">
     <div class="app-badge-icon font-mono">S1</div>
     <div>
-      <div style="font-size:13px;font-weight:800;letter-spacing:-0.01em;color:#fff">Semester 1 Mastery Sprint</div>
-      <div style="font-size:10px;color:var(--text-muted)">B.Sc CS (NEP 2020) · 21-Day High-Intensity Plan</div>
+      <div class="brand-title" style="font-size:13px;font-weight:800;letter-spacing:-0.01em;color:#fff">Semester 1 Mastery Sprint</div>
+      <div class="brand-sub" style="font-size:10px;color:var(--text-muted)">B.Sc CS (NEP 2020) · 21-Day High-Intensity Plan</div>
     </div>
   </div>
   <div class="header-actions">
@@ -473,7 +663,7 @@
 
     <!-- Cockpit Hero Strip -->
     <div class="card" style="background:linear-gradient(145deg, #0e1522 0%, #0a0d14 100%);border-color:var(--border-strong);margin-bottom:14px">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;flex-wrap:wrap;gap:8px">
+      <div class="hero-top-row" style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;flex-wrap:wrap;gap:8px">
         <div>
           <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
             <span class="tag tag-blue" id="today-full-title">Fri, Sept 11, 2026</span>
@@ -491,7 +681,7 @@
       </div>
 
       <!-- Pacing & Milestone Banners -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
+      <div class="hero-milestones" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
         <div class="card-inner" style="display:flex;align-items:center;gap:8px;padding:8px 10px">
           <i data-lucide="zap" style="width:16px;height:16px;color:#38bdf8;flex-shrink:0"></i>
           <div style="min-width:0;overflow:hidden">
@@ -509,7 +699,7 @@
       </div>
 
       <!-- 4 Metrics Row -->
-      <div style="display:grid;grid-template-columns:repeat(4, 1fr);gap:6px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06);text-align:center">
+      <div class="hero-metrics-grid" style="display:grid;grid-template-columns:repeat(4, 1fr);gap:6px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06);text-align:center">
         <div>
           <div style="font-size:9px;color:var(--text-muted);font-weight:700;text-transform:uppercase">Sprint Runway</div>
           <div class="font-mono" style="font-size:14px;font-weight:800;color:#38bdf8" id="stat-sprint-day">Day 2 / 21</div>
@@ -559,7 +749,7 @@
       </div>
 
       <!-- 5/5 Formula Visual Architecture -->
-      <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(170px, 1fr));gap:8px">
+      <div class="evaluator-formula-grid" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(170px, 1fr));gap:8px">
         <div style="background:var(--bg-surface-recessed);border:1px solid var(--border-subtle);border-radius:8px;padding:9px">
           <div style="font-size:10px;font-weight:800;color:#38bdf8;text-transform:uppercase;display:flex;align-items:center;gap:4px">
             <span>1. Definition Box</span>
@@ -603,7 +793,7 @@
         <span class="font-mono" style="font-size:11px;color:#94a3b8" id="heatmap-streak-label">0 Days Active</span>
       </div>
       <div style="background:var(--bg-surface-recessed);border:1px solid var(--border-subtle);border-radius:10px;padding:10px;overflow-x:auto">
-        <div style="display:flex;justify-content:space-between;font-size:9px;color:var(--text-muted);margin-bottom:6px">
+        <div class="heatmap-marker-row" style="display:flex;justify-content:space-between;font-size:9px;color:var(--text-muted);margin-bottom:6px">
           <span style="color:#38bdf8;font-weight:700">Sept 11 (TODAY · Day 2)</span>
           <span style="color:#fbbf24;font-weight:700">Sept 18 (Passing Lock)</span>
           <span style="color:#c084fc;font-weight:700">Sept 26 (Distinction)</span>
@@ -2154,12 +2344,12 @@ function loadDay(dayNum) {
       </div>
       <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:4px">${d.m.topic}</div>
       <p style="font-size:12px;color:var(--text-secondary);margin-bottom:10px"><strong>Action Goal:</strong> ${d.m.goal}</p>
-      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+      <div class="session-actions-row" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
         <a href="https://www.youtube.com/results?search_query=${encodeURIComponent(d.m.yt)}" target="_blank" rel="noopener noreferrer" class="yt-action">
           <i data-lucide="play-circle" style="width:14px;height:14px"></i>
           <span>Watch Curated Lecture on YouTube</span>
         </a>
-        <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:#e2e8f0;cursor:pointer">
+        <label class="session-checkbox-label" style="display:flex;align-items:center;gap:6px;font-size:12px;color:#e2e8f0;cursor:pointer">
           <input type="checkbox" id="chk_${d.day}_m" ${sprintState.tasks[`${d.day}_m`] ? 'checked' : ''} onchange="toggleSprintTask(${d.day}, 'm')" style="width:16px;height:16px;accent-color:#3b82f6">
           <span style="font-weight:600">Block Completed</span>
         </label>
@@ -2174,12 +2364,12 @@ function loadDay(dayNum) {
       </div>
       <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:4px">${d.a.topic}</div>
       <p style="font-size:12px;color:var(--text-secondary);margin-bottom:10px"><strong>Action Goal:</strong> ${d.a.goal}</p>
-      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+      <div class="session-actions-row" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
         <a href="https://www.youtube.com/results?search_query=${encodeURIComponent(d.a.yt)}" target="_blank" rel="noopener noreferrer" class="yt-action">
           <i data-lucide="play-circle" style="width:14px;height:14px"></i>
           <span>Watch Curated Lecture on YouTube</span>
         </a>
-        <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:#e2e8f0;cursor:pointer">
+        <label class="session-checkbox-label" style="display:flex;align-items:center;gap:6px;font-size:12px;color:#e2e8f0;cursor:pointer">
           <input type="checkbox" id="chk_${d.day}_a" ${sprintState.tasks[`${d.day}_a`] ? 'checked' : ''} onchange="toggleSprintTask(${d.day}, 'a')" style="width:16px;height:16px;accent-color:#06b6d4">
           <span style="font-weight:600">Block Completed</span>
         </label>
@@ -2194,12 +2384,12 @@ function loadDay(dayNum) {
       </div>
       <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:4px">${d.e.topic}</div>
       <p style="font-size:12px;color:var(--text-secondary);margin-bottom:10px"><strong>Action Goal:</strong> ${d.e.goal}</p>
-      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+      <div class="session-actions-row" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
         <a href="https://www.youtube.com/results?search_query=${encodeURIComponent(d.e.yt)}" target="_blank" rel="noopener noreferrer" class="yt-action">
           <i data-lucide="play-circle" style="width:14px;height:14px"></i>
           <span>Watch Curated Lecture on YouTube</span>
         </a>
-        <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:#e2e8f0;cursor:pointer">
+        <label class="session-checkbox-label" style="display:flex;align-items:center;gap:6px;font-size:12px;color:#e2e8f0;cursor:pointer">
           <input type="checkbox" id="chk_${d.day}_e" ${sprintState.tasks[`${d.day}_e`] ? 'checked' : ''} onchange="toggleSprintTask(${d.day}, 'e')" style="width:16px;height:16px;accent-color:#10b981">
           <span style="font-weight:600">Block Completed</span>
         </label>
@@ -2215,7 +2405,7 @@ function loadDay(dayNum) {
       <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:6px">${d.n}</div>
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
         <span style="font-size:11px;color:var(--text-secondary)">Practice writing on blank paper without looking at answers</span>
-        <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:#e2e8f0;cursor:pointer">
+        <label class="session-checkbox-label" style="display:flex;align-items:center;gap:6px;font-size:12px;color:#e2e8f0;cursor:pointer">
           <input type="checkbox" id="chk_${d.day}_n" ${sprintState.tasks[`${d.day}_n`] ? 'checked' : ''} onchange="toggleSprintTask(${d.day}, 'n')" style="width:16px;height:16px;accent-color:#f59e0b">
           <span style="font-weight:600">Night Drill Completed</span>
         </label>
