@@ -380,6 +380,25 @@
   @media (max-width: 640px) {
     .cal-grid { grid-template-columns: repeat(2, 1fr); }
   }
+
+  /* Toast Notification */
+  #toast-notification {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: #0b111e;
+    border: 1px solid #38bdf8;
+    color: #f8fafc;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    display: none;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+    z-index: 9999;
+  }
 </style>
 </head>
 <body>
@@ -457,34 +476,34 @@
       <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;flex-wrap:wrap;gap:8px">
         <div>
           <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
-            <span class="tag tag-blue" id="today-full-title">Wed, Sept 10, 2026</span>
-            <span class="tag tag-amber" id="today-day-pill">Day 1 of 21 (TODAY)</span>
+            <span class="tag tag-blue" id="today-full-title">Fri, Sept 11, 2026</span>
+            <span class="tag tag-amber" id="today-day-pill">Day 2 of 21 (TODAY · 19 Days Left)</span>
           </div>
           <div style="font-size:18px;font-weight:900;color:#fff;display:flex;align-items:baseline;gap:6px">
-            20 Days Remaining
+            19 Days Remaining
             <span style="font-size:12px;font-weight:600;color:#38bdf8">(Until October 1 Exams)</span>
           </div>
         </div>
         <div style="text-align:right">
-          <span class="tag tag-green">Target: 35–42+ / 50 Marks</span>
-          <div style="font-size:11px;color:var(--text-secondary);margin-top:2px">Passing Floor: 20 Marks (40%)</div>
+          <span class="tag tag-green">Target: 45–50 / 50 Marks</span>
+          <div style="font-size:11px;color:#38bdf8;margin-top:2px;font-weight:700">90%+ O Grade (28–30/30 Written)</div>
         </div>
       </div>
 
       <!-- Pacing & Milestone Banners -->
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
         <div class="card-inner" style="display:flex;align-items:center;gap:8px;padding:8px 10px">
-          <i data-lucide="shield-alert" style="width:16px;height:16px;color:#fbbf24;flex-shrink:0"></i>
+          <i data-lucide="zap" style="width:16px;height:16px;color:#38bdf8;flex-shrink:0"></i>
           <div style="min-width:0;overflow:hidden">
-            <div style="font-size:11px;font-weight:800;color:#fbbf24">Milestone 1: Sept 18 (Day 9)</div>
-            <div style="font-size:10px;color:#94a3b8;white-space:nowrap;text-overflow:ellipsis">Passing Floor Lock (8d Left)</div>
+            <div style="font-size:11px;font-weight:800;color:#38bdf8">Pass 1: Sept 21 (Day 11)</div>
+            <div style="font-size:10px;color:#94a3b8;white-space:nowrap;text-overflow:ellipsis">All 7 Subjects 5/5 Mastery (10d left)</div>
           </div>
         </div>
         <div class="card-inner" style="display:flex;align-items:center;gap:8px;padding:8px 10px">
-          <i data-lucide="award" style="width:16px;height:16px;color:#c084fc;flex-shrink:0"></i>
+          <i data-lucide="trophy" style="width:16px;height:16px;color:#fbbf24;flex-shrink:0"></i>
           <div style="min-width:0;overflow:hidden">
-            <div style="font-size:11px;font-weight:800;color:#c084fc">Milestone 2: Sept 26 (Day 17)</div>
-            <div style="font-size:10px;color:#94a3b8;white-space:nowrap;text-overflow:ellipsis">Distinction Expansion Lock (16d Left)</div>
+            <div style="font-size:11px;font-weight:800;color:#fbbf24">Pass 2: Sept 27 (Day 17)</div>
+            <div style="font-size:10px;color:#94a3b8;white-space:nowrap;text-overflow:ellipsis">6 Full Handwritten Mocks (30/30 Speed)</div>
           </div>
         </div>
       </div>
@@ -493,7 +512,7 @@
       <div style="display:grid;grid-template-columns:repeat(4, 1fr);gap:6px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06);text-align:center">
         <div>
           <div style="font-size:9px;color:var(--text-muted);font-weight:700;text-transform:uppercase">Sprint Runway</div>
-          <div class="font-mono" style="font-size:14px;font-weight:800;color:#38bdf8" id="stat-sprint-day">Day 1 / 21</div>
+          <div class="font-mono" style="font-size:14px;font-weight:800;color:#38bdf8" id="stat-sprint-day">Day 2 / 21</div>
         </div>
         <div>
           <div style="font-size:9px;color:var(--text-muted);font-weight:700;text-transform:uppercase">Daily Study</div>
@@ -510,6 +529,70 @@
       </div>
     </div>
 
+    <!-- 90%+ STUDY ACCELERATOR & CHATGPT COACH WIDGET -->
+    <div class="card" style="background:linear-gradient(135deg, rgba(56,189,248,0.07) 0%, rgba(99,102,241,0.05) 100%);border:1px solid rgba(56,189,248,0.35);margin-bottom:14px;padding:14px">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:12px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="width:36px;height:36px;border-radius:10px;background:rgba(56,189,248,0.15);border:1px solid rgba(56,189,248,0.4);display:flex;align-items:center;justify-content:center;color:#38bdf8;flex-shrink:0">
+            <i data-lucide="sparkles" style="width:18px;height:18px"></i>
+          </div>
+          <div>
+            <div style="font-size:13px;font-weight:800;color:#fff;display:flex;align-items:center;gap:6px">
+              90%+ Full-Marks Accelerator &amp; 5/5 Evaluator Blueprint
+              <span class="tag tag-blue" style="font-size:9px">Grade O Target</span>
+            </div>
+            <div style="font-size:11px;color:var(--text-secondary);margin-top:2px">
+              Evaluators scan papers in 2 minutes. Every answer must follow this rigid 5/5 architecture to lock in 28–30 / 30 marks.
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap">
+          <button onclick="copyCoachPrompt()" class="header-btn" style="color:#38bdf8;background:rgba(56,189,248,0.12);border-color:rgba(56,189,248,0.35);font-size:11px;font-weight:700" title="Copy the ChatGPT 90+ Master Coach Prompt">
+            <i data-lucide="copy" style="width:13px;height:13px"></i>
+            <span id="copy-coach-text">Copy ChatGPT Coach Prompt</span>
+          </button>
+          <a href="CHATGPT_90PLUS_MASTER_COACH.md" download class="header-btn" style="font-size:11px" title="Download Master Coach Markdown file">
+            <i data-lucide="download" style="width:13px;height:13px"></i>
+            <span>Download .md</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 5/5 Formula Visual Architecture -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(170px, 1fr));gap:8px">
+        <div style="background:var(--bg-surface-recessed);border:1px solid var(--border-subtle);border-radius:8px;padding:9px">
+          <div style="font-size:10px;font-weight:800;color:#38bdf8;text-transform:uppercase;display:flex;align-items:center;gap:4px">
+            <span>1. Definition Box</span>
+          </div>
+          <div style="font-size:11px;color:var(--text-secondary);margin-top:3px">1–2 crisp sentences with bold technical keywords. No rambling.</div>
+        </div>
+        <div style="background:var(--bg-surface-recessed);border:1px solid var(--border-subtle);border-radius:8px;padding:9px">
+          <div style="font-size:10px;font-weight:800;color:#34d399;text-transform:uppercase;display:flex;align-items:center;gap:4px">
+            <span>2. Visual Schematic</span>
+          </div>
+          <div style="font-size:11px;color:var(--text-secondary);margin-top:3px">Neat pencil-boxed circuit diagram, truth table, or architectural flowchart.</div>
+        </div>
+        <div style="background:var(--bg-surface-recessed);border:1px solid var(--border-subtle);border-radius:8px;padding:9px">
+          <div style="font-size:10px;font-weight:800;color:#fbbf24;text-transform:uppercase;display:flex;align-items:center;gap:4px">
+            <span>3. 3–4 Numbered Points</span>
+          </div>
+          <div style="font-size:11px;color:var(--text-secondary);margin-top:3px">Underlined technical terms examiners scan for. High visual clarity.</div>
+        </div>
+        <div style="background:var(--bg-surface-recessed);border:1px solid var(--border-subtle);border-radius:8px;padding:9px">
+          <div style="font-size:10px;font-weight:800;color:#c084fc;text-transform:uppercase;display:flex;align-items:center;gap:4px">
+            <span>4. Code / Math Proof</span>
+          </div>
+          <div style="font-size:11px;color:var(--text-secondary);margin-top:3px">Real Python code, SQL query, boolean derivation, or bank ACID example.</div>
+        </div>
+        <div style="background:var(--bg-surface-recessed);border:1px solid var(--border-subtle);border-radius:8px;padding:9px">
+          <div style="font-size:10px;font-weight:800;color:#f43f5e;text-transform:uppercase;display:flex;align-items:center;gap:4px">
+            <span>5. Evaluator Takeaway</span>
+          </div>
+          <div style="font-size:11px;color:var(--text-secondary);margin-top:3px">1-line practical utility or advantage. Leaves maximum examiner impact.</div>
+        </div>
+      </div>
+    </div>
+
     <!-- 21-Day Activity Heatmap -->
     <div class="card" style="margin-bottom:14px">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
@@ -521,7 +604,7 @@
       </div>
       <div style="background:var(--bg-surface-recessed);border:1px solid var(--border-subtle);border-radius:10px;padding:10px;overflow-x:auto">
         <div style="display:flex;justify-content:space-between;font-size:9px;color:var(--text-muted);margin-bottom:6px">
-          <span style="color:#38bdf8;font-weight:700">Sept 10 (TODAY · Day 1)</span>
+          <span style="color:#38bdf8;font-weight:700">Sept 11 (TODAY · Day 2)</span>
           <span style="color:#fbbf24;font-weight:700">Sept 18 (Passing Lock)</span>
           <span style="color:#c084fc;font-weight:700">Sept 26 (Distinction)</span>
           <span>Sept 30 (Pre-Flight)</span>
@@ -651,61 +734,58 @@
   <div id="view-phases" class="tab-view" style="display:none">
     
     <!-- Phase 1 -->
-    <div class="card" style="border-left:4px solid #3b82f6;margin-bottom:14px">
+    <div class="card" style="border-left:4px solid #38bdf8;margin-bottom:14px">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-        <span class="tag tag-blue">Phase 1 · Days 1–9 (Sept 10–18)</span>
-        <span class="font-mono" style="font-size:11px;color:#60a5fa">Passing Floor Lock</span>
+        <span class="tag tag-blue">Pass 1 · Days 1–11 (Sept 11–21)</span>
+        <span class="font-mono" style="font-size:11px;color:#38bdf8;font-weight:700">First-Principles &amp; 5/5 Templates</span>
       </div>
-      <div style="font-size:15px;font-weight:800;color:#fff;margin-bottom:4px">Guaranteed 20+ / 50 Marks Across All 7 Subjects</div>
+      <div style="font-size:15px;font-weight:800;color:#fff;margin-bottom:4px">100% Syllabus Coverage in Half Time (25+ Score Floor)</div>
       <div style="display:flex;align-items:center;gap:6px;margin:6px 0">
         <span class="tag tag-amber" style="font-size:9px">Active Now</span>
-        <span style="font-size:11px;color:#fbbf24;font-weight:700">Hard Deadline: Friday, Sept 18, 2026</span>
+        <span style="font-size:11px;color:#38bdf8;font-weight:700">Deadline: Monday, Sept 21, 2026 (10 Days)</span>
       </div>
       <div style="font-size:12px;color:var(--text-secondary);line-height:1.6">
-        • <strong>Digital Systems:</strong> Full/Half Adders, 4-Variable K-Maps (SOP/POS), Multiplexers (4:1, 8:1), SR/JK Flip-Flops.<br>
-        • <strong>DBMS:</strong> 1NF, 2NF (Partial Dependency), 3NF (Transitive Dependency), ACID Properties with Bank Example.<br>
-        • <strong>Python &amp; Linux:</strong> Lists/Tuples/Sets/Dicts, Recursion, File word counter, chmod 755/644, ps aux &amp; kill -9.<br>
-        • <strong>Allied Papers:</strong> 3 Patentability Criteria (IPR), Tridosha Ayurveda &amp; Harappan Water Systems (IKS), Goleman 5 EQ Pillars &amp; Active Listening (People's Skills).<br>
-        • <strong>Milestone Outcome:</strong> Passing floor locked in stone. Zero probability of failing any paper!
+        • <strong>ELI5 Childish Metaphors:</strong> Understand complex topics from ground zero (e.g. 3-Tier DBMS as restaurant menus, FHS as high-rise building, Von Neumann as factory line).<br>
+        • <strong>The 5/5 Evaluator Formula:</strong> Learn exact 5-point written templates for every single repeated question.<br>
+        • <strong>All 7 Sem 1 Subjects Covered:</strong> Digital Systems, DBMS, Python, Linux OS, IPR, IKS, and People's Skills at 1.5 days per subject.<br>
+        • <strong>Milestone Outcome:</strong> Every unit understood with crystal clarity. 25+ / 30 baseline locked in stone!
       </div>
     </div>
 
     <!-- Phase 2 -->
-    <div class="card" style="border-left:4px solid #a855f7;margin-bottom:14px">
+    <div class="card" style="border-left:4px solid #fbbf24;margin-bottom:14px">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-        <span class="tag tag-purple">Phase 2 · Days 10–17 (Sept 19–26)</span>
-        <span class="font-mono" style="font-size:11px;color:#c084fc">Distinction Expansion</span>
+        <span class="tag tag-amber">Pass 2 · Days 12–17 (Sept 22–27)</span>
+        <span class="font-mono" style="font-size:11px;color:#fbbf24;font-weight:700">High-Speed Timed Mocks</span>
       </div>
-      <div style="font-size:15px;font-weight:800;color:#fff;margin-bottom:4px">Scaling from 20 Passing to 35–42+ Marks (A / O Grade)</div>
+      <div style="font-size:15px;font-weight:800;color:#fff;margin-bottom:4px">Rehabilitating Pen-and-Paper Speed to 28–30 / 30 Marks</div>
       <div style="display:flex;align-items:center;gap:6px;margin:6px 0">
-        <span class="tag tag-purple" style="font-size:9px">Score Booster</span>
-        <span style="font-size:11px;color:#c084fc;font-weight:700">Hard Deadline: Saturday, Sept 26, 2026</span>
+        <span class="tag tag-purple" style="font-size:9px">Out-of-Marks Drill</span>
+        <span style="font-size:11px;color:#fbbf24;font-weight:700">Deadline: Saturday, Sept 27, 2026</span>
       </div>
       <div style="font-size:12px;color:var(--text-secondary);line-height:1.6">
-        • <strong>Digital Systems:</strong> Master-Slave JK Race Around Solution, Ripple Counters, Von Neumann Data Bus Paths, Memory Cache Hierarchy.<br>
-        • <strong>DBMS:</strong> SQL Joins (Inner, Left, Right, Full Outer), GROUP BY / HAVING queries, B+ Trees indexing.<br>
-        • <strong>Python &amp; Linux:</strong> List comprehensions, Lambda expressions, OOP Classes &amp; __init__, Bash automated tar backup scripts, SSH remote admin.<br>
-        • <strong>Allied Papers:</strong> IT Act 2000 Section 66, Compulsory Licensing, Bhaskara II Chakravala method, Thomas-Kilmann 5 Conflict Handling Modes.<br>
-        • <strong>Milestone Outcome:</strong> 100% syllabus mastery across all 7 subjects. Ready for Distinction.
+        • <strong>1 Full Handwritten Mock Daily:</strong> Solve complete 30-mark past papers in physical notebooks with a ballpoint pen under strict 60-minute timers.<br>
+        • <strong>Handwriting Stamina &amp; Speed:</strong> Train writing speed to 1 mark per 1.2 minutes so you finish with 15 minutes to spare.<br>
+        • <strong>Evaluator Keyword Underlining:</strong> Double-underlining primary technical terms and drawing pencil-boxed diagrams.<br>
+        • <strong>Milestone Outcome:</strong> Elimination of all exam anxiety. Zero marks lost due to handwriting fatigue or missing keywords!
       </div>
     </div>
 
     <!-- Phase 3 -->
     <div class="card" style="border-left:4px solid #10b981;margin-bottom:14px">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-        <span class="tag tag-green">Phase 3 · Days 18–21 (Sept 27–30)</span>
-        <span class="font-mono" style="font-size:11px;color:#34d399">Evaluator Blueprint &amp; Mocks</span>
+        <span class="tag tag-green">Final Polish · Days 18–21 (Sept 28–30)</span>
+        <span class="font-mono" style="font-size:11px;color:#34d399;font-weight:700">Diagram Sheets &amp; Pre-Flight</span>
       </div>
-      <div style="font-size:15px;font-weight:800;color:#fff;margin-bottom:4px">Timed Simulations, Presentation Blueprint &amp; Pre-Flight Calm</div>
+      <div style="font-size:15px;font-weight:800;color:#fff;margin-bottom:4px">Zero-Margin Diagram Memorization &amp; Peak Performance Calm</div>
       <div style="display:flex;align-items:center;gap:6px;margin:6px 0">
-        <span class="tag tag-green" style="font-size:9px">Final Polish</span>
-        <span style="font-size:11px;color:#34d399;font-weight:700">Exam Day: October 1, 2026</span>
+        <span class="tag tag-green" style="font-size:9px">Pre-Flight Rest</span>
+        <span style="font-size:11px;color:#34d399;font-weight:700">Exam Kickoff: October 1, 2026</span>
       </div>
       <div style="font-size:12px;color:var(--text-secondary);line-height:1.6">
-        • <strong>The 5/5 Evaluator Formula:</strong> Definition + Labeled Diagram + 4 Numbered Bullets + Practical Code/Circuit.<br>
-        • <strong>3 Full Timed Mocks:</strong> Handwritten mock papers under strict 1.5-hour exam conditions without looking at notes.<br>
-        • <strong>Diagram Consolidation:</strong> Reviewing the 14 core diagrams (Adders, K-Maps, 3-Tier ANSI, Maslow, Johari, Von Neumann) on a single 1-page visual sheet.<br>
-        • <strong>Pre-Flight Calm (Sept 30):</strong> Hall ticket printed, pens checked, 15-min light review, early sleep. Walk into the exam room with total peace of mind!
+        • <strong>14 Core Diagram Sheets:</strong> Full Adders, MUX 4:1, 3-Tier ANSI/SPARC, ER symbols, Von Neumann bus, FHS tree, Goleman EQ grid.<br>
+        • <strong>Formula Scan:</strong> De Morgan, K-Maps, chmod octal math, Python slicing syntax, and Patent statutory clauses.<br>
+        • <strong>Mental Calibration (Sept 30):</strong> Pre-checked exam kit (pens, hall ticket, ID), early restful sleep, and entering the exam room with total confidence!
       </div>
     </div>
 
@@ -893,7 +973,7 @@ const sem1SprintDays = [
   {
     "day": 1,
     "date": "Sept 10",
-    "dow": "Wed",
+    "dow": "Thu",
     "phase": "Phase 1: Passing Lock",
     "m": {
       "sub": "DBMS (1101112)",
@@ -918,32 +998,32 @@ const sem1SprintDays = [
   {
     "day": 2,
     "date": "Sept 11",
-    "dow": "Thu",
-    "phase": "Phase 1: Passing Lock",
+    "dow": "Fri",
+    "phase": "Phase 1: 5/5 Evaluator Mastery",
     "m": {
       "sub": "Digital Systems (1101111)",
-      "topic": "Half Adder & Full Adder Circuit Design",
+      "topic": "Half & Full Adders (Covered in Night 5/5 Drill)",
       "yt": "Gate Smashers Full Adder using two half adders",
-      "goal": "Derive Sum = A ^ B ^ Cin and Carry = AB + BCin + ACin with logic gate circuits"
+      "goal": "Derive Sum = A ^ B ^ Cin and Carry = AB + BCin + ACin with circuit diagram (Scheduled for Night Sprint)"
     },
     "a": {
       "sub": "Python (1101411)",
-      "topic": "Core Data Structures: Lists, Tuples, Sets & Dictionaries",
+      "topic": "Core Data Structures: Lists, Tuples, Sets & Dictionaries (ELI5)",
       "yt": "CodeWithHarry Python data structures comparison",
-      "goal": "Write syntax, mutability, and lookup time comparison table on paper"
+      "goal": "Write syntax, mutability, and lookup time comparison table on paper (Active 3:30\u20136:00 PM)"
     },
     "e": {
       "sub": "IPR (1481311)",
       "topic": "3 Criteria for Patentability (Novelty, Non-obviousness, Utility)",
       "yt": "Gate Smashers Patent Criteria Novelty Inventive",
-      "goal": "Memorize 3 statutory criteria under Indian Patent Act 1970 with real-world examples"
+      "goal": "Memorize 3 statutory criteria under Indian Patent Act 1970 + Fair Dealing exemptions (6:30\u20138:30 PM)"
     },
-    "n": "Draw Full Adder circuit using 2 Half Adders + OR gate from memory"
+    "n": "5/5 Evaluator Drill: Write Full Adder 5-point answer + circuit diagram using 2 Half Adders on paper (9:30\u201311:00 PM)"
   },
   {
     "day": 3,
     "date": "Sept 12",
-    "dow": "Fri",
+    "dow": "Sat",
     "phase": "Phase 1: Passing Lock",
     "m": {
       "sub": "DBMS (1101112)",
@@ -968,7 +1048,7 @@ const sem1SprintDays = [
   {
     "day": 4,
     "date": "Sept 13",
-    "dow": "Sat",
+    "dow": "Sun",
     "phase": "Phase 1: Passing Lock",
     "m": {
       "sub": "Digital Systems (1101111)",
@@ -993,7 +1073,7 @@ const sem1SprintDays = [
   {
     "day": 5,
     "date": "Sept 14",
-    "dow": "Sun",
+    "dow": "Mon",
     "phase": "Phase 1: Passing Lock",
     "m": {
       "sub": "DBMS (1101112)",
@@ -1018,7 +1098,7 @@ const sem1SprintDays = [
   {
     "day": 6,
     "date": "Sept 15",
-    "dow": "Mon",
+    "dow": "Tue",
     "phase": "Phase 1: Passing Lock",
     "m": {
       "sub": "Digital Systems (1101111)",
@@ -1043,7 +1123,7 @@ const sem1SprintDays = [
   {
     "day": 7,
     "date": "Sept 16",
-    "dow": "Tue",
+    "dow": "Wed",
     "phase": "Phase 1: Passing Lock",
     "m": {
       "sub": "DBMS (1101112)",
@@ -1068,7 +1148,7 @@ const sem1SprintDays = [
   {
     "day": 8,
     "date": "Sept 17",
-    "dow": "Wed",
+    "dow": "Thu",
     "phase": "Phase 1: Passing Lock",
     "m": {
       "sub": "Digital Systems (1101111)",
@@ -1093,7 +1173,7 @@ const sem1SprintDays = [
   {
     "day": 9,
     "date": "Sept 18",
-    "dow": "Thu",
+    "dow": "Fri",
     "phase": "\ud83d\udd25 Milestone 1: Passing Lock",
     "m": {
       "sub": "Major Passing Drill",
@@ -1118,7 +1198,7 @@ const sem1SprintDays = [
   {
     "day": 10,
     "date": "Sept 19",
-    "dow": "Fri",
+    "dow": "Sat",
     "phase": "Phase 2: Distinction",
     "m": {
       "sub": "Digital Systems (1101111)",
@@ -1143,7 +1223,7 @@ const sem1SprintDays = [
   {
     "day": 11,
     "date": "Sept 20",
-    "dow": "Sat",
+    "dow": "Sun",
     "phase": "Phase 2: Distinction",
     "m": {
       "sub": "DBMS (1101112)",
@@ -1168,7 +1248,7 @@ const sem1SprintDays = [
   {
     "day": 12,
     "date": "Sept 21",
-    "dow": "Sun",
+    "dow": "Mon",
     "phase": "Phase 2: Distinction",
     "m": {
       "sub": "Digital Systems (1101111)",
@@ -1193,7 +1273,7 @@ const sem1SprintDays = [
   {
     "day": 13,
     "date": "Sept 22",
-    "dow": "Mon",
+    "dow": "Tue",
     "phase": "Phase 2: Distinction",
     "m": {
       "sub": "DBMS (1101112)",
@@ -1218,7 +1298,7 @@ const sem1SprintDays = [
   {
     "day": 14,
     "date": "Sept 23",
-    "dow": "Tue",
+    "dow": "Wed",
     "phase": "Phase 2: Distinction",
     "m": {
       "sub": "Digital Systems (1101111)",
@@ -1243,7 +1323,7 @@ const sem1SprintDays = [
   {
     "day": 15,
     "date": "Sept 24",
-    "dow": "Wed",
+    "dow": "Thu",
     "phase": "Phase 2: Distinction",
     "m": {
       "sub": "DBMS (1101112)",
@@ -1268,7 +1348,7 @@ const sem1SprintDays = [
   {
     "day": 16,
     "date": "Sept 25",
-    "dow": "Thu",
+    "dow": "Fri",
     "phase": "Phase 2: Distinction",
     "m": {
       "sub": "Digital Systems (1101111)",
@@ -1293,7 +1373,7 @@ const sem1SprintDays = [
   {
     "day": 17,
     "date": "Sept 26",
-    "dow": "Fri",
+    "dow": "Sat",
     "phase": "\ud83c\udfc6 Milestone 2: Distinction Lock",
     "m": {
       "sub": "Core Distinction Drill",
@@ -1318,7 +1398,7 @@ const sem1SprintDays = [
   {
     "day": 18,
     "date": "Sept 27",
-    "dow": "Sat",
+    "dow": "Sun",
     "phase": "Phase 3: Timed Mocks",
     "m": {
       "sub": "FULL MOCK EXAM 1",
@@ -1343,7 +1423,7 @@ const sem1SprintDays = [
   {
     "day": 19,
     "date": "Sept 28",
-    "dow": "Sun",
+    "dow": "Mon",
     "phase": "Phase 3: Timed Mocks",
     "m": {
       "sub": "FULL MOCK EXAM 3",
@@ -1368,7 +1448,7 @@ const sem1SprintDays = [
   {
     "day": 20,
     "date": "Sept 29",
-    "dow": "Mon",
+    "dow": "Tue",
     "phase": "Phase 3: Timed Mocks",
     "m": {
       "sub": "FULL MOCK EXAM 5",
@@ -1393,7 +1473,7 @@ const sem1SprintDays = [
   {
     "day": 21,
     "date": "Sept 30",
-    "dow": "Tue",
+    "dow": "Wed",
     "phase": "Pre-Flight Readiness",
     "m": {
       "sub": "Exam Kit Check",
@@ -1878,7 +1958,7 @@ const sem1Cards = [
 const STATE_KEY = 'bsc_cs_sem1_sprint_21d_state';
 let sprintState = {
   tasks: {},
-  currentDay: 1, // Default to Day 1 (Sept 10, TODAY)
+  currentDay: 2, // Default to Day 2 (Sept 11, TODAY)
   currentCard: 0,
   currentCourseFilter: 'all',
   currentCompletedFilter: 'all'
@@ -1964,7 +2044,7 @@ function renderSprintGrid() {
       if (sprintState.tasks[`${d.day}_${s}`]) done++;
     });
     const isComplete = done === 4;
-    const isToday = d.day === 1; // Sept 10 is DAY 1
+    const isToday = d.day === 2; // Sept 11 is DAY 2 (TODAY)
 
     const card = document.createElement('div');
     card.className = `cal-card ${d.day === sprintState.currentDay ? 'active-day' : ''} ${isToday ? 'is-today' : ''} ${isComplete ? 'is-complete' : ''}`;
@@ -2023,7 +2103,7 @@ function renderHeatmap() {
     else if (count === 3) { bg = '#26a641'; border = '#39d353'; }
     else if (count === 4) { bg = '#39d353'; border = '#4ade80'; }
 
-    const isToday = d.day === 1;
+    const isToday = d.day === 2;
     const isMilestone1 = d.day === 9;
     const isMilestone2 = d.day === 17;
 
@@ -2059,7 +2139,7 @@ function loadDay(dayNum) {
   if (select) select.value = dayNum;
 
   document.getElementById('insp-day-badge').innerText = `DAY ${d.day} OF 21`;
-  document.getElementById('insp-date-title').innerText = `${d.date}, 2026 (${d.dow})${d.day === 1 ? ' · TODAY' : ''}`;
+  document.getElementById('insp-date-title').innerText = `${d.date}, 2026 (${d.dow})${d.day === 2 ? ' · TODAY' : ''}`;
   document.getElementById('insp-phase-desc').innerText = `${d.phase} · ${d.m.sub.split(' ')[0]} + ${d.a.sub.split(' ')[0]} + ${d.e.sub.split(' ')[0]}`;
 
   const container = document.getElementById('day-sessions-container');
@@ -2625,6 +2705,57 @@ function checkUrlSync() {
   }
 }
 
+
+// 90+ Master Coach Prompt Copy & Toast Helper
+function showToast(msg) {
+  const toast = document.getElementById('toast-notification');
+  const toastMsg = document.getElementById('toast-msg');
+  if (!toast || !toastMsg) return;
+  toastMsg.innerText = msg;
+  toast.style.display = 'flex';
+  setTimeout(() => {
+    toast.style.display = 'none';
+  }, 3500);
+}
+
+function copyCoachPrompt() {
+  const promptText = `Hi! I have uploaded my complete Semester 1 Master Coach and Curriculum file (CHATGPT_90PLUS_MASTER_COACH.md). 
+
+Please adopt the Master Coach persona outlined in Section 1. Follow the 4 Sacred Teaching Laws (ELI5 simplicity, 5/5 Evaluator Blueprint, pen-and-paper writing drills, and teach-backs). 
+
+My goal is 90%+ in my Mumbai University Semester 1 ATKT exam. 
+
+Review the syllabus in Section 3 and the 19-day plan in Section 4. Today is Day 2 (Sept 11). Ask me which subject we are starting with right now, and let's begin our first 90-second ELI5 sprint!`;
+
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(promptText).then(() => {
+      const btnText = document.getElementById('copy-coach-text');
+      if (btnText) btnText.innerText = 'Prompt Copied! ✓';
+      showToast('ChatGPT Coach Prompt copied to clipboard!');
+      setTimeout(() => {
+        if (btnText) btnText.innerText = 'Copy ChatGPT Coach Prompt';
+      }, 3000);
+    }).catch(() => fallbackCopy(promptText));
+  } else {
+    fallbackCopy(promptText);
+  }
+}
+
+function fallbackCopy(text) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  document.body.appendChild(ta);
+  ta.select();
+  document.execCommand('copy');
+  document.body.removeChild(ta);
+  const btnText = document.getElementById('copy-coach-text');
+  if (btnText) btnText.innerText = 'Prompt Copied! ✓';
+  showToast('ChatGPT Coach Prompt copied to clipboard!');
+  setTimeout(() => {
+    if (btnText) btnText.innerText = 'Copy ChatGPT Coach Prompt';
+  }, 3000);
+}
+
 // G. INITIALIZATION
 window.addEventListener('DOMContentLoaded', () => {
   loadState();
@@ -2637,7 +2768,7 @@ window.addEventListener('DOMContentLoaded', () => {
     sem1SprintDays.forEach(d => {
       const opt = document.createElement('option');
       opt.value = d.day;
-      opt.innerText = `Day ${d.day}: ${d.date} (${d.dow})${d.day === 1 ? ' · TODAY' : ''}`;
+      opt.innerText = `Day ${d.day}: ${d.date} (${d.dow})${d.day === 2 ? ' · TODAY' : ''}`;
       select.appendChild(opt);
     });
   }
@@ -2655,6 +2786,13 @@ window.addEventListener('DOMContentLoaded', () => {
   lucide.createIcons();
 });
 </script>
+
+
+<!-- Toast Notification -->
+<div id="toast-notification">
+  <svg width="15" height="15" fill="none" stroke="#38bdf8" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+  <span id="toast-msg">ChatGPT Coach Prompt copied!</span>
+</div>
 
 </body>
 </html>
